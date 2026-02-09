@@ -13,7 +13,6 @@ Common symbol       size              file
 eventCounter        0x1               main.o
 dbTime4             0x2               main.o
 deadTime2           0x2               main.o
-myWord32            0x4               main.o
 myUSARTHandler      0x30              main.o
 crcLocal            0x2               main.o
 unixTik             0x1               main.o
@@ -597,7 +596,7 @@ END GROUP
                 0x00800120                _edata = .
                 0x00800120                PROVIDE (__data_end, .)
 
-.bss            0x00800120      0x2eb
+.bss            0x00800120      0x2e7
                 0x00800120                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -624,63 +623,62 @@ END GROUP
  .bss.usart0RxLastError
                 0x0080012e        0x2 source/usart.o
  *(COMMON)
- COMMON         0x00800130      0x2db main.o
+ COMMON         0x00800130      0x2d7 main.o
                 0x00800130                eventCounter
                 0x00800131                dbTime4
                 0x00800133                deadTime2
-                0x00800135                myWord32
-                0x00800139                myUSARTHandler
-                0x00800169                crcLocal
-                0x0080016b                unixTik
-                0x0080016c                tikDebounce
-                0x00800170                lecture
-                0x00800171                t35Tik
-                0x00800172                registro
-                0x00800174                dbTime3
-                0x00800176                myHalfWord
-                0x00800178                diagnosticsSubfunction
-                0x00800179                decodeState
-                0x0080017a                deadTime4
-                0x0080017c                excepCode
-                0x0080017d                byteCount
-                0x0080017e                unixTimeL
-                0x00800180                bufferRx
-                0x00800280                errorCode
-                0x00800281                slaveAddress
-                0x00800283                exceptionCodes
-                0x00800284                function
-                0x00800285                tim1L
-                0x00800286                nBytes
-                0x00800287                dbTime1
-                0x00800289                myEvents
-                0x008002e9                silenceTik
-                0x008002ea                t15Tik
-                0x008002eb                deadTime1
-                0x008002ed                hbTime
-                0x008002ee                inputFlags
-                0x008002ef                crcMsg
-                0x008002f1                oldValueA
-                0x008002f2                diagnosticsRegister
-                0x008002f4                BRconfig
-                0x008002f5                dbTime2
-                0x008002f7                unixTimeH
-                0x008002f9                newValueA
-                0x008002fa                intFlags
-                0x008002fb                bufferTx
-                0x008003fb                tikBetweenTime
-                0x00800403                dateTime
-                0x00800407                deadTime3
-                0x00800409                tim1H
-                0x0080040a                outValues
-                0x0080040b                PROVIDE (__bss_end, .)
+                0x00800135                myUSARTHandler
+                0x00800165                crcLocal
+                0x00800167                unixTik
+                0x00800168                tikDebounce
+                0x0080016c                lecture
+                0x0080016d                t35Tik
+                0x0080016e                registro
+                0x00800170                dbTime3
+                0x00800172                myHalfWord
+                0x00800174                diagnosticsSubfunction
+                0x00800175                decodeState
+                0x00800176                deadTime4
+                0x00800178                excepCode
+                0x00800179                byteCount
+                0x0080017a                unixTimeL
+                0x0080017c                bufferRx
+                0x0080027c                errorCode
+                0x0080027d                slaveAddress
+                0x0080027f                exceptionCodes
+                0x00800280                function
+                0x00800281                tim1L
+                0x00800282                nBytes
+                0x00800283                dbTime1
+                0x00800285                myEvents
+                0x008002e5                silenceTik
+                0x008002e6                t15Tik
+                0x008002e7                deadTime1
+                0x008002e9                hbTime
+                0x008002ea                inputFlags
+                0x008002eb                crcMsg
+                0x008002ed                oldValueA
+                0x008002ee                diagnosticsRegister
+                0x008002f0                BRconfig
+                0x008002f1                dbTime2
+                0x008002f3                unixTimeH
+                0x008002f5                newValueA
+                0x008002f6                intFlags
+                0x008002f7                bufferTx
+                0x008003f7                tikBetweenTime
+                0x008003ff                dateTime
+                0x00800403                deadTime3
+                0x00800405                tim1H
+                0x00800406                outValues
+                0x00800407                PROVIDE (__bss_end, .)
                 0x00001214                __data_load_start = LOADADDR (.data)
                 0x00001234                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080040b        0x0
+.noinit         0x00800407        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080040b                _end = .
+                0x00800407                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -779,31 +777,31 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2313
+.debug_info     0x00000000     0x22a4
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4      0xf74 main.o
- .debug_info    0x00001568       0xa6 mcc_generated_files/system/src/config_bits.o
- .debug_info    0x0000160e       0xef mcc_generated_files/system/src/cpu.o
- .debug_info    0x000016fd       0x92 mcc_generated_files/system/src/cpuint.o
- .debug_info    0x0000178f       0x82 mcc_generated_files/system/src/pins.o
- .debug_info    0x00001811       0xbf mcc_generated_files/system/src/system.o
- .debug_info    0x000018d0      0x20a source/timer0.o
- .debug_info    0x00001ada      0x25c source/timer1.o
- .debug_info    0x00001d36      0x5dd source/usart.o
+ .debug_info    0x000005f4      0xf05 main.o
+ .debug_info    0x000014f9       0xa6 mcc_generated_files/system/src/config_bits.o
+ .debug_info    0x0000159f       0xef mcc_generated_files/system/src/cpu.o
+ .debug_info    0x0000168e       0x92 mcc_generated_files/system/src/cpuint.o
+ .debug_info    0x00001720       0x82 mcc_generated_files/system/src/pins.o
+ .debug_info    0x000017a2       0xbf mcc_generated_files/system/src/system.o
+ .debug_info    0x00001861      0x20a source/timer0.o
+ .debug_info    0x00001a6b      0x25c source/timer1.o
+ .debug_info    0x00001cc7      0x5dd source/usart.o
 
-.debug_abbrev   0x00000000      0xdbf
+.debug_abbrev   0x00000000      0xdf9
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_abbrev  0x000005a2      0x2c3 main.o
- .debug_abbrev  0x00000865       0x6f mcc_generated_files/system/src/config_bits.o
- .debug_abbrev  0x000008d4       0x7a mcc_generated_files/system/src/cpu.o
- .debug_abbrev  0x0000094e       0x53 mcc_generated_files/system/src/cpuint.o
- .debug_abbrev  0x000009a1       0x4f mcc_generated_files/system/src/pins.o
- .debug_abbrev  0x000009f0       0x63 mcc_generated_files/system/src/system.o
- .debug_abbrev  0x00000a53       0xcd source/timer0.o
- .debug_abbrev  0x00000b20       0xe5 source/timer1.o
- .debug_abbrev  0x00000c05      0x1ba source/usart.o
+ .debug_abbrev  0x000005a2      0x2fd main.o
+ .debug_abbrev  0x0000089f       0x6f mcc_generated_files/system/src/config_bits.o
+ .debug_abbrev  0x0000090e       0x7a mcc_generated_files/system/src/cpu.o
+ .debug_abbrev  0x00000988       0x53 mcc_generated_files/system/src/cpuint.o
+ .debug_abbrev  0x000009db       0x4f mcc_generated_files/system/src/pins.o
+ .debug_abbrev  0x00000a2a       0x63 mcc_generated_files/system/src/system.o
+ .debug_abbrev  0x00000a8d       0xcd source/timer0.o
+ .debug_abbrev  0x00000b5a       0xe5 source/timer1.o
+ .debug_abbrev  0x00000c3f      0x1ba source/usart.o
 
 .debug_line     0x00000000     0x1aea
  *(.debug_line .debug_line.* .debug_line_end)
@@ -829,26 +827,26 @@ END GROUP
  .debug_frame   0x00000398      0x198 source/timer1.o
  .debug_frame   0x00000530      0x164 source/usart.o
 
-.debug_str      0x00000000     0x114d
+.debug_str      0x00000000     0x1125
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x841 main.o
-                                0x959 (size before relaxing)
- .debug_str     0x00000a49       0x95 mcc_generated_files/system/src/config_bits.o
+ .debug_str     0x00000208      0x819 main.o
+                                0x931 (size before relaxing)
+ .debug_str     0x00000a21       0x95 mcc_generated_files/system/src/config_bits.o
                                 0x1a7 (size before relaxing)
- .debug_str     0x00000ade       0x81 mcc_generated_files/system/src/cpu.o
+ .debug_str     0x00000ab6       0x81 mcc_generated_files/system/src/cpu.o
                                 0x1e2 (size before relaxing)
- .debug_str     0x00000b5f       0x3d mcc_generated_files/system/src/cpuint.o
+ .debug_str     0x00000b37       0x3d mcc_generated_files/system/src/cpuint.o
                                 0x1a5 (size before relaxing)
- .debug_str     0x00000b9c       0x40 mcc_generated_files/system/src/pins.o
+ .debug_str     0x00000b74       0x40 mcc_generated_files/system/src/pins.o
                                 0x1a1 (size before relaxing)
- .debug_str     0x00000bdc       0x2b mcc_generated_files/system/src/system.o
+ .debug_str     0x00000bb4       0x2b mcc_generated_files/system/src/system.o
                                 0x1ce (size before relaxing)
- .debug_str     0x00000c07      0x14d source/timer0.o
+ .debug_str     0x00000bdf      0x14d source/timer0.o
                                 0x317 (size before relaxing)
- .debug_str     0x00000d54      0x1a1 source/timer1.o
+ .debug_str     0x00000d2c      0x1a1 source/timer1.o
                                 0x345 (size before relaxing)
- .debug_str     0x00000ef5      0x258 source/usart.o
+ .debug_str     0x00000ecd      0x258 source/usart.o
                                 0x5b4 (size before relaxing)
 
 .debug_loc      0x00000000      0x7a2

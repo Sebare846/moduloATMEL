@@ -74,17 +74,6 @@ typedef union{
 
 _uHalfWord myHalfWord;
 
-typedef union {
-	uint32_t ui32;
-	struct {
-		uint16_t ui16L;   
-		uint16_t ui16H;   
-	} half;
-	uint8_t ui8[4];
-} _uWord32;
-
-_uWord32 myWord32;
-
 
 typedef union{
 	struct{
@@ -173,7 +162,7 @@ uint16_t crcLocal, crcMsg;
 //-----------------------------------------------------------------------
 // ------------------- "Banco" lógico de registros (sin direcciones fijas) -------------------
 uint16_t slaveAddress;
-uint16_t unixTimeH;//hacer una union capaz
+uint16_t unixTimeH;
 uint16_t unixTimeL;
 uint16_t registro;
 uint16_t deadTime1;
@@ -345,7 +334,6 @@ void do10ms(){
 		}else
 			inputFlags.iFlags.is500ms=1;
 	}
-	
 }
 
 void RegInput(){
@@ -451,7 +439,6 @@ void RegInput(){
 }
 
 /*--------------------------------*/
-
 
 void CrcCalculation(uint8_t data){//, uint16_t crc){
 	crcLocal ^= data;
@@ -848,7 +835,6 @@ int main(void){
 			 hbTime = PERIOD1000MS;
 		 }
 		 
-
 		 if(intFlags.iFlags.dataReady){ //DECODIFICA SI EL BYTE SE RECIBIO CORRECTAMENTE
 			 intFlags.iFlags.dataReady = 0;
 			 DecodeData();

@@ -51,6 +51,7 @@ C_SRCS +=  \
 ../mcc_generated_files/system/src/pins.c \
 ../mcc_generated_files/system/src/system.c \
 ../source/timer0.c \
+../source/timer1.c \
 ../source/usart.c
 
 
@@ -70,6 +71,7 @@ mcc_generated_files/system/src/pins.o \
 mcc_generated_files/system/src/protected_io.o \
 mcc_generated_files/system/src/system.o \
 source/timer0.o \
+source/timer1.o \
 source/usart.o
 
 OBJS_AS_ARGS +=  \
@@ -81,6 +83,7 @@ mcc_generated_files/system/src/pins.o \
 mcc_generated_files/system/src/protected_io.o \
 mcc_generated_files/system/src/system.o \
 source/timer0.o \
+source/timer1.o \
 source/usart.o
 
 C_DEPS +=  \
@@ -92,6 +95,7 @@ mcc_generated_files/system/src/pins.d \
 mcc_generated_files/system/src/protected_io.d \
 mcc_generated_files/system/src/system.d \
 source/timer0.d \
+source/timer1.d \
 source/usart.d
 
 C_DEPS_AS_ARGS +=  \
@@ -103,6 +107,7 @@ mcc_generated_files/system/src/pins.d \
 mcc_generated_files/system/src/protected_io.d \
 mcc_generated_files/system/src/system.d \
 source/timer0.d \
+source/timer1.d \
 source/usart.d
 
 OUTPUT_FILE_PATH +=ModuloATMEL.elf
@@ -162,6 +167,13 @@ mcc_generated_files/system/src/system.o: ../mcc_generated_files/system/src/syste
 	
 
 source/timer0.o: ../source/timer0.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+source/timer1.o: ../source/timer1.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

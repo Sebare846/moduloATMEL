@@ -38,7 +38,7 @@
     THIS SOFTWARE.
 */
 #include <avr/io.h>
-#include "../tc1.h"
+#include "../header/timer1.h"
 
 void (*TMR1Handler)(void) = NULL;
 

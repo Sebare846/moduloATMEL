@@ -5,10 +5,10 @@
  * Created: 2/9/2026 11:19:38 AM
  *  Author: sofia
  */ 
-#ifndef TC1_H
-#define TC1_H
+#ifndef TIMER1_H_
+#define TIMER1_H_
 
-#include "../system/utils/compiler.h"
+#include "../mcc_generated_files/system/utils/compiler.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -115,4 +115,4 @@ uint16_t TC1_ReadTimer(void);
 
 void TMR1_SetHandler(void (*interruptHandler)(void));
 
-#endif    //TC1_H
+#endif    //TIMER1_H_

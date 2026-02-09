@@ -60,6 +60,12 @@
 #define PERIOD1000MS 100
 #define PERIOD10S   1000
 #define PERIOD5S    500
+#define T15_BR00 156
+#define T15_BR10 172
+#define T15_BR11 75
+#define T35_BR00 365
+#define T35_BR10 401
+#define T35_BR11 175
 
 typedef union{
 	uint16_t ui16;
@@ -135,7 +141,7 @@ typedef enum{
 _eDiagnosticsSubfunctions diagnosticsSubfunction;
 
 // Heartbeat
-uint8_t hbTime, silenceTik;
+uint8_t hbTime, silenceTik, BRconfig;
 
 uint16_t reg[3] = {0x02F0 , 0x00A1, 0x1000};
 
@@ -193,6 +199,7 @@ void SendData();
 void ReadData();
 void Init_UART();
 void initTimer1();
+void do10us();
 void do10ms();
 void CrcCalculation(uint8_t data);
 void SendExceptionCode();
@@ -714,6 +721,7 @@ int main(void){
 	sei();
 	
 	TMR0_SetHandler(do10ms);
+	TMR1_SetHandler(do10us);
 	//myUSARTHandler.RxCompleteCallbackRegister(ReadData);
 	//sei();
 	USART0_ReceiveInterruptEnable();
@@ -725,6 +733,7 @@ int main(void){
   intFlags.aFlags = 0;
   intFlags.iFlags.silenceTime = 1;
   silenceTik = 6;
+  BRconfig = 0;
   
   unixTimeH               = 0x1111;
   unixTimeL               = 0x2222;

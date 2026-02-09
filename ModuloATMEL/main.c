@@ -74,6 +74,18 @@ typedef union{
 
 _uHalfWord myHalfWord;
 
+typedef union {
+	uint32_t ui32;
+	struct {
+		uint16_t ui16L;   
+		uint16_t ui16H;   
+	} half;
+	uint8_t ui8[4];
+} _uWord32;
+
+_uWord32 myWord32;
+
+
 typedef union{
 	struct{
 		uint8_t isEvent1            : 1;
@@ -97,7 +109,8 @@ typedef union{
 		uint8_t isEvent3 : 1;
 		uint8_t isEvent4 : 1;
 		uint8_t DecodeData : 1;
-		uint8_t RESERVED : 3;
+		uint8_t is500ms : 1;
+		uint8_t RESERVED : 2;
 	} iFlags;
 	uint8_t aFlags_input;
 }_uFlags_input;
@@ -142,7 +155,7 @@ typedef enum{
 _eDiagnosticsSubfunctions diagnosticsSubfunction;
 
 // Heartbeat
-uint8_t hbTime, silenceTik, BRconfig, t15Tik, t35Tik;
+uint8_t hbTime, silenceTik, BRconfig, t15Tik, t35Tik, unixTik;
 
 uint16_t reg[3] = {0x02F0 , 0x00A1, 0x1000};
 
@@ -160,7 +173,7 @@ uint16_t crcLocal, crcMsg;
 //-----------------------------------------------------------------------
 // ------------------- "Banco" lógico de registros (sin direcciones fijas) -------------------
 uint16_t slaveAddress;
-uint16_t unixTimeH;
+uint16_t unixTimeH;//hacer una union capaz
 uint16_t unixTimeL;
 uint16_t registro;
 uint16_t deadTime1;
@@ -321,6 +334,17 @@ void do10ms(){
 	hbTime--;
 	silenceTik--;
 	intFlags.iFlags.isEvent1 = 1;
+	unixTik--;
+	if(!unixTik){ //esto no se si aca o en el main idk
+		if(inputFlags.iFlags.is500ms){
+			inputFlags.iFlags.is500ms = 0;
+			//unix++;
+			unixTimeL++;
+			if(!unixTimeL) unixTimeH++;
+				
+		}else
+			inputFlags.iFlags.is500ms=1;
+	}
 	
 }
 
@@ -789,6 +813,7 @@ int main(void){
   intFlags.iFlags.silenceTime = 1;
   silenceTik = 6;
   BRconfig = 0;
+  unixTik = PERIOD500MS;
   
   unixTimeH               = 0x1111;
   unixTimeL               = 0x2222;
@@ -863,9 +888,7 @@ int main(void){
 			TC0_Disable_CompareA_Interrupt();
 			RegInput();
 		}
-
-
-		
+	
 		PORTB = ((outValues << 1) & MASKB) | hbState ; 
 
 //---------------------------------------

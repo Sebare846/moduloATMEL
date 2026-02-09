@@ -83,7 +83,7 @@ typedef union{
 		uint8_t isBroadcast         : 1;
 		uint8_t updateParameters    : 1;
 		uint8_t restartComms        : 1;
-		uint8_t RESERVED            : 1;
+		uint8_t btwFrame            : 1;
 	} iFlags;
 	uint8_t aFlags;
 }_uFlags;
@@ -141,7 +141,7 @@ typedef enum{
 _eDiagnosticsSubfunctions diagnosticsSubfunction;
 
 // Heartbeat
-uint8_t hbTime, silenceTik, BRconfig;
+uint8_t hbTime, silenceTik, BRconfig, t15Tik, t35Tik;
 
 uint16_t reg[3] = {0x02F0 , 0x00A1, 0x1000};
 
@@ -767,6 +767,37 @@ int main(void){
 			 hbState ^= (1<<5);
 			 hbTime = PERIOD1000MS;
 		 }
+		 
+	/*	 if(!t15Tik){
+			 switch(BRconfig){
+				case 0x00:
+					t15Tik = T15_BR00;
+				break;
+				case 0x10:
+					t15Tik = T15_BR10;
+				break;
+				default: 
+					t15Tik = T15_BR11;
+				break;
+			 }
+		 }
+		 
+		 if(!t35Tik){
+			if(!t35Tik){
+				switch(BRconfig){
+					case 0x00:
+						t35Tik = T35_BR00;
+					break;
+					case 0x10:
+						t35Tik = T35_BR10;
+					break;
+					default:
+						t35Tik = T15_BR11;
+					break;
+				}
+			}		 
+		 }*/
+		 
 		 if(intFlags.iFlags.dataReady){ //DECODIFICA SI EL BYTE SE RECIBIO CORRECTAMENTE
 			 intFlags.iFlags.dataReady = 0;
 			 DecodeData();

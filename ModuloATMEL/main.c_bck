@@ -1,0 +1,18 @@
+/*
+ * ModuloATMEL.c
+ *
+ * Created: 9/2/2026 09:57:06
+ * Author : Seba
+ */ 
+
+#include <avr/io.h>
+
+
+int main(void)
+{
+    /* Replace with your application code */
+    while (1) 
+    {
+    }
+}
+

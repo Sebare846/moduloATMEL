@@ -1,0 +1,2547 @@
+
+ModuloATMEL.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000020  00800100  0000101e  000010d2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000101e  00000000  00000000  000000b4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000002e1  00800120  00800120  000010f2  2**0
+                  ALLOC
+  3 .fuse         00000003  00820000  00820000  000010f2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .comment      00000030  00000000  00000000  000010f5  2**0
+                  CONTENTS, READONLY
+  5 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001128  2**2
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000288  00000000  00000000  00001168  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00001f53  00000000  00000000  000013f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000ceb  00000000  00000000  00003343  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00001724  00000000  00000000  0000402e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000004dc  00000000  00000000  00005754  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000ee4  00000000  00000000  00005c30  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    00000630  00000000  00000000  00006b14  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000230  00000000  00000000  00007144  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+       4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+       8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+       c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      38:	0c 94 9b 07 	jmp	0xf36	; 0xf36 <__vector_14>
+      3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      48:	0c 94 83 02 	jmp	0x506	; 0x506 <__vector_18>
+      4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+      68:	11 24       	eor	r1, r1
+      6a:	1f be       	out	0x3f, r1	; 63
+      6c:	cf ef       	ldi	r28, 0xFF	; 255
+      6e:	d8 e0       	ldi	r29, 0x08	; 8
+      70:	de bf       	out	0x3e, r29	; 62
+      72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+      74:	11 e0       	ldi	r17, 0x01	; 1
+      76:	a0 e0       	ldi	r26, 0x00	; 0
+      78:	b1 e0       	ldi	r27, 0x01	; 1
+      7a:	ee e1       	ldi	r30, 0x1E	; 30
+      7c:	f0 e1       	ldi	r31, 0x10	; 16
+      7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+      80:	05 90       	lpm	r0, Z+
+      82:	0d 92       	st	X+, r0
+      84:	a0 32       	cpi	r26, 0x20	; 32
+      86:	b1 07       	cpc	r27, r17
+      88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+      8a:	24 e0       	ldi	r18, 0x04	; 4
+      8c:	a0 e2       	ldi	r26, 0x20	; 32
+      8e:	b1 e0       	ldi	r27, 0x01	; 1
+      90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+      92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+      94:	a1 30       	cpi	r26, 0x01	; 1
+      96:	b2 07       	cpc	r27, r18
+      98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+      9a:	0e 94 7a 06 	call	0xcf4	; 0xcf4 <main>
+      9e:	0c 94 0d 08 	jmp	0x101a	; 0x101a <_exit>
+
+000000a2 <__bad_interrupt>:
+      a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <do10ms>:
+	EEAR = address;
+	//Leer datos
+	EECR |= (1 << EERE);
+	//devolver dato leido
+	return EEDR;
+}
+      a6:	80 91 e4 02 	lds	r24, 0x02E4	; 0x8002e4 <hbTime>
+      aa:	81 50       	subi	r24, 0x01	; 1
+      ac:	80 93 e4 02 	sts	0x02E4, r24	; 0x8002e4 <hbTime>
+      b0:	80 91 e1 02 	lds	r24, 0x02E1	; 0x8002e1 <silenceTik>
+      b4:	81 50       	subi	r24, 0x01	; 1
+      b6:	80 93 e1 02 	sts	0x02E1, r24	; 0x8002e1 <silenceTik>
+      ba:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+      be:	81 60       	ori	r24, 0x01	; 1
+      c0:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+      c4:	08 95       	ret
+
+000000c6 <UpdateState>:
+	    intFlags.iFlags.isEvent1 = 0;
+    }
+
+ void UpdateState(uint8_t lect, uint8_t mask, uint8_t indice){
+	
+	  if(((~PINC) & mask) == (lect & mask)){ //Probar asi y sino ~(PORTA & mask)
+      c6:	26 b1       	in	r18, 0x06	; 6
+      c8:	30 e0       	ldi	r19, 0x00	; 0
+      ca:	20 95       	com	r18
+      cc:	30 95       	com	r19
+      ce:	e6 2f       	mov	r30, r22
+      d0:	f0 e0       	ldi	r31, 0x00	; 0
+      d2:	2e 23       	and	r18, r30
+      d4:	3f 23       	and	r19, r31
+      d6:	86 23       	and	r24, r22
+      d8:	e8 2f       	mov	r30, r24
+      da:	f0 e0       	ldi	r31, 0x00	; 0
+      dc:	2e 17       	cp	r18, r30
+      de:	3f 07       	cpc	r19, r31
+      e0:	09 f5       	brne	.+66     	; 0x124 <UpdateState+0x5e>
+		  if(lect & mask){
+      e2:	88 23       	and	r24, r24
+      e4:	31 f0       	breq	.+12     	; 0xf2 <UpdateState+0x2c>
+			  outValues |= mask; // CORRI UNO PORQUE SE DESPLAZA 
+      e6:	80 91 00 04 	lds	r24, 0x0400	; 0x800400 <outValues>
+      ea:	86 2b       	or	r24, r22
+      ec:	80 93 00 04 	sts	0x0400, r24	; 0x800400 <outValues>
+      f0:	19 c0       	rjmp	.+50     	; 0x124 <UpdateState+0x5e>
+		   }else{
+			  if(outValues & mask){
+      f2:	80 91 00 04 	lds	r24, 0x0400	; 0x800400 <outValues>
+      f6:	96 2f       	mov	r25, r22
+      f8:	98 23       	and	r25, r24
+      fa:	79 f0       	breq	.+30     	; 0x11a <UpdateState+0x54>
+				  tikBetweenTime[indice] = TIMEBEETWEN[indice];
+      fc:	24 2f       	mov	r18, r20
+      fe:	30 e0       	ldi	r19, 0x00	; 0
+     100:	22 0f       	add	r18, r18
+     102:	33 1f       	adc	r19, r19
+     104:	f9 01       	movw	r30, r18
+     106:	e0 50       	subi	r30, 0x00	; 0
+     108:	ff 4f       	sbci	r31, 0xFF	; 255
+     10a:	01 90       	ld	r0, Z+
+     10c:	f0 81       	ld	r31, Z
+     10e:	e0 2d       	mov	r30, r0
+     110:	d9 01       	movw	r26, r18
+     112:	af 50       	subi	r26, 0x0F	; 15
+     114:	bc 4f       	sbci	r27, 0xFC	; 252
+     116:	ed 93       	st	X+, r30
+     118:	fc 93       	st	X, r31
+			  }
+			 outValues &= ~mask;
+     11a:	96 2f       	mov	r25, r22
+     11c:	90 95       	com	r25
+     11e:	89 23       	and	r24, r25
+     120:	80 93 00 04 	sts	0x0400, r24	; 0x800400 <outValues>
+  
+		    }
+	    }
+	    myEvents[eventCounter].ID = indice;
+     124:	20 91 2e 01 	lds	r18, 0x012E	; 0x80012e <eventCounter>
+     128:	82 2f       	mov	r24, r18
+     12a:	90 e0       	ldi	r25, 0x00	; 0
+     12c:	fc 01       	movw	r30, r24
+     12e:	ee 0f       	add	r30, r30
+     130:	ff 1f       	adc	r31, r31
+     132:	df 01       	movw	r26, r30
+     134:	a8 0f       	add	r26, r24
+     136:	b9 1f       	adc	r27, r25
+     138:	aa 0f       	add	r26, r26
+     13a:	bb 1f       	adc	r27, r27
+     13c:	af 57       	subi	r26, 0x7F	; 127
+     13e:	bd 4f       	sbci	r27, 0xFD	; 253
+     140:	4c 93       	st	X, r20
+	    myEvents[eventCounter].stateLastEvent = outValues & mask;
+     142:	30 91 00 04 	lds	r19, 0x0400	; 0x800400 <outValues>
+     146:	63 23       	and	r22, r19
+     148:	11 96       	adiw	r26, 0x01	; 1
+     14a:	6c 93       	st	X, r22
+     14c:	11 97       	sbiw	r26, 0x01	; 1
+	    myEvents[eventCounter].timeLastEvent = dateTime;
+     14e:	fd 01       	movw	r30, r26
+     150:	80 91 f9 03 	lds	r24, 0x03F9	; 0x8003f9 <dateTime>
+     154:	90 91 fa 03 	lds	r25, 0x03FA	; 0x8003fa <dateTime+0x1>
+     158:	a0 91 fb 03 	lds	r26, 0x03FB	; 0x8003fb <dateTime+0x2>
+     15c:	b0 91 fc 03 	lds	r27, 0x03FC	; 0x8003fc <dateTime+0x3>
+     160:	82 83       	std	Z+2, r24	; 0x02
+     162:	93 83       	std	Z+3, r25	; 0x03
+     164:	a4 83       	std	Z+4, r26	; 0x04
+     166:	b5 83       	std	Z+5, r27	; 0x05
+	    eventCounter++;
+     168:	81 e0       	ldi	r24, 0x01	; 1
+     16a:	82 0f       	add	r24, r18
+     16c:	80 93 2e 01 	sts	0x012E, r24	; 0x80012e <eventCounter>
+	    if(eventCounter == MAXREGISTERS){
+     170:	80 31       	cpi	r24, 0x10	; 16
+     172:	11 f4       	brne	.+4      	; 0x178 <UpdateState+0xb2>
+		    eventCounter = 0;
+     174:	10 92 2e 01 	sts	0x012E, r1	; 0x80012e <eventCounter>
+     178:	08 95       	ret
+
+0000017a <RegInput>:
+	
+}
+
+void RegInput(){
+		
+	    newValueA = ~(PINC & MASKC);
+     17a:	86 b1       	in	r24, 0x06	; 6
+     17c:	8f 70       	andi	r24, 0x0F	; 15
+     17e:	80 95       	com	r24
+     180:	80 93 ef 02 	sts	0x02EF, r24	; 0x8002ef <newValueA>
+	    //PORTB |= ((newValueA << 1) & MASKB);
+	    inputFlags.aFlags_input = (newValueA ^ oldValueA);
+     184:	90 91 e8 02 	lds	r25, 0x02E8	; 0x8002e8 <oldValueA>
+     188:	98 27       	eor	r25, r24
+     18a:	90 93 e5 02 	sts	0x02E5, r25	; 0x8002e5 <inputFlags>
+	    
+	    if(tikBetweenTime[0]){
+     18e:	20 91 f1 03 	lds	r18, 0x03F1	; 0x8003f1 <tikBetweenTime>
+     192:	30 91 f2 03 	lds	r19, 0x03F2	; 0x8003f2 <tikBetweenTime+0x1>
+     196:	21 15       	cp	r18, r1
+     198:	31 05       	cpc	r19, r1
+     19a:	39 f0       	breq	.+14     	; 0x1aa <RegInput+0x30>
+		    tikBetweenTime[0]--;
+     19c:	21 50       	subi	r18, 0x01	; 1
+     19e:	31 09       	sbc	r19, r1
+     1a0:	30 93 f2 03 	sts	0x03F2, r19	; 0x8003f2 <tikBetweenTime+0x1>
+     1a4:	20 93 f1 03 	sts	0x03F1, r18	; 0x8003f1 <tikBetweenTime>
+     1a8:	1e c0       	rjmp	.+60     	; 0x1e6 <RegInput+0x6c>
+		}else{
+		    if(inputFlags.iFlags.isEvent1){
+     1aa:	90 91 e5 02 	lds	r25, 0x02E5	; 0x8002e5 <inputFlags>
+     1ae:	90 ff       	sbrs	r25, 0
+     1b0:	0b c0       	rjmp	.+22     	; 0x1c8 <RegInput+0x4e>
+			    tikDebounce[0] = PERIOD100MS;
+     1b2:	9a e0       	ldi	r25, 0x0A	; 10
+     1b4:	90 93 65 01 	sts	0x0165, r25	; 0x800165 <tikDebounce>
+			    lecture = (lecture & ~(IN1)) | (newValueA & IN1);
+     1b8:	90 91 69 01 	lds	r25, 0x0169	; 0x800169 <lecture>
+     1bc:	9e 7f       	andi	r25, 0xFE	; 254
+     1be:	81 70       	andi	r24, 0x01	; 1
+     1c0:	89 2b       	or	r24, r25
+     1c2:	80 93 69 01 	sts	0x0169, r24	; 0x800169 <lecture>
+     1c6:	0f c0       	rjmp	.+30     	; 0x1e6 <RegInput+0x6c>
+			    }else{
+			    if(tikDebounce[0]){
+     1c8:	80 91 65 01 	lds	r24, 0x0165	; 0x800165 <tikDebounce>
+     1cc:	88 23       	and	r24, r24
+     1ce:	59 f0       	breq	.+22     	; 0x1e6 <RegInput+0x6c>
+				    tikDebounce[0]--;
+     1d0:	81 50       	subi	r24, 0x01	; 1
+     1d2:	80 93 65 01 	sts	0x0165, r24	; 0x800165 <tikDebounce>
+				    if(tikDebounce[0] == 0){
+     1d6:	81 11       	cpse	r24, r1
+     1d8:	06 c0       	rjmp	.+12     	; 0x1e6 <RegInput+0x6c>
+					    UpdateState(lecture, IN1, 0);
+     1da:	40 e0       	ldi	r20, 0x00	; 0
+     1dc:	61 e0       	ldi	r22, 0x01	; 1
+     1de:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <lecture>
+     1e2:	0e 94 63 00 	call	0xc6	; 0xc6 <UpdateState>
+				    }
+			    }
+		    }
+	    }
+	    
+	    if(tikBetweenTime[1]){
+     1e6:	80 91 f3 03 	lds	r24, 0x03F3	; 0x8003f3 <tikBetweenTime+0x2>
+     1ea:	90 91 f4 03 	lds	r25, 0x03F4	; 0x8003f4 <tikBetweenTime+0x3>
+     1ee:	00 97       	sbiw	r24, 0x00	; 0
+     1f0:	31 f0       	breq	.+12     	; 0x1fe <RegInput+0x84>
+		    tikBetweenTime[1]--;
+     1f2:	01 97       	sbiw	r24, 0x01	; 1
+     1f4:	90 93 f4 03 	sts	0x03F4, r25	; 0x8003f4 <tikBetweenTime+0x3>
+     1f8:	80 93 f3 03 	sts	0x03F3, r24	; 0x8003f3 <tikBetweenTime+0x2>
+     1fc:	21 c0       	rjmp	.+66     	; 0x240 <RegInput+0xc6>
+		    }else{
+		    if(inputFlags.iFlags.isEvent2){
+     1fe:	80 91 e5 02 	lds	r24, 0x02E5	; 0x8002e5 <inputFlags>
+     202:	81 ff       	sbrs	r24, 1
+     204:	0e c0       	rjmp	.+28     	; 0x222 <RegInput+0xa8>
+			    tikDebounce[1] = PERIOD100MS;
+     206:	8a e0       	ldi	r24, 0x0A	; 10
+     208:	80 93 66 01 	sts	0x0166, r24	; 0x800166 <tikDebounce+0x1>
+			    lecture = (lecture & ~(IN2)) | (newValueA & IN2);
+     20c:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <lecture>
+     210:	98 2f       	mov	r25, r24
+     212:	9d 7f       	andi	r25, 0xFD	; 253
+     214:	80 91 ef 02 	lds	r24, 0x02EF	; 0x8002ef <newValueA>
+     218:	82 70       	andi	r24, 0x02	; 2
+     21a:	89 2b       	or	r24, r25
+     21c:	80 93 69 01 	sts	0x0169, r24	; 0x800169 <lecture>
+     220:	0f c0       	rjmp	.+30     	; 0x240 <RegInput+0xc6>
+			    }else{
+			    if(tikDebounce[1]){
+     222:	80 91 66 01 	lds	r24, 0x0166	; 0x800166 <tikDebounce+0x1>
+     226:	88 23       	and	r24, r24
+     228:	59 f0       	breq	.+22     	; 0x240 <RegInput+0xc6>
+				    tikDebounce[1]--;
+     22a:	81 50       	subi	r24, 0x01	; 1
+     22c:	80 93 66 01 	sts	0x0166, r24	; 0x800166 <tikDebounce+0x1>
+				    if(tikDebounce[1] == 0){
+     230:	81 11       	cpse	r24, r1
+     232:	06 c0       	rjmp	.+12     	; 0x240 <RegInput+0xc6>
+					    UpdateState(lecture, IN2, 1);
+     234:	41 e0       	ldi	r20, 0x01	; 1
+     236:	62 e0       	ldi	r22, 0x02	; 2
+     238:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <lecture>
+     23c:	0e 94 63 00 	call	0xc6	; 0xc6 <UpdateState>
+				    }
+			    }
+		    }
+	    }
+	    
+	    if(tikBetweenTime[2]){
+     240:	80 91 f5 03 	lds	r24, 0x03F5	; 0x8003f5 <tikBetweenTime+0x4>
+     244:	90 91 f6 03 	lds	r25, 0x03F6	; 0x8003f6 <tikBetweenTime+0x5>
+     248:	00 97       	sbiw	r24, 0x00	; 0
+     24a:	31 f0       	breq	.+12     	; 0x258 <RegInput+0xde>
+		    tikBetweenTime[2]--;
+     24c:	01 97       	sbiw	r24, 0x01	; 1
+     24e:	90 93 f6 03 	sts	0x03F6, r25	; 0x8003f6 <tikBetweenTime+0x5>
+     252:	80 93 f5 03 	sts	0x03F5, r24	; 0x8003f5 <tikBetweenTime+0x4>
+     256:	21 c0       	rjmp	.+66     	; 0x29a <RegInput+0x120>
+		    }else{
+		    if(inputFlags.iFlags.isEvent3){
+     258:	80 91 e5 02 	lds	r24, 0x02E5	; 0x8002e5 <inputFlags>
+     25c:	82 ff       	sbrs	r24, 2
+     25e:	0e c0       	rjmp	.+28     	; 0x27c <RegInput+0x102>
+			    tikDebounce[2] = PERIOD100MS;
+     260:	8a e0       	ldi	r24, 0x0A	; 10
+     262:	80 93 67 01 	sts	0x0167, r24	; 0x800167 <tikDebounce+0x2>
+			    lecture = (lecture & ~(IN3)) | (newValueA & IN3);
+     266:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <lecture>
+     26a:	98 2f       	mov	r25, r24
+     26c:	9b 7f       	andi	r25, 0xFB	; 251
+     26e:	80 91 ef 02 	lds	r24, 0x02EF	; 0x8002ef <newValueA>
+     272:	84 70       	andi	r24, 0x04	; 4
+     274:	89 2b       	or	r24, r25
+     276:	80 93 69 01 	sts	0x0169, r24	; 0x800169 <lecture>
+     27a:	0f c0       	rjmp	.+30     	; 0x29a <RegInput+0x120>
+			}else{
+			    if(tikDebounce[2]){
+     27c:	80 91 67 01 	lds	r24, 0x0167	; 0x800167 <tikDebounce+0x2>
+     280:	88 23       	and	r24, r24
+     282:	59 f0       	breq	.+22     	; 0x29a <RegInput+0x120>
+				    tikDebounce[2]--;
+     284:	81 50       	subi	r24, 0x01	; 1
+     286:	80 93 67 01 	sts	0x0167, r24	; 0x800167 <tikDebounce+0x2>
+				    if(tikDebounce[2] == 0){
+     28a:	81 11       	cpse	r24, r1
+     28c:	06 c0       	rjmp	.+12     	; 0x29a <RegInput+0x120>
+					    UpdateState(lecture, IN3, 2);
+     28e:	42 e0       	ldi	r20, 0x02	; 2
+     290:	64 e0       	ldi	r22, 0x04	; 4
+     292:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <lecture>
+     296:	0e 94 63 00 	call	0xc6	; 0xc6 <UpdateState>
+				    }
+			    }
+		    }
+	    }
+	    
+	    if(tikBetweenTime[3]){
+     29a:	80 91 f7 03 	lds	r24, 0x03F7	; 0x8003f7 <tikBetweenTime+0x6>
+     29e:	90 91 f8 03 	lds	r25, 0x03F8	; 0x8003f8 <tikBetweenTime+0x7>
+     2a2:	00 97       	sbiw	r24, 0x00	; 0
+     2a4:	31 f0       	breq	.+12     	; 0x2b2 <RegInput+0x138>
+		    tikBetweenTime[3]--;
+     2a6:	01 97       	sbiw	r24, 0x01	; 1
+     2a8:	90 93 f8 03 	sts	0x03F8, r25	; 0x8003f8 <tikBetweenTime+0x7>
+     2ac:	80 93 f7 03 	sts	0x03F7, r24	; 0x8003f7 <tikBetweenTime+0x6>
+     2b0:	21 c0       	rjmp	.+66     	; 0x2f4 <RegInput+0x17a>
+		    }else{
+		    if(inputFlags.iFlags.isEvent4){
+     2b2:	80 91 e5 02 	lds	r24, 0x02E5	; 0x8002e5 <inputFlags>
+     2b6:	83 ff       	sbrs	r24, 3
+     2b8:	0e c0       	rjmp	.+28     	; 0x2d6 <RegInput+0x15c>
+			    tikDebounce[3] = PERIOD100MS;
+     2ba:	8a e0       	ldi	r24, 0x0A	; 10
+     2bc:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <tikDebounce+0x3>
+			    lecture = (lecture & ~(IN4)) | (newValueA & IN4);
+     2c0:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <lecture>
+     2c4:	98 2f       	mov	r25, r24
+     2c6:	97 7f       	andi	r25, 0xF7	; 247
+     2c8:	80 91 ef 02 	lds	r24, 0x02EF	; 0x8002ef <newValueA>
+     2cc:	88 70       	andi	r24, 0x08	; 8
+     2ce:	89 2b       	or	r24, r25
+     2d0:	80 93 69 01 	sts	0x0169, r24	; 0x800169 <lecture>
+     2d4:	0f c0       	rjmp	.+30     	; 0x2f4 <RegInput+0x17a>
+			    }else{
+			    if(tikDebounce[3]){
+     2d6:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <tikDebounce+0x3>
+     2da:	88 23       	and	r24, r24
+     2dc:	59 f0       	breq	.+22     	; 0x2f4 <RegInput+0x17a>
+				    tikDebounce[3]--;
+     2de:	81 50       	subi	r24, 0x01	; 1
+     2e0:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <tikDebounce+0x3>
+				    if(tikDebounce[3] == 0){
+     2e4:	81 11       	cpse	r24, r1
+     2e6:	06 c0       	rjmp	.+12     	; 0x2f4 <RegInput+0x17a>
+					    UpdateState(lecture, IN4, 3);
+     2e8:	43 e0       	ldi	r20, 0x03	; 3
+     2ea:	68 e0       	ldi	r22, 0x08	; 8
+     2ec:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <lecture>
+     2f0:	0e 94 63 00 	call	0xc6	; 0xc6 <UpdateState>
+				    }
+			    }
+		    }
+	    }
+	    
+	    oldValueA = newValueA;
+     2f4:	80 91 ef 02 	lds	r24, 0x02EF	; 0x8002ef <newValueA>
+     2f8:	80 93 e8 02 	sts	0x02E8, r24	; 0x8002e8 <oldValueA>
+	    
+		
+	    TC0_Enable_CompareA_Interrupt();
+     2fc:	0e 94 8a 07 	call	0xf14	; 0xf14 <TC0_Enable_CompareA_Interrupt>
+	    
+	    intFlags.iFlags.isEvent1 = 0;
+     300:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     304:	8e 7f       	andi	r24, 0xFE	; 254
+     306:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+     30a:	08 95       	ret
+
+0000030c <CrcCalculation>:
+
+/*--------------------------------*/
+
+
+void CrcCalculation(uint8_t data){//, uint16_t crc){
+	crcLocal ^= data;
+     30c:	20 91 63 01 	lds	r18, 0x0163	; 0x800163 <crcLocal>
+     310:	30 91 64 01 	lds	r19, 0x0164	; 0x800164 <crcLocal+0x1>
+     314:	28 27       	eor	r18, r24
+     316:	30 93 64 01 	sts	0x0164, r19	; 0x800164 <crcLocal+0x1>
+     31a:	20 93 63 01 	sts	0x0163, r18	; 0x800163 <crcLocal>
+	for (uint8_t i = 0; i < 8; i++)
+     31e:	20 e0       	ldi	r18, 0x00	; 0
+     320:	18 c0       	rjmp	.+48     	; 0x352 <CrcCalculation+0x46>
+	{
+		if (crcLocal & 0x0001)
+     322:	80 91 63 01 	lds	r24, 0x0163	; 0x800163 <crcLocal>
+     326:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <crcLocal+0x1>
+     32a:	80 ff       	sbrs	r24, 0
+     32c:	0b c0       	rjmp	.+22     	; 0x344 <CrcCalculation+0x38>
+		crcLocal = (crcLocal >> 1) ^ 0xA001;
+     32e:	96 95       	lsr	r25
+     330:	87 95       	ror	r24
+     332:	31 e0       	ldi	r19, 0x01	; 1
+     334:	83 27       	eor	r24, r19
+     336:	30 ea       	ldi	r19, 0xA0	; 160
+     338:	93 27       	eor	r25, r19
+     33a:	90 93 64 01 	sts	0x0164, r25	; 0x800164 <crcLocal+0x1>
+     33e:	80 93 63 01 	sts	0x0163, r24	; 0x800163 <crcLocal>
+     342:	06 c0       	rjmp	.+12     	; 0x350 <CrcCalculation+0x44>
+		else
+		crcLocal >>= 1;
+     344:	96 95       	lsr	r25
+     346:	87 95       	ror	r24
+     348:	90 93 64 01 	sts	0x0164, r25	; 0x800164 <crcLocal+0x1>
+     34c:	80 93 63 01 	sts	0x0163, r24	; 0x800163 <crcLocal>
+/*--------------------------------*/
+
+
+void CrcCalculation(uint8_t data){//, uint16_t crc){
+	crcLocal ^= data;
+	for (uint8_t i = 0; i < 8; i++)
+     350:	2f 5f       	subi	r18, 0xFF	; 255
+     352:	28 30       	cpi	r18, 0x08	; 8
+     354:	30 f3       	brcs	.-52     	; 0x322 <CrcCalculation+0x16>
+		if (crcLocal & 0x0001)
+		crcLocal = (crcLocal >> 1) ^ 0xA001;
+		else
+		crcLocal >>= 1;
+	}
+}
+     356:	08 95       	ret
+
+00000358 <UARTsendByte>:
+
+void UARTsendByte(){  
+	if (USART0_IsTxReady()) { 
+     358:	0e 94 c6 07 	call	0xf8c	; 0xf8c <USART0_IsTxReady>
+     35c:	88 23       	and	r24, r24
+     35e:	69 f0       	breq	.+26     	; 0x37a <UARTsendByte+0x22>
+		USART0_Write(bufferTx[indexTxR]);     
+     360:	e0 91 21 01 	lds	r30, 0x0121	; 0x800121 <indexTxR>
+     364:	f0 e0       	ldi	r31, 0x00	; 0
+     366:	ef 50       	subi	r30, 0x0F	; 15
+     368:	fd 4f       	sbci	r31, 0xFD	; 253
+     36a:	80 81       	ld	r24, Z
+     36c:	0e 94 d2 07 	call	0xfa4	; 0xfa4 <USART0_Write>
+		indexTxR = (indexTxR + 1) & (BUFFER_LEN - 1);
+     370:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <indexTxR>
+     374:	8f 5f       	subi	r24, 0xFF	; 255
+     376:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <indexTxR>
+     37a:	08 95       	ret
+
+0000037c <UARTrcvByte>:
+	}
+}
+
+// Funcion para recibir un byte a traves de UART leido
+void UARTrcvByte(uint8_t data){
+     37c:	cf 93       	push	r28
+     37e:	df 93       	push	r29
+     380:	c8 2f       	mov	r28, r24
+	switch(decodeState){
+     382:	80 91 71 01 	lds	r24, 0x0171	; 0x800171 <decodeState>
+     386:	82 30       	cpi	r24, 0x02	; 2
+     388:	09 f4       	brne	.+2      	; 0x38c <UARTrcvByte+0x10>
+     38a:	49 c0       	rjmp	.+146    	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
+     38c:	28 f4       	brcc	.+10     	; 0x398 <UARTrcvByte+0x1c>
+     38e:	88 23       	and	r24, r24
+     390:	61 f0       	breq	.+24     	; 0x3aa <UARTrcvByte+0x2e>
+     392:	81 30       	cpi	r24, 0x01	; 1
+     394:	89 f1       	breq	.+98     	; 0x3f8 <UARTrcvByte+0x7c>
+     396:	ae c0       	rjmp	.+348    	; 0x4f4 <__EEPROM_REGION_LENGTH__+0xf4>
+     398:	84 30       	cpi	r24, 0x04	; 4
+     39a:	09 f4       	brne	.+2      	; 0x39e <UARTrcvByte+0x22>
+     39c:	7a c0       	rjmp	.+244    	; 0x492 <__EEPROM_REGION_LENGTH__+0x92>
+     39e:	08 f4       	brcc	.+2      	; 0x3a2 <UARTrcvByte+0x26>
+     3a0:	60 c0       	rjmp	.+192    	; 0x462 <__EEPROM_REGION_LENGTH__+0x62>
+     3a2:	85 30       	cpi	r24, 0x05	; 5
+     3a4:	09 f4       	brne	.+2      	; 0x3a8 <UARTrcvByte+0x2c>
+     3a6:	7e c0       	rjmp	.+252    	; 0x4a4 <__EEPROM_REGION_LENGTH__+0xa4>
+     3a8:	a5 c0       	rjmp	.+330    	; 0x4f4 <__EEPROM_REGION_LENGTH__+0xf4>
+		case IDLE:
+			if(data == MODBUS_BROADCAST_ADDRESS || data == MODBUS_SLAVE_ADDRESS){
+     3aa:	cc 23       	and	r28, r28
+     3ac:	51 f0       	breq	.+20     	; 0x3c2 <UARTrcvByte+0x46>
+     3ae:	8c 2f       	mov	r24, r28
+     3b0:	90 e0       	ldi	r25, 0x00	; 0
+     3b2:	20 91 79 02 	lds	r18, 0x0279	; 0x800279 <slaveAddress>
+     3b6:	30 91 7a 02 	lds	r19, 0x027A	; 0x80027a <slaveAddress+0x1>
+     3ba:	82 17       	cp	r24, r18
+     3bc:	93 07       	cpc	r25, r19
+     3be:	09 f0       	breq	.+2      	; 0x3c2 <UARTrcvByte+0x46>
+     3c0:	9f c0       	rjmp	.+318    	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+				if(data == MODBUS_BROADCAST_ADDRESS) intFlags.iFlags.isBroadcast = 1;
+     3c2:	c1 11       	cpse	r28, r1
+     3c4:	05 c0       	rjmp	.+10     	; 0x3d0 <UARTrcvByte+0x54>
+     3c6:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     3ca:	80 61       	ori	r24, 0x10	; 16
+     3cc:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				nBytes = 5;
+     3d0:	85 e0       	ldi	r24, 0x05	; 5
+     3d2:	80 93 7e 02 	sts	0x027E, r24	; 0x80027e <nBytes>
+				crcLocal = 0xFFFF;
+     3d6:	8f ef       	ldi	r24, 0xFF	; 255
+     3d8:	9f ef       	ldi	r25, 0xFF	; 255
+     3da:	90 93 64 01 	sts	0x0164, r25	; 0x800164 <crcLocal+0x1>
+     3de:	80 93 63 01 	sts	0x0163, r24	; 0x800163 <crcLocal>
+				CrcCalculation(data);
+     3e2:	8c 2f       	mov	r24, r28
+     3e4:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+				decodeState = FUNCTION;
+     3e8:	81 e0       	ldi	r24, 0x01	; 1
+     3ea:	80 93 71 01 	sts	0x0171, r24	; 0x800171 <decodeState>
+				PORTB ^= 0b00000010;
+     3ee:	95 b1       	in	r25, 0x05	; 5
+     3f0:	82 e0       	ldi	r24, 0x02	; 2
+     3f2:	89 27       	eor	r24, r25
+     3f4:	85 b9       	out	0x05, r24	; 5
+     3f6:	84 c0       	rjmp	.+264    	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+				
+			}
+		break;
+		case FUNCTION:
+			function = data;
+     3f8:	c0 93 7c 02 	sts	0x027C, r28	; 0x80027c <function>
+			CrcCalculation(data);
+     3fc:	8c 2f       	mov	r24, r28
+     3fe:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+			nBytes--;
+     402:	80 91 7e 02 	lds	r24, 0x027E	; 0x80027e <nBytes>
+     406:	9f ef       	ldi	r25, 0xFF	; 255
+     408:	98 0f       	add	r25, r24
+     40a:	90 93 7e 02 	sts	0x027E, r25	; 0x80027e <nBytes>
+			if(data == 0x10) nBytes++;
+     40e:	c0 31       	cpi	r28, 0x10	; 16
+     410:	11 f4       	brne	.+4      	; 0x416 <__EEPROM_REGION_LENGTH__+0x16>
+     412:	80 93 7e 02 	sts	0x027E, r24	; 0x80027e <nBytes>
+			decodeState = DATA;
+     416:	82 e0       	ldi	r24, 0x02	; 2
+     418:	80 93 71 01 	sts	0x0171, r24	; 0x800171 <decodeState>
+		break;
+     41c:	71 c0       	rjmp	.+226    	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+		case DATA:
+			bufferRx[indexRxW] = data;
+     41e:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <indexRxW>
+     422:	e8 2f       	mov	r30, r24
+     424:	f0 e0       	ldi	r31, 0x00	; 0
+     426:	e8 58       	subi	r30, 0x88	; 136
+     428:	fe 4f       	sbci	r31, 0xFE	; 254
+     42a:	c0 83       	st	Z, r28
+			indexRxW =(indexRxW + 1) & (BUFFER_LEN-1);
+     42c:	8f 5f       	subi	r24, 0xFF	; 255
+     42e:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <indexRxW>
+			CrcCalculation(data);
+     432:	8c 2f       	mov	r24, r28
+     434:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+			nBytes--;
+     438:	80 91 7e 02 	lds	r24, 0x027E	; 0x80027e <nBytes>
+     43c:	81 50       	subi	r24, 0x01	; 1
+     43e:	80 93 7e 02 	sts	0x027E, r24	; 0x80027e <nBytes>
+			if(nBytes <= 0){
+     442:	81 11       	cpse	r24, r1
+     444:	5d c0       	rjmp	.+186    	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+				if(function == 0x10){
+     446:	80 91 7c 02 	lds	r24, 0x027C	; 0x80027c <function>
+     44a:	80 31       	cpi	r24, 0x10	; 16
+     44c:	31 f4       	brne	.+12     	; 0x45a <__EEPROM_REGION_LENGTH__+0x5a>
+					nBytes = data;
+     44e:	c0 93 7e 02 	sts	0x027E, r28	; 0x80027e <nBytes>
+					decodeState = EXTRADATA;
+     452:	83 e0       	ldi	r24, 0x03	; 3
+     454:	80 93 71 01 	sts	0x0171, r24	; 0x800171 <decodeState>
+     458:	53 c0       	rjmp	.+166    	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+					}else{
+					decodeState = CRCL;
+     45a:	84 e0       	ldi	r24, 0x04	; 4
+     45c:	80 93 71 01 	sts	0x0171, r24	; 0x800171 <decodeState>
+     460:	4f c0       	rjmp	.+158    	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+				}
+			}
+		break;
+		case EXTRADATA:
+			bufferRx[indexRxW] = data;
+     462:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <indexRxW>
+     466:	e8 2f       	mov	r30, r24
+     468:	f0 e0       	ldi	r31, 0x00	; 0
+     46a:	e8 58       	subi	r30, 0x88	; 136
+     46c:	fe 4f       	sbci	r31, 0xFE	; 254
+     46e:	c0 83       	st	Z, r28
+			indexRxW =(indexRxW + 1) & (BUFFER_LEN-1);
+     470:	8f 5f       	subi	r24, 0xFF	; 255
+     472:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <indexRxW>
+			CrcCalculation(data);
+     476:	8c 2f       	mov	r24, r28
+     478:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+			nBytes--;
+     47c:	80 91 7e 02 	lds	r24, 0x027E	; 0x80027e <nBytes>
+     480:	81 50       	subi	r24, 0x01	; 1
+     482:	80 93 7e 02 	sts	0x027E, r24	; 0x80027e <nBytes>
+			if(nBytes <= 0){
+     486:	81 11       	cpse	r24, r1
+     488:	3b c0       	rjmp	.+118    	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+				decodeState = CRCL;
+     48a:	84 e0       	ldi	r24, 0x04	; 4
+     48c:	80 93 71 01 	sts	0x0171, r24	; 0x800171 <decodeState>
+     490:	37 c0       	rjmp	.+110    	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+			}
+		break;
+		case CRCL:
+			crcMsg = (uint16_t)data;
+     492:	d0 e0       	ldi	r29, 0x00	; 0
+     494:	d0 93 e7 02 	sts	0x02E7, r29	; 0x8002e7 <crcMsg+0x1>
+     498:	c0 93 e6 02 	sts	0x02E6, r28	; 0x8002e6 <crcMsg>
+			decodeState = CRCH;
+     49c:	85 e0       	ldi	r24, 0x05	; 5
+     49e:	80 93 71 01 	sts	0x0171, r24	; 0x800171 <decodeState>
+		break;
+     4a2:	2e c0       	rjmp	.+92     	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+		case CRCH:
+			PORTB ^= 0b00000100;
+     4a4:	95 b1       	in	r25, 0x05	; 5
+     4a6:	84 e0       	ldi	r24, 0x04	; 4
+     4a8:	89 27       	eor	r24, r25
+     4aa:	85 b9       	out	0x05, r24	; 5
+			crcMsg |= (uint16_t)(data << 8);
+     4ac:	20 e0       	ldi	r18, 0x00	; 0
+     4ae:	3c 2f       	mov	r19, r28
+     4b0:	80 91 e6 02 	lds	r24, 0x02E6	; 0x8002e6 <crcMsg>
+     4b4:	90 91 e7 02 	lds	r25, 0x02E7	; 0x8002e7 <crcMsg+0x1>
+     4b8:	82 2b       	or	r24, r18
+     4ba:	93 2b       	or	r25, r19
+     4bc:	90 93 e7 02 	sts	0x02E7, r25	; 0x8002e7 <crcMsg+0x1>
+     4c0:	80 93 e6 02 	sts	0x02E6, r24	; 0x8002e6 <crcMsg>
+			if(crcLocal == crcMsg){
+     4c4:	20 91 63 01 	lds	r18, 0x0163	; 0x800163 <crcLocal>
+     4c8:	30 91 64 01 	lds	r19, 0x0164	; 0x800164 <crcLocal+0x1>
+     4cc:	82 17       	cp	r24, r18
+     4ce:	93 07       	cpc	r25, r19
+     4d0:	51 f4       	brne	.+20     	; 0x4e6 <__EEPROM_REGION_LENGTH__+0xe6>
+				PORTB ^= 0b00001000;
+     4d2:	95 b1       	in	r25, 0x05	; 5
+     4d4:	88 e0       	ldi	r24, 0x08	; 8
+     4d6:	89 27       	eor	r24, r25
+     4d8:	85 b9       	out	0x05, r24	; 5
+				intFlags.iFlags.dataReady = 1;
+     4da:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     4de:	82 60       	ori	r24, 0x02	; 2
+     4e0:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+     4e4:	04 c0       	rjmp	.+8      	; 0x4ee <__EEPROM_REGION_LENGTH__+0xee>
+				}else{
+				//error de CRC
+				indexRxR = indexRxW;
+     4e6:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <indexRxW>
+     4ea:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <indexRxR>
+			}
+			decodeState = IDLE;
+     4ee:	10 92 71 01 	sts	0x0171, r1	; 0x800171 <decodeState>
+		break;
+     4f2:	06 c0       	rjmp	.+12     	; 0x500 <__EEPROM_REGION_LENGTH__+0x100>
+		default:
+		decodeState = IDLE;
+     4f4:	10 92 71 01 	sts	0x0171, r1	; 0x800171 <decodeState>
+		indexRxR = indexRxW;
+     4f8:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <indexRxW>
+     4fc:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <indexRxR>
+		break;
+	}
+}
+     500:	df 91       	pop	r29
+     502:	cf 91       	pop	r28
+     504:	08 95       	ret
+
+00000506 <__vector_18>:
+uint32_t dateTime;
+
+
+
+// ---------------------- Implementacion de ISR ----------------------
+ISR(USART_RX_vect){
+     506:	1f 92       	push	r1
+     508:	0f 92       	push	r0
+     50a:	0f b6       	in	r0, 0x3f	; 63
+     50c:	0f 92       	push	r0
+     50e:	11 24       	eor	r1, r1
+     510:	2f 93       	push	r18
+     512:	3f 93       	push	r19
+     514:	4f 93       	push	r20
+     516:	5f 93       	push	r21
+     518:	6f 93       	push	r22
+     51a:	7f 93       	push	r23
+     51c:	8f 93       	push	r24
+     51e:	9f 93       	push	r25
+     520:	af 93       	push	r26
+     522:	bf 93       	push	r27
+     524:	ef 93       	push	r30
+     526:	ff 93       	push	r31
+	//uint8_t data = UDR0;
+	UARTrcvByte(UDR0);
+     528:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+     52c:	0e 94 be 01 	call	0x37c	; 0x37c <UARTrcvByte>
+	
+}
+     530:	ff 91       	pop	r31
+     532:	ef 91       	pop	r30
+     534:	bf 91       	pop	r27
+     536:	af 91       	pop	r26
+     538:	9f 91       	pop	r25
+     53a:	8f 91       	pop	r24
+     53c:	7f 91       	pop	r23
+     53e:	6f 91       	pop	r22
+     540:	5f 91       	pop	r21
+     542:	4f 91       	pop	r20
+     544:	3f 91       	pop	r19
+     546:	2f 91       	pop	r18
+     548:	0f 90       	pop	r0
+     54a:	0f be       	out	0x3f, r0	; 63
+     54c:	0f 90       	pop	r0
+     54e:	1f 90       	pop	r1
+     550:	18 95       	reti
+
+00000552 <DecodeData>:
+		indexRxR = indexRxW;
+		break;
+	}
+}
+
+void DecodeData(){
+     552:	ff 92       	push	r15
+     554:	0f 93       	push	r16
+     556:	1f 93       	push	r17
+     558:	cf 93       	push	r28
+     55a:	df 93       	push	r29
+	uint8_t countIndex, byteCount=0;
+	uint16_t regAddress, regValue, regCant, subfunction;
+	indexTxW = 0;
+     55c:	10 92 20 01 	sts	0x0120, r1	; 0x800120 <__data_end>
+	indexTxR = 0;
+     560:	10 92 21 01 	sts	0x0121, r1	; 0x800121 <indexTxR>
+	crcLocal = 0xFFFF;
+     564:	8f ef       	ldi	r24, 0xFF	; 255
+     566:	9f ef       	ldi	r25, 0xFF	; 255
+     568:	90 93 64 01 	sts	0x0164, r25	; 0x800164 <crcLocal+0x1>
+     56c:	80 93 63 01 	sts	0x0163, r24	; 0x800163 <crcLocal>
+	PORTB ^= 0b00010000;
+     570:	95 b1       	in	r25, 0x05	; 5
+     572:	80 e1       	ldi	r24, 0x10	; 16
+     574:	89 27       	eor	r24, r25
+     576:	85 b9       	out	0x05, r24	; 5
+	switch(function){
+     578:	80 91 7c 02 	lds	r24, 0x027C	; 0x80027c <function>
+     57c:	86 30       	cpi	r24, 0x06	; 6
+     57e:	09 f4       	brne	.+2      	; 0x582 <DecodeData+0x30>
+     580:	dd c0       	rjmp	.+442    	; 0x73c <DecodeData+0x1ea>
+     582:	18 f4       	brcc	.+6      	; 0x58a <DecodeData+0x38>
+     584:	83 30       	cpi	r24, 0x03	; 3
+     586:	41 f0       	breq	.+16     	; 0x598 <DecodeData+0x46>
+     588:	49 c3       	rjmp	.+1682   	; 0xc1c <__stack+0x31d>
+     58a:	88 30       	cpi	r24, 0x08	; 8
+     58c:	09 f4       	brne	.+2      	; 0x590 <DecodeData+0x3e>
+     58e:	80 c1       	rjmp	.+768    	; 0x890 <__DATA_REGION_LENGTH__+0x90>
+     590:	80 31       	cpi	r24, 0x10	; 16
+     592:	09 f4       	brne	.+2      	; 0x596 <DecodeData+0x44>
+     594:	4b c2       	rjmp	.+1174   	; 0xa2c <__stack+0x12d>
+     596:	42 c3       	rjmp	.+1668   	; 0xc1c <__stack+0x31d>
+		case READ_HOLDING_REGISTERS: //Ver si conviene copiar valores en RAM o dejarlos solo en EEPROM
+			errorCode = 0x83;
+     598:	83 e8       	ldi	r24, 0x83	; 131
+     59a:	80 93 78 02 	sts	0x0278, r24	; 0x800278 <errorCode>
+			if(intFlags.iFlags.isBroadcast){
+     59e:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     5a2:	84 ff       	sbrs	r24, 4
+     5a4:	04 c0       	rjmp	.+8      	; 0x5ae <DecodeData+0x5c>
+				intFlags.iFlags.isBroadcast = 0;
+     5a6:	8f 7e       	andi	r24, 0xEF	; 239
+     5a8:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				return;
+     5ac:	47 c3       	rjmp	.+1678   	; 0xc3c <__stack+0x33d>
+			}
+			//Direccion inicial
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     5ae:	a0 91 23 01 	lds	r26, 0x0123	; 0x800123 <indexRxR>
+     5b2:	e1 e0       	ldi	r30, 0x01	; 1
+     5b4:	ea 0f       	add	r30, r26
+     5b6:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     5ba:	b0 e0       	ldi	r27, 0x00	; 0
+     5bc:	a8 58       	subi	r26, 0x88	; 136
+     5be:	be 4f       	sbci	r27, 0xFE	; 254
+     5c0:	8c 91       	ld	r24, X
+     5c2:	ce e6       	ldi	r28, 0x6E	; 110
+     5c4:	d1 e0       	ldi	r29, 0x01	; 1
+     5c6:	88 83       	st	Y, r24
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     5c8:	a1 e0       	ldi	r26, 0x01	; 1
+     5ca:	ae 0f       	add	r26, r30
+     5cc:	a0 93 23 01 	sts	0x0123, r26	; 0x800123 <indexRxR>
+     5d0:	f0 e0       	ldi	r31, 0x00	; 0
+     5d2:	e8 58       	subi	r30, 0x88	; 136
+     5d4:	fe 4f       	sbci	r31, 0xFE	; 254
+     5d6:	80 81       	ld	r24, Z
+     5d8:	89 83       	std	Y+1, r24	; 0x01
+			regAddress = myHalfWord.ui16;
+     5da:	40 91 6e 01 	lds	r20, 0x016E	; 0x80016e <myHalfWord>
+     5de:	50 91 6f 01 	lds	r21, 0x016F	; 0x80016f <myHalfWord+0x1>
+			//Cantidad de registros
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     5e2:	e1 e0       	ldi	r30, 0x01	; 1
+     5e4:	ea 0f       	add	r30, r26
+     5e6:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     5ea:	b0 e0       	ldi	r27, 0x00	; 0
+     5ec:	a8 58       	subi	r26, 0x88	; 136
+     5ee:	be 4f       	sbci	r27, 0xFE	; 254
+     5f0:	8c 91       	ld	r24, X
+     5f2:	88 83       	st	Y, r24
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     5f4:	81 e0       	ldi	r24, 0x01	; 1
+     5f6:	8e 0f       	add	r24, r30
+     5f8:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <indexRxR>
+     5fc:	f0 e0       	ldi	r31, 0x00	; 0
+     5fe:	e8 58       	subi	r30, 0x88	; 136
+     600:	fe 4f       	sbci	r31, 0xFE	; 254
+     602:	80 81       	ld	r24, Z
+     604:	89 83       	std	Y+1, r24	; 0x01
+			regCant = myHalfWord.ui16;
+     606:	20 91 6e 01 	lds	r18, 0x016E	; 0x80016e <myHalfWord>
+     60a:	30 91 6f 01 	lds	r19, 0x016F	; 0x80016f <myHalfWord+0x1>
+			//Controlar cantidad de registros
+			if(regCant < 1 || regCant > 0x07D0){
+     60e:	c9 01       	movw	r24, r18
+     610:	01 97       	sbiw	r24, 0x01	; 1
+     612:	80 3d       	cpi	r24, 0xD0	; 208
+     614:	67 e0       	ldi	r22, 0x07	; 7
+     616:	96 07       	cpc	r25, r22
+     618:	20 f0       	brcs	.+8      	; 0x622 <DecodeData+0xd0>
+				excepCode = INVALID_DATA_VALUE;
+     61a:	83 e0       	ldi	r24, 0x03	; 3
+     61c:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+				return;
+     620:	0d c3       	rjmp	.+1562   	; 0xc3c <__stack+0x33d>
+			}
+			//Controlar validez de direccion
+			if((regAddress < 1) || (regAddress > REGISTERS) || ((regCant-1) > (REGISTERS - regAddress))){
+     622:	ba 01       	movw	r22, r20
+     624:	61 50       	subi	r22, 0x01	; 1
+     626:	71 09       	sbc	r23, r1
+     628:	6c 30       	cpi	r22, 0x0C	; 12
+     62a:	71 05       	cpc	r23, r1
+     62c:	38 f4       	brcc	.+14     	; 0x63c <DecodeData+0xea>
+     62e:	6c e0       	ldi	r22, 0x0C	; 12
+     630:	70 e0       	ldi	r23, 0x00	; 0
+     632:	64 1b       	sub	r22, r20
+     634:	75 0b       	sbc	r23, r21
+     636:	68 17       	cp	r22, r24
+     638:	79 07       	cpc	r23, r25
+     63a:	48 f4       	brcc	.+18     	; 0x64e <DecodeData+0xfc>
+				//PORTBbits.RB7 ^= 1;
+				excepCode = INVALID_DATA_ADDRESS;
+     63c:	82 e0       	ldi	r24, 0x02	; 2
+     63e:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+				intFlags.iFlags.isExceptionCode = 1;
+     642:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     646:	88 60       	ori	r24, 0x08	; 8
+     648:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				return;
+     64c:	f7 c2       	rjmp	.+1518   	; 0xc3c <__stack+0x33d>
+			}
+			// Cargar mensaje de respuesta
+			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+     64e:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     652:	e1 e0       	ldi	r30, 0x01	; 1
+     654:	ea 0f       	add	r30, r26
+     656:	b0 e0       	ldi	r27, 0x00	; 0
+     658:	80 91 79 02 	lds	r24, 0x0279	; 0x800279 <slaveAddress>
+     65c:	af 50       	subi	r26, 0x0F	; 15
+     65e:	bd 4f       	sbci	r27, 0xFD	; 253
+     660:	8c 93       	st	X, r24
+			bufferTx[indexTxW++] = READ_HOLDING_REGISTERS;
+     662:	61 e0       	ldi	r22, 0x01	; 1
+     664:	6e 0f       	add	r22, r30
+     666:	f0 e0       	ldi	r31, 0x00	; 0
+     668:	ef 50       	subi	r30, 0x0F	; 15
+     66a:	fd 4f       	sbci	r31, 0xFD	; 253
+     66c:	83 e0       	ldi	r24, 0x03	; 3
+     66e:	80 83       	st	Z, r24
+			countIndex = indexTxW;
+			bufferTx[indexTxW++] = 0x00; // Almacenar en la pocision de cantidad de bytes
+     670:	81 e0       	ldi	r24, 0x01	; 1
+     672:	86 0f       	add	r24, r22
+     674:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     678:	70 e0       	ldi	r23, 0x00	; 0
+     67a:	fb 01       	movw	r30, r22
+     67c:	ef 50       	subi	r30, 0x0F	; 15
+     67e:	fd 4f       	sbci	r31, 0xFD	; 253
+     680:	10 82       	st	Z, r1
+			for(uint8_t i=0 ; i<regCant ; i++){
+     682:	f1 2c       	mov	r15, r1
+		break;
+	}
+}
+
+void DecodeData(){
+	uint8_t countIndex, byteCount=0;
+     684:	c0 e0       	ldi	r28, 0x00	; 0
+			// Cargar mensaje de respuesta
+			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+			bufferTx[indexTxW++] = READ_HOLDING_REGISTERS;
+			countIndex = indexTxW;
+			bufferTx[indexTxW++] = 0x00; // Almacenar en la pocision de cantidad de bytes
+			for(uint8_t i=0 ; i<regCant ; i++){
+     686:	26 c0       	rjmp	.+76     	; 0x6d4 <DecodeData+0x182>
+				bufferTx[indexTxW++] = *((uint8_t *)registerAddresses[regAddress-1+i]);
+     688:	e0 91 20 01 	lds	r30, 0x0120	; 0x800120 <__data_end>
+     68c:	a1 e0       	ldi	r26, 0x01	; 1
+     68e:	ae 0f       	add	r26, r30
+     690:	a0 93 20 01 	sts	0x0120, r26	; 0x800120 <__data_end>
+     694:	0e 2f       	mov	r16, r30
+     696:	10 e0       	ldi	r17, 0x00	; 0
+     698:	fa 01       	movw	r30, r20
+     69a:	e8 0f       	add	r30, r24
+     69c:	f9 1f       	adc	r31, r25
+     69e:	31 97       	sbiw	r30, 0x01	; 1
+     6a0:	ee 0f       	add	r30, r30
+     6a2:	ff 1f       	adc	r31, r31
+     6a4:	e8 5f       	subi	r30, 0xF8	; 248
+     6a6:	fe 4f       	sbci	r31, 0xFE	; 254
+     6a8:	80 81       	ld	r24, Z
+     6aa:	91 81       	ldd	r25, Z+1	; 0x01
+     6ac:	fc 01       	movw	r30, r24
+     6ae:	d0 81       	ld	r29, Z
+     6b0:	f8 01       	movw	r30, r16
+     6b2:	ef 50       	subi	r30, 0x0F	; 15
+     6b4:	fd 4f       	sbci	r31, 0xFD	; 253
+     6b6:	d0 83       	st	Z, r29
+				bufferTx[indexTxW++] = *((uint8_t *)(registerAddresses[regAddress-1+i])+1);
+     6b8:	e1 e0       	ldi	r30, 0x01	; 1
+     6ba:	ea 0f       	add	r30, r26
+     6bc:	e0 93 20 01 	sts	0x0120, r30	; 0x800120 <__data_end>
+     6c0:	ea 2f       	mov	r30, r26
+     6c2:	f0 e0       	ldi	r31, 0x00	; 0
+     6c4:	dc 01       	movw	r26, r24
+     6c6:	11 96       	adiw	r26, 0x01	; 1
+     6c8:	8c 91       	ld	r24, X
+     6ca:	ef 50       	subi	r30, 0x0F	; 15
+     6cc:	fd 4f       	sbci	r31, 0xFD	; 253
+     6ce:	80 83       	st	Z, r24
+				byteCount += 2;
+     6d0:	ce 5f       	subi	r28, 0xFE	; 254
+			// Cargar mensaje de respuesta
+			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+			bufferTx[indexTxW++] = READ_HOLDING_REGISTERS;
+			countIndex = indexTxW;
+			bufferTx[indexTxW++] = 0x00; // Almacenar en la pocision de cantidad de bytes
+			for(uint8_t i=0 ; i<regCant ; i++){
+     6d2:	f3 94       	inc	r15
+     6d4:	8f 2d       	mov	r24, r15
+     6d6:	90 e0       	ldi	r25, 0x00	; 0
+     6d8:	82 17       	cp	r24, r18
+     6da:	93 07       	cpc	r25, r19
+     6dc:	a8 f2       	brcs	.-86     	; 0x688 <DecodeData+0x136>
+				bufferTx[indexTxW++] = *((uint8_t *)registerAddresses[regAddress-1+i]);
+				bufferTx[indexTxW++] = *((uint8_t *)(registerAddresses[regAddress-1+i])+1);
+				byteCount += 2;
+			}
+			bufferTx[countIndex] = byteCount;
+     6de:	fb 01       	movw	r30, r22
+     6e0:	ef 50       	subi	r30, 0x0F	; 15
+     6e2:	fd 4f       	sbci	r31, 0xFD	; 253
+     6e4:	c0 83       	st	Z, r28
+			//SaveData(bufferTx, &countIndex, byteCount);
+			for(uint8_t i = 0; i < byteCount + 3;i++){
+     6e6:	d0 e0       	ldi	r29, 0x00	; 0
+     6e8:	07 c0       	rjmp	.+14     	; 0x6f8 <DecodeData+0x1a6>
+				CrcCalculation(bufferTx[i]);
+     6ea:	fc 01       	movw	r30, r24
+     6ec:	ef 50       	subi	r30, 0x0F	; 15
+     6ee:	fd 4f       	sbci	r31, 0xFD	; 253
+     6f0:	80 81       	ld	r24, Z
+     6f2:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+				bufferTx[indexTxW++] = *((uint8_t *)(registerAddresses[regAddress-1+i])+1);
+				byteCount += 2;
+			}
+			bufferTx[countIndex] = byteCount;
+			//SaveData(bufferTx, &countIndex, byteCount);
+			for(uint8_t i = 0; i < byteCount + 3;i++){
+     6f6:	df 5f       	subi	r29, 0xFF	; 255
+     6f8:	8d 2f       	mov	r24, r29
+     6fa:	90 e0       	ldi	r25, 0x00	; 0
+     6fc:	2c 2f       	mov	r18, r28
+     6fe:	30 e0       	ldi	r19, 0x00	; 0
+     700:	2d 5f       	subi	r18, 0xFD	; 253
+     702:	3f 4f       	sbci	r19, 0xFF	; 255
+     704:	82 17       	cp	r24, r18
+     706:	93 07       	cpc	r25, r19
+     708:	84 f3       	brlt	.-32     	; 0x6ea <DecodeData+0x198>
+				CrcCalculation(bufferTx[i]);
+			}
+			myHalfWord.ui16 = crcLocal;
+     70a:	80 91 63 01 	lds	r24, 0x0163	; 0x800163 <crcLocal>
+     70e:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <crcLocal+0x1>
+     712:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <myHalfWord>
+     716:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <myHalfWord+0x1>
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     71a:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     71e:	e1 e0       	ldi	r30, 0x01	; 1
+     720:	ea 0f       	add	r30, r26
+     722:	b0 e0       	ldi	r27, 0x00	; 0
+     724:	af 50       	subi	r26, 0x0F	; 15
+     726:	bd 4f       	sbci	r27, 0xFD	; 253
+     728:	8c 93       	st	X, r24
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     72a:	81 e0       	ldi	r24, 0x01	; 1
+     72c:	8e 0f       	add	r24, r30
+     72e:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     732:	f0 e0       	ldi	r31, 0x00	; 0
+     734:	ef 50       	subi	r30, 0x0F	; 15
+     736:	fd 4f       	sbci	r31, 0xFD	; 253
+     738:	90 83       	st	Z, r25
+		break;
+     73a:	7c c2       	rjmp	.+1272   	; 0xc34 <__stack+0x335>
+		case WRITE_SINGLE_REGISTER:
+			errorCode = 0x86;
+     73c:	86 e8       	ldi	r24, 0x86	; 134
+     73e:	80 93 78 02 	sts	0x0278, r24	; 0x800278 <errorCode>
+			
+			//Direccion inicial
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     742:	a0 91 23 01 	lds	r26, 0x0123	; 0x800123 <indexRxR>
+     746:	e1 e0       	ldi	r30, 0x01	; 1
+     748:	ea 0f       	add	r30, r26
+     74a:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     74e:	b0 e0       	ldi	r27, 0x00	; 0
+     750:	a8 58       	subi	r26, 0x88	; 136
+     752:	be 4f       	sbci	r27, 0xFE	; 254
+     754:	8c 91       	ld	r24, X
+     756:	ce e6       	ldi	r28, 0x6E	; 110
+     758:	d1 e0       	ldi	r29, 0x01	; 1
+     75a:	88 83       	st	Y, r24
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     75c:	a1 e0       	ldi	r26, 0x01	; 1
+     75e:	ae 0f       	add	r26, r30
+     760:	a0 93 23 01 	sts	0x0123, r26	; 0x800123 <indexRxR>
+     764:	f0 e0       	ldi	r31, 0x00	; 0
+     766:	e8 58       	subi	r30, 0x88	; 136
+     768:	fe 4f       	sbci	r31, 0xFE	; 254
+     76a:	80 81       	ld	r24, Z
+     76c:	89 83       	std	Y+1, r24	; 0x01
+			regAddress = myHalfWord.ui16;
+     76e:	80 91 6e 01 	lds	r24, 0x016E	; 0x80016e <myHalfWord>
+     772:	90 91 6f 01 	lds	r25, 0x016F	; 0x80016f <myHalfWord+0x1>
+			//Cantidad de registros
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     776:	e1 e0       	ldi	r30, 0x01	; 1
+     778:	ea 0f       	add	r30, r26
+     77a:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     77e:	b0 e0       	ldi	r27, 0x00	; 0
+     780:	a8 58       	subi	r26, 0x88	; 136
+     782:	be 4f       	sbci	r27, 0xFE	; 254
+     784:	2c 91       	ld	r18, X
+     786:	28 83       	st	Y, r18
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     788:	31 e0       	ldi	r19, 0x01	; 1
+     78a:	3e 0f       	add	r19, r30
+     78c:	30 93 23 01 	sts	0x0123, r19	; 0x800123 <indexRxR>
+     790:	f0 e0       	ldi	r31, 0x00	; 0
+     792:	e8 58       	subi	r30, 0x88	; 136
+     794:	fe 4f       	sbci	r31, 0xFE	; 254
+     796:	30 81       	ld	r19, Z
+     798:	39 83       	std	Y+1, r19	; 0x01
+			if(regValue < 0 || regValue > 0xFFFF){
+				excepCode = INVALID_DATA_VALUE;
+				return;
+			}
+			//Controlar validez de direccion
+			if(regAddress > REGISTERS){
+     79a:	8d 30       	cpi	r24, 0x0D	; 13
+     79c:	91 05       	cpc	r25, r1
+     79e:	48 f0       	brcs	.+18     	; 0x7b2 <DecodeData+0x260>
+				//PORTBbits.RB7 ^= 1;
+				excepCode = INVALID_DATA_ADDRESS;
+     7a0:	82 e0       	ldi	r24, 0x02	; 2
+     7a2:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+				intFlags.iFlags.isExceptionCode = 1;
+     7a6:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     7aa:	88 60       	ori	r24, 0x08	; 8
+     7ac:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				return;
+     7b0:	45 c2       	rjmp	.+1162   	; 0xc3c <__stack+0x33d>
+			}
+				
+			*((uint8_t *)registerAddresses[regAddress-1]) = myHalfWord.ui8[0];
+     7b2:	fc 01       	movw	r30, r24
+     7b4:	31 97       	sbiw	r30, 0x01	; 1
+     7b6:	ee 0f       	add	r30, r30
+     7b8:	ff 1f       	adc	r31, r31
+     7ba:	e8 5f       	subi	r30, 0xF8	; 248
+     7bc:	fe 4f       	sbci	r31, 0xFE	; 254
+     7be:	c0 81       	ld	r28, Z
+     7c0:	d1 81       	ldd	r29, Z+1	; 0x01
+     7c2:	28 83       	st	Y, r18
+			*((uint8_t *)(registerAddresses[regAddress-1]+1)) = myHalfWord.ui8[1];
+     7c4:	20 91 6f 01 	lds	r18, 0x016F	; 0x80016f <myHalfWord+0x1>
+     7c8:	2a 83       	std	Y+2, r18	; 0x02
+		
+			if(intFlags.iFlags.isBroadcast){
+     7ca:	20 91 f0 02 	lds	r18, 0x02F0	; 0x8002f0 <intFlags>
+     7ce:	24 ff       	sbrs	r18, 4
+     7d0:	05 c0       	rjmp	.+10     	; 0x7dc <DecodeData+0x28a>
+				intFlags.iFlags.isBroadcast = 0;
+     7d2:	82 2f       	mov	r24, r18
+     7d4:	8f 7e       	andi	r24, 0xEF	; 239
+     7d6:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				return;
+     7da:	30 c2       	rjmp	.+1120   	; 0xc3c <__stack+0x33d>
+			}
+		
+			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+     7dc:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     7e0:	e1 e0       	ldi	r30, 0x01	; 1
+     7e2:	ea 0f       	add	r30, r26
+     7e4:	b0 e0       	ldi	r27, 0x00	; 0
+     7e6:	20 91 79 02 	lds	r18, 0x0279	; 0x800279 <slaveAddress>
+     7ea:	af 50       	subi	r26, 0x0F	; 15
+     7ec:	bd 4f       	sbci	r27, 0xFD	; 253
+     7ee:	2c 93       	st	X, r18
+			bufferTx[indexTxW++] = WRITE_SINGLE_REGISTER;
+     7f0:	a1 e0       	ldi	r26, 0x01	; 1
+     7f2:	ae 0f       	add	r26, r30
+     7f4:	f0 e0       	ldi	r31, 0x00	; 0
+     7f6:	ef 50       	subi	r30, 0x0F	; 15
+     7f8:	fd 4f       	sbci	r31, 0xFD	; 253
+     7fa:	26 e0       	ldi	r18, 0x06	; 6
+     7fc:	20 83       	st	Z, r18
+			myHalfWord.ui16 = regAddress;
+     7fe:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <myHalfWord+0x1>
+     802:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <myHalfWord>
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     806:	e1 e0       	ldi	r30, 0x01	; 1
+     808:	ea 0f       	add	r30, r26
+     80a:	b0 e0       	ldi	r27, 0x00	; 0
+     80c:	af 50       	subi	r26, 0x0F	; 15
+     80e:	bd 4f       	sbci	r27, 0xFD	; 253
+     810:	8c 93       	st	X, r24
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     812:	a1 e0       	ldi	r26, 0x01	; 1
+     814:	ae 0f       	add	r26, r30
+     816:	f0 e0       	ldi	r31, 0x00	; 0
+     818:	80 91 6f 01 	lds	r24, 0x016F	; 0x80016f <myHalfWord+0x1>
+     81c:	ef 50       	subi	r30, 0x0F	; 15
+     81e:	fd 4f       	sbci	r31, 0xFD	; 253
+     820:	80 83       	st	Z, r24
+			bufferTx[indexTxW++] = *((uint8_t *)registerAddresses[regAddress-1]);
+     822:	e1 e0       	ldi	r30, 0x01	; 1
+     824:	ea 0f       	add	r30, r26
+     826:	e0 93 20 01 	sts	0x0120, r30	; 0x800120 <__data_end>
+     82a:	b0 e0       	ldi	r27, 0x00	; 0
+     82c:	88 81       	ld	r24, Y
+     82e:	af 50       	subi	r26, 0x0F	; 15
+     830:	bd 4f       	sbci	r27, 0xFD	; 253
+     832:	8c 93       	st	X, r24
+			bufferTx[indexTxW++] = *((uint8_t *)(registerAddresses[regAddress-1])+1);
+     834:	81 e0       	ldi	r24, 0x01	; 1
+     836:	8e 0f       	add	r24, r30
+     838:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     83c:	f0 e0       	ldi	r31, 0x00	; 0
+     83e:	89 81       	ldd	r24, Y+1	; 0x01
+     840:	ef 50       	subi	r30, 0x0F	; 15
+     842:	fd 4f       	sbci	r31, 0xFD	; 253
+     844:	80 83       	st	Z, r24
+		
+			for(uint8_t i = 0; i < 6;i++){
+     846:	c0 e0       	ldi	r28, 0x00	; 0
+     848:	08 c0       	rjmp	.+16     	; 0x85a <__DATA_REGION_LENGTH__+0x5a>
+				CrcCalculation(bufferTx[i]);
+     84a:	ec 2f       	mov	r30, r28
+     84c:	f0 e0       	ldi	r31, 0x00	; 0
+     84e:	ef 50       	subi	r30, 0x0F	; 15
+     850:	fd 4f       	sbci	r31, 0xFD	; 253
+     852:	80 81       	ld	r24, Z
+     854:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+			bufferTx[indexTxW++] = *((uint8_t *)registerAddresses[regAddress-1]);
+			bufferTx[indexTxW++] = *((uint8_t *)(registerAddresses[regAddress-1])+1);
+		
+			for(uint8_t i = 0; i < 6;i++){
+     858:	cf 5f       	subi	r28, 0xFF	; 255
+     85a:	c6 30       	cpi	r28, 0x06	; 6
+     85c:	b0 f3       	brcs	.-20     	; 0x84a <__DATA_REGION_LENGTH__+0x4a>
+				CrcCalculation(bufferTx[i]);
+			}
+			myHalfWord.ui16 = crcLocal;
+     85e:	80 91 63 01 	lds	r24, 0x0163	; 0x800163 <crcLocal>
+     862:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <crcLocal+0x1>
+     866:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <myHalfWord>
+     86a:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <myHalfWord+0x1>
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     86e:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     872:	e1 e0       	ldi	r30, 0x01	; 1
+     874:	ea 0f       	add	r30, r26
+     876:	b0 e0       	ldi	r27, 0x00	; 0
+     878:	af 50       	subi	r26, 0x0F	; 15
+     87a:	bd 4f       	sbci	r27, 0xFD	; 253
+     87c:	8c 93       	st	X, r24
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     87e:	81 e0       	ldi	r24, 0x01	; 1
+     880:	8e 0f       	add	r24, r30
+     882:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     886:	f0 e0       	ldi	r31, 0x00	; 0
+     888:	ef 50       	subi	r30, 0x0F	; 15
+     88a:	fd 4f       	sbci	r31, 0xFD	; 253
+     88c:	90 83       	st	Z, r25
+		break;
+     88e:	d2 c1       	rjmp	.+932    	; 0xc34 <__stack+0x335>
+		case DIAGNOSTICS:
+			errorCode = 0x88;
+     890:	88 e8       	ldi	r24, 0x88	; 136
+     892:	80 93 78 02 	sts	0x0278, r24	; 0x800278 <errorCode>
+			if(intFlags.iFlags.isBroadcast){
+     896:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     89a:	84 ff       	sbrs	r24, 4
+     89c:	04 c0       	rjmp	.+8      	; 0x8a6 <__DATA_REGION_LENGTH__+0xa6>
+				intFlags.iFlags.isBroadcast = 0;
+     89e:	8f 7e       	andi	r24, 0xEF	; 239
+     8a0:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				return;
+     8a4:	cb c1       	rjmp	.+918    	; 0xc3c <__stack+0x33d>
+			}
+			//Subfuncion
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     8a6:	a0 91 23 01 	lds	r26, 0x0123	; 0x800123 <indexRxR>
+     8aa:	e1 e0       	ldi	r30, 0x01	; 1
+     8ac:	ea 0f       	add	r30, r26
+     8ae:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     8b2:	b0 e0       	ldi	r27, 0x00	; 0
+     8b4:	a8 58       	subi	r26, 0x88	; 136
+     8b6:	be 4f       	sbci	r27, 0xFE	; 254
+     8b8:	8c 91       	ld	r24, X
+     8ba:	ce e6       	ldi	r28, 0x6E	; 110
+     8bc:	d1 e0       	ldi	r29, 0x01	; 1
+     8be:	88 83       	st	Y, r24
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     8c0:	a1 e0       	ldi	r26, 0x01	; 1
+     8c2:	ae 0f       	add	r26, r30
+     8c4:	a0 93 23 01 	sts	0x0123, r26	; 0x800123 <indexRxR>
+     8c8:	f0 e0       	ldi	r31, 0x00	; 0
+     8ca:	e8 58       	subi	r30, 0x88	; 136
+     8cc:	fe 4f       	sbci	r31, 0xFE	; 254
+     8ce:	80 81       	ld	r24, Z
+     8d0:	89 83       	std	Y+1, r24	; 0x01
+			subfunction = myHalfWord.ui16;
+     8d2:	80 91 6e 01 	lds	r24, 0x016E	; 0x80016e <myHalfWord>
+     8d6:	90 91 6f 01 	lds	r25, 0x016F	; 0x80016f <myHalfWord+0x1>
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     8da:	e1 e0       	ldi	r30, 0x01	; 1
+     8dc:	ea 0f       	add	r30, r26
+     8de:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     8e2:	b0 e0       	ldi	r27, 0x00	; 0
+     8e4:	a8 58       	subi	r26, 0x88	; 136
+     8e6:	be 4f       	sbci	r27, 0xFE	; 254
+     8e8:	2c 91       	ld	r18, X
+     8ea:	28 83       	st	Y, r18
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     8ec:	21 e0       	ldi	r18, 0x01	; 1
+     8ee:	2e 0f       	add	r18, r30
+     8f0:	20 93 23 01 	sts	0x0123, r18	; 0x800123 <indexRxR>
+     8f4:	f0 e0       	ldi	r31, 0x00	; 0
+     8f6:	e8 58       	subi	r30, 0x88	; 136
+     8f8:	fe 4f       	sbci	r31, 0xFE	; 254
+     8fa:	20 81       	ld	r18, Z
+     8fc:	29 83       	std	Y+1, r18	; 0x01
+			regValue = myHalfWord.ui16;
+     8fe:	20 91 6e 01 	lds	r18, 0x016E	; 0x80016e <myHalfWord>
+     902:	30 91 6f 01 	lds	r19, 0x016F	; 0x80016f <myHalfWord+0x1>
+			
+			switch(subfunction){
+     906:	81 30       	cpi	r24, 0x01	; 1
+     908:	91 05       	cpc	r25, r1
+     90a:	29 f0       	breq	.+10     	; 0x916 <__stack+0x17>
+     90c:	98 f1       	brcs	.+102    	; 0x974 <__stack+0x75>
+     90e:	82 30       	cpi	r24, 0x02	; 2
+     910:	91 05       	cpc	r25, r1
+     912:	b9 f0       	breq	.+46     	; 0x942 <__stack+0x43>
+     914:	22 c0       	rjmp	.+68     	; 0x95a <__stack+0x5b>
+				case RETURN_QUERY_DATA:
+				//Eco
+				break;
+				case RESTART_COMMUNICATIONS:
+					if(regValue == 0x0000 || regValue == 0xFF00){
+     916:	21 15       	cp	r18, r1
+     918:	31 05       	cpc	r19, r1
+     91a:	21 f0       	breq	.+8      	; 0x924 <__stack+0x25>
+     91c:	21 15       	cp	r18, r1
+     91e:	bf ef       	ldi	r27, 0xFF	; 255
+     920:	3b 07       	cpc	r19, r27
+     922:	31 f4       	brne	.+12     	; 0x930 <__stack+0x31>
+						//Eco
+						intFlags.iFlags.restartComms = 1; ////
+     924:	40 91 f0 02 	lds	r20, 0x02F0	; 0x8002f0 <intFlags>
+     928:	40 64       	ori	r20, 0x40	; 64
+     92a:	40 93 f0 02 	sts	0x02F0, r20	; 0x8002f0 <intFlags>
+						}else{
+						excepCode = INVALID_DATA_VALUE;
+						intFlags.iFlags.isExceptionCode = 1;
+						return;
+					}
+				break;
+     92e:	22 c0       	rjmp	.+68     	; 0x974 <__stack+0x75>
+				case RESTART_COMMUNICATIONS:
+					if(regValue == 0x0000 || regValue == 0xFF00){
+						//Eco
+						intFlags.iFlags.restartComms = 1; ////
+						}else{
+						excepCode = INVALID_DATA_VALUE;
+     930:	83 e0       	ldi	r24, 0x03	; 3
+     932:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+						intFlags.iFlags.isExceptionCode = 1;
+     936:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     93a:	88 60       	ori	r24, 0x08	; 8
+     93c:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+						return;
+     940:	7d c1       	rjmp	.+762    	; 0xc3c <__stack+0x33d>
+					}
+				break;
+				case RETURN_DIAGNOSTICS_REGISTER:
+					if(regValue == 0x0000){
+     942:	21 15       	cp	r18, r1
+     944:	31 05       	cpc	r19, r1
+     946:	b1 f0       	breq	.+44     	; 0x974 <__stack+0x75>
+						//Registro de diagnostico
+						//regValue  = diagnosticsRegister;
+						// regValue |= diagnosticsRegister;
+						}else{
+						excepCode = INVALID_DATA_VALUE;
+     948:	83 e0       	ldi	r24, 0x03	; 3
+     94a:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+						intFlags.iFlags.isExceptionCode = 1;
+     94e:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     952:	88 60       	ori	r24, 0x08	; 8
+     954:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+						return;
+     958:	71 c1       	rjmp	.+738    	; 0xc3c <__stack+0x33d>
+					}
+				break;
+				default:
+					excepCode = INVALID_FUNCTION;
+     95a:	81 e0       	ldi	r24, 0x01	; 1
+     95c:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+					intFlags.iFlags.isExceptionCode = 1;
+     960:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     964:	88 60       	ori	r24, 0x08	; 8
+     966:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+					indexRxR = indexRxW;
+     96a:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <indexRxW>
+     96e:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <indexRxR>
+				return;
+     972:	64 c1       	rjmp	.+712    	; 0xc3c <__stack+0x33d>
+		}
+		bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+     974:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     978:	e1 e0       	ldi	r30, 0x01	; 1
+     97a:	ea 0f       	add	r30, r26
+     97c:	b0 e0       	ldi	r27, 0x00	; 0
+     97e:	40 91 79 02 	lds	r20, 0x0279	; 0x800279 <slaveAddress>
+     982:	af 50       	subi	r26, 0x0F	; 15
+     984:	bd 4f       	sbci	r27, 0xFD	; 253
+     986:	4c 93       	st	X, r20
+		bufferTx[indexTxW++] = DIAGNOSTICS;
+     988:	a1 e0       	ldi	r26, 0x01	; 1
+     98a:	ae 0f       	add	r26, r30
+     98c:	f0 e0       	ldi	r31, 0x00	; 0
+     98e:	ef 50       	subi	r30, 0x0F	; 15
+     990:	fd 4f       	sbci	r31, 0xFD	; 253
+     992:	48 e0       	ldi	r20, 0x08	; 8
+     994:	40 83       	st	Z, r20
+		myHalfWord.ui16 = subfunction;
+     996:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <myHalfWord+0x1>
+     99a:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <myHalfWord>
+		bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     99e:	e1 e0       	ldi	r30, 0x01	; 1
+     9a0:	ea 0f       	add	r30, r26
+     9a2:	b0 e0       	ldi	r27, 0x00	; 0
+     9a4:	ce e6       	ldi	r28, 0x6E	; 110
+     9a6:	d1 e0       	ldi	r29, 0x01	; 1
+     9a8:	af 50       	subi	r26, 0x0F	; 15
+     9aa:	bd 4f       	sbci	r27, 0xFD	; 253
+     9ac:	8c 93       	st	X, r24
+		bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     9ae:	a1 e0       	ldi	r26, 0x01	; 1
+     9b0:	ae 0f       	add	r26, r30
+     9b2:	f0 e0       	ldi	r31, 0x00	; 0
+     9b4:	89 81       	ldd	r24, Y+1	; 0x01
+     9b6:	ef 50       	subi	r30, 0x0F	; 15
+     9b8:	fd 4f       	sbci	r31, 0xFD	; 253
+     9ba:	80 83       	st	Z, r24
+		myHalfWord.ui16 = regValue;
+     9bc:	30 93 6f 01 	sts	0x016F, r19	; 0x80016f <myHalfWord+0x1>
+     9c0:	20 93 6e 01 	sts	0x016E, r18	; 0x80016e <myHalfWord>
+		bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     9c4:	e1 e0       	ldi	r30, 0x01	; 1
+     9c6:	ea 0f       	add	r30, r26
+     9c8:	b0 e0       	ldi	r27, 0x00	; 0
+     9ca:	af 50       	subi	r26, 0x0F	; 15
+     9cc:	bd 4f       	sbci	r27, 0xFD	; 253
+     9ce:	2c 93       	st	X, r18
+		bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     9d0:	81 e0       	ldi	r24, 0x01	; 1
+     9d2:	8e 0f       	add	r24, r30
+     9d4:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     9d8:	f0 e0       	ldi	r31, 0x00	; 0
+     9da:	89 81       	ldd	r24, Y+1	; 0x01
+     9dc:	ef 50       	subi	r30, 0x0F	; 15
+     9de:	fd 4f       	sbci	r31, 0xFD	; 253
+     9e0:	80 83       	st	Z, r24
+		for(uint8_t i=0; i < 6; i++){
+     9e2:	c0 e0       	ldi	r28, 0x00	; 0
+     9e4:	08 c0       	rjmp	.+16     	; 0x9f6 <__stack+0xf7>
+			CrcCalculation(bufferTx[i]);
+     9e6:	ec 2f       	mov	r30, r28
+     9e8:	f0 e0       	ldi	r31, 0x00	; 0
+     9ea:	ef 50       	subi	r30, 0x0F	; 15
+     9ec:	fd 4f       	sbci	r31, 0xFD	; 253
+     9ee:	80 81       	ld	r24, Z
+     9f0:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+		bufferTx[indexTxW++] = myHalfWord.ui8[0];
+		bufferTx[indexTxW++] = myHalfWord.ui8[1];
+		myHalfWord.ui16 = regValue;
+		bufferTx[indexTxW++] = myHalfWord.ui8[0];
+		bufferTx[indexTxW++] = myHalfWord.ui8[1];
+		for(uint8_t i=0; i < 6; i++){
+     9f4:	cf 5f       	subi	r28, 0xFF	; 255
+     9f6:	c6 30       	cpi	r28, 0x06	; 6
+     9f8:	b0 f3       	brcs	.-20     	; 0x9e6 <__stack+0xe7>
+			CrcCalculation(bufferTx[i]);
+		}
+		myHalfWord.ui16 = crcLocal;
+     9fa:	80 91 63 01 	lds	r24, 0x0163	; 0x800163 <crcLocal>
+     9fe:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <crcLocal+0x1>
+     a02:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <myHalfWord>
+     a06:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <myHalfWord+0x1>
+		bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     a0a:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     a0e:	e1 e0       	ldi	r30, 0x01	; 1
+     a10:	ea 0f       	add	r30, r26
+     a12:	b0 e0       	ldi	r27, 0x00	; 0
+     a14:	af 50       	subi	r26, 0x0F	; 15
+     a16:	bd 4f       	sbci	r27, 0xFD	; 253
+     a18:	8c 93       	st	X, r24
+		bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     a1a:	81 e0       	ldi	r24, 0x01	; 1
+     a1c:	8e 0f       	add	r24, r30
+     a1e:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     a22:	f0 e0       	ldi	r31, 0x00	; 0
+     a24:	ef 50       	subi	r30, 0x0F	; 15
+     a26:	fd 4f       	sbci	r31, 0xFD	; 253
+     a28:	90 83       	st	Z, r25
+		break;
+     a2a:	04 c1       	rjmp	.+520    	; 0xc34 <__stack+0x335>
+		case WRITE_MULTIPLE_REGISTERS: //Incompleto
+			errorCode = 0x90;
+     a2c:	80 e9       	ldi	r24, 0x90	; 144
+     a2e:	80 93 78 02 	sts	0x0278, r24	; 0x800278 <errorCode>
+			//Direccion inicial
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     a32:	e0 91 23 01 	lds	r30, 0x0123	; 0x800123 <indexRxR>
+     a36:	a1 e0       	ldi	r26, 0x01	; 1
+     a38:	ae 0f       	add	r26, r30
+     a3a:	a0 93 23 01 	sts	0x0123, r26	; 0x800123 <indexRxR>
+     a3e:	f0 e0       	ldi	r31, 0x00	; 0
+     a40:	e8 58       	subi	r30, 0x88	; 136
+     a42:	fe 4f       	sbci	r31, 0xFE	; 254
+     a44:	80 81       	ld	r24, Z
+     a46:	ce e6       	ldi	r28, 0x6E	; 110
+     a48:	d1 e0       	ldi	r29, 0x01	; 1
+     a4a:	88 83       	st	Y, r24
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     a4c:	e1 e0       	ldi	r30, 0x01	; 1
+     a4e:	ea 0f       	add	r30, r26
+     a50:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     a54:	b0 e0       	ldi	r27, 0x00	; 0
+     a56:	a8 58       	subi	r26, 0x88	; 136
+     a58:	be 4f       	sbci	r27, 0xFE	; 254
+     a5a:	8c 91       	ld	r24, X
+     a5c:	89 83       	std	Y+1, r24	; 0x01
+			regAddress = myHalfWord.ui16;
+     a5e:	20 91 6e 01 	lds	r18, 0x016E	; 0x80016e <myHalfWord>
+     a62:	30 91 6f 01 	lds	r19, 0x016F	; 0x80016f <myHalfWord+0x1>
+			//Cantidad de registros
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     a66:	a1 e0       	ldi	r26, 0x01	; 1
+     a68:	ae 0f       	add	r26, r30
+     a6a:	a0 93 23 01 	sts	0x0123, r26	; 0x800123 <indexRxR>
+     a6e:	f0 e0       	ldi	r31, 0x00	; 0
+     a70:	e8 58       	subi	r30, 0x88	; 136
+     a72:	fe 4f       	sbci	r31, 0xFE	; 254
+     a74:	80 81       	ld	r24, Z
+     a76:	88 83       	st	Y, r24
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     a78:	e1 e0       	ldi	r30, 0x01	; 1
+     a7a:	ea 0f       	add	r30, r26
+     a7c:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     a80:	b0 e0       	ldi	r27, 0x00	; 0
+     a82:	a8 58       	subi	r26, 0x88	; 136
+     a84:	be 4f       	sbci	r27, 0xFE	; 254
+     a86:	8c 91       	ld	r24, X
+     a88:	89 83       	std	Y+1, r24	; 0x01
+			regCant = myHalfWord.ui16;
+     a8a:	40 91 6e 01 	lds	r20, 0x016E	; 0x80016e <myHalfWord>
+     a8e:	50 91 6f 01 	lds	r21, 0x016F	; 0x80016f <myHalfWord+0x1>
+			//Cantidad de bytes
+			byteCount = bufferRx[indexRxR++];
+     a92:	81 e0       	ldi	r24, 0x01	; 1
+     a94:	8e 0f       	add	r24, r30
+     a96:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <indexRxR>
+     a9a:	f0 e0       	ldi	r31, 0x00	; 0
+     a9c:	e8 58       	subi	r30, 0x88	; 136
+     a9e:	fe 4f       	sbci	r31, 0xFE	; 254
+     aa0:	80 81       	ld	r24, Z
+		
+			//Controlar cantidad de registros
+			if((regCant < 1 || regCant > 0x007B) || (byteCount != (regCant*2))){
+     aa2:	ba 01       	movw	r22, r20
+     aa4:	61 50       	subi	r22, 0x01	; 1
+     aa6:	71 09       	sbc	r23, r1
+     aa8:	6b 37       	cpi	r22, 0x7B	; 123
+     aaa:	71 05       	cpc	r23, r1
+     aac:	38 f4       	brcc	.+14     	; 0xabc <__stack+0x1bd>
+     aae:	90 e0       	ldi	r25, 0x00	; 0
+     ab0:	fa 01       	movw	r30, r20
+     ab2:	ee 0f       	add	r30, r30
+     ab4:	ff 1f       	adc	r31, r31
+     ab6:	8e 17       	cp	r24, r30
+     ab8:	9f 07       	cpc	r25, r31
+     aba:	49 f0       	breq	.+18     	; 0xace <__stack+0x1cf>
+				excepCode = INVALID_DATA_VALUE;
+     abc:	83 e0       	ldi	r24, 0x03	; 3
+     abe:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+				intFlags.iFlags.isExceptionCode = 1;
+     ac2:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     ac6:	88 60       	ori	r24, 0x08	; 8
+     ac8:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				return;
+     acc:	b7 c0       	rjmp	.+366    	; 0xc3c <__stack+0x33d>
+			}
+			//Controlar validez de direccion
+			if((regAddress < 1) || (regAddress > REGISTERS) || ((regCant-1) > (REGISTERS - regAddress))){
+     ace:	c9 01       	movw	r24, r18
+     ad0:	01 97       	sbiw	r24, 0x01	; 1
+     ad2:	0c 97       	sbiw	r24, 0x0c	; 12
+     ad4:	38 f4       	brcc	.+14     	; 0xae4 <__stack+0x1e5>
+     ad6:	8c e0       	ldi	r24, 0x0C	; 12
+     ad8:	90 e0       	ldi	r25, 0x00	; 0
+     ada:	82 1b       	sub	r24, r18
+     adc:	93 0b       	sbc	r25, r19
+     ade:	86 17       	cp	r24, r22
+     ae0:	97 07       	cpc	r25, r23
+     ae2:	90 f5       	brcc	.+100    	; 0xb48 <__stack+0x249>
+				excepCode = INVALID_DATA_ADDRESS;
+     ae4:	82 e0       	ldi	r24, 0x02	; 2
+     ae6:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+				intFlags.iFlags.isExceptionCode = 1;
+     aea:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     aee:	88 60       	ori	r24, 0x08	; 8
+     af0:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				return;
+     af4:	a3 c0       	rjmp	.+326    	; 0xc3c <__stack+0x33d>
+			}
+			for(uint8_t i=0; i<regCant;i++){
+			myHalfWord.ui8[0] = bufferRx[indexRxR++];
+     af6:	a0 91 23 01 	lds	r26, 0x0123	; 0x800123 <indexRxR>
+     afa:	e1 e0       	ldi	r30, 0x01	; 1
+     afc:	ea 0f       	add	r30, r26
+     afe:	e0 93 23 01 	sts	0x0123, r30	; 0x800123 <indexRxR>
+     b02:	b0 e0       	ldi	r27, 0x00	; 0
+     b04:	a8 58       	subi	r26, 0x88	; 136
+     b06:	be 4f       	sbci	r27, 0xFE	; 254
+     b08:	7c 91       	ld	r23, X
+     b0a:	ae e6       	ldi	r26, 0x6E	; 110
+     b0c:	b1 e0       	ldi	r27, 0x01	; 1
+     b0e:	7c 93       	st	X, r23
+			myHalfWord.ui8[1] = bufferRx[indexRxR++];
+     b10:	f1 e0       	ldi	r31, 0x01	; 1
+     b12:	fe 0f       	add	r31, r30
+     b14:	f0 93 23 01 	sts	0x0123, r31	; 0x800123 <indexRxR>
+     b18:	f0 e0       	ldi	r31, 0x00	; 0
+     b1a:	e8 58       	subi	r30, 0x88	; 136
+     b1c:	fe 4f       	sbci	r31, 0xFE	; 254
+     b1e:	e0 81       	ld	r30, Z
+     b20:	11 96       	adiw	r26, 0x01	; 1
+     b22:	ec 93       	st	X, r30
+     b24:	11 97       	sbiw	r26, 0x01	; 1
+			regValue = myHalfWord.ui16;
+				*((uint8_t *)registerAddresses[regAddress-1+i]) = myHalfWord.ui8[0];
+     b26:	f9 01       	movw	r30, r18
+     b28:	e8 0f       	add	r30, r24
+     b2a:	f9 1f       	adc	r31, r25
+     b2c:	31 97       	sbiw	r30, 0x01	; 1
+     b2e:	ee 0f       	add	r30, r30
+     b30:	ff 1f       	adc	r31, r31
+     b32:	e8 5f       	subi	r30, 0xF8	; 248
+     b34:	fe 4f       	sbci	r31, 0xFE	; 254
+     b36:	01 90       	ld	r0, Z+
+     b38:	f0 81       	ld	r31, Z
+     b3a:	e0 2d       	mov	r30, r0
+     b3c:	70 83       	st	Z, r23
+				*((uint8_t *)(registerAddresses[regAddress-1+i]+1)) = myHalfWord.ui8[1];
+     b3e:	11 96       	adiw	r26, 0x01	; 1
+     b40:	8c 91       	ld	r24, X
+     b42:	82 83       	std	Z+2, r24	; 0x02
+			if((regAddress < 1) || (regAddress > REGISTERS) || ((regCant-1) > (REGISTERS - regAddress))){
+				excepCode = INVALID_DATA_ADDRESS;
+				intFlags.iFlags.isExceptionCode = 1;
+				return;
+			}
+			for(uint8_t i=0; i<regCant;i++){
+     b44:	6f 5f       	subi	r22, 0xFF	; 255
+     b46:	01 c0       	rjmp	.+2      	; 0xb4a <__stack+0x24b>
+     b48:	60 e0       	ldi	r22, 0x00	; 0
+     b4a:	86 2f       	mov	r24, r22
+     b4c:	90 e0       	ldi	r25, 0x00	; 0
+     b4e:	84 17       	cp	r24, r20
+     b50:	95 07       	cpc	r25, r21
+     b52:	88 f2       	brcs	.-94     	; 0xaf6 <__stack+0x1f7>
+			regValue = myHalfWord.ui16;
+				*((uint8_t *)registerAddresses[regAddress-1+i]) = myHalfWord.ui8[0];
+				*((uint8_t *)(registerAddresses[regAddress-1+i]+1)) = myHalfWord.ui8[1];
+			}
+		
+			if(intFlags.iFlags.isBroadcast){
+     b54:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     b58:	84 ff       	sbrs	r24, 4
+     b5a:	04 c0       	rjmp	.+8      	; 0xb64 <__stack+0x265>
+				intFlags.iFlags.isBroadcast = 0;
+     b5c:	8f 7e       	andi	r24, 0xEF	; 239
+     b5e:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				return;
+     b62:	6c c0       	rjmp	.+216    	; 0xc3c <__stack+0x33d>
+			}
+			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+     b64:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     b68:	e1 e0       	ldi	r30, 0x01	; 1
+     b6a:	ea 0f       	add	r30, r26
+     b6c:	b0 e0       	ldi	r27, 0x00	; 0
+     b6e:	80 91 79 02 	lds	r24, 0x0279	; 0x800279 <slaveAddress>
+     b72:	af 50       	subi	r26, 0x0F	; 15
+     b74:	bd 4f       	sbci	r27, 0xFD	; 253
+     b76:	8c 93       	st	X, r24
+			bufferTx[indexTxW++] = WRITE_MULTIPLE_REGISTERS;
+     b78:	a1 e0       	ldi	r26, 0x01	; 1
+     b7a:	ae 0f       	add	r26, r30
+     b7c:	f0 e0       	ldi	r31, 0x00	; 0
+     b7e:	ef 50       	subi	r30, 0x0F	; 15
+     b80:	fd 4f       	sbci	r31, 0xFD	; 253
+     b82:	80 e1       	ldi	r24, 0x10	; 16
+     b84:	80 83       	st	Z, r24
+			myHalfWord.ui16 = regAddress;
+     b86:	30 93 6f 01 	sts	0x016F, r19	; 0x80016f <myHalfWord+0x1>
+     b8a:	20 93 6e 01 	sts	0x016E, r18	; 0x80016e <myHalfWord>
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     b8e:	e1 e0       	ldi	r30, 0x01	; 1
+     b90:	ea 0f       	add	r30, r26
+     b92:	b0 e0       	ldi	r27, 0x00	; 0
+     b94:	ce e6       	ldi	r28, 0x6E	; 110
+     b96:	d1 e0       	ldi	r29, 0x01	; 1
+     b98:	af 50       	subi	r26, 0x0F	; 15
+     b9a:	bd 4f       	sbci	r27, 0xFD	; 253
+     b9c:	2c 93       	st	X, r18
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     b9e:	a1 e0       	ldi	r26, 0x01	; 1
+     ba0:	ae 0f       	add	r26, r30
+     ba2:	f0 e0       	ldi	r31, 0x00	; 0
+     ba4:	89 81       	ldd	r24, Y+1	; 0x01
+     ba6:	ef 50       	subi	r30, 0x0F	; 15
+     ba8:	fd 4f       	sbci	r31, 0xFD	; 253
+     baa:	80 83       	st	Z, r24
+			myHalfWord.ui16 = regCant;
+     bac:	50 93 6f 01 	sts	0x016F, r21	; 0x80016f <myHalfWord+0x1>
+     bb0:	40 93 6e 01 	sts	0x016E, r20	; 0x80016e <myHalfWord>
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     bb4:	e1 e0       	ldi	r30, 0x01	; 1
+     bb6:	ea 0f       	add	r30, r26
+     bb8:	b0 e0       	ldi	r27, 0x00	; 0
+     bba:	af 50       	subi	r26, 0x0F	; 15
+     bbc:	bd 4f       	sbci	r27, 0xFD	; 253
+     bbe:	4c 93       	st	X, r20
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     bc0:	81 e0       	ldi	r24, 0x01	; 1
+     bc2:	8e 0f       	add	r24, r30
+     bc4:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     bc8:	f0 e0       	ldi	r31, 0x00	; 0
+     bca:	89 81       	ldd	r24, Y+1	; 0x01
+     bcc:	ef 50       	subi	r30, 0x0F	; 15
+     bce:	fd 4f       	sbci	r31, 0xFD	; 253
+     bd0:	80 83       	st	Z, r24
+			for(uint8_t i = 0; i < 6;i++){
+     bd2:	c0 e0       	ldi	r28, 0x00	; 0
+     bd4:	08 c0       	rjmp	.+16     	; 0xbe6 <__stack+0x2e7>
+				CrcCalculation(bufferTx[i]);
+     bd6:	ec 2f       	mov	r30, r28
+     bd8:	f0 e0       	ldi	r31, 0x00	; 0
+     bda:	ef 50       	subi	r30, 0x0F	; 15
+     bdc:	fd 4f       	sbci	r31, 0xFD	; 253
+     bde:	80 81       	ld	r24, Z
+     be0:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+			myHalfWord.ui16 = regCant;
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+			for(uint8_t i = 0; i < 6;i++){
+     be4:	cf 5f       	subi	r28, 0xFF	; 255
+     be6:	c6 30       	cpi	r28, 0x06	; 6
+     be8:	b0 f3       	brcs	.-20     	; 0xbd6 <__stack+0x2d7>
+				CrcCalculation(bufferTx[i]);
+			}
+			myHalfWord.ui16 = crcLocal;
+     bea:	80 91 63 01 	lds	r24, 0x0163	; 0x800163 <crcLocal>
+     bee:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <crcLocal+0x1>
+     bf2:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <myHalfWord>
+     bf6:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <myHalfWord+0x1>
+			bufferTx[indexTxW++] = myHalfWord.ui8[0];
+     bfa:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     bfe:	e1 e0       	ldi	r30, 0x01	; 1
+     c00:	ea 0f       	add	r30, r26
+     c02:	b0 e0       	ldi	r27, 0x00	; 0
+     c04:	af 50       	subi	r26, 0x0F	; 15
+     c06:	bd 4f       	sbci	r27, 0xFD	; 253
+     c08:	8c 93       	st	X, r24
+			bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     c0a:	81 e0       	ldi	r24, 0x01	; 1
+     c0c:	8e 0f       	add	r24, r30
+     c0e:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     c12:	f0 e0       	ldi	r31, 0x00	; 0
+     c14:	ef 50       	subi	r30, 0x0F	; 15
+     c16:	fd 4f       	sbci	r31, 0xFD	; 253
+     c18:	90 83       	st	Z, r25
+		break;
+     c1a:	0c c0       	rjmp	.+24     	; 0xc34 <__stack+0x335>
+		default:
+			if(intFlags.iFlags.isBroadcast){
+     c1c:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     c20:	84 fd       	sbrc	r24, 4
+     c22:	0c c0       	rjmp	.+24     	; 0xc3c <__stack+0x33d>
+				return;
+			}
+		excepCode = INVALID_FUNCTION;
+     c24:	81 e0       	ldi	r24, 0x01	; 1
+     c26:	80 93 74 01 	sts	0x0174, r24	; 0x800174 <excepCode>
+		intFlags.iFlags.isExceptionCode = 1;
+     c2a:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     c2e:	88 60       	ori	r24, 0x08	; 8
+     c30:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+		indexRxR = indexRxW;
+		break;
+	}
+	indexRxR = indexRxW;
+     c34:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <indexRxW>
+     c38:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <indexRxR>
+	
+}
+     c3c:	df 91       	pop	r29
+     c3e:	cf 91       	pop	r28
+     c40:	1f 91       	pop	r17
+     c42:	0f 91       	pop	r16
+     c44:	ff 90       	pop	r15
+     c46:	08 95       	ret
+
+00000c48 <SendExceptionCode>:
+
+void SendExceptionCode(){
+     c48:	cf 93       	push	r28
+	intFlags.iFlags.isExceptionCode = 0;
+     c4a:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     c4e:	87 7f       	andi	r24, 0xF7	; 247
+     c50:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+	bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+     c54:	e0 91 20 01 	lds	r30, 0x0120	; 0x800120 <__data_end>
+     c58:	a1 e0       	ldi	r26, 0x01	; 1
+     c5a:	ae 0f       	add	r26, r30
+     c5c:	f0 e0       	ldi	r31, 0x00	; 0
+     c5e:	80 91 79 02 	lds	r24, 0x0279	; 0x800279 <slaveAddress>
+     c62:	ef 50       	subi	r30, 0x0F	; 15
+     c64:	fd 4f       	sbci	r31, 0xFD	; 253
+     c66:	80 83       	st	Z, r24
+	bufferTx[indexTxW++] = errorCode;
+     c68:	e1 e0       	ldi	r30, 0x01	; 1
+     c6a:	ea 0f       	add	r30, r26
+     c6c:	b0 e0       	ldi	r27, 0x00	; 0
+     c6e:	af 50       	subi	r26, 0x0F	; 15
+     c70:	bd 4f       	sbci	r27, 0xFD	; 253
+     c72:	80 91 78 02 	lds	r24, 0x0278	; 0x800278 <errorCode>
+     c76:	8c 93       	st	X, r24
+	bufferTx[indexTxW++] = excepCode;
+     c78:	81 e0       	ldi	r24, 0x01	; 1
+     c7a:	8e 0f       	add	r24, r30
+     c7c:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+     c80:	f0 e0       	ldi	r31, 0x00	; 0
+     c82:	ef 50       	subi	r30, 0x0F	; 15
+     c84:	fd 4f       	sbci	r31, 0xFD	; 253
+     c86:	80 91 74 01 	lds	r24, 0x0174	; 0x800174 <excepCode>
+     c8a:	80 83       	st	Z, r24
+	for(uint8_t i = 0; i < 3;i++){
+     c8c:	c0 e0       	ldi	r28, 0x00	; 0
+     c8e:	08 c0       	rjmp	.+16     	; 0xca0 <SendExceptionCode+0x58>
+		CrcCalculation(bufferTx[i]);
+     c90:	ec 2f       	mov	r30, r28
+     c92:	f0 e0       	ldi	r31, 0x00	; 0
+     c94:	ef 50       	subi	r30, 0x0F	; 15
+     c96:	fd 4f       	sbci	r31, 0xFD	; 253
+     c98:	80 81       	ld	r24, Z
+     c9a:	0e 94 86 01 	call	0x30c	; 0x30c <CrcCalculation>
+void SendExceptionCode(){
+	intFlags.iFlags.isExceptionCode = 0;
+	bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+	bufferTx[indexTxW++] = errorCode;
+	bufferTx[indexTxW++] = excepCode;
+	for(uint8_t i = 0; i < 3;i++){
+     c9e:	cf 5f       	subi	r28, 0xFF	; 255
+     ca0:	c3 30       	cpi	r28, 0x03	; 3
+     ca2:	b0 f3       	brcs	.-20     	; 0xc90 <SendExceptionCode+0x48>
+		CrcCalculation(bufferTx[i]);
+	}
+	myHalfWord.ui16 = crcLocal;
+     ca4:	80 91 63 01 	lds	r24, 0x0163	; 0x800163 <crcLocal>
+     ca8:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <crcLocal+0x1>
+     cac:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <myHalfWord+0x1>
+     cb0:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <myHalfWord>
+	bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     cb4:	a0 91 20 01 	lds	r26, 0x0120	; 0x800120 <__data_end>
+     cb8:	e1 e0       	ldi	r30, 0x01	; 1
+     cba:	ea 0f       	add	r30, r26
+     cbc:	b0 e0       	ldi	r27, 0x00	; 0
+     cbe:	80 91 6f 01 	lds	r24, 0x016F	; 0x80016f <myHalfWord+0x1>
+     cc2:	af 50       	subi	r26, 0x0F	; 15
+     cc4:	bd 4f       	sbci	r27, 0xFD	; 253
+     cc6:	8c 93       	st	X, r24
+	bufferTx[indexTxW++] = myHalfWord.ui8[1];
+     cc8:	91 e0       	ldi	r25, 0x01	; 1
+     cca:	9e 0f       	add	r25, r30
+     ccc:	90 93 20 01 	sts	0x0120, r25	; 0x800120 <__data_end>
+     cd0:	f0 e0       	ldi	r31, 0x00	; 0
+     cd2:	ef 50       	subi	r30, 0x0F	; 15
+     cd4:	fd 4f       	sbci	r31, 0xFD	; 253
+     cd6:	80 83       	st	Z, r24
+}
+     cd8:	cf 91       	pop	r28
+     cda:	08 95       	ret
+
+00000cdc <USART0_ReceiveInterruptEnable>:
+
+void USART0_ReceiveInterruptEnable(void){
+	UCSR0B |= (1 << (RXCIE0));
+     cdc:	e1 ec       	ldi	r30, 0xC1	; 193
+     cde:	f0 e0       	ldi	r31, 0x00	; 0
+     ce0:	80 81       	ld	r24, Z
+     ce2:	80 68       	ori	r24, 0x80	; 128
+     ce4:	80 83       	st	Z, r24
+     ce6:	08 95       	ret
+
+00000ce8 <USART0_ReceiveInterruptDisable>:
+}
+void USART0_ReceiveInterruptDisable(void){
+	UCSR0B &= ~(1 << (RXCIE0));
+     ce8:	e1 ec       	ldi	r30, 0xC1	; 193
+     cea:	f0 e0       	ldi	r31, 0x00	; 0
+     cec:	80 81       	ld	r24, Z
+     cee:	8f 77       	andi	r24, 0x7F	; 127
+     cf0:	80 83       	st	Z, r24
+     cf2:	08 95       	ret
+
+00000cf4 <main>:
+    Main application
+*/
+
+int main(void){
+	
+    SYSTEM_Initialize();
+     cf4:	0e 94 76 07 	call	0xeec	; 0xeec <SYSTEM_Initialize>
+	USART0_Initialize();
+     cf8:	0e 94 ed 07 	call	0xfda	; 0xfda <USART0_Initialize>
+	TC0_Initialize();
+     cfc:	0e 94 7d 07 	call	0xefa	; 0xefa <TC0_Initialize>
+	
+	sei();
+     d00:	78 94       	sei
+	
+	TMR0_SetHandler(do10ms);
+     d02:	83 e5       	ldi	r24, 0x53	; 83
+     d04:	90 e0       	ldi	r25, 0x00	; 0
+     d06:	0e 94 96 07 	call	0xf2c	; 0xf2c <TMR0_SetHandler>
+	//myUSARTHandler.RxCompleteCallbackRegister(ReadData);
+	//sei();
+	USART0_ReceiveInterruptEnable();
+     d0a:	0e 94 6e 06 	call	0xcdc	; 0xcdc <USART0_ReceiveInterruptEnable>
+
+	uint8_t hbState = 0;
+
+  decodeState = IDLE;
+     d0e:	10 92 71 01 	sts	0x0171, r1	; 0x800171 <decodeState>
+  hbTime = PERIOD250MS;
+     d12:	89 e1       	ldi	r24, 0x19	; 25
+     d14:	80 93 e4 02 	sts	0x02E4, r24	; 0x8002e4 <hbTime>
+  intFlags.aFlags = 0;
+  intFlags.iFlags.silenceTime = 1;
+     d18:	84 e0       	ldi	r24, 0x04	; 4
+     d1a:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+  silenceTik = 6;
+     d1e:	86 e0       	ldi	r24, 0x06	; 6
+     d20:	80 93 e1 02 	sts	0x02E1, r24	; 0x8002e1 <silenceTik>
+  
+
+
+  unixTimeH               = 0x1111;
+     d24:	81 e1       	ldi	r24, 0x11	; 17
+     d26:	91 e1       	ldi	r25, 0x11	; 17
+     d28:	90 93 ee 02 	sts	0x02EE, r25	; 0x8002ee <unixTimeH+0x1>
+     d2c:	80 93 ed 02 	sts	0x02ED, r24	; 0x8002ed <unixTimeH>
+  unixTimeL               = 0x2222;
+     d30:	82 e2       	ldi	r24, 0x22	; 34
+     d32:	92 e2       	ldi	r25, 0x22	; 34
+     d34:	90 93 77 01 	sts	0x0177, r25	; 0x800177 <unixTimeL+0x1>
+     d38:	80 93 76 01 	sts	0x0176, r24	; 0x800176 <unixTimeL>
+  registro                = 0x3333;
+     d3c:	83 e3       	ldi	r24, 0x33	; 51
+     d3e:	93 e3       	ldi	r25, 0x33	; 51
+     d40:	90 93 6b 01 	sts	0x016B, r25	; 0x80016b <registro+0x1>
+     d44:	80 93 6a 01 	sts	0x016A, r24	; 0x80016a <registro>
+  deadTime1               = 0x4444;
+     d48:	84 e4       	ldi	r24, 0x44	; 68
+     d4a:	94 e4       	ldi	r25, 0x44	; 68
+     d4c:	90 93 e3 02 	sts	0x02E3, r25	; 0x8002e3 <deadTime1+0x1>
+     d50:	80 93 e2 02 	sts	0x02E2, r24	; 0x8002e2 <deadTime1>
+  deadTime2               = 0x5555;
+     d54:	85 e5       	ldi	r24, 0x55	; 85
+     d56:	95 e5       	ldi	r25, 0x55	; 85
+     d58:	90 93 32 01 	sts	0x0132, r25	; 0x800132 <deadTime2+0x1>
+     d5c:	80 93 31 01 	sts	0x0131, r24	; 0x800131 <deadTime2>
+  deadTime3               = 0x6666;
+     d60:	86 e6       	ldi	r24, 0x66	; 102
+     d62:	96 e6       	ldi	r25, 0x66	; 102
+     d64:	90 93 fe 03 	sts	0x03FE, r25	; 0x8003fe <deadTime3+0x1>
+     d68:	80 93 fd 03 	sts	0x03FD, r24	; 0x8003fd <deadTime3>
+  deadTime4               = 0x7777;
+     d6c:	87 e7       	ldi	r24, 0x77	; 119
+     d6e:	97 e7       	ldi	r25, 0x77	; 119
+     d70:	90 93 73 01 	sts	0x0173, r25	; 0x800173 <deadTime4+0x1>
+     d74:	80 93 72 01 	sts	0x0172, r24	; 0x800172 <deadTime4>
+  dbTime1                 = 0x8888;
+     d78:	88 e8       	ldi	r24, 0x88	; 136
+     d7a:	98 e8       	ldi	r25, 0x88	; 136
+     d7c:	90 93 80 02 	sts	0x0280, r25	; 0x800280 <dbTime1+0x1>
+     d80:	80 93 7f 02 	sts	0x027F, r24	; 0x80027f <dbTime1>
+  dbTime2                 = 0x9999;
+     d84:	89 e9       	ldi	r24, 0x99	; 153
+     d86:	99 e9       	ldi	r25, 0x99	; 153
+     d88:	90 93 ec 02 	sts	0x02EC, r25	; 0x8002ec <dbTime2+0x1>
+     d8c:	80 93 eb 02 	sts	0x02EB, r24	; 0x8002eb <dbTime2>
+  dbTime3                 = 0xAAAA;
+     d90:	8a ea       	ldi	r24, 0xAA	; 170
+     d92:	9a ea       	ldi	r25, 0xAA	; 170
+     d94:	90 93 6d 01 	sts	0x016D, r25	; 0x80016d <dbTime3+0x1>
+     d98:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <dbTime3>
+  dbTime4                 = 0xBBBB;
+     d9c:	8b eb       	ldi	r24, 0xBB	; 187
+     d9e:	9b eb       	ldi	r25, 0xBB	; 187
+     da0:	90 93 30 01 	sts	0x0130, r25	; 0x800130 <dbTime4+0x1>
+     da4:	80 93 2f 01 	sts	0x012F, r24	; 0x80012f <dbTime4>
+  diagnosticsRegister     = 0xCDEF;
+     da8:	8f ee       	ldi	r24, 0xEF	; 239
+     daa:	9d ec       	ldi	r25, 0xCD	; 205
+     dac:	90 93 ea 02 	sts	0x02EA, r25	; 0x8002ea <diagnosticsRegister+0x1>
+     db0:	80 93 e9 02 	sts	0x02E9, r24	; 0x8002e9 <diagnosticsRegister>
+  
+  /*-----LECTURA ENTRADAS-----------------------*/
+  newValueA = ~(PORTC & MASKC);
+     db4:	88 b1       	in	r24, 0x08	; 8
+     db6:	8f 70       	andi	r24, 0x0F	; 15
+     db8:	80 95       	com	r24
+     dba:	80 93 ef 02 	sts	0x02EF, r24	; 0x8002ef <newValueA>
+  outValues = newValueA;
+     dbe:	80 93 00 04 	sts	0x0400, r24	; 0x800400 <outValues>
+  inputFlags.aFlags_input = 0;
+     dc2:	10 92 e5 02 	sts	0x02E5, r1	; 0x8002e5 <inputFlags>
+  intFlags.aFlags = 0;
+     dc6:	10 92 f0 02 	sts	0x02F0, r1	; 0x8002f0 <intFlags>
+
+  tikBetweenTime[0] = 0;
+     dca:	e1 ef       	ldi	r30, 0xF1	; 241
+     dcc:	f3 e0       	ldi	r31, 0x03	; 3
+     dce:	11 82       	std	Z+1, r1	; 0x01
+     dd0:	10 82       	st	Z, r1
+  tikBetweenTime[1] = 0;
+     dd2:	13 82       	std	Z+3, r1	; 0x03
+     dd4:	12 82       	std	Z+2, r1	; 0x02
+  tikBetweenTime[2] = 0;
+     dd6:	15 82       	std	Z+5, r1	; 0x05
+     dd8:	14 82       	std	Z+4, r1	; 0x04
+  tikBetweenTime[3] = 0;
+     dda:	17 82       	std	Z+7, r1	; 0x07
+     ddc:	16 82       	std	Z+6, r1	; 0x06
+	TMR0_SetHandler(do10ms);
+	//myUSARTHandler.RxCompleteCallbackRegister(ReadData);
+	//sei();
+	USART0_ReceiveInterruptEnable();
+
+	uint8_t hbState = 0;
+     dde:	c0 e0       	ldi	r28, 0x00	; 0
+
+  
+  
+    while(1){
+		
+		 if(!hbTime){ //Heartbeat
+     de0:	80 91 e4 02 	lds	r24, 0x02E4	; 0x8002e4 <hbTime>
+     de4:	81 11       	cpse	r24, r1
+     de6:	05 c0       	rjmp	.+10     	; 0xdf2 <main+0xfe>
+			 hbState ^= (1<<5);
+     de8:	80 e2       	ldi	r24, 0x20	; 32
+     dea:	c8 27       	eor	r28, r24
+			 hbTime = PERIOD1000MS;
+     dec:	84 e6       	ldi	r24, 0x64	; 100
+     dee:	80 93 e4 02 	sts	0x02E4, r24	; 0x8002e4 <hbTime>
+		 }
+		 if(intFlags.iFlags.dataReady){ //DECODIFICA SI EL BYTE SE RECIBIO CORRECTAMENTE
+     df2:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     df6:	81 ff       	sbrs	r24, 1
+     df8:	06 c0       	rjmp	.+12     	; 0xe06 <main+0x112>
+			 intFlags.iFlags.dataReady = 0;
+     dfa:	8d 7f       	andi	r24, 0xFD	; 253
+     dfc:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+			 DecodeData();
+     e00:	0e 94 a9 02 	call	0x552	; 0x552 <DecodeData>
+     e04:	14 c0       	rjmp	.+40     	; 0xe2e <main+0x13a>
+		 }else{
+			if(silenceTik < 2 && indexTxR != indexTxW){ //Si hay datos para mandar y transcurre un periodo t habilita el max para transmitir
+     e06:	80 91 e1 02 	lds	r24, 0x02E1	; 0x8002e1 <silenceTik>
+     e0a:	82 30       	cpi	r24, 0x02	; 2
+     e0c:	80 f4       	brcc	.+32     	; 0xe2e <main+0x13a>
+     e0e:	90 91 21 01 	lds	r25, 0x0121	; 0x800121 <indexTxR>
+     e12:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+     e16:	98 17       	cp	r25, r24
+     e18:	51 f0       	breq	.+20     	; 0xe2e <main+0x13a>
+				intFlags.iFlags.silenceTime = 0;
+     e1a:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     e1e:	8b 7f       	andi	r24, 0xFB	; 251
+     e20:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				USART0_ReceiveInterruptDisable();
+     e24:	0e 94 74 06 	call	0xce8	; 0xce8 <USART0_ReceiveInterruptDisable>
+				PORTD |= 0x4; //MAX HIGH
+     e28:	8b b1       	in	r24, 0x0b	; 11
+     e2a:	84 60       	ori	r24, 0x04	; 4
+     e2c:	8b b9       	out	0x0b, r24	; 11
+			}
+		 }
+		 if(indexTxR != indexTxW && intFlags.iFlags.silenceTime == 0){ //Si hay datos para transmitir, transmite
+     e2e:	90 91 21 01 	lds	r25, 0x0121	; 0x800121 <indexTxR>
+     e32:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+     e36:	98 17       	cp	r25, r24
+     e38:	29 f0       	breq	.+10     	; 0xe44 <main+0x150>
+     e3a:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     e3e:	82 ff       	sbrs	r24, 2
+			 UARTsendByte();
+     e40:	0e 94 ac 01 	call	0x358	; 0x358 <UARTsendByte>
+		 }
+		 if(indexTxR == indexTxW && intFlags.iFlags.silenceTime == 0){ //Si no hay datos para transmitir vuelve a la interrupcion
+     e44:	90 91 21 01 	lds	r25, 0x0121	; 0x800121 <indexTxR>
+     e48:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+     e4c:	98 13       	cpse	r25, r24
+     e4e:	1a c0       	rjmp	.+52     	; 0xe84 <main+0x190>
+     e50:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     e54:	82 fd       	sbrc	r24, 2
+     e56:	16 c0       	rjmp	.+44     	; 0xe84 <main+0x190>
+			 if(USART0_IsTxDone()){ //IS TRANSMIT COMPLETE
+     e58:	0e 94 cc 07 	call	0xf98	; 0xf98 <USART0_IsTxDone>
+     e5c:	88 23       	and	r24, r24
+     e5e:	91 f0       	breq	.+36     	; 0xe84 <main+0x190>
+				 UCSR0A |= (1<<TXC0);           // limpiar TXC0
+     e60:	e0 ec       	ldi	r30, 0xC0	; 192
+     e62:	f0 e0       	ldi	r31, 0x00	; 0
+     e64:	80 81       	ld	r24, Z
+     e66:	80 64       	ori	r24, 0x40	; 64
+     e68:	80 83       	st	Z, r24
+				 intFlags.iFlags.silenceTime = 1;
+     e6a:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     e6e:	84 60       	ori	r24, 0x04	; 4
+     e70:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+				 silenceTik = 4;
+     e74:	84 e0       	ldi	r24, 0x04	; 4
+     e76:	80 93 e1 02 	sts	0x02E1, r24	; 0x8002e1 <silenceTik>
+				 PORTD &= ~ 0x4; //MAX_SetLow();
+     e7a:	8b b1       	in	r24, 0x0b	; 11
+     e7c:	8b 7f       	andi	r24, 0xFB	; 251
+     e7e:	8b b9       	out	0x0b, r24	; 11
+				 USART0_ReceiveInterruptEnable();
+     e80:	0e 94 6e 06 	call	0xcdc	; 0xcdc <USART0_ReceiveInterruptEnable>
+			 }
+		 }
+
+
+		 if(intFlags.iFlags.isExceptionCode){ //leido
+     e84:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     e88:	83 fd       	sbrc	r24, 3
+			 SendExceptionCode();
+     e8a:	0e 94 24 06 	call	0xc48	; 0xc48 <SendExceptionCode>
+		 }
+ 
+		 if(intFlags.iFlags.restartComms){ //leido
+     e8e:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     e92:	86 ff       	sbrs	r24, 6
+     e94:	03 c0       	rjmp	.+6      	; 0xe9c <main+0x1a8>
+			 intFlags.iFlags.restartComms = 0;
+     e96:	8f 7b       	andi	r24, 0xBF	; 191
+     e98:	80 93 f0 02 	sts	0x02F0, r24	; 0x8002f0 <intFlags>
+		 }
+ //---------------------------- PROGRAMA LEDS---------------------------------------------
+		
+
+		if(intFlags.iFlags.isEvent1){
+     e9c:	80 91 f0 02 	lds	r24, 0x02F0	; 0x8002f0 <intFlags>
+     ea0:	80 ff       	sbrs	r24, 0
+     ea2:	04 c0       	rjmp	.+8      	; 0xeac <main+0x1b8>
+			//deshabilitar interrupcion
+			TC0_Disable_CompareA_Interrupt();
+     ea4:	0e 94 90 07 	call	0xf20	; 0xf20 <TC0_Disable_CompareA_Interrupt>
+			RegInput();
+     ea8:	0e 94 bd 00 	call	0x17a	; 0x17a <RegInput>
+		}
+
+
+		
+		PORTB = ((outValues << 1) & MASKB) | hbState ; 
+     eac:	80 91 00 04 	lds	r24, 0x0400	; 0x800400 <outValues>
+     eb0:	90 e0       	ldi	r25, 0x00	; 0
+     eb2:	88 0f       	add	r24, r24
+     eb4:	99 1f       	adc	r25, r25
+     eb6:	8e 71       	andi	r24, 0x1E	; 30
+     eb8:	8c 2b       	or	r24, r28
+     eba:	85 b9       	out	0x05, r24	; 5
+
+//---------------------------------------
+
+	}
+     ebc:	91 cf       	rjmp	.-222    	; 0xde0 <main+0xec>
+
+00000ebe <CPU_Initialize>:
+#include <avr/io.h>
+#include "../cpu.h"
+
+void CPU_Initialize (void)
+{
+    PRR = (0 << PRADC)   // PRADC disabled
+     ebe:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <__TEXT_REGION_LENGTH__+0x7f8064>
+            | (0 << PRTIM0)   // PRTIM0 disabled
+            | (0 << PRTIM1)   // PRTIM1 disabled
+            | (0 << PRTIM2)   // PRTIM2 disabled
+            | (0 << PRTWI)   // PRTWI disabled
+            | (0 << PRUSART0);   // PRUSART0 disabled
+    CLKPR = (0 << CLKPCE)   // CLKPCE disabled
+     ec2:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__TEXT_REGION_LENGTH__+0x7f8061>
+            | (0 << CLKPS0);   // CLKPS 1
+    SMCR = (0 << SE)   // SE disabled
+     ec6:	13 be       	out	0x33, r1	; 51
+            | (0 << SM0);   // SM IDLE
+    MCUCR = (0 << BODS)   // BODS disabled
+     ec8:	15 be       	out	0x35, r1	; 53
+     eca:	08 95       	ret
+
+00000ecc <CPUINT_Initialize>:
+#include "../cpuint.h"
+
+int8_t CPUINT_Initialize(void) 
+{
+    //IVCE disabled; IVSEL disabled; 
+    MCUCR = 0x0;
+     ecc:	15 be       	out	0x35, r1	; 53
+    
+    //I disabled; 
+    SREG = 0x0;
+     ece:	1f be       	out	0x3f, r1	; 63
+
+    return 0;
+     ed0:	80 e0       	ldi	r24, 0x00	; 0
+     ed2:	08 95       	ret
+
+00000ed4 <PIN_MANAGER_Initialize>:
+#include "../pins.h"
+
+void PIN_MANAGER_Initialize()
+{
+  /* DIR Registers Initialization */
+    DDRB = 0x3F;
+     ed4:	8f e3       	ldi	r24, 0x3F	; 63
+     ed6:	84 b9       	out	0x04, r24	; 4
+    DDRC = 0x0;
+     ed8:	17 b8       	out	0x07, r1	; 7
+    DDRD = 0x16;
+     eda:	86 e1       	ldi	r24, 0x16	; 22
+     edc:	8a b9       	out	0x0a, r24	; 10
+
+  /* PORTx Registers Initialization */
+    PORTB = 0x0;
+     ede:	15 b8       	out	0x05, r1	; 5
+    PORTC = 0x0;
+     ee0:	18 b8       	out	0x08, r1	; 8
+    PORTD = 0x0;
+     ee2:	1b b8       	out	0x0b, r1	; 11
+
+  /* PINx registers Initialization */
+    PINB = 0x0;
+     ee4:	13 b8       	out	0x03, r1	; 3
+    PINC = 0x0;
+     ee6:	16 b8       	out	0x06, r1	; 6
+    PIND = 0x0;
+     ee8:	19 b8       	out	0x09, r1	; 9
+     eea:	08 95       	ret
+
+00000eec <SYSTEM_Initialize>:
+
+
+
+void SYSTEM_Initialize(void)
+{
+    CPU_Initialize();
+     eec:	0e 94 5f 07 	call	0xebe	; 0xebe <CPU_Initialize>
+    PIN_MANAGER_Initialize();
+     ef0:	0e 94 6a 07 	call	0xed4	; 0xed4 <PIN_MANAGER_Initialize>
+    CPUINT_Initialize();
+     ef4:	0e 94 66 07 	call	0xecc	; 0xecc <CPUINT_Initialize>
+     ef8:	08 95       	ret
+
+00000efa <TC0_Initialize>:
+}
+
+uint8_t TC0_ReadTimer(void)
+{
+    return TCNT0;
+}
+     efa:	8b e9       	ldi	r24, 0x9B	; 155
+     efc:	87 bd       	out	0x27, r24	; 39
+     efe:	18 bc       	out	0x28, r1	; 40
+     f00:	16 bc       	out	0x26, r1	; 38
+     f02:	13 bc       	out	0x23, r1	; 35
+     f04:	82 e0       	ldi	r24, 0x02	; 2
+     f06:	84 bd       	out	0x24, r24	; 36
+     f08:	95 e0       	ldi	r25, 0x05	; 5
+     f0a:	95 bd       	out	0x25, r25	; 37
+     f0c:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
+     f10:	80 e0       	ldi	r24, 0x00	; 0
+     f12:	08 95       	ret
+
+00000f14 <TC0_Enable_CompareA_Interrupt>:
+     f14:	ee e6       	ldi	r30, 0x6E	; 110
+     f16:	f0 e0       	ldi	r31, 0x00	; 0
+     f18:	80 81       	ld	r24, Z
+     f1a:	82 60       	ori	r24, 0x02	; 2
+     f1c:	80 83       	st	Z, r24
+     f1e:	08 95       	ret
+
+00000f20 <TC0_Disable_CompareA_Interrupt>:
+     f20:	ee e6       	ldi	r30, 0x6E	; 110
+     f22:	f0 e0       	ldi	r31, 0x00	; 0
+     f24:	80 81       	ld	r24, Z
+     f26:	82 70       	andi	r24, 0x02	; 2
+     f28:	80 83       	st	Z, r24
+     f2a:	08 95       	ret
+
+00000f2c <TMR0_SetHandler>:
+
+void TMR0_SetHandler(void (*interruptHandler)(void)){
+	TMR0Handler = interruptHandler;
+     f2c:	90 93 25 01 	sts	0x0125, r25	; 0x800125 <TMR0Handler+0x1>
+     f30:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <TMR0Handler>
+     f34:	08 95       	ret
+
+00000f36 <__vector_14>:
+}
+
+ISR(TIMER0_COMPA_vect)
+{
+     f36:	1f 92       	push	r1
+     f38:	0f 92       	push	r0
+     f3a:	0f b6       	in	r0, 0x3f	; 63
+     f3c:	0f 92       	push	r0
+     f3e:	11 24       	eor	r1, r1
+     f40:	2f 93       	push	r18
+     f42:	3f 93       	push	r19
+     f44:	4f 93       	push	r20
+     f46:	5f 93       	push	r21
+     f48:	6f 93       	push	r22
+     f4a:	7f 93       	push	r23
+     f4c:	8f 93       	push	r24
+     f4e:	9f 93       	push	r25
+     f50:	af 93       	push	r26
+     f52:	bf 93       	push	r27
+     f54:	ef 93       	push	r30
+     f56:	ff 93       	push	r31
+    //clears the Compare A interrupt flag
+    TIFR0 = OCF0A;
+     f58:	81 e0       	ldi	r24, 0x01	; 1
+     f5a:	85 bb       	out	0x15, r24	; 21
+	
+	// Si el puntero no es nulo, ejecuta la función asignada
+	if(TMR0Handler != NULL){
+     f5c:	e0 91 24 01 	lds	r30, 0x0124	; 0x800124 <TMR0Handler>
+     f60:	f0 91 25 01 	lds	r31, 0x0125	; 0x800125 <TMR0Handler+0x1>
+     f64:	30 97       	sbiw	r30, 0x00	; 0
+     f66:	09 f0       	breq	.+2      	; 0xf6a <__vector_14+0x34>
+		TMR0Handler();
+     f68:	09 95       	icall
+	}
+    /* Insert your Compare A interrupt handling code here */
+    
+}
+     f6a:	ff 91       	pop	r31
+     f6c:	ef 91       	pop	r30
+     f6e:	bf 91       	pop	r27
+     f70:	af 91       	pop	r26
+     f72:	9f 91       	pop	r25
+     f74:	8f 91       	pop	r24
+     f76:	7f 91       	pop	r23
+     f78:	6f 91       	pop	r22
+     f7a:	5f 91       	pop	r21
+     f7c:	4f 91       	pop	r20
+     f7e:	3f 91       	pop	r19
+     f80:	2f 91       	pop	r18
+     f82:	0f 90       	pop	r0
+     f84:	0f be       	out	0x3f, r0	; 63
+     f86:	0f 90       	pop	r0
+     f88:	1f 90       	pop	r1
+     f8a:	18 95       	reti
+
+00000f8c <USART0_IsTxReady>:
+}
+
+uint8_t USART0_Read(void)
+{
+    return UDR0;
+}
+     f8c:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+     f90:	85 fb       	bst	r24, 5
+     f92:	88 27       	eor	r24, r24
+     f94:	80 f9       	bld	r24, 0
+     f96:	08 95       	ret
+
+00000f98 <USART0_IsTxDone>:
+     f98:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+     f9c:	86 fb       	bst	r24, 6
+     f9e:	88 27       	eor	r24, r24
+     fa0:	80 f9       	bld	r24, 0
+     fa2:	08 95       	ret
+
+00000fa4 <USART0_Write>:
+
+
+void USART0_Write(uint8_t txData)
+{
+    UDR0 = txData;    // Write the data byte to the USART.
+     fa4:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+     fa8:	08 95       	ret
+
+00000faa <USART0_DefaultFramingErrorCallback>:
+}
+static void USART0_DefaultFramingErrorCallback(void)
+{
+     faa:	08 95       	ret
+
+00000fac <USART0_DefaultOverrunErrorCallback>:
+    
+}
+
+static void USART0_DefaultOverrunErrorCallback(void)
+{
+     fac:	08 95       	ret
+
+00000fae <USART0_DefaultParityErrorCallback>:
+    
+}
+
+static void USART0_DefaultParityErrorCallback(void)
+{
+     fae:	08 95       	ret
+
+00000fb0 <USART0_FramingErrorCallbackRegister>:
+}
+
+/* cppcheck-suppress misra-c2012-8.7 */
+void USART0_FramingErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+     fb0:	00 97       	sbiw	r24, 0x00	; 0
+     fb2:	21 f0       	breq	.+8      	; 0xfbc <USART0_FramingErrorCallbackRegister+0xc>
+    {
+        USART0_FramingErrorHandler = callbackHandler;
+     fb4:	90 93 2b 01 	sts	0x012B, r25	; 0x80012b <USART0_FramingErrorHandler+0x1>
+     fb8:	80 93 2a 01 	sts	0x012A, r24	; 0x80012a <USART0_FramingErrorHandler>
+     fbc:	08 95       	ret
+
+00000fbe <USART0_OverrunErrorCallbackRegister>:
+}
+
+/* cppcheck-suppress misra-c2012-8.7 */
+void USART0_OverrunErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+     fbe:	00 97       	sbiw	r24, 0x00	; 0
+     fc0:	21 f0       	breq	.+8      	; 0xfca <USART0_OverrunErrorCallbackRegister+0xc>
+    {
+        USART0_OverrunErrorHandler = callbackHandler;
+     fc2:	90 93 29 01 	sts	0x0129, r25	; 0x800129 <USART0_OverrunErrorHandler+0x1>
+     fc6:	80 93 28 01 	sts	0x0128, r24	; 0x800128 <USART0_OverrunErrorHandler>
+     fca:	08 95       	ret
+
+00000fcc <USART0_ParityErrorCallbackRegister>:
+}
+
+/* cppcheck-suppress misra-c2012-8.7 */
+void USART0_ParityErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+     fcc:	00 97       	sbiw	r24, 0x00	; 0
+     fce:	21 f0       	breq	.+8      	; 0xfd8 <USART0_ParityErrorCallbackRegister+0xc>
+    {
+        USART0_ParityErrorHandler = callbackHandler;
+     fd0:	90 93 27 01 	sts	0x0127, r25	; 0x800127 <USART0_ParityErrorHandler+0x1>
+     fd4:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <USART0_ParityErrorHandler>
+     fd8:	08 95       	ret
+
+00000fda <USART0_Initialize>:
+void USART0_Initialize(void)
+{
+    // Set the USART0 module to the options selected in the user interface.
+
+    //UBRR0 207; 
+    UBRR0 = 0xCF;
+     fda:	8f ec       	ldi	r24, 0xCF	; 207
+     fdc:	90 e0       	ldi	r25, 0x00	; 0
+     fde:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+     fe2:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+
+    //MPCM0 disabled; TXC0 disabled; U2X0 enabled; 
+    UCSR0A = 0x2;
+     fe6:	82 e0       	ldi	r24, 0x02	; 2
+     fe8:	80 93 c0 00 	sts	0x00C0, r24	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+
+    //RXB80 disabled; RXCIE0 disabled; RXEN0 enabled; TXB80 disabled; TXCIE0 disabled; TXEN0 enabled; UCSZ02 disabled; UDRIE0 disabled; 
+    UCSR0B = 0x18;
+     fec:	88 e1       	ldi	r24, 0x18	; 24
+     fee:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+
+    //UCPOL0 disabled; UCSZ0 3; UMSEL0 Asynchronous Mode; UPM0 Disabled; USBS0 1-bit; 
+    UCSR0C = 0x6;
+     ff2:	86 e0       	ldi	r24, 0x06	; 6
+     ff4:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+
+
+    /* cppcheck-suppress misra-c2012-8.7 */
+    USART0_FramingErrorCallbackRegister(USART0_DefaultFramingErrorCallback);
+     ff8:	85 ed       	ldi	r24, 0xD5	; 213
+     ffa:	97 e0       	ldi	r25, 0x07	; 7
+     ffc:	0e 94 d8 07 	call	0xfb0	; 0xfb0 <USART0_FramingErrorCallbackRegister>
+    /* cppcheck-suppress misra-c2012-8.7 */
+    USART0_OverrunErrorCallbackRegister(USART0_DefaultOverrunErrorCallback);
+    1000:	86 ed       	ldi	r24, 0xD6	; 214
+    1002:	97 e0       	ldi	r25, 0x07	; 7
+    1004:	0e 94 df 07 	call	0xfbe	; 0xfbe <USART0_OverrunErrorCallbackRegister>
+    /* cppcheck-suppress misra-c2012-8.7 */
+    USART0_ParityErrorCallbackRegister(USART0_DefaultParityErrorCallback);
+    1008:	87 ed       	ldi	r24, 0xD7	; 215
+    100a:	97 e0       	ldi	r25, 0x07	; 7
+    100c:	0e 94 e6 07 	call	0xfcc	; 0xfcc <USART0_ParityErrorCallbackRegister>
+    usart0RxLastError.status = 0;  
+    1010:	10 92 2d 01 	sts	0x012D, r1	; 0x80012d <usart0RxLastError+0x1>
+    1014:	10 92 2c 01 	sts	0x012C, r1	; 0x80012c <usart0RxLastError>
+    1018:	08 95       	ret
+
+0000101a <_exit>:
+    101a:	f8 94       	cli
+
+0000101c <__stop_program>:
+    101c:	ff cf       	rjmp	.-2      	; 0x101c <__stop_program>

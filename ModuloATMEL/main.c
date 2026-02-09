@@ -706,6 +706,8 @@ void USART0_ReceiveInterruptDisable(void){
 */
 
 int main(void){
+	slaveAddress = 99;
+	slaveAddress = EEPROM_Read(0x01);
 	
     SYSTEM_Initialize();
 	USART0_Initialize();

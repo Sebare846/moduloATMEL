@@ -78,7 +78,7 @@ typedef union{
 	struct{
 		uint8_t isEvent1            : 1;
 		uint8_t dataReady           : 1;
-		uint8_t silenceTime         : 1;
+		uint8_t silenceTime         : 1;//ver si es necesario
 		uint8_t isExceptionCode     : 1;
 		uint8_t isBroadcast         : 1;
 		uint8_t updateParameters    : 1;
@@ -96,7 +96,8 @@ typedef union{
 		uint8_t isEvent2 : 1;
 		uint8_t isEvent3 : 1;
 		uint8_t isEvent4 : 1;
-		uint8_t RESERVED : 4;
+		uint8_t DecodeData : 1;
+		uint8_t RESERVED : 3;
 	} iFlags;
 	uint8_t aFlags_input;
 }_uFlags_input;
@@ -203,6 +204,7 @@ void do10us();
 void do10ms();
 void CrcCalculation(uint8_t data);
 void SendExceptionCode();
+void RestartTikValues();
 
 //-----------------Manejo EEPROM--------------------
 int8_t EEPROM_Write(uint16_t address, uint8_t data);
@@ -226,8 +228,25 @@ uint32_t dateTime;
 
 // ---------------------- Implementacion de ISR ----------------------
 ISR(USART_RX_vect){
-	//uint8_t data = UDR0;
-	UARTrcvByte(UDR0);
+	if(intFlags.iFlags.btwFrame){
+		if(!t15Tik){
+			intFlags.iFlags.btwFrame=0; //vuelvo a esperar new frame
+			decodeState=IDLE; 
+			inputFlags.iFlags.DecodeData=0;//descarto mensaje
+		}else{
+			inputFlags.iFlags.DecodeData=1;	//deco
+		}
+	}else{
+		if(!t35Tik){ //NewFrame
+			intFlags.iFlags.btwFrame=1;
+			inputFlags.iFlags.DecodeData=1; //deco
+		}else{
+			inputFlags.iFlags.DecodeData=0;//descarto
+		}	
+	}
+	RestartTikValues(); 
+	if(inputFlags.iFlags.DecodeData)
+		UARTrcvByte(UDR0);
 	
 }
 
@@ -264,6 +283,38 @@ int16_t EEPROM_Read(uint16_t address) {
 	EECR |= (1 << EERE);
 	//devolver dato leido
 	return EEDR;
+}
+
+void RestartTikValues(){
+		switch(BRconfig){
+		case 0x00:
+			t15Tik = T15_BR00;
+			t35Tik = T35_BR00;
+		break;
+		case 0x10:
+			t15Tik = T15_BR10;
+			t35Tik = T35_BR10;
+		break;
+		default: 
+			t15Tik = T15_BR11;
+			t35Tik = T15_BR11;
+		break;
+		
+	} 
+}
+
+void do10us(){
+	
+	if(!t15Tik){
+		t15Tik=0;
+	}else{
+		t15Tik--;
+	}
+	if(!t35Tik){
+		t35Tik=0;
+	}else{
+		t35Tik--;
+	}
 }
 
 void do10ms(){
@@ -455,10 +506,14 @@ void UARTrcvByte(uint8_t data){
 				indexRxR = indexRxW;
 			}
 			decodeState = IDLE;
+			intFlags.iFlags.btwFrame=0;
+			RestartTikValues();
 		break;
 		default:
-		decodeState = IDLE;
-		indexRxR = indexRxW;
+			decodeState = IDLE;
+			indexRxR = indexRxW;
+			intFlags.iFlags.btwFrame=0;
+			RestartTikValues();
 		break;
 	}
 }
@@ -768,36 +823,7 @@ int main(void){
 			 hbTime = PERIOD1000MS;
 		 }
 		 
-	/*	 if(!t15Tik){
-			 switch(BRconfig){
-				case 0x00:
-					t15Tik = T15_BR00;
-				break;
-				case 0x10:
-					t15Tik = T15_BR10;
-				break;
-				default: 
-					t15Tik = T15_BR11;
-				break;
-			 }
-		 }
-		 
-		 if(!t35Tik){
-			if(!t35Tik){
-				switch(BRconfig){
-					case 0x00:
-						t35Tik = T35_BR00;
-					break;
-					case 0x10:
-						t35Tik = T35_BR10;
-					break;
-					default:
-						t35Tik = T15_BR11;
-					break;
-				}
-			}		 
-		 }*/
-		 
+
 		 if(intFlags.iFlags.dataReady){ //DECODIFICA SI EL BYTE SE RECIBIO CORRECTAMENTE
 			 intFlags.iFlags.dataReady = 0;
 			 DecodeData();

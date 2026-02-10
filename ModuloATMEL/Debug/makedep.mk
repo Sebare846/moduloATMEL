@@ -18,5 +18,7 @@ mcc_generated_files\system\src\system.c
 
 source\timer0.c
 
+source\timer1.c
+
 source\usart.c
 

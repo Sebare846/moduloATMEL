@@ -101,7 +101,7 @@ typedef struct {
 	uint32_t timeLastEvent;
 }_sEvent __attribute__((aligned(1)));
 
-_sEvent myEvents[MAXEVENTS]; //direccion 
+_sEvent myEvents[MAXEVENTS] __attribute__((section(".fixed_events"))); 
 
 //-------------------------------------- Variables MODBUS -------------------------------------
 _eDecodeStates decodeState;
@@ -122,22 +122,22 @@ uint16_t tikBetweenTime[4];
 uint8_t	tikDebounce[4];
 uint8_t oldValueA, newValueA, outValues, lecture;
 //------------------------ Banco de Registros (con direcciones fijas) -------------------------
-uint8_t slaveAddress;
+uint8_t slaveAddress __attribute__((section(".mySlaveAddress")));
 uint16_t diagnosticsRegister,parity,InputConfig;
 uint16_t newEventCounter;
 uint16_t EventIndexW,EventIndexR;
 //deadtime dbtime
-uint8_t brConfig;
-uint8_t parity;
+uint16_t brConfig;//vaui8
+//uint8_t parity;
 uint16_t timeBtw[4] = {0,0,0,0};//Tiempos configurables, mandar a eeprom
-uint8_t InputConfig; 
+//uint16_t InputConfig; //va uint8
 
 uint16_t * const registerAddresses[REGISTERS] = {
 	&unixTime.ui16[0], //H
 	&unixTime.ui16[1], //L
 	&diagnosticsRegister,   // 2
 	&newEventCounter,		// 3
-	&EventIndexRx,
+	&EventIndexR,
 	&brConfig,
 	&parity,
 	&InputConfig,
@@ -214,6 +214,7 @@ void RegInput();
 void UpdateState(uint8_t lecture, uint8_t mask, uint8_t indice);
 
 void SentEvents(uint16_t count);
+void InitializeEvents();
 
 
 // ---------------------- Implementacion de ISR ----------------------
@@ -319,6 +320,14 @@ void do10ms(){
 			inputFlags.iFlags.is500ms=1;
 	}
 		unixTik = PERIOD500MS;
+}
+
+void InitializeEvents(){
+	 for(int i = 0; i < MAXEVENTS; i++) {
+		  myEvents[i].ID = 0;
+		  myEvents[i].stateLastEvent = 0;
+		  myEvents[i].timeLastEvent = 0;
+	 }
 }
 
 void RegInput(){
@@ -446,7 +455,7 @@ void UARTsendByte(){
 
 
 void SentEvents(uint16_t count){//LoadEvents
-	for (uint8_t i = 0, i<count, i++ ){
+	for (uint8_t i = 0; i<count; i++ ){
 		if(EventIndexR == MAXEVENTS){
 			EventIndexR=0;
 		}
@@ -793,6 +802,7 @@ int main(void){
 	USART0_Initialize();
 	TC0_Initialize();
 	TC1_Initialize();
+	InitializeEvents();
 	
 	sei();
 	

@@ -80,9 +80,7 @@ typedef union{
 		uint8_t isEvent2 : 1;
 		uint8_t isEvent3 : 1;
 		uint8_t isEvent4 : 1;
-		uint8_t isDecodeData : 1;
-		uint8_t is500ms : 1;
-		uint8_t RESERVED : 2;
+		uint8_t RESERVED : 4;
 	} iFlags;
 	uint8_t aFlags_input;
 }_uFlags_input;
@@ -101,7 +99,7 @@ typedef struct {
 	uint32_t timeLastEvent;
 }_sEvent __attribute__((aligned(1)));
 
-_sEvent myEvents[MAXEVENTS] __attribute__((section(".fixed_events"))); 
+_sEvent myEvents[MAXEVENTS] __attribute__((section(".fixed_events"))); //772 espacio 12C
 
 //-------------------------------------- Variables MODBUS -------------------------------------
 _eDecodeStates decodeState;
@@ -123,6 +121,7 @@ uint8_t	tikDebounce[4];
 uint8_t oldValueA, newValueA, outValues, lecture;
 //------------------------ Banco de Registros (con direcciones fijas) -------------------------
 uint8_t slaveAddress __attribute__((section(".mySlaveAddress")));
+
 uint16_t diagnosticsRegister,parity,InputConfig;
 uint16_t newEventCounter;
 uint16_t EventIndexW,EventIndexR;
@@ -131,7 +130,8 @@ uint16_t brConfig;//vaui8
 //uint8_t parity;
 uint16_t timeBtw[4] = {0,0,0,0};//Tiempos configurables, mandar a eeprom
 //uint16_t InputConfig; //va uint8
-
+uint8_t is500ms,isDecodeData; //banderas sacadas de input flags
+//ESTO falta arreglar
 uint16_t * const registerAddresses[REGISTERS] = {
 	&unixTime.ui16[0], //H
 	&unixTime.ui16[1], //L
@@ -140,7 +140,7 @@ uint16_t * const registerAddresses[REGISTERS] = {
 	&EventIndexR,
 	&brConfig,
 	&parity,
-	&InputConfig,
+	&InputConfig,//ver si usamos esto y como 
 };
 
 
@@ -223,20 +223,20 @@ ISR(USART_RX_vect){
 		if(!t15Tik){
 			commFlags.iFlags.btwFrame=0; //vuelvo a esperar new frame
 			decodeState=IDLE; 
-			inputFlags.iFlags.isDecodeData=0;//descarto mensaje
+			isDecodeData=0;//descarto mensaje
 		}else{
-			inputFlags.iFlags.isDecodeData=1;	//deco
+			isDecodeData=1;	//deco
 		}
 	}else{
 		if(!t35Tik){ //NewFrame
 			commFlags.iFlags.btwFrame=1;
-			inputFlags.iFlags.isDecodeData=1; //deco
+			isDecodeData=1; //deco
 		}else{
-			inputFlags.iFlags.isDecodeData=0;//descarto
+			isDecodeData=0;//descarto
 		}	
 	}
 	RestartTikValues(); 
-	if(inputFlags.iFlags.isDecodeData)
+	if(isDecodeData)
 		MODBUS_DecodeFrame(UDR0);
 	
 }
@@ -312,14 +312,15 @@ void do10ms(){
 	commFlags.iFlags.isEvent1 = 1;
 	unixTik--;
 	if(!unixTik){ //esto no se si aca o en el main idk
-		if(inputFlags.iFlags.is500ms){
-			inputFlags.iFlags.is500ms = 0;
+		if(is500ms){
 			//unix++;
-			unixTime.u32++;				
-		}else
-			inputFlags.iFlags.is500ms=1;
-	}
+			unixTime.u32 ++ ;				
+			is500ms = 0;
+		}else{
+			is500ms=1;
+		}
 		unixTik = PERIOD500MS;
+	}
 }
 
 void InitializeEvents(){
@@ -430,7 +431,6 @@ void RegInput(){
 		    EventIndexW = 0;
 	    }
     
-
 }
 
 /*--------------------------------*/
@@ -796,7 +796,7 @@ void USART0_ReceiveInterruptDisable(void){
 
 int main(void){
 	slaveAddress = 99;
-	slaveAddress = EEPROM_Read(0x01);
+	//slaveAddress = EEPROM_Read(0x01);
 	
     SYSTEM_Initialize();
 	USART0_Initialize();
@@ -838,6 +838,7 @@ int main(void){
   outValues = newValueA;
   inputFlags.aFlags_input = 0;
   commFlags.aFlags = 0;
+  is500ms=0;
 
   tikBetweenTime[0] = 0;
   tikBetweenTime[1] = 0;

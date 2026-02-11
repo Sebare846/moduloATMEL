@@ -69,7 +69,7 @@ typedef union{
 	uint8_t ui8[4];
 }_uWord;
 
-_uWord myWord;
+_uWord myWord, unixTime;
 
 /*
 	Mapa de banderas para manejo de lectura de entradas digitales
@@ -101,13 +101,13 @@ typedef struct {
 	uint32_t timeLastEvent;
 }_sEvent __attribute__((aligned(1)));
 
-_sEvent myEvents[MAXEVENTS];
+_sEvent myEvents[MAXEVENTS]; //direccion 
 
 //-------------------------------------- Variables MODBUS -------------------------------------
 _eDecodeStates decodeState;
 _sModbusFrame myModbusFrame;
 _uCommFlags commFlags; //banderas programa USART
-uint8_t silenceTik, BRconfig;
+uint16_t silenceTik;
 uint16_t  t15Tik, t35Tik;
 //---------------------------------- Variables Comunicacion -----------------------------------
 uart_drv_interface_t myUSARTHandler;
@@ -115,27 +115,32 @@ volatile uint8_t bufferRx[BUFFER_LEN];
 uint8_t bufferTx[BUFFER_LEN];
 uint8_t indexRxR = 0, indexRxW=0 ,indexTxR = 0,indexTxW = 0;
 //------------------------------------------ Tickers ------------------------------------------
-uint8_t hbTime;
-uint32_t unixTik;
+uint8_t hbTime,unixTik;
+
 //------------------------------- Variables captura de eventos --------------------------------
-uint16_t TIMEBEETWEN[4] = {0,PERIOD5S,PERIOD10S,0}; //Tiempos configurables, mandar a eeprom
 uint16_t tikBetweenTime[4];
 uint8_t	tikDebounce[4];
 uint8_t oldValueA, newValueA, outValues, lecture;
 //------------------------ Banco de Registros (con direcciones fijas) -------------------------
 uint8_t slaveAddress;
-uint16_t unixTimeL, unixTimeH;
-uint16_t diagnosticsRegister;
-uint16_t newEventCounter, dateTime;
-
+uint16_t diagnosticsRegister,parity,InputConfig;
+uint16_t newEventCounter;
+uint16_t EventIndexW,EventIndexR;
+//deadtime dbtime
+uint8_t brConfig;
+uint8_t parity;
+uint16_t timeBtw[4] = {0,0,0,0};//Tiempos configurables, mandar a eeprom
+uint8_t InputConfig; 
 
 uint16_t * const registerAddresses[REGISTERS] = {
-	&unixTimeL,				// 1
-	&unixTimeH,
+	&unixTime.ui16[0], //H
+	&unixTime.ui16[1], //L
 	&diagnosticsRegister,   // 2
 	&newEventCounter,		// 3
-	&dateTime
-	
+	&EventIndexRx,
+	&brConfig,
+	&parity,
+	&InputConfig,
 };
 
 
@@ -208,6 +213,9 @@ void RegInput();
 */
 void UpdateState(uint8_t lecture, uint8_t mask, uint8_t indice);
 
+void SentEvents(uint16_t count);
+
+
 // ---------------------- Implementacion de ISR ----------------------
 ISR(USART_RX_vect){
 	if(commFlags.iFlags.btwFrame){
@@ -268,7 +276,7 @@ int16_t EEPROM_Read(uint16_t address) {
 }
 
 void RestartTikValues(){
-		switch(BRconfig){
+		switch(brConfig){
 		case 0x00:
 			t15Tik = T15_BR00;
 			t35Tik = T35_BR00;
@@ -306,12 +314,11 @@ void do10ms(){
 		if(inputFlags.iFlags.is500ms){
 			inputFlags.iFlags.is500ms = 0;
 			//unix++;
-			unixTimeL++;
-			if(!unixTimeL) unixTimeH++;
-				
+			unixTime.u32++;				
 		}else
 			inputFlags.iFlags.is500ms=1;
 	}
+		unixTik = PERIOD500MS;
 }
 
 void RegInput(){
@@ -398,18 +405,20 @@ void RegInput(){
 			  outValues |= mask; // CORRI UNO PORQUE SE DESPLAZA 
 		   }else{
 			  if(outValues & mask){
-				  tikBetweenTime[indice] = TIMEBEETWEN[indice];
+				  tikBetweenTime[indice] = timeBtw[indice];
 			  }
 			 outValues &= ~mask;
   
 		    }
 	    }
-	    myEvents[newEventCounter].ID = indice;
-	    myEvents[newEventCounter].stateLastEvent = outValues & mask;
-	    myEvents[newEventCounter].timeLastEvent = dateTime;
+		//new event y index cosas separadas, new events se debe reiniciar cada que se envian esa cantidad de datos
+		myEvents[EventIndexW].ID = indice;
+	    myEvents[EventIndexW].stateLastEvent = outValues & mask;
+	    myEvents[EventIndexW].timeLastEvent = unixTime.u32;
+		EventIndexW++;
 	    newEventCounter++;
-	    if(newEventCounter == MAXEVENTS){
-		    newEventCounter = 0;
+	    if(EventIndexW == MAXEVENTS){
+		    EventIndexW = 0;
 	    }
     
 
@@ -432,6 +441,25 @@ void UARTsendByte(){
 	if (USART0_IsTxReady()) { 
 		USART0_Write(bufferTx[indexTxR]);     
 		indexTxR = (indexTxR + 1) & (BUFFER_LEN - 1);
+	}
+}
+
+
+void SentEvents(uint16_t count){//LoadEvents
+	for (uint8_t i = 0, i<count, i++ ){
+		if(EventIndexR == MAXEVENTS){
+			EventIndexR=0;
+		}
+		bufferTx[indexTxW++] = myEvents[EventIndexR].ID;
+		bufferTx[indexTxW++] = myEvents[EventIndexR].stateLastEvent;
+		//SEPARAR 
+		myWord.u32 = myEvents[EventIndexR].timeLastEvent;
+		bufferTx[indexTxW++] = myWord.ui8[0];
+		bufferTx[indexTxW++] = myWord.ui8[1];
+		bufferTx[indexTxW++] = myWord.ui8[2];
+		bufferTx[indexTxW++] = myWord.ui8[3];
+		
+		EventIndexR++;
 	}
 }
 
@@ -544,6 +572,7 @@ void MODBUS_ProcessFunction(){
 			// Cargar mensaje de respuesta
 			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
 			bufferTx[indexTxW++] = READ_HOLDING_REGISTERS;
+			//////if para load eventos
 			countIndex = indexTxW;
 			bufferTx[indexTxW++] = 0x00; // Almacenar en la pocision de cantidad de bytes
 			for(uint8_t i=0 ; i<regCant ; i++){
@@ -770,15 +799,15 @@ int main(void){
 	TMR0_SetHandler(do10ms);
 	TMR1_SetHandler(do10us);
 	USART0_ReceiveInterruptEnable();
-
+	
 	uint8_t hbState = 0;
-
+  unixTime.u32=1770766800;
   decodeState = IDLE;
   hbTime = PERIOD250MS;
   commFlags.aFlags = 0;
   commFlags.iFlags.silenceTime = 1;
   silenceTik = 6;
-  BRconfig = 0;
+  brConfig = 0;
   unixTik = PERIOD500MS;
   /*
   unixTimeH               = 0x1111;

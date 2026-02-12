@@ -127,6 +127,7 @@
   </avrgcc.linker.libraries.Libraries>
   <avrgcc.linker.memorysettings.Sram>
     <ListValues>
+      <Value>.modbus_r = 0x121</Value>
       <Value>.mySlaveAddress = 0x200</Value>
       <Value>.fixed_events = 0x772</Value>
     </ListValues>

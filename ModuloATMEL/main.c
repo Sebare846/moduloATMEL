@@ -69,7 +69,7 @@ typedef union{
 	uint8_t ui8[4];
 }_uWord;
 
-_uWord myWord, unixTime;
+_uWord myWord={0}, unixTime={0};
 
 /*
 	Mapa de banderas para manejo de lectura de entradas digitales
@@ -85,7 +85,7 @@ typedef union{
 	uint8_t aFlags_input;
 }_uFlags_input;
 
-_uFlags_input inputFlags;
+_uFlags_input inputFlags={0};
 
 /*
 	Estructura de Evento
@@ -102,36 +102,56 @@ typedef struct {
 _sEvent myEvents[MAXEVENTS] __attribute__((section(".fixed_events"))); //772 espacio 12C
 
 //-------------------------------------- Variables MODBUS -------------------------------------
-_eDecodeStates decodeState;
-_sModbusFrame myModbusFrame;
-_uCommFlags commFlags; //banderas programa USART
-uint16_t silenceTik;
-uint16_t  t15Tik, t35Tik;
+_eDecodeStates decodeState={0};
+_sModbusFrame myModbusFrame={0};
+_uCommFlags commFlags = {0}; //banderas programa USART
+uint16_t silenceTik=0;
+uint16_t  t15Tik=0, t35Tik=0;
 //---------------------------------- Variables Comunicacion -----------------------------------
-uart_drv_interface_t myUSARTHandler;
-volatile uint8_t bufferRx[BUFFER_LEN];
-uint8_t bufferTx[BUFFER_LEN];
+uart_drv_interface_t myUSARTHandler={0};
+volatile uint8_t bufferRx[BUFFER_LEN]={0};
+uint8_t bufferTx[BUFFER_LEN]={0};
 uint8_t indexRxR = 0, indexRxW=0 ,indexTxR = 0,indexTxW = 0;
 //------------------------------------------ Tickers ------------------------------------------
-uint8_t hbTime,unixTik;
+uint8_t hbTime=0,unixTik=0;
 
 //------------------------------- Variables captura de eventos --------------------------------
-uint16_t tikBetweenTime[4];
-uint8_t	tikDebounce[4];
-uint8_t oldValueA, newValueA, outValues, lecture;
+uint16_t tikBetweenTime[4]={0};
+uint8_t	tikDebounce[4]={0};
+uint8_t oldValueA=0, newValueA=0, outValues=0, lecture=0;
 //------------------------ Banco de Registros (con direcciones fijas) -------------------------
 uint8_t slaveAddress __attribute__((section(".mySlaveAddress")));
 
-uint16_t diagnosticsRegister,parity,InputConfig;
-uint16_t newEventCounter;
-uint16_t EventIndexW,EventIndexR;
+uint16_t diagnosticsRegister=0,parity=0,InputConfig=0;
+uint16_t newEventCounter=0;
+uint16_t EventIndexW=0,EventIndexR=0;
 //deadtime dbtime
-uint16_t brConfig;//vaui8
+uint16_t brConfig=0;//vaui8
 //uint8_t parity;
 uint16_t timeBtw[4] = {0,0,0,0};//Tiempos configurables, mandar a eeprom
 //uint16_t InputConfig; //va uint8
-uint8_t is500ms,isDecodeData; //banderas sacadas de input flags
+uint8_t is500ms=0,isDecodeData=0; //banderas sacadas de input flags
 //ESTO falta arreglar
+
+typedef struct {
+	uint32_t unixTimea;
+	uint16_t diagnosticsRegistera;
+	uint16_t newEventCountera;
+	uint16_t eventIndexRa;
+	uint16_t eventIndexWa;
+	uint8_t brConfiga;
+	uint8_t paritya;
+	uint8_t inputConfiga;
+	uint8_t flagsa;
+	uint16_t timeBtwa[4];
+} _sModbusReg;
+
+// Colocar en sección específica
+_sModbusReg modbusRegister __attribute__((section(".modbus_r")));
+
+
+
+/*
 uint16_t * const registerAddresses[REGISTERS] = {
 	&unixTime.ui16[0], //H
 	&unixTime.ui16[1], //L
@@ -141,8 +161,8 @@ uint16_t * const registerAddresses[REGISTERS] = {
 	&brConfig,
 	&parity,
 	&InputConfig,//ver si usamos esto y como 
-};
-
+};*/
+uint16_t registerAddresses[REGISTERS];
 
 // ---------------------- Prototipos de Funciones ----------------------
 /*
@@ -319,7 +339,7 @@ void do10ms(){
 		}else{
 			is500ms=1;
 		}
-		unixTik = PERIOD500MS;
+		unixTik = PERIOD250MS;
 	}
 }
 
@@ -846,12 +866,25 @@ int main(void){
   tikBetweenTime[3] = 0;
 
   
+    modbusRegister.unixTimea = 0x11112222;
+    modbusRegister.diagnosticsRegistera = 0x3333;
+    modbusRegister.newEventCountera = 0x4444;
+    modbusRegister.eventIndexRa = 0x5555;
+    modbusRegister.eventIndexWa = 0x6666;
+    modbusRegister.brConfiga = 0x77;
+    modbusRegister.paritya = 0x88;
+    modbusRegister.inputConfiga = 0x99;
+    modbusRegister.flagsa = 0xAA;
+    modbusRegister.timeBtwa[0] = 0xBBBB;
+    modbusRegister.timeBtwa[1] = 0xCCCC;
+    modbusRegister.timeBtwa[2] = 0xDDDD;
+    modbusRegister.timeBtwa[3] = 0xEEEE;
   
     while(1){
 		
 		 if(!hbTime){ //Heartbeat
 			 hbState ^= (1<<5);
-			 hbTime = PERIOD1000MS;
+			 hbTime = PERIOD100MS;
 		 }
 		 
 		 if(commFlags.iFlags.dataReady){ //DECODIFICA SI EL BYTE SE RECIBIO CORRECTAMENTE

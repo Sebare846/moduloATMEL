@@ -69,7 +69,7 @@ typedef union{
 	uint8_t ui8[4];
 }_uWord;
 
-_uWord myWord={0}, unixTime={0};
+_uWord myWord;
 
 /*
 	Mapa de banderas para manejo de lectura de entradas digitales
@@ -85,7 +85,7 @@ typedef union{
 	uint8_t aFlags_input;
 }_uFlags_input;
 
-_uFlags_input inputFlags={0};
+_uFlags_input inputFlags;
 
 /*
 	Estructura de Evento
@@ -102,67 +102,42 @@ typedef struct {
 _sEvent myEvents[MAXEVENTS] __attribute__((section(".fixed_events"))); //772 espacio 12C
 
 //-------------------------------------- Variables MODBUS -------------------------------------
-_eDecodeStates decodeState={0};
-_sModbusFrame myModbusFrame={0};
-_uCommFlags commFlags = {0}; //banderas programa USART
+_eDecodeStates decodeState;
+_sModbusFrame myModbusFrame;
+_uCommFlags commFlags ; //banderas programa USART
 uint16_t silenceTik=0;
 uint16_t  t15Tik=0, t35Tik=0;
 //---------------------------------- Variables Comunicacion -----------------------------------
-uart_drv_interface_t myUSARTHandler={0};
-volatile uint8_t bufferRx[BUFFER_LEN]={0};
-uint8_t bufferTx[BUFFER_LEN]={0};
-uint8_t indexRxR = 0, indexRxW=0 ,indexTxR = 0,indexTxW = 0;
+uart_drv_interface_t myUSARTHandler;
+volatile uint8_t bufferRx[BUFFER_LEN];
+uint8_t bufferTx[BUFFER_LEN];
+uint8_t indexRxR=0, indexRxW=0,indexTxR=0,indexTxW=0;
 //------------------------------------------ Tickers ------------------------------------------
 uint8_t hbTime=0,unixTik=0;
 
 //------------------------------- Variables captura de eventos --------------------------------
-uint16_t tikBetweenTime[4]={0};
-uint8_t	tikDebounce[4]={0};
+uint16_t tikBetweenTime[4];
+uint8_t	tikDebounce[4];
 uint8_t oldValueA=0, newValueA=0, outValues=0, lecture=0;
 //------------------------ Banco de Registros (con direcciones fijas) -------------------------
-uint8_t slaveAddress __attribute__((section(".mySlaveAddress")));
-
-uint16_t diagnosticsRegister=0,parity=0,InputConfig=0;
-uint16_t newEventCounter=0;
 uint16_t EventIndexW=0,EventIndexR=0;
-//deadtime dbtime
-uint16_t brConfig=0;//vaui8
-//uint8_t parity;
-uint16_t timeBtw[4] = {0,0,0,0};//Tiempos configurables, mandar a eeprom
-//uint16_t InputConfig; //va uint8
 uint8_t is500ms=0,isDecodeData=0; //banderas sacadas de input flags
-//ESTO falta arreglar
 
+uint8_t slaveAddress __attribute__((section(".mySlaveAddress"))); //0x9C
 typedef struct {
-	uint32_t unixTimea;
-	uint16_t diagnosticsRegistera;
-	uint16_t newEventCountera;
-	uint16_t eventIndexRa;
-	uint16_t eventIndexWa;
-	uint8_t brConfiga;
-	uint8_t paritya;
-	uint8_t inputConfiga;
-	uint8_t flagsa;
-	uint16_t timeBtwa[4];
+	uint32_t unixTime;
+	uint16_t diagnosticsRegister;
+	uint16_t newEventCounter;
+	uint8_t brConfig;
+	uint8_t parity;
+	uint8_t inputConfig;
+	uint16_t timeBtw[4];//tiempos configurables
 } _sModbusReg;
 
 // Colocar en sección específica
-_sModbusReg modbusRegister __attribute__((section(".modbus_r")));
+_sModbusReg modbusRegister __attribute__((section(".modbus_r"))); //a paratir de 0x400 por los common
 
-
-
-/*
-uint16_t * const registerAddresses[REGISTERS] = {
-	&unixTime.ui16[0], //H
-	&unixTime.ui16[1], //L
-	&diagnosticsRegister,   // 2
-	&newEventCounter,		// 3
-	&EventIndexR,
-	&brConfig,
-	&parity,
-	&InputConfig,//ver si usamos esto y como 
-};*/
-uint16_t registerAddresses[REGISTERS];
+uint16_t registerAddresses[REGISTERS]; //HAY QUE BORRAR
 
 // ---------------------- Prototipos de Funciones ----------------------
 /*
@@ -297,7 +272,7 @@ int16_t EEPROM_Read(uint16_t address) {
 }
 
 void RestartTikValues(){
-		switch(brConfig){
+		switch(modbusRegister.brConfig){
 		case 0x00:
 			t15Tik = T15_BR00;
 			t35Tik = T35_BR00;
@@ -334,7 +309,7 @@ void do10ms(){
 	if(!unixTik){ //esto no se si aca o en el main idk
 		if(is500ms){
 			//unix++;
-			unixTime.u32 ++ ;				
+			modbusRegister.unixTime++ ;				
 			is500ms = 0;
 		}else{
 			is500ms=1;
@@ -432,21 +407,23 @@ void RegInput(){
 	
 	  if(((~PINC) & mask) == (lect & mask)){ //Probar asi y sino ~(PORTA & mask)
 		  if(lect & mask){
-			  outValues |= mask; // CORRI UNO PORQUE SE DESPLAZA 
+			  outValues |= mask; 
+			  myEvents[EventIndexW].stateLastEvent = 1;
 		   }else{
 			  if(outValues & mask){
-				  tikBetweenTime[indice] = timeBtw[indice];
+				  tikBetweenTime[indice] = modbusRegister.timeBtw[indice];
 			  }
 			 outValues &= ~mask;
+			 myEvents[EventIndexW].stateLastEvent = 0;
   
 		    }
 	    }
 		//new event y index cosas separadas, new events se debe reiniciar cada que se envian esa cantidad de datos
 		myEvents[EventIndexW].ID = indice;
-	    myEvents[EventIndexW].stateLastEvent = outValues & mask;
-	    myEvents[EventIndexW].timeLastEvent = unixTime.u32;
+	   // myEvents[EventIndexW].stateLastEvent = outValues & mask;
+	    myEvents[EventIndexW].timeLastEvent = modbusRegister.unixTime;
 		EventIndexW++;
-	    newEventCounter++;
+	    modbusRegister.newEventCounter++;
 	    if(EventIndexW == MAXEVENTS){
 		    EventIndexW = 0;
 	    }
@@ -831,13 +808,12 @@ int main(void){
 	USART0_ReceiveInterruptEnable();
 	
 	uint8_t hbState = 0;
-  unixTime.u32=1770766800;
   decodeState = IDLE;
   hbTime = PERIOD250MS;
   commFlags.aFlags = 0;
   commFlags.iFlags.silenceTime = 1;
   silenceTik = 6;
-  brConfig = 0;
+ 
   unixTik = PERIOD500MS;
   /*
   unixTimeH               = 0x1111;
@@ -866,19 +842,17 @@ int main(void){
   tikBetweenTime[3] = 0;
 
   
-    modbusRegister.unixTimea = 0x11112222;
-    modbusRegister.diagnosticsRegistera = 0x3333;
-    modbusRegister.newEventCountera = 0x4444;
-    modbusRegister.eventIndexRa = 0x5555;
-    modbusRegister.eventIndexWa = 0x6666;
-    modbusRegister.brConfiga = 0x77;
-    modbusRegister.paritya = 0x88;
-    modbusRegister.inputConfiga = 0x99;
-    modbusRegister.flagsa = 0xAA;
-    modbusRegister.timeBtwa[0] = 0xBBBB;
-    modbusRegister.timeBtwa[1] = 0xCCCC;
-    modbusRegister.timeBtwa[2] = 0xDDDD;
-    modbusRegister.timeBtwa[3] = 0xEEEE;
+    modbusRegister.unixTime = 1770766800;
+    modbusRegister.diagnosticsRegister = 0x3333;
+    modbusRegister.newEventCounter = 0x4444;
+    modbusRegister.brConfig = 0x77;
+    modbusRegister.parity = 0x88;
+    modbusRegister.inputConfig = 0x99;
+    modbusRegister.timeBtw[0] = 0x0;
+    modbusRegister.timeBtw[1] = 0x0;
+    modbusRegister.timeBtw[2] = 0x0;
+    modbusRegister.timeBtw[3] = 0x0;
+  
   
     while(1){
 		

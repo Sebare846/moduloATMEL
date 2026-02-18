@@ -54,11 +54,16 @@
 #define MASK_IN3	0x04
 #define MASK_IN4	0x08
 //---------------------------------------- Direcciones ----------------------------------------
-#define EVENT_START_ADDRESS 0x7D4
+#define SLAVE_ADDRESS 0x39C
+#define START_CONFIG_ADDRESS 0x400
+#define END_CONFIG_ADDRESS 0x411
+#define START_EVENT_ADDRESS 0x772
+#define END_EVENT_ADDRESS 0x89E
 //----------------------------------------- Tamanios ------------------------------------------
 #define BUFFER_LEN  256
 #define REGISTERS   12
 #define MAXEVENTS	50
+
 
 /*
 	Union para transformacion de tipos de datos
@@ -123,21 +128,20 @@ uint8_t oldValueA=0, newValueA=0, outValues=0, lecture=0;
 uint16_t EventIndexW=0,EventIndexR=0;
 uint8_t is500ms=0,isDecodeData=0; //banderas sacadas de input flags
 
-uint8_t slaveAddress __attribute__((section(".mySlaveAddress"))); //0x9C
+uint8_t slaveAddress __attribute__((section(".mySlaveAddress"))); //0x39C
 typedef struct {
-	uint32_t unixTime;
-	uint16_t diagnosticsRegister;
-	uint16_t newEventCounter;
-	uint8_t brConfig;
-	uint8_t parity;
-	uint8_t inputConfig;
-	uint16_t timeBtw[4];//tiempos configurables
+	uint32_t unixTime; //400 401 402 403
+	uint16_t diagnosticsRegister; //404 405
+	uint16_t newEventCounter; //406 407
+	uint8_t brConfig; //408
+	uint8_t parity; //409
+	uint16_t timeBtw[4];//tiempos configurables //40A 411
 } _sModbusReg;
 
 // Colocar en sección específica
-_sModbusReg modbusRegister __attribute__((section(".modbus_r"))); //a paratir de 0x400 por los common
+_sModbusReg modbusRegister __attribute__((section(".modbus_r"))); //a partir de 0x400 por los common
 
-uint16_t registerAddresses[REGISTERS]; //HAY QUE BORRAR
+//uint16_t registerAddresses[REGISTERS]; //HAY QUE BORRAR
 
 // ---------------------- Prototipos de Funciones ----------------------
 /*
@@ -473,7 +477,7 @@ void SentEvents(uint16_t count){//LoadEvents
 void MODBUS_DecodeFrame(uint8_t data){
 	switch(decodeState){
 		case IDLE:
-			if(data == MODBUS_BROADCAST_ADDRESS || data == MODBUS_SLAVE_ADDRESS){
+			if(data == MODBUS_BROADCAST_ADDRESS || data == slaveAddress){
 				if(data == MODBUS_BROADCAST_ADDRESS) commFlags.iFlags.isBroadcast = 1;
 				myModbusFrame.nBytes = 5;
 				myModbusFrame.crcSlave = 0xFFFF;
@@ -487,7 +491,7 @@ void MODBUS_DecodeFrame(uint8_t data){
 			myModbusFrame.function = data;
 			MODBUS_CalculateCRC(data);
 			myModbusFrame.nBytes--;
-			if(data == WRITE_MULTIPLE_REGISTERS) myModbusFrame.nBytes++;
+			if(data == WRITE_MULTIPLE_REGISTERS) myModbusFrame.nBytes++; 
 			decodeState = DATA;
 		break;
 		case DATA:
@@ -556,35 +560,51 @@ void MODBUS_ProcessFunction(){
 				return;
 			}
 			//Direccion inicial
-			myWord.ui8[0] = bufferRx[indexRxR++];
 			myWord.ui8[1] = bufferRx[indexRxR++];
+			myWord.ui8[0] = bufferRx[indexRxR++];
 			regAddress = myWord.ui16[0];
 			//Cantidad de registros
-			myWord.ui8[0] = bufferRx[indexRxR++];
 			myWord.ui8[1] = bufferRx[indexRxR++];
+			myWord.ui8[0] = bufferRx[indexRxR++];
 			regCant = myWord.ui16[0];
-			//Controlar cantidad de registros
-			if(regCant < 1 || regCant > 0x07D0){
+			
+			//CONTROLAR CANTIDAD 
+			if(regCant<0 || regCant > 0x07B){ //error cantidad
 				myModbusFrame.excepCode = INVALID_DATA_VALUE;
 				return;
 			}
-			//Controlar validez de direccion
-			if((regAddress < 1) || (regAddress > REGISTERS) || ((regCant-1) > (REGISTERS - regAddress))){
-				//PORTBbits.RB7 ^= 1;
+			//Controlar validez direcciones
+			if((regAddress < START_CONFIG_ADDRESS) || (regAddress>END_CONFIG_ADDRESS && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 				commFlags.iFlags.isExceptionCode = 1;
 				return;
+			}			
+			if(regAddress>=START_CONFIG_ADDRESS && regAddress <= END_CONFIG_ADDRESS){
+				if((regAddress+((regCant -1)*2) > END_CONFIG_ADDRESS)){
+					//error address
+					myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
+					commFlags.iFlags.isExceptionCode = 1;
+					return;
+				}
+
 			}
+			if(regAddress>=START_EVENT_ADDRESS && regAddress <= END_EVENT_ADDRESS){
+				if((regAddress + (regCant -1)*2) > END_EVENT_ADDRESS){
+					myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
+					commFlags.iFlags.isExceptionCode = 1;
+					return;
+				}
+			}
+			
 			// Cargar mensaje de respuesta
-			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+			bufferTx[indexTxW++] = slaveAddress;
 			bufferTx[indexTxW++] = READ_HOLDING_REGISTERS;
 			//////if para load eventos
 			countIndex = indexTxW;
 			bufferTx[indexTxW++] = 0x00; // Almacenar en la pocision de cantidad de bytes
-			for(uint8_t i=0 ; i<regCant ; i++){
-				bufferTx[indexTxW++] = *((uint8_t *)registerAddresses[regAddress-1+i]);
-				bufferTx[indexTxW++] = *((uint8_t *)(registerAddresses[regAddress-1+i])+1);
-				byteCount += 2;
+			for(uint8_t i=0 ; i<(regCant*2) ; i++){
+				bufferTx[indexTxW++] = *((uint8_t *)(regAddress + i)); //volatil
+				byteCount ++;
 			}
 			bufferTx[countIndex] = byteCount;
 			//SaveData(bufferTx, &countIndex, byteCount);
@@ -595,32 +615,28 @@ void MODBUS_ProcessFunction(){
 			bufferTx[indexTxW++] = myWord.ui8[0];
 			bufferTx[indexTxW++] = myWord.ui8[1];
 		break;
+		
 		case WRITE_SINGLE_REGISTER:
 			myModbusFrame.errorCode = 0x86;
 			
 			//Direccion inicial
-			myWord.ui8[0] = bufferRx[indexRxR++];
 			myWord.ui8[1] = bufferRx[indexRxR++];
+			myWord.ui8[0] = bufferRx[indexRxR++];
 			regAddress = myWord.ui16[0];
 			//Cantidad de registros
-			myWord.ui8[0] = bufferRx[indexRxR++];
 			myWord.ui8[1] = bufferRx[indexRxR++];
+			myWord.ui8[0] = bufferRx[indexRxR++];
 			regValue = myWord.ui16[0];
-			//Controlar cantidad de registros
-			if(regValue < 0 || regValue > 0xFFFF){
-				myModbusFrame.excepCode = INVALID_DATA_VALUE;
-				return;
-			}
-			//Controlar validez de direccion
-			if(regAddress > REGISTERS){
-				//PORTBbits.RB7 ^= 1;
+			
+			//controlar direccion
+			if((regAddress < SLAVE_ADDRESS) || (regAddress>END_CONFIG_ADDRESS && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 				commFlags.iFlags.isExceptionCode = 1;
 				return;
 			}
-				
-			*((uint8_t *)registerAddresses[regAddress-1]) = myWord.ui8[0];
-			*((uint8_t *)(registerAddresses[regAddress-1]+1)) = myWord.ui8[1];
+			
+			*((uint8_t *)(regAddress)) = myWord.ui8[0];
+			*((uint8_t *)(regAddress+1)) = myWord.ui8[1];
 		
 			if(commFlags.iFlags.isBroadcast){
 				commFlags.iFlags.isBroadcast = 0;
@@ -630,10 +646,10 @@ void MODBUS_ProcessFunction(){
 			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
 			bufferTx[indexTxW++] = WRITE_SINGLE_REGISTER;
 			myWord.ui16[0] = regAddress;
-			bufferTx[indexTxW++] = myWord.ui8[0];
 			bufferTx[indexTxW++] = myWord.ui8[1];
-			bufferTx[indexTxW++] = *((uint8_t *)registerAddresses[regAddress-1]);
-			bufferTx[indexTxW++] = *((uint8_t *)(registerAddresses[regAddress-1])+1);
+			bufferTx[indexTxW++] = myWord.ui8[0];
+			bufferTx[indexTxW++] = *((uint8_t *)(regAddress));
+			bufferTx[indexTxW++] = *((uint8_t *)(regAddress+1));
 		
 			for(uint8_t i = 0; i < 6;i++){
 				MODBUS_CalculateCRC(bufferTx[i]);
@@ -649,11 +665,11 @@ void MODBUS_ProcessFunction(){
 				return;
 			}
 			//Subfuncion
-			myWord.ui8[0] = bufferRx[indexRxR++];
 			myWord.ui8[1] = bufferRx[indexRxR++];
+			myWord.ui8[0] = bufferRx[indexRxR++];
 			subfunction = myWord.ui16[0];
-			myWord.ui8[0] = bufferRx[indexRxR++];
 			myWord.ui8[1] = bufferRx[indexRxR++];
+			myWord.ui8[0] = bufferRx[indexRxR++];
 			regValue = myWord.ui16[0];
 			
 			switch(subfunction){
@@ -686,22 +702,22 @@ void MODBUS_ProcessFunction(){
 					commFlags.iFlags.isExceptionCode = 1;
 					indexRxR = indexRxW;
 				return;
-		}
-		bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
-		bufferTx[indexTxW++] = DIAGNOSTICS;
-		myWord.ui16[0] = subfunction;
-		bufferTx[indexTxW++] = myWord.ui8[0];
-		bufferTx[indexTxW++] = myWord.ui8[1];
-		myWord.ui16[0] = regValue;
-		bufferTx[indexTxW++] = myWord.ui8[0];
-		bufferTx[indexTxW++] = myWord.ui8[1];
-		for(uint8_t i=0; i < 6; i++){
-			MODBUS_CalculateCRC(bufferTx[i]);
-		}
-		myWord.ui16[0] = myModbusFrame.crcSlave;
-		bufferTx[indexTxW++] = myWord.ui8[0];
-		bufferTx[indexTxW++] = myWord.ui8[1];
-		break;
+			}
+				bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
+				bufferTx[indexTxW++] = DIAGNOSTICS;
+				myWord.ui16[0] = subfunction;
+				bufferTx[indexTxW++] = myWord.ui8[0];
+				bufferTx[indexTxW++] = myWord.ui8[1];
+				myWord.ui16[0] = regValue;
+				bufferTx[indexTxW++] = myWord.ui8[0];
+				bufferTx[indexTxW++] = myWord.ui8[1];
+				for(uint8_t i=0; i < 6; i++){
+					MODBUS_CalculateCRC(bufferTx[i]);
+				}
+				myWord.ui16[0] = myModbusFrame.crcSlave;
+				bufferTx[indexTxW++] = myWord.ui8[0];
+				bufferTx[indexTxW++] = myWord.ui8[1];
+				break;
 		case WRITE_MULTIPLE_REGISTERS: //Incompleto
 			myModbusFrame.errorCode = 0x90;
 			//Direccion inicial
@@ -721,18 +737,23 @@ void MODBUS_ProcessFunction(){
 				commFlags.iFlags.isExceptionCode = 1;
 				return;
 			}
-			//Controlar validez de direccion
-			if((regAddress < 1) || (regAddress > REGISTERS) || ((regCant-1) > (REGISTERS - regAddress))){
+
+			//Controlar validez direcciones
+			if((regAddress < START_CONFIG_ADDRESS) || (regAddress>END_CONFIG_ADDRESS)){
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 				commFlags.iFlags.isExceptionCode = 1;
 				return;
+			}else{
+				if(regAddress+((regCant -1)*2) > END_CONFIG_ADDRESS){
+					//error address
+					myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
+					commFlags.iFlags.isExceptionCode = 1;
+					return;
+				}
 			}
-			for(uint8_t i=0; i<regCant;i++){
-			myWord.ui8[0] = bufferRx[indexRxR++];
-			myWord.ui8[1] = bufferRx[indexRxR++];
-			regValue = myWord.ui16[0];
-				*((uint8_t *)registerAddresses[regAddress-1+i]) = myWord.ui8[0];
-				*((uint8_t *)(registerAddresses[regAddress-1+i]+1)) = myWord.ui8[1];
+
+			for(uint8_t i=0; i<(regCant*2);i++){
+				*((uint8_t *)(regAddress)) = bufferRx[indexRxR++];
 			}
 		
 			if(commFlags.iFlags.isBroadcast){
@@ -792,7 +813,7 @@ void USART0_ReceiveInterruptDisable(void){
 */
 
 int main(void){
-	slaveAddress = 99;
+	slaveAddress = 0x02;
 	//slaveAddress = EEPROM_Read(0x01);
 	
     SYSTEM_Initialize();
@@ -847,7 +868,6 @@ int main(void){
     modbusRegister.newEventCounter = 0x4444;
     modbusRegister.brConfig = 0x77;
     modbusRegister.parity = 0x88;
-    modbusRegister.inputConfig = 0x99;
     modbusRegister.timeBtw[0] = 0x0;
     modbusRegister.timeBtw[1] = 0x0;
     modbusRegister.timeBtw[2] = 0x0;

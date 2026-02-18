@@ -218,7 +218,7 @@ void InitializeEvents();
 
 // ---------------------- Implementacion de ISR ----------------------
 ISR(USART_RX_vect){
-	if(commFlags.iFlags.btwFrame){
+	/*if(commFlags.iFlags.btwFrame){
 		if(!t15Tik){
 			commFlags.iFlags.btwFrame=0; //vuelvo a esperar new frame
 			decodeState=IDLE; 
@@ -233,9 +233,9 @@ ISR(USART_RX_vect){
 		}else{
 			isDecodeData=0;//descarto
 		}	
-	}
-	RestartTikValues(); 
-	if(isDecodeData)
+	}*/
+	//RestartTikValues(); 
+	//if(isDecodeData)
 		MODBUS_DecodeFrame(UDR0);
 	
 }
@@ -477,7 +477,7 @@ void SentEvents(uint16_t count){//LoadEvents
 void MODBUS_DecodeFrame(uint8_t data){
 	switch(decodeState){
 		case IDLE:
-			if(data == MODBUS_BROADCAST_ADDRESS || data == slaveAddress){
+			if(data == MODBUS_BROADCAST_ADDRESS || data == MODBUS_SLAVE_ADDRESS){
 				if(data == MODBUS_BROADCAST_ADDRESS) commFlags.iFlags.isBroadcast = 1;
 				myModbusFrame.nBytes = 5;
 				myModbusFrame.crcSlave = 0xFFFF;
@@ -488,6 +488,7 @@ void MODBUS_DecodeFrame(uint8_t data){
 			}
 		break;
 		case FUNCTION:
+			//PORTB ^= 0b00000010;
 			myModbusFrame.function = data;
 			MODBUS_CalculateCRC(data);
 			myModbusFrame.nBytes--;
@@ -516,14 +517,14 @@ void MODBUS_DecodeFrame(uint8_t data){
 			}
 		break;
 		case CRCL:
-			myWord.ui8[1] = data;
+			myWord.ui8[0] = data;
 			//crcMsg = (uint16_t)data;
 			decodeState = CRCH;
 		break;
 		case CRCH:
-			//PORTB ^= 0b00000100;
+			//PORTB ^= 0b00000010;
 			//crcMsg |= (uint16_t)(data << 8);
-			myWord.ui8[0] = data;
+			myWord.ui8[1] = data;
 			myModbusFrame.crcMaster = myWord.ui16[0];
 			if(myModbusFrame.crcSlave == myModbusFrame.crcMaster){
 				//PORTB ^= 0b00001000;
@@ -533,14 +534,14 @@ void MODBUS_DecodeFrame(uint8_t data){
 				indexRxR = indexRxW;
 			}
 			decodeState = IDLE;
-			commFlags.iFlags.btwFrame=0;
-			RestartTikValues();
+			//commFlags.iFlags.btwFrame=0;
+			//RestartTikValues();
 		break;
 		default:
 			decodeState = IDLE;
 			indexRxR = indexRxW;
-			commFlags.iFlags.btwFrame=0;
-			RestartTikValues();
+			//commFlags.iFlags.btwFrame=0;
+			//RestartTikValues();
 		break;
 	}
 }
@@ -551,7 +552,7 @@ void MODBUS_ProcessFunction(){
 	indexTxW = 0;
 	indexTxR = 0;
 	myModbusFrame.crcSlave = 0xFFFF;
-	PORTB ^= 0b00010000;
+	//PORTB ^= 0b00010000;
 	switch(myModbusFrame.function){
 		case READ_HOLDING_REGISTERS: //Ver si conviene copiar valores en RAM o dejarlos solo en EEPROM
 			myModbusFrame.errorCode = 0x83;
@@ -784,8 +785,8 @@ void MODBUS_ProcessFunction(){
 		indexRxR = indexRxW;
 		break;
 	}
-	indexRxR = indexRxW;
-	
+	indexRxR = indexRxW;  //?????
+	 
 }
 
 void MODBUS_SendExceptionCode(){
@@ -921,7 +922,7 @@ int main(void){
 			RegInput();
 		}
 	
-		PORTB = ((outValues << 1) & MASK_PORTB) | hbState ; 
+	//	PORTB = ((outValues << 1) & MASK_PORTB) | hbState ; 
 
 //---------------------------------------
 

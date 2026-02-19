@@ -45,8 +45,8 @@ typedef enum{
 	FUNCTION,
 	DATA,
 	EXTRADATA,
-	CRCL,
-	CRCH
+	CRCH,
+	CRCL
 }_eDecodeStates;
 
 typedef enum{

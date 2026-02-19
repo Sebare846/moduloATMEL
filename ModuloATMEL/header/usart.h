@@ -110,7 +110,7 @@ enum UART_STANDARD_BAUDS{
  @brief Structure containing the function pointers of UART driver.
 */
 typedef struct {
-void (*Initialize)(void);   
+void (*Initialize)(uint8_t baudRate, uint8_t parity);   
 void (*Deinitialize)(void);
 uint8_t (*Read)(void);
 void (*Write)(uint8_t);
@@ -153,7 +153,7 @@ extern const uart_drv_interface_t UART0;
  * @param None.
  * @return None.
  */
-void USART0_Initialize(void);
+void USART0_Initialize(uint8_t baudRate, uint8_t parity);
 
 /**
  * @ingroup usart0

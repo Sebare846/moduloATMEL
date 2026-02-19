@@ -27,7 +27,10 @@ main.d main.o: .././main.c .././mcc_generated_files/system/system.h \
  .././header/timer0.h \
  .././header/../mcc_generated_files/system/utils/compiler.h \
  .././header/timer1.h .././header/usart.h \
- .././header/../mcc_generated_files/system/system.h .././header/modbus.h
+ .././header/../mcc_generated_files/system/system.h .././header/modbus.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
 
 .././mcc_generated_files/system/system.h:
 
@@ -92,3 +95,9 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././header/../mcc_generated_files/system/system.h:
 
 .././header/modbus.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:

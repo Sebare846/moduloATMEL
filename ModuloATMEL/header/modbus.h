@@ -19,9 +19,9 @@ extern uint8_t slaveAddress;
 #define DIAGNOSTICS					0x08
 #define WRITE_MULTIPLE_REGISTERS	0x10
 
-#define T15_BR00 156 //9600 SIN PARIDAD
-#define T15_BR10 172 // 9600 CON PARIDAD
-#define T15_BR11 75 //19200
+#define T15_BR00 156	//9600 SIN PARIDAD
+#define T15_BR10 172	// 9600 CON PARIDAD
+#define T15_BR11 75		//19200
 #define T35_BR00 365
 #define T35_BR10 401
 #define T35_BR11 175

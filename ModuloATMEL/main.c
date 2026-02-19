@@ -38,6 +38,7 @@
 #include "header/usart.h"
 #include "header/modbus.h"
 #include <stdint.h>
+#include <util/delay.h>
 
 //----------------------------- Definiciones tiempos - base 10ms -----------------------------
 #define PERIOD100MS		10  
@@ -114,9 +115,10 @@ uint16_t  t15Tik=0, t35Tik=0;
 uart_drv_interface_t myUSARTHandler;
 volatile uint8_t bufferRx[BUFFER_LEN];
 uint8_t bufferTx[BUFFER_LEN];
-uint8_t indexRxR,indexRxW,indexTxR,indexTxW;
+uint8_t indexRxR,indexRxW,indexTxR,indexTxW, trashByte;
 //------------------------------------------ Tickers ------------------------------------------
 uint8_t hbTime=0,unixTik=0;
+uint16_t auxTik=0;
 //------------------------------- Variables captura de eventos --------------------------------
 uint16_t tikBetweenTime[4];
 uint8_t	tikDebounce[4];
@@ -214,8 +216,8 @@ void InitializeEvents();
 // ---------------------- Implementacion de ISR ----------------------
 ISR(USART_RX_vect){
 	
+	RestartTikValues(); 
 	MODBUS_DecodeFrame(UDR0);
-
 }
 
 void UARTsendByte(){
@@ -287,15 +289,16 @@ void RestartTikValues(){
 }
 
 void do10us(){
-	if(!t15Tik){
-		t15Tik=0;
-	}else{
+	if(t15Tik){
 		t15Tik--;
+	}else if((decodeState != IDLE) && (decodeState != DISCARD)){
+		decodeState = DISCARD;
 	}
-	if(!t35Tik){
-		t35Tik=0;
-	}else{
+	if(t35Tik){
 		t35Tik--;
+	}else{
+		decodeState = IDLE;
+		indexRxR = indexRxW;
 	}
 }
 
@@ -488,6 +491,7 @@ void MODBUS_DecodeFrame(uint8_t data){
 					decodeState = CRCL;
 				}
 			}
+			
 		break;
 		case EXTRADATA:
 			bufferRx[indexRxW++] = data;
@@ -509,19 +513,16 @@ void MODBUS_DecodeFrame(uint8_t data){
 				indexRxR = indexRxW;
 			}
 			decodeState = IDLE;
-		//	commFlags.iFlags.btwFrame=0;
-		//	RestartTikValues();
 		break;
 		case DISCARD: 
-			USART0_ReceiveInterruptDisable();
+			trashByte = data;
 		break;
 		default:
 			decodeState = IDLE;
 			indexRxR = indexRxW;
-		//	commFlags.iFlags.btwFrame=0;
-		//	RestartTikValues();
 		break;
 	}
+
 }
 
 void MODBUS_ProcessFunction(){
@@ -798,6 +799,7 @@ int main(void){
 	uint8_t hbState = 0;
 	decodeState = IDLE;
 	hbTime = PERIOD250MS;
+	auxTik = 25000;
 	commFlags.aFlags = 0;
 	commFlags.iFlags.silenceTime = 1;
 	indexTxW = 0;
@@ -822,7 +824,7 @@ int main(void){
 	modbusRegister.unixTime				= 1770766800;
 	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
 	modbusRegister.newEventCounter		= 0x0000; 
-	modbusRegister.brConfig				= 0x77;
+	modbusRegister.brConfig				= 0x00;
 	modbusRegister.parity				= 0x88;
 	modbusRegister.timeBtw[0]			= 0x0;
 	modbusRegister.timeBtw[1]			= 0x0;
@@ -837,7 +839,7 @@ int main(void){
 				//hbState ^= (1<<5);
 				hbTime = PERIOD250MS;
 			}
-		 
+					 
 			if(commFlags.iFlags.dataReady){ //DECODIFICA SI EL FRAME SE RECIBIO CORRECTAMENTE
 				commFlags.iFlags.dataReady = 0;
 				MODBUS_ProcessFunction();
@@ -864,10 +866,6 @@ int main(void){
 				commFlags.iFlags.restartComms = 0;
 			}
 			
-	/*		if(!t35Tik && decodeState == DISCARD){
-				PORTB^= 0b00000010;
-				decodeState = IDLE;
-			}*/
 	//---------------------------- PROGRAMA LEDS---------------------------------------------
 		
 		if(commFlags.iFlags.isEvent1){

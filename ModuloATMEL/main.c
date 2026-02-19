@@ -214,12 +214,8 @@ void InitializeEvents();
 // ---------------------- Implementacion de ISR ----------------------
 ISR(USART_RX_vect){
 	
-
-	RestartTikValues(); 
-
 	MODBUS_DecodeFrame(UDR0);
-	//PORTB^= 0b00000010;
-	//}
+
 }
 
 void UARTsendByte(){
@@ -298,11 +294,6 @@ void do10us(){
 	}
 	if(!t35Tik){
 		t35Tik=0;
-		PORTB^= 0b00000010;
-		if(decodeState == DISCARD){
-			decodeState = IDLE;
-			USART0_ReceiveInterruptEnable();
-		}
 	}else{
 		t35Tik--;
 	}

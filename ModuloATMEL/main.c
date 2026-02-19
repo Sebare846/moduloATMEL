@@ -54,7 +54,7 @@
 #define MASK_IN3	0x04
 #define MASK_IN4	0x08
 //---------------------------------------- Direcciones ----------------------------------------
-#define SLAVE_ADDRESS			0x39C
+#define SLAVE_ADDRESS			0x3FF
 #define START_CONFIG_ADDRESS	0x400
 #define END_CONFIG_ADDRESS		0x411
 #define START_EVENT_ADDRESS		0x772
@@ -213,26 +213,13 @@ void InitializeEvents();
 
 // ---------------------- Implementacion de ISR ----------------------
 ISR(USART_RX_vect){
-	/*if(commFlags.iFlags.btwFrame){
-		if(!t15Tik){
-			commFlags.iFlags.btwFrame=0; //vuelvo a esperar new frame
-			decodeState=IDLE; 
-			isDecodeData=0;//descarto mensaje
-		}else{
-			isDecodeData=1;	//deco
-		}
-	}else{
-		if(!t35Tik){ //NewFrame
-			commFlags.iFlags.btwFrame=1;
-			isDecodeData=1; //deco
-		}else{
-			isDecodeData=0;//descarto
-		}	
-	}*/
-	//RestartTikValues(); 
-	//if(isDecodeData)
-		MODBUS_DecodeFrame(UDR0);
 	
+
+	RestartTikValues(); 
+
+	MODBUS_DecodeFrame(UDR0);
+	//PORTB^= 0b00000010;
+	//}
 }
 
 void UARTsendByte(){
@@ -311,6 +298,11 @@ void do10us(){
 	}
 	if(!t35Tik){
 		t35Tik=0;
+		PORTB^= 0b00000010;
+		if(decodeState == DISCARD){
+			decodeState = IDLE;
+			USART0_ReceiveInterruptEnable();
+		}
 	}else{
 		t35Tik--;
 	}
@@ -483,7 +475,7 @@ void MODBUS_DecodeFrame(uint8_t data){
 				MODBUS_CalculateCRC(data);
 				decodeState = FUNCTION;			
 			}else{
-				decodeState = IDLE;
+				decodeState = DISCARD;
 			}
 		break;
 		case FUNCTION:
@@ -526,14 +518,17 @@ void MODBUS_DecodeFrame(uint8_t data){
 				indexRxR = indexRxW;
 			}
 			decodeState = IDLE;
-			//commFlags.iFlags.btwFrame=0;
-			//RestartTikValues();
+		//	commFlags.iFlags.btwFrame=0;
+		//	RestartTikValues();
+		break;
+		case DISCARD: 
+			USART0_ReceiveInterruptDisable();
 		break;
 		default:
 			decodeState = IDLE;
 			indexRxR = indexRxW;
-			//commFlags.iFlags.btwFrame=0;
-			//RestartTikValues();
+		//	commFlags.iFlags.btwFrame=0;
+		//	RestartTikValues();
 		break;
 	}
 }
@@ -559,8 +554,9 @@ void MODBUS_ProcessFunction(){
 			regCant = myWord.ui16[0];
 			
 			//CONTROLAR CANTIDAD 
-			if(regCant<0 || regCant > 0x07B){ //error cantidad
+			if(regCant<1 || regCant > 0x07B){ //error cantidad
 				myModbusFrame.excepCode = INVALID_DATA_VALUE;
+			    commFlags.iFlags.isExceptionCode = 1;
 				return;
 			}
 			//Controlar validez direcciones
@@ -834,7 +830,7 @@ int main(void){
 
 	modbusRegister.unixTime				= 1770766800;
 	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
-	modbusRegister.newEventCounter		= 0x4444; 
+	modbusRegister.newEventCounter		= 0x0000; 
 	modbusRegister.brConfig				= 0x77;
 	modbusRegister.parity				= 0x88;
 	modbusRegister.timeBtw[0]			= 0x0;
@@ -847,6 +843,7 @@ int main(void){
 		
 			if(!hbTime){ //Heartbeat
 				PORTB ^= (1<<5);
+				//hbState ^= (1<<5);
 				hbTime = PERIOD250MS;
 			}
 		 
@@ -875,6 +872,11 @@ int main(void){
 			if(commFlags.iFlags.restartComms){ //resetear usart segun baudrate y paridad
 				commFlags.iFlags.restartComms = 0;
 			}
+			
+	/*		if(!t35Tik && decodeState == DISCARD){
+				PORTB^= 0b00000010;
+				decodeState = IDLE;
+			}*/
 	//---------------------------- PROGRAMA LEDS---------------------------------------------
 		
 		if(commFlags.iFlags.isEvent1){
@@ -883,7 +885,7 @@ int main(void){
 			RegInput();
 		}
 	
-	//	PORTB = ((outValues << 1) & MASK_PORTB) | hbState ; 
+		//PORTB = ((outValues << 1) & MASK_PORTB) | hbState ; 
 
 	}
 }

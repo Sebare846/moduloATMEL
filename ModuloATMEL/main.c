@@ -57,7 +57,8 @@
 //---------------------------------------- Direcciones ----------------------------------------
 #define SLAVE_ADDRESS			0x3FF
 #define START_CONFIG_ADDRESS	0x400
-#define END_CONFIG_ADDRESS		0x411
+#define END_CONFIG_ADDRESS_R	0x411
+#define END_CONFIG_ADDRESS_W	0x40F
 #define START_EVENT_ADDRESS		0x772
 #define END_EVENT_ADDRESS		0x89E
 //----------------------------------------- Tamanios ------------------------------------------
@@ -131,10 +132,10 @@ uint8_t slaveAddress __attribute__((section(".mySlaveAddress"))); //0x39C
 typedef struct {
 	uint32_t unixTime; //400 401 402 403
 	uint16_t diagnosticsRegister; //404 405
-	uint16_t newEventCounter; //406 407
-	uint8_t brConfig; //408
-	uint8_t parity; //409
-	uint16_t timeBtw[4];//tiempos configurables //40A 411
+	uint8_t brConfig; //406
+	uint8_t parity; //407
+	uint16_t timeBtw[4];//tiempos configurables //408 409 40A 40B 40C 40D 40E 40F
+	uint16_t newEventCounter; //410 411
 } _sModbusReg;
 
 // Colocar en sección específica
@@ -272,20 +273,19 @@ int16_t EEPROM_Read(uint16_t address) {
 }
 
 void RestartTikValues(){
-		switch(modbusRegister.brConfig){
-		case 0x00:
-			t15Tik = T15_BR00;
-			t35Tik = T35_BR00;
-		break;
-		case 0x10:
+	
+	if(modbusRegister.brConfig){
+		t15Tik = T15_BR11;
+		t35Tik = T35_BR11;
+	}else{
+		if(modbusRegister.parity){
 			t15Tik = T15_BR10;
 			t35Tik = T35_BR10;
-		break;
-		default: 
-			t15Tik = T15_BR11;
-			t35Tik = T15_BR11;
-		break;	
-	} 
+			}else{
+			t15Tik = T15_BR00;
+			t35Tik = T35_BR00;
+		}
+	}
 }
 
 void do10us(){
@@ -552,13 +552,13 @@ void MODBUS_ProcessFunction(){
 				return;
 			}
 			//Controlar validez direcciones
-			if((regAddress < START_CONFIG_ADDRESS) || (regAddress>END_CONFIG_ADDRESS && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
+			if((regAddress < START_CONFIG_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_R && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 				commFlags.iFlags.isExceptionCode = 1;
 				return;
 			}			
-			if(regAddress>=START_CONFIG_ADDRESS && regAddress <= END_CONFIG_ADDRESS){
-				if((regAddress+((regCant -1)*2) > END_CONFIG_ADDRESS)){
+			if(regAddress>=START_CONFIG_ADDRESS && regAddress <= END_CONFIG_ADDRESS_R){
+				if((regAddress+((regCant -1)*2) > END_CONFIG_ADDRESS_R)){
 					//error address
 					myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 					commFlags.iFlags.isExceptionCode = 1;
@@ -605,7 +605,7 @@ void MODBUS_ProcessFunction(){
 			regValue = myWord.ui16[0];
 			
 			//controlar direccion
-			if((regAddress < SLAVE_ADDRESS) || (regAddress>END_CONFIG_ADDRESS && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
+			if((regAddress < SLAVE_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_W && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 				commFlags.iFlags.isExceptionCode = 1;
 				return;
@@ -715,12 +715,12 @@ void MODBUS_ProcessFunction(){
 			}
 
 			//Controlar validez direcciones
-			if((regAddress < START_CONFIG_ADDRESS) || (regAddress>END_CONFIG_ADDRESS)){
+			if((regAddress < START_CONFIG_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_W)){
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 				commFlags.iFlags.isExceptionCode = 1;
 				return;
 			}else{
-				if(regAddress+((regCant -1)*2) > END_CONFIG_ADDRESS){
+				if(regAddress+((regCant -1)*2) >=END_CONFIG_ADDRESS_W){
 					//error address
 					myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 					commFlags.iFlags.isExceptionCode = 1;
@@ -729,7 +729,7 @@ void MODBUS_ProcessFunction(){
 			}
 
 			for(uint8_t i=0; i<(regCant*2);i++){
-				*((uint8_t *)(regAddress)) = bufferRx[indexRxR++];
+				*((uint8_t *)(regAddress+i)) = bufferRx[indexRxR++];
 			}
 		
 			if(commFlags.iFlags.isBroadcast){
@@ -790,11 +790,11 @@ int main(void){
 	modbusRegister.parity				= 0x01;
 	modbusRegister.unixTime				= 1770766800;
 	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
-	modbusRegister.newEventCounter		= 0x0000;
 	modbusRegister.timeBtw[0]			= 0x0;
 	modbusRegister.timeBtw[1]			= 0x0;
 	modbusRegister.timeBtw[2]			= 0x0;
 	modbusRegister.timeBtw[3]			= 0x0;
+	modbusRegister.newEventCounter		= 0x0000;
 	
     SYSTEM_Initialize();
 	USART0_Initialize(modbusRegister.brConfig, modbusRegister.parity);
@@ -836,8 +836,8 @@ int main(void){
 	while(1){
 		
 			if(!hbTime){ //Heartbeat
-				PORTB ^= (1<<5);
-				//hbState ^= (1<<5);
+			//	PORTB ^= (1<<5);
+				hbState ^= (1<<5);
 				hbTime = PERIOD250MS;
 			}
 					 
@@ -865,8 +865,8 @@ int main(void){
  
 			if(commFlags.iFlags.restartComms){ //resetear usart segun baudrate y paridad
 				//GUARDAR TODOS LOS REGISTROS EN EEPROM Y RESETEAR USART
-				modbusRegister.brConfig = 0x00;
-				modbusRegister.parity = 0x00;
+				//modbusRegister.brConfig = 0x00;
+				//modbusRegister.parity = 0x00;
 				USART0_Deinitialize();
 				USART0_Initialize(modbusRegister.brConfig,modbusRegister.parity);
 				commFlags.iFlags.restartComms = 0;

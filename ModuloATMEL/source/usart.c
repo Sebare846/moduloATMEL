@@ -91,21 +91,31 @@ static void USART0_DefaultParityErrorCallback(void);
   Section: USART0  APIs
 */
 
-void USART0_Initialize(void)
+void USART0_Initialize(uint8_t baudRate, uint8_t parity)
 {
     // Set the USART0 module to the options selected in the user interface.
-
-    //UBRR0 207; 
-    UBRR0 = 0xCF;
-
+	if(baudRate == 1){ //19200bps
+		//UBRR0 103;
+		UBRR0 = 0x67;
+	}else{ //9600bps
+		//UBRR0 207;
+		UBRR0 = 0xCF;
+	}
+	
     //MPCM0 disabled; TXC0 disabled; U2X0 enabled; 
     UCSR0A = 0x2;
 
     //RXB80 disabled; RXCIE0 disabled; RXEN0 enabled; TXB80 disabled; TXCIE0 disabled; TXEN0 enabled; UCSZ02 disabled; UDRIE0 disabled; 
     UCSR0B = 0x18;
 
-    //UCPOL0 disabled; UCSZ0 3; UMSEL0 Asynchronous Mode; UPM0 Disabled; USBS0 1-bit; 
-    UCSR0C = 0x6;
+
+	if(parity == 1){ //Even
+		UCSR0C = 0x26;
+	}else{ //No Parity
+		//UCPOL0 disabled; UCSZ0 3; UMSEL0 Asynchronous Mode; UPM0 Disabled; USBS0 1-bit;
+		UCSR0C = 0x6;		
+	}
+
 
 
     /* cppcheck-suppress misra-c2012-8.7 */

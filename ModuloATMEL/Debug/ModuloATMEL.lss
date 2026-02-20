@@ -3,39 +3,39 @@ ModuloATMEL.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  0000144c  2**0
+  0 .data         00000000  00800100  00800100  0000149c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .mySlaveAddress 00000001  008003ff  008003ff  0000130a  2**0
+  1 .mySlaveAddress 00000001  008003ff  008003ff  0000135a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .modbus_r     00000012  00800400  00800400  0000130b  2**0
+  2 .modbus_r     00000012  00800400  00800400  0000135b  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .fixed_events 0000012c  00800772  00800772  0000131d  2**0
+  3 .fixed_events 0000012c  00800772  00800772  0000136d  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .text         00001236  00000000  00000000  000000d4  2**1
+  4 .text         00001286  00000000  00000000  000000d4  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  5 .bss          0000026b  00800100  00800100  0000130a  2**0
+  5 .bss          0000026b  00800100  00800100  0000135a  2**0
                   ALLOC
-  6 .fuse         00000003  00820000  00820000  00001449  2**0
+  6 .fuse         00000003  00820000  00820000  00001499  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .comment      00000030  00000000  00000000  0000144c  2**0
+  7 .comment      00000030  00000000  00000000  0000149c  2**0
                   CONTENTS, READONLY
-  8 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000147c  2**2
+  8 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000014cc  2**2
                   CONTENTS, READONLY
-  9 .debug_aranges 00000348  00000000  00000000  000014bc  2**0
+  9 .debug_aranges 00000348  00000000  00000000  0000150c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_info   000021fb  00000000  00000000  00001804  2**0
+ 10 .debug_info   00002268  00000000  00000000  00001854  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_abbrev 00000dfb  00000000  00000000  000039ff  2**0
+ 11 .debug_abbrev 00000e0a  00000000  00000000  00003abc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   00001b98  00000000  00000000  000047fa  2**0
+ 12 .debug_line   00001bc8  00000000  00000000  000048c6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_frame  000006bc  00000000  00000000  00006394  2**2
+ 13 .debug_frame  000006bc  00000000  00000000  00006490  2**2
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00001102  00000000  00000000  00006a50  2**0
+ 14 .debug_str    0000110b  00000000  00000000  00006b4c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_loc    00000949  00000000  00000000  00007b52  2**0
+ 15 .debug_loc    000009a4  00000000  00000000  00007c57  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_ranges 000002e0  00000000  00000000  0000849b  2**0
+ 16 .debug_ranges 000002e0  00000000  00000000  000085fb  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -51,11 +51,11 @@ Disassembly of section .text:
       1c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
       20:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
       24:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-      28:	0c 94 8e 08 	jmp	0x111c	; 0x111c <__vector_10>
-      2c:	0c 94 a1 08 	jmp	0x1142	; 0x1142 <__vector_11>
-      30:	0c 94 75 08 	jmp	0x10ea	; 0x10ea <__vector_12>
-      34:	0c 94 83 08 	jmp	0x1106	; 0x1106 <__vector_13>
-      38:	0c 94 29 08 	jmp	0x1052	; 0x1052 <__vector_14>
+      28:	0c 94 9c 08 	jmp	0x1138	; 0x1138 <__vector_10>
+      2c:	0c 94 af 08 	jmp	0x115e	; 0x115e <__vector_11>
+      30:	0c 94 83 08 	jmp	0x1106	; 0x1106 <__vector_12>
+      34:	0c 94 91 08 	jmp	0x1122	; 0x1122 <__vector_13>
+      38:	0c 94 37 08 	jmp	0x106e	; 0x106e <__vector_14>
       3c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
       40:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
       44:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
@@ -87,7 +87,7 @@ Disassembly of section .text:
       82:	11 e0       	ldi	r17, 0x01	; 1
       84:	a0 e0       	ldi	r26, 0x00	; 0
       86:	b1 e0       	ldi	r27, 0x01	; 1
-      88:	e6 e3       	ldi	r30, 0x36	; 54
+      88:	e6 e8       	ldi	r30, 0x86	; 134
       8a:	f2 e1       	ldi	r31, 0x12	; 18
       8c:	02 c0       	rjmp	.+4      	; 0x92 <__do_copy_data+0x10>
       8e:	05 90       	lpm	r0, Z+
@@ -110,7 +110,7 @@ Disassembly of section .text:
       a4:	b2 07       	cpc	r27, r18
       a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
       a8:	0e 94 40 07 	call	0xe80	; 0xe80 <main>
-      ac:	0c 94 19 09 	jmp	0x1232	; 0x1232 <_exit>
+      ac:	0c 94 41 09 	jmp	0x1282	; 0x1282 <_exit>
 
 000000b0 <__bad_interrupt>:
       b0:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -188,7 +188,7 @@ Disassembly of section .text:
 
 0000015c <UARTsendByte>:
      15c:	10 c0       	rjmp	.+32     	; 0x17e <UARTsendByte+0x22>
-     15e:	0e 94 cc 08 	call	0x1198	; 0x1198 <USART0_IsTxReady>
+     15e:	0e 94 e5 08 	call	0x11ca	; 0x11ca <USART0_IsTxReady>
      162:	88 23       	and	r24, r24
      164:	61 f0       	breq	.+24     	; 0x17e <UARTsendByte+0x22>
      166:	e0 91 52 02 	lds	r30, 0x0252	; 0x800252 <indexTxR>
@@ -199,7 +199,7 @@ Disassembly of section .text:
      174:	ed 59       	subi	r30, 0x9D	; 157
      176:	fd 4f       	sbci	r31, 0xFD	; 253
      178:	80 81       	ld	r24, Z
-     17a:	0e 94 d8 08 	call	0x11b0	; 0x11b0 <USART0_Write>
+     17a:	0e 94 f1 08 	call	0x11e2	; 0x11e2 <USART0_Write>
      17e:	90 91 52 02 	lds	r25, 0x0252	; 0x800252 <indexTxR>
      182:	80 91 4b 01 	lds	r24, 0x014B	; 0x80014b <indexTxW>
      186:	98 13       	cpse	r25, r24
@@ -531,7 +531,7 @@ Disassembly of section .text:
      49a:	0e 94 15 01 	call	0x22a	; 0x22a <UpdateState>
      49e:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <newValueA>
      4a2:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <oldValueA>
-     4a6:	0e 94 18 08 	call	0x1030	; 0x1030 <TC0_Enable_CompareA_Interrupt>
+     4a6:	0e 94 26 08 	call	0x104c	; 0x104c <TC0_Enable_CompareA_Interrupt>
      4aa:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
      4ae:	8e 7f       	andi	r24, 0xFE	; 254
      4b0:	80 93 51 02 	sts	0x0251, r24	; 0x800251 <commFlags>
@@ -610,7 +610,7 @@ void MODBUS_DecodeFrame(uint8_t data){
      518:	fa 01       	movw	r30, r20
      51a:	ec 5c       	subi	r30, 0xCC	; 204
      51c:	ff 4f       	sbci	r31, 0xFF	; 255
-     51e:	0c 94 13 09 	jmp	0x1226	; 0x1226 <__tablejump2__>
+     51e:	0c 94 3b 09 	jmp	0x1276	; 0x1276 <__tablejump2__>
 		case IDLE:
 			if(data == MODBUS_BROADCAST_ADDRESS || data == MODBUS_SLAVE_ADDRESS){
      522:	88 23       	and	r24, r24
@@ -2054,541 +2054,658 @@ void MODBUS_SendExceptionCode(){
      e7e:	08 95       	ret
 
 00000e80 <main>:
-/*
-    Main application
-*/
-
 int main(void){
+	
+	//slaveAddress = EEPROM_Read(0x01);
+	
+	//LEER DE EEPROM
 	slaveAddress = 0x02;
      e80:	82 e0       	ldi	r24, 0x02	; 2
      e82:	80 93 ff 03 	sts	0x03FF, r24	; 0x8003ff <slaveAddress>
-	//slaveAddress = EEPROM_Read(0x01);
+	modbusRegister.brConfig				= 0x01;
+     e86:	c0 e0       	ldi	r28, 0x00	; 0
+     e88:	d4 e0       	ldi	r29, 0x04	; 4
+     e8a:	81 e0       	ldi	r24, 0x01	; 1
+     e8c:	88 87       	std	Y+8, r24	; 0x08
+	modbusRegister.parity				= 0x01;
+     e8e:	89 87       	std	Y+9, r24	; 0x09
+	modbusRegister.unixTime				= 1770766800;
+     e90:	80 ed       	ldi	r24, 0xD0	; 208
+     e92:	91 ec       	ldi	r25, 0xC1	; 193
+     e94:	ab e8       	ldi	r26, 0x8B	; 139
+     e96:	b9 e6       	ldi	r27, 0x69	; 105
+     e98:	88 83       	st	Y, r24
+     e9a:	99 83       	std	Y+1, r25	; 0x01
+     e9c:	aa 83       	std	Y+2, r26	; 0x02
+     e9e:	bb 83       	std	Y+3, r27	; 0x03
+	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
+     ea0:	83 e3       	ldi	r24, 0x33	; 51
+     ea2:	93 e3       	ldi	r25, 0x33	; 51
+     ea4:	9d 83       	std	Y+5, r25	; 0x05
+     ea6:	8c 83       	std	Y+4, r24	; 0x04
+	modbusRegister.newEventCounter		= 0x0000;
+     ea8:	1f 82       	std	Y+7, r1	; 0x07
+     eaa:	1e 82       	std	Y+6, r1	; 0x06
+	modbusRegister.timeBtw[0]			= 0x0;
+     eac:	1b 86       	std	Y+11, r1	; 0x0b
+     eae:	1a 86       	std	Y+10, r1	; 0x0a
+	modbusRegister.timeBtw[1]			= 0x0;
+     eb0:	1d 86       	std	Y+13, r1	; 0x0d
+     eb2:	1c 86       	std	Y+12, r1	; 0x0c
+	modbusRegister.timeBtw[2]			= 0x0;
+     eb4:	1f 86       	std	Y+15, r1	; 0x0f
+     eb6:	1e 86       	std	Y+14, r1	; 0x0e
+	modbusRegister.timeBtw[3]			= 0x0;
+     eb8:	19 8a       	std	Y+17, r1	; 0x11
+     eba:	18 8a       	std	Y+16, r1	; 0x10
 	
     SYSTEM_Initialize();
-     e86:	0e 94 04 08 	call	0x1008	; 0x1008 <SYSTEM_Initialize>
-	USART0_Initialize();
-     e8a:	0e 94 f3 08 	call	0x11e6	; 0x11e6 <USART0_Initialize>
+     ebc:	0e 94 12 08 	call	0x1024	; 0x1024 <SYSTEM_Initialize>
+	USART0_Initialize(modbusRegister.brConfig, modbusRegister.parity);
+     ec0:	69 85       	ldd	r22, Y+9	; 0x09
+     ec2:	88 85       	ldd	r24, Y+8	; 0x08
+     ec4:	0e 94 0c 09 	call	0x1218	; 0x1218 <USART0_Initialize>
 	TC0_Initialize();
-     e8e:	0e 94 0b 08 	call	0x1016	; 0x1016 <TC0_Initialize>
+     ec8:	0e 94 19 08 	call	0x1032	; 0x1032 <TC0_Initialize>
 	TC1_Initialize();
-     e92:	0e 94 54 08 	call	0x10a8	; 0x10a8 <TC1_Initialize>
+     ecc:	0e 94 62 08 	call	0x10c4	; 0x10c4 <TC1_Initialize>
 	InitializeEvents();
-     e96:	0e 94 fe 00 	call	0x1fc	; 0x1fc <InitializeEvents>
+     ed0:	0e 94 fe 00 	call	0x1fc	; 0x1fc <InitializeEvents>
 	
 	sei();
-     e9a:	78 94       	sei
+     ed4:	78 94       	sei
 	
 	TMR0_SetHandler(do10ms);
-     e9c:	82 e8       	ldi	r24, 0x82	; 130
-     e9e:	90 e0       	ldi	r25, 0x00	; 0
-     ea0:	0e 94 24 08 	call	0x1048	; 0x1048 <TMR0_SetHandler>
+     ed6:	82 e8       	ldi	r24, 0x82	; 130
+     ed8:	90 e0       	ldi	r25, 0x00	; 0
+     eda:	0e 94 32 08 	call	0x1064	; 0x1064 <TMR0_SetHandler>
 	TMR1_SetHandler(do10us);
-     ea4:	8a e5       	ldi	r24, 0x5A	; 90
-     ea6:	90 e0       	ldi	r25, 0x00	; 0
-     ea8:	0e 94 9c 08 	call	0x1138	; 0x1138 <TMR1_SetHandler>
+     ede:	8a e5       	ldi	r24, 0x5A	; 90
+     ee0:	90 e0       	ldi	r25, 0x00	; 0
+     ee2:	0e 94 aa 08 	call	0x1154	; 0x1154 <TMR1_SetHandler>
 	USART0_ReceiveInterruptEnable();
-     eac:	0e 94 c6 00 	call	0x18c	; 0x18c <USART0_ReceiveInterruptEnable>
+     ee6:	0e 94 c6 00 	call	0x18c	; 0x18c <USART0_ReceiveInterruptEnable>
 	
 	uint8_t hbState = 0;
 	decodeState = IDLE;
-     eb0:	10 92 50 01 	sts	0x0150, r1	; 0x800150 <decodeState>
+     eea:	10 92 50 01 	sts	0x0150, r1	; 0x800150 <decodeState>
 	hbTime = PERIOD250MS;
-     eb4:	89 e1       	ldi	r24, 0x19	; 25
-     eb6:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <hbTime>
+     eee:	89 e1       	ldi	r24, 0x19	; 25
+     ef0:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <hbTime>
 	auxTik = 25000;
-     eba:	88 ea       	ldi	r24, 0xA8	; 168
-     ebc:	91 e6       	ldi	r25, 0x61	; 97
-     ebe:	90 93 08 01 	sts	0x0108, r25	; 0x800108 <auxTik+0x1>
-     ec2:	80 93 07 01 	sts	0x0107, r24	; 0x800107 <auxTik>
+     ef4:	88 ea       	ldi	r24, 0xA8	; 168
+     ef6:	91 e6       	ldi	r25, 0x61	; 97
+     ef8:	90 93 08 01 	sts	0x0108, r25	; 0x800108 <auxTik+0x1>
+     efc:	80 93 07 01 	sts	0x0107, r24	; 0x800107 <auxTik>
 	commFlags.aFlags = 0;
 	commFlags.iFlags.silenceTime = 1;
-     ec6:	84 e0       	ldi	r24, 0x04	; 4
-     ec8:	80 93 51 02 	sts	0x0251, r24	; 0x800251 <commFlags>
+     f00:	84 e0       	ldi	r24, 0x04	; 4
+     f02:	80 93 51 02 	sts	0x0251, r24	; 0x800251 <commFlags>
 	indexTxW = 0;
-     ecc:	10 92 4b 01 	sts	0x014B, r1	; 0x80014b <indexTxW>
+     f06:	10 92 4b 01 	sts	0x014B, r1	; 0x80014b <indexTxW>
 	indexTxR = 0;
-     ed0:	10 92 52 02 	sts	0x0252, r1	; 0x800252 <indexTxR>
+     f0a:	10 92 52 02 	sts	0x0252, r1	; 0x800252 <indexTxR>
 	indexRxW = 0;
-     ed4:	10 92 5a 02 	sts	0x025A, r1	; 0x80025a <indexRxW>
+     f0e:	10 92 5a 02 	sts	0x025A, r1	; 0x80025a <indexRxW>
 	indexRxR = 0;
-     ed8:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <indexRxR>
+     f12:	10 92 59 02 	sts	0x0259, r1	; 0x800259 <indexRxR>
  
 	unixTik = PERIOD500MS;
-     edc:	82 e3       	ldi	r24, 0x32	; 50
-     ede:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <unixTik>
+     f16:	82 e3       	ldi	r24, 0x32	; 50
+     f18:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <unixTik>
 
 	/*-----LECTURA ENTRADAS-----------------------*/
 	newValueA = ~(PORTC & MASK_PORTC);
-     ee2:	88 b1       	in	r24, 0x08	; 8
-     ee4:	8f 70       	andi	r24, 0x0F	; 15
-     ee6:	80 95       	com	r24
-     ee8:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <newValueA>
+     f1c:	88 b1       	in	r24, 0x08	; 8
+     f1e:	8f 70       	andi	r24, 0x0F	; 15
+     f20:	80 95       	com	r24
+     f22:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <newValueA>
 	outValues = newValueA;
-     eec:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <outValues>
+     f26:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <outValues>
 	inputFlags.aFlags_input = 0;
-     ef0:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <inputFlags>
+     f2a:	10 92 58 02 	sts	0x0258, r1	; 0x800258 <inputFlags>
 	commFlags.aFlags = 0;
-     ef4:	10 92 51 02 	sts	0x0251, r1	; 0x800251 <commFlags>
+     f2e:	10 92 51 02 	sts	0x0251, r1	; 0x800251 <commFlags>
 	is500ms=0;
-     ef8:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+     f32:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
 
 	tikBetweenTime[0] = 0;
-     efc:	e3 e6       	ldi	r30, 0x63	; 99
-     efe:	f3 e0       	ldi	r31, 0x03	; 3
-     f00:	11 82       	std	Z+1, r1	; 0x01
-     f02:	10 82       	st	Z, r1
+     f36:	e3 e6       	ldi	r30, 0x63	; 99
+     f38:	f3 e0       	ldi	r31, 0x03	; 3
+     f3a:	11 82       	std	Z+1, r1	; 0x01
+     f3c:	10 82       	st	Z, r1
 	tikBetweenTime[1] = 0;
-     f04:	13 82       	std	Z+3, r1	; 0x03
-     f06:	12 82       	std	Z+2, r1	; 0x02
+     f3e:	13 82       	std	Z+3, r1	; 0x03
+     f40:	12 82       	std	Z+2, r1	; 0x02
 	tikBetweenTime[2] = 0;
-     f08:	15 82       	std	Z+5, r1	; 0x05
-     f0a:	14 82       	std	Z+4, r1	; 0x04
+     f42:	15 82       	std	Z+5, r1	; 0x05
+     f44:	14 82       	std	Z+4, r1	; 0x04
 	tikBetweenTime[3] = 0;
-     f0c:	17 82       	std	Z+7, r1	; 0x07
-     f0e:	16 82       	std	Z+6, r1	; 0x06
-
-	modbusRegister.unixTime				= 1770766800;
-     f10:	e0 e0       	ldi	r30, 0x00	; 0
-     f12:	f4 e0       	ldi	r31, 0x04	; 4
-     f14:	80 ed       	ldi	r24, 0xD0	; 208
-     f16:	91 ec       	ldi	r25, 0xC1	; 193
-     f18:	ab e8       	ldi	r26, 0x8B	; 139
-     f1a:	b9 e6       	ldi	r27, 0x69	; 105
-     f1c:	80 83       	st	Z, r24
-     f1e:	91 83       	std	Z+1, r25	; 0x01
-     f20:	a2 83       	std	Z+2, r26	; 0x02
-     f22:	b3 83       	std	Z+3, r27	; 0x03
-	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
-     f24:	83 e3       	ldi	r24, 0x33	; 51
-     f26:	93 e3       	ldi	r25, 0x33	; 51
-     f28:	95 83       	std	Z+5, r25	; 0x05
-     f2a:	84 83       	std	Z+4, r24	; 0x04
-	modbusRegister.newEventCounter		= 0x0000; 
-     f2c:	17 82       	std	Z+7, r1	; 0x07
-     f2e:	16 82       	std	Z+6, r1	; 0x06
-	modbusRegister.brConfig				= 0x00;
-     f30:	10 86       	std	Z+8, r1	; 0x08
-	modbusRegister.parity				= 0x88;
-     f32:	88 e8       	ldi	r24, 0x88	; 136
-     f34:	81 87       	std	Z+9, r24	; 0x09
-	modbusRegister.timeBtw[0]			= 0x0;
-     f36:	13 86       	std	Z+11, r1	; 0x0b
-     f38:	12 86       	std	Z+10, r1	; 0x0a
-	modbusRegister.timeBtw[1]			= 0x0;
-     f3a:	15 86       	std	Z+13, r1	; 0x0d
-     f3c:	14 86       	std	Z+12, r1	; 0x0c
-	modbusRegister.timeBtw[2]			= 0x0;
-     f3e:	17 86       	std	Z+15, r1	; 0x0f
-     f40:	16 86       	std	Z+14, r1	; 0x0e
-	modbusRegister.timeBtw[3]			= 0x0;
-     f42:	11 8a       	std	Z+17, r1	; 0x11
-     f44:	10 8a       	std	Z+16, r1	; 0x10
-  
-  
+     f46:	17 82       	std	Z+7, r1	; 0x07
+     f48:	16 82       	std	Z+6, r1	; 0x06
+	  
 	while(1){
 		
 			if(!hbTime){ //Heartbeat
-     f46:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <hbTime>
-     f4a:	81 11       	cpse	r24, r1
-     f4c:	07 c0       	rjmp	.+14     	; 0xf5c <main+0xdc>
+     f4a:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <hbTime>
+     f4e:	81 11       	cpse	r24, r1
+     f50:	07 c0       	rjmp	.+14     	; 0xf60 <main+0xe0>
 				PORTB ^= (1<<5);
-     f4e:	95 b1       	in	r25, 0x05	; 5
-     f50:	80 e2       	ldi	r24, 0x20	; 32
-     f52:	89 27       	eor	r24, r25
-     f54:	85 b9       	out	0x05, r24	; 5
+     f52:	95 b1       	in	r25, 0x05	; 5
+     f54:	80 e2       	ldi	r24, 0x20	; 32
+     f56:	89 27       	eor	r24, r25
+     f58:	85 b9       	out	0x05, r24	; 5
 				//hbState ^= (1<<5);
 				hbTime = PERIOD250MS;
-     f56:	89 e1       	ldi	r24, 0x19	; 25
-     f58:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <hbTime>
+     f5a:	89 e1       	ldi	r24, 0x19	; 25
+     f5c:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <hbTime>
 			}
 					 
 			if(commFlags.iFlags.dataReady){ //DECODIFICA SI EL FRAME SE RECIBIO CORRECTAMENTE
-     f5c:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
-     f60:	81 ff       	sbrs	r24, 1
-     f62:	05 c0       	rjmp	.+10     	; 0xf6e <main+0xee>
+     f60:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
+     f64:	81 ff       	sbrs	r24, 1
+     f66:	05 c0       	rjmp	.+10     	; 0xf72 <main+0xf2>
 				commFlags.iFlags.dataReady = 0;
-     f64:	8d 7f       	andi	r24, 0xFD	; 253
-     f66:	80 93 51 02 	sts	0x0251, r24	; 0x800251 <commFlags>
+     f68:	8d 7f       	andi	r24, 0xFD	; 253
+     f6a:	80 93 51 02 	sts	0x0251, r24	; 0x800251 <commFlags>
 				MODBUS_ProcessFunction();
-     f6a:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <MODBUS_ProcessFunction>
+     f6e:	0e 94 5a 03 	call	0x6b4	; 0x6b4 <MODBUS_ProcessFunction>
 			}
 
 			if(indexTxR != indexTxW){ //Si hay datos para transmitir, transmite todo lo que tiene
-     f6e:	90 91 52 02 	lds	r25, 0x0252	; 0x800252 <indexTxR>
-     f72:	80 91 4b 01 	lds	r24, 0x014B	; 0x80014b <indexTxW>
-     f76:	98 17       	cp	r25, r24
-     f78:	39 f0       	breq	.+14     	; 0xf88 <main+0x108>
+     f72:	90 91 52 02 	lds	r25, 0x0252	; 0x800252 <indexTxR>
+     f76:	80 91 4b 01 	lds	r24, 0x014B	; 0x80014b <indexTxW>
+     f7a:	98 17       	cp	r25, r24
+     f7c:	39 f0       	breq	.+14     	; 0xf8c <main+0x10c>
 				USART0_ReceiveInterruptDisable();
-     f7a:	0e 94 cc 00 	call	0x198	; 0x198 <USART0_ReceiveInterruptDisable>
+     f7e:	0e 94 cc 00 	call	0x198	; 0x198 <USART0_ReceiveInterruptDisable>
 				PORTD |= 0x4; //MAX HIGH
-     f7e:	8b b1       	in	r24, 0x0b	; 11
-     f80:	84 60       	ori	r24, 0x04	; 4
-     f82:	8b b9       	out	0x0b, r24	; 11
+     f82:	8b b1       	in	r24, 0x0b	; 11
+     f84:	84 60       	ori	r24, 0x04	; 4
+     f86:	8b b9       	out	0x0b, r24	; 11
 				UARTsendByte();
-     f84:	0e 94 ae 00 	call	0x15c	; 0x15c <UARTsendByte>
+     f88:	0e 94 ae 00 	call	0x15c	; 0x15c <UARTsendByte>
 			}
 			if(indexTxR == indexTxW){ //Si no hay datos para transmitir vuelve a la interrupcion
-     f88:	90 91 52 02 	lds	r25, 0x0252	; 0x800252 <indexTxR>
-     f8c:	80 91 4b 01 	lds	r24, 0x014B	; 0x80014b <indexTxW>
-     f90:	98 13       	cpse	r25, r24
-     f92:	0e c0       	rjmp	.+28     	; 0xfb0 <main+0x130>
+     f8c:	90 91 52 02 	lds	r25, 0x0252	; 0x800252 <indexTxR>
+     f90:	80 91 4b 01 	lds	r24, 0x014B	; 0x80014b <indexTxW>
+     f94:	98 13       	cpse	r25, r24
+     f96:	0e c0       	rjmp	.+28     	; 0xfb4 <main+0x134>
 				if(USART0_IsTxDone()){ //IS TRANSMIT COMPLETE
-     f94:	0e 94 d2 08 	call	0x11a4	; 0x11a4 <USART0_IsTxDone>
-     f98:	88 23       	and	r24, r24
-     f9a:	51 f0       	breq	.+20     	; 0xfb0 <main+0x130>
+     f98:	0e 94 eb 08 	call	0x11d6	; 0x11d6 <USART0_IsTxDone>
+     f9c:	88 23       	and	r24, r24
+     f9e:	51 f0       	breq	.+20     	; 0xfb4 <main+0x134>
 					UCSR0A |= (1<<TXC0);           // limpiar TXC0
-     f9c:	e0 ec       	ldi	r30, 0xC0	; 192
-     f9e:	f0 e0       	ldi	r31, 0x00	; 0
-     fa0:	80 81       	ld	r24, Z
-     fa2:	80 64       	ori	r24, 0x40	; 64
-     fa4:	80 83       	st	Z, r24
+     fa0:	e0 ec       	ldi	r30, 0xC0	; 192
+     fa2:	f0 e0       	ldi	r31, 0x00	; 0
+     fa4:	80 81       	ld	r24, Z
+     fa6:	80 64       	ori	r24, 0x40	; 64
+     fa8:	80 83       	st	Z, r24
 					USART0_ReceiveInterruptEnable();
-     fa6:	0e 94 c6 00 	call	0x18c	; 0x18c <USART0_ReceiveInterruptEnable>
+     faa:	0e 94 c6 00 	call	0x18c	; 0x18c <USART0_ReceiveInterruptEnable>
 					PORTD &= ~ 0x4; //MAX_SetLow();
-     faa:	8b b1       	in	r24, 0x0b	; 11
-     fac:	8b 7f       	andi	r24, 0xFB	; 251
-     fae:	8b b9       	out	0x0b, r24	; 11
+     fae:	8b b1       	in	r24, 0x0b	; 11
+     fb0:	8b 7f       	andi	r24, 0xFB	; 251
+     fb2:	8b b9       	out	0x0b, r24	; 11
 				}
 			}
 
 			if(commFlags.iFlags.isExceptionCode){ 
-     fb0:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
-     fb4:	83 fd       	sbrc	r24, 3
+     fb4:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
+     fb8:	83 fd       	sbrc	r24, 3
 				MODBUS_SendExceptionCode();
-     fb6:	0e 94 f0 06 	call	0xde0	; 0xde0 <MODBUS_SendExceptionCode>
+     fba:	0e 94 f0 06 	call	0xde0	; 0xde0 <MODBUS_SendExceptionCode>
 			}
  
 			if(commFlags.iFlags.restartComms){ //resetear usart segun baudrate y paridad
-     fba:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
-     fbe:	86 ff       	sbrs	r24, 6
-     fc0:	03 c0       	rjmp	.+6      	; 0xfc8 <main+0x148>
+     fbe:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
+     fc2:	86 ff       	sbrs	r24, 6
+     fc4:	0f c0       	rjmp	.+30     	; 0xfe4 <main+0x164>
+				//GUARDAR TODOS LOS REGISTROS EN EEPROM Y RESETEAR USART
+				modbusRegister.brConfig = 0x00;
+     fc6:	c0 e0       	ldi	r28, 0x00	; 0
+     fc8:	d4 e0       	ldi	r29, 0x04	; 4
+     fca:	18 86       	std	Y+8, r1	; 0x08
+				modbusRegister.parity = 0x00;
+     fcc:	19 86       	std	Y+9, r1	; 0x09
+				USART0_Deinitialize();
+     fce:	0e 94 da 08 	call	0x11b4	; 0x11b4 <USART0_Deinitialize>
+				USART0_Initialize(modbusRegister.brConfig,modbusRegister.parity);
+     fd2:	69 85       	ldd	r22, Y+9	; 0x09
+     fd4:	88 85       	ldd	r24, Y+8	; 0x08
+     fd6:	0e 94 0c 09 	call	0x1218	; 0x1218 <USART0_Initialize>
 				commFlags.iFlags.restartComms = 0;
-     fc2:	8f 7b       	andi	r24, 0xBF	; 191
-     fc4:	80 93 51 02 	sts	0x0251, r24	; 0x800251 <commFlags>
+     fda:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
+     fde:	8f 7b       	andi	r24, 0xBF	; 191
+     fe0:	80 93 51 02 	sts	0x0251, r24	; 0x800251 <commFlags>
 			}
 			
 	//---------------------------- PROGRAMA LEDS---------------------------------------------
 		
 		if(commFlags.iFlags.isEvent1){
-     fc8:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
-     fcc:	80 ff       	sbrs	r24, 0
-     fce:	bb cf       	rjmp	.-138    	; 0xf46 <main+0xc6>
+     fe4:	80 91 51 02 	lds	r24, 0x0251	; 0x800251 <commFlags>
+     fe8:	80 ff       	sbrs	r24, 0
+     fea:	af cf       	rjmp	.-162    	; 0xf4a <main+0xca>
 			//deshabilitar interrupcion
 			TC0_Disable_CompareA_Interrupt();
-     fd0:	0e 94 1e 08 	call	0x103c	; 0x103c <TC0_Disable_CompareA_Interrupt>
+     fec:	0e 94 2c 08 	call	0x1058	; 0x1058 <TC0_Disable_CompareA_Interrupt>
 			RegInput();
-     fd4:	0e 94 92 01 	call	0x324	; 0x324 <RegInput>
-     fd8:	b6 cf       	rjmp	.-148    	; 0xf46 <main+0xc6>
+     ff0:	0e 94 92 01 	call	0x324	; 0x324 <RegInput>
+     ff4:	aa cf       	rjmp	.-172    	; 0xf4a <main+0xca>
 
-00000fda <CPU_Initialize>:
-     fda:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <__TEXT_REGION_LENGTH__+0x7f8064>
-     fde:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__TEXT_REGION_LENGTH__+0x7f8061>
-     fe2:	13 be       	out	0x33, r1	; 51
-     fe4:	15 be       	out	0x35, r1	; 53
-     fe6:	08 95       	ret
+00000ff6 <CPU_Initialize>:
+     ff6:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <__TEXT_REGION_LENGTH__+0x7f8064>
+     ffa:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__TEXT_REGION_LENGTH__+0x7f8061>
+     ffe:	13 be       	out	0x33, r1	; 51
+    1000:	15 be       	out	0x35, r1	; 53
+    1002:	08 95       	ret
 
-00000fe8 <CPUINT_Initialize>:
-     fe8:	15 be       	out	0x35, r1	; 53
-     fea:	1f be       	out	0x3f, r1	; 63
-     fec:	80 e0       	ldi	r24, 0x00	; 0
-     fee:	08 95       	ret
+00001004 <CPUINT_Initialize>:
+    1004:	15 be       	out	0x35, r1	; 53
+    1006:	1f be       	out	0x3f, r1	; 63
+    1008:	80 e0       	ldi	r24, 0x00	; 0
+    100a:	08 95       	ret
 
-00000ff0 <PIN_MANAGER_Initialize>:
-     ff0:	8f e3       	ldi	r24, 0x3F	; 63
-     ff2:	84 b9       	out	0x04, r24	; 4
-     ff4:	17 b8       	out	0x07, r1	; 7
-     ff6:	86 e1       	ldi	r24, 0x16	; 22
-     ff8:	8a b9       	out	0x0a, r24	; 10
-     ffa:	15 b8       	out	0x05, r1	; 5
-     ffc:	18 b8       	out	0x08, r1	; 8
-     ffe:	1b b8       	out	0x0b, r1	; 11
-    1000:	13 b8       	out	0x03, r1	; 3
-    1002:	16 b8       	out	0x06, r1	; 6
-    1004:	19 b8       	out	0x09, r1	; 9
-    1006:	08 95       	ret
+0000100c <PIN_MANAGER_Initialize>:
+    100c:	8f e3       	ldi	r24, 0x3F	; 63
+    100e:	84 b9       	out	0x04, r24	; 4
+    1010:	17 b8       	out	0x07, r1	; 7
+    1012:	86 e1       	ldi	r24, 0x16	; 22
+    1014:	8a b9       	out	0x0a, r24	; 10
+    1016:	15 b8       	out	0x05, r1	; 5
+    1018:	18 b8       	out	0x08, r1	; 8
+    101a:	1b b8       	out	0x0b, r1	; 11
+    101c:	13 b8       	out	0x03, r1	; 3
+    101e:	16 b8       	out	0x06, r1	; 6
+    1020:	19 b8       	out	0x09, r1	; 9
+    1022:	08 95       	ret
 
-00001008 <SYSTEM_Initialize>:
-    1008:	0e 94 ed 07 	call	0xfda	; 0xfda <CPU_Initialize>
-    100c:	0e 94 f8 07 	call	0xff0	; 0xff0 <PIN_MANAGER_Initialize>
-    1010:	0e 94 f4 07 	call	0xfe8	; 0xfe8 <CPUINT_Initialize>
-    1014:	08 95       	ret
+00001024 <SYSTEM_Initialize>:
+    1024:	0e 94 fb 07 	call	0xff6	; 0xff6 <CPU_Initialize>
+    1028:	0e 94 06 08 	call	0x100c	; 0x100c <PIN_MANAGER_Initialize>
+    102c:	0e 94 02 08 	call	0x1004	; 0x1004 <CPUINT_Initialize>
+    1030:	08 95       	ret
 
-00001016 <TC0_Initialize>:
-    1016:	8b e9       	ldi	r24, 0x9B	; 155
-    1018:	87 bd       	out	0x27, r24	; 39
-    101a:	18 bc       	out	0x28, r1	; 40
-    101c:	16 bc       	out	0x26, r1	; 38
-    101e:	13 bc       	out	0x23, r1	; 35
-    1020:	82 e0       	ldi	r24, 0x02	; 2
-    1022:	84 bd       	out	0x24, r24	; 36
-    1024:	95 e0       	ldi	r25, 0x05	; 5
-    1026:	95 bd       	out	0x25, r25	; 37
-    1028:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
-    102c:	80 e0       	ldi	r24, 0x00	; 0
-    102e:	08 95       	ret
+00001032 <TC0_Initialize>:
+    1032:	8b e9       	ldi	r24, 0x9B	; 155
+    1034:	87 bd       	out	0x27, r24	; 39
+    1036:	18 bc       	out	0x28, r1	; 40
+    1038:	16 bc       	out	0x26, r1	; 38
+    103a:	13 bc       	out	0x23, r1	; 35
+    103c:	82 e0       	ldi	r24, 0x02	; 2
+    103e:	84 bd       	out	0x24, r24	; 36
+    1040:	95 e0       	ldi	r25, 0x05	; 5
+    1042:	95 bd       	out	0x25, r25	; 37
+    1044:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
+    1048:	80 e0       	ldi	r24, 0x00	; 0
+    104a:	08 95       	ret
 
-00001030 <TC0_Enable_CompareA_Interrupt>:
-    1030:	ee e6       	ldi	r30, 0x6E	; 110
-    1032:	f0 e0       	ldi	r31, 0x00	; 0
-    1034:	80 81       	ld	r24, Z
-    1036:	82 60       	ori	r24, 0x02	; 2
-    1038:	80 83       	st	Z, r24
-    103a:	08 95       	ret
+0000104c <TC0_Enable_CompareA_Interrupt>:
+    104c:	ee e6       	ldi	r30, 0x6E	; 110
+    104e:	f0 e0       	ldi	r31, 0x00	; 0
+    1050:	80 81       	ld	r24, Z
+    1052:	82 60       	ori	r24, 0x02	; 2
+    1054:	80 83       	st	Z, r24
+    1056:	08 95       	ret
 
-0000103c <TC0_Disable_CompareA_Interrupt>:
-    103c:	ee e6       	ldi	r30, 0x6E	; 110
-    103e:	f0 e0       	ldi	r31, 0x00	; 0
-    1040:	80 81       	ld	r24, Z
-    1042:	82 70       	andi	r24, 0x02	; 2
-    1044:	80 83       	st	Z, r24
-    1046:	08 95       	ret
+00001058 <TC0_Disable_CompareA_Interrupt>:
+    1058:	ee e6       	ldi	r30, 0x6E	; 110
+    105a:	f0 e0       	ldi	r31, 0x00	; 0
+    105c:	80 81       	ld	r24, Z
+    105e:	82 70       	andi	r24, 0x02	; 2
+    1060:	80 83       	st	Z, r24
+    1062:	08 95       	ret
 
-00001048 <TMR0_SetHandler>:
-    1048:	90 93 10 01 	sts	0x0110, r25	; 0x800110 <TMR0Handler+0x1>
-    104c:	80 93 0f 01 	sts	0x010F, r24	; 0x80010f <TMR0Handler>
-    1050:	08 95       	ret
+00001064 <TMR0_SetHandler>:
+    1064:	90 93 10 01 	sts	0x0110, r25	; 0x800110 <TMR0Handler+0x1>
+    1068:	80 93 0f 01 	sts	0x010F, r24	; 0x80010f <TMR0Handler>
+    106c:	08 95       	ret
 
-00001052 <__vector_14>:
-    1052:	1f 92       	push	r1
-    1054:	0f 92       	push	r0
-    1056:	0f b6       	in	r0, 0x3f	; 63
-    1058:	0f 92       	push	r0
-    105a:	11 24       	eor	r1, r1
-    105c:	2f 93       	push	r18
-    105e:	3f 93       	push	r19
-    1060:	4f 93       	push	r20
-    1062:	5f 93       	push	r21
-    1064:	6f 93       	push	r22
-    1066:	7f 93       	push	r23
-    1068:	8f 93       	push	r24
-    106a:	9f 93       	push	r25
-    106c:	af 93       	push	r26
-    106e:	bf 93       	push	r27
-    1070:	ef 93       	push	r30
-    1072:	ff 93       	push	r31
-    1074:	81 e0       	ldi	r24, 0x01	; 1
-    1076:	85 bb       	out	0x15, r24	; 21
-    1078:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <TMR0Handler>
-    107c:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <TMR0Handler+0x1>
-    1080:	30 97       	sbiw	r30, 0x00	; 0
-    1082:	09 f0       	breq	.+2      	; 0x1086 <__vector_14+0x34>
-    1084:	09 95       	icall
-    1086:	ff 91       	pop	r31
-    1088:	ef 91       	pop	r30
-    108a:	bf 91       	pop	r27
-    108c:	af 91       	pop	r26
-    108e:	9f 91       	pop	r25
-    1090:	8f 91       	pop	r24
-    1092:	7f 91       	pop	r23
-    1094:	6f 91       	pop	r22
-    1096:	5f 91       	pop	r21
-    1098:	4f 91       	pop	r20
-    109a:	3f 91       	pop	r19
-    109c:	2f 91       	pop	r18
-    109e:	0f 90       	pop	r0
-    10a0:	0f be       	out	0x3f, r0	; 63
-    10a2:	0f 90       	pop	r0
-    10a4:	1f 90       	pop	r1
-    10a6:	18 95       	reti
+0000106e <__vector_14>:
+    106e:	1f 92       	push	r1
+    1070:	0f 92       	push	r0
+    1072:	0f b6       	in	r0, 0x3f	; 63
+    1074:	0f 92       	push	r0
+    1076:	11 24       	eor	r1, r1
+    1078:	2f 93       	push	r18
+    107a:	3f 93       	push	r19
+    107c:	4f 93       	push	r20
+    107e:	5f 93       	push	r21
+    1080:	6f 93       	push	r22
+    1082:	7f 93       	push	r23
+    1084:	8f 93       	push	r24
+    1086:	9f 93       	push	r25
+    1088:	af 93       	push	r26
+    108a:	bf 93       	push	r27
+    108c:	ef 93       	push	r30
+    108e:	ff 93       	push	r31
+    1090:	81 e0       	ldi	r24, 0x01	; 1
+    1092:	85 bb       	out	0x15, r24	; 21
+    1094:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <TMR0Handler>
+    1098:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <TMR0Handler+0x1>
+    109c:	30 97       	sbiw	r30, 0x00	; 0
+    109e:	09 f0       	breq	.+2      	; 0x10a2 <__vector_14+0x34>
+    10a0:	09 95       	icall
+    10a2:	ff 91       	pop	r31
+    10a4:	ef 91       	pop	r30
+    10a6:	bf 91       	pop	r27
+    10a8:	af 91       	pop	r26
+    10aa:	9f 91       	pop	r25
+    10ac:	8f 91       	pop	r24
+    10ae:	7f 91       	pop	r23
+    10b0:	6f 91       	pop	r22
+    10b2:	5f 91       	pop	r21
+    10b4:	4f 91       	pop	r20
+    10b6:	3f 91       	pop	r19
+    10b8:	2f 91       	pop	r18
+    10ba:	0f 90       	pop	r0
+    10bc:	0f be       	out	0x3f, r0	; 63
+    10be:	0f 90       	pop	r0
+    10c0:	1f 90       	pop	r1
+    10c2:	18 95       	reti
 
-000010a8 <TC1_Initialize>:
-    10a8:	8f e9       	ldi	r24, 0x9F	; 159
-    10aa:	90 e0       	ldi	r25, 0x00	; 0
-    10ac:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
-    10b0:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
-    10b4:	81 e0       	ldi	r24, 0x01	; 1
-    10b6:	90 e0       	ldi	r25, 0x00	; 0
-    10b8:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
-    10bc:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
-    10c0:	10 92 87 00 	sts	0x0087, r1	; 0x800087 <__TEXT_REGION_LENGTH__+0x7f8087>
-    10c4:	10 92 86 00 	sts	0x0086, r1	; 0x800086 <__TEXT_REGION_LENGTH__+0x7f8086>
-    10c8:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
-    10cc:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
-    10d0:	13 bc       	out	0x23, r1	; 35
-    10d2:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
-    10d6:	89 e0       	ldi	r24, 0x09	; 9
-    10d8:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
-    10dc:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__TEXT_REGION_LENGTH__+0x7f8082>
-    10e0:	82 e0       	ldi	r24, 0x02	; 2
-    10e2:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7f806f>
-    10e6:	80 e0       	ldi	r24, 0x00	; 0
-    10e8:	08 95       	ret
+000010c4 <TC1_Initialize>:
+    10c4:	8f e9       	ldi	r24, 0x9F	; 159
+    10c6:	90 e0       	ldi	r25, 0x00	; 0
+    10c8:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+    10cc:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+    10d0:	81 e0       	ldi	r24, 0x01	; 1
+    10d2:	90 e0       	ldi	r25, 0x00	; 0
+    10d4:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+    10d8:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+    10dc:	10 92 87 00 	sts	0x0087, r1	; 0x800087 <__TEXT_REGION_LENGTH__+0x7f8087>
+    10e0:	10 92 86 00 	sts	0x0086, r1	; 0x800086 <__TEXT_REGION_LENGTH__+0x7f8086>
+    10e4:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
+    10e8:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
+    10ec:	13 bc       	out	0x23, r1	; 35
+    10ee:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+    10f2:	89 e0       	ldi	r24, 0x09	; 9
+    10f4:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
+    10f8:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__TEXT_REGION_LENGTH__+0x7f8082>
+    10fc:	82 e0       	ldi	r24, 0x02	; 2
+    10fe:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7f806f>
+    1102:	80 e0       	ldi	r24, 0x00	; 0
+    1104:	08 95       	ret
 
-000010ea <__vector_12>:
-    10ea:	1f 92       	push	r1
-    10ec:	0f 92       	push	r0
-    10ee:	0f b6       	in	r0, 0x3f	; 63
-    10f0:	0f 92       	push	r0
-    10f2:	11 24       	eor	r1, r1
-    10f4:	8f 93       	push	r24
-    10f6:	82 e0       	ldi	r24, 0x02	; 2
-    10f8:	86 bb       	out	0x16, r24	; 22
-    10fa:	8f 91       	pop	r24
-    10fc:	0f 90       	pop	r0
-    10fe:	0f be       	out	0x3f, r0	; 63
-    1100:	0f 90       	pop	r0
-    1102:	1f 90       	pop	r1
-    1104:	18 95       	reti
-
-00001106 <__vector_13>:
+00001106 <__vector_12>:
     1106:	1f 92       	push	r1
     1108:	0f 92       	push	r0
     110a:	0f b6       	in	r0, 0x3f	; 63
     110c:	0f 92       	push	r0
     110e:	11 24       	eor	r1, r1
-    1110:	16 ba       	out	0x16, r1	; 22
-    1112:	0f 90       	pop	r0
-    1114:	0f be       	out	0x3f, r0	; 63
-    1116:	0f 90       	pop	r0
-    1118:	1f 90       	pop	r1
-    111a:	18 95       	reti
+    1110:	8f 93       	push	r24
+    1112:	82 e0       	ldi	r24, 0x02	; 2
+    1114:	86 bb       	out	0x16, r24	; 22
+    1116:	8f 91       	pop	r24
+    1118:	0f 90       	pop	r0
+    111a:	0f be       	out	0x3f, r0	; 63
+    111c:	0f 90       	pop	r0
+    111e:	1f 90       	pop	r1
+    1120:	18 95       	reti
 
-0000111c <__vector_10>:
-    111c:	1f 92       	push	r1
-    111e:	0f 92       	push	r0
-    1120:	0f b6       	in	r0, 0x3f	; 63
-    1122:	0f 92       	push	r0
-    1124:	11 24       	eor	r1, r1
-    1126:	8f 93       	push	r24
-    1128:	85 e0       	ldi	r24, 0x05	; 5
-    112a:	86 bb       	out	0x16, r24	; 22
-    112c:	8f 91       	pop	r24
+00001122 <__vector_13>:
+    1122:	1f 92       	push	r1
+    1124:	0f 92       	push	r0
+    1126:	0f b6       	in	r0, 0x3f	; 63
+    1128:	0f 92       	push	r0
+    112a:	11 24       	eor	r1, r1
+    112c:	16 ba       	out	0x16, r1	; 22
     112e:	0f 90       	pop	r0
     1130:	0f be       	out	0x3f, r0	; 63
     1132:	0f 90       	pop	r0
     1134:	1f 90       	pop	r1
     1136:	18 95       	reti
 
-00001138 <TMR1_SetHandler>:
-    1138:	90 93 12 01 	sts	0x0112, r25	; 0x800112 <TMR1Handler+0x1>
-    113c:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <TMR1Handler>
-    1140:	08 95       	ret
+00001138 <__vector_10>:
+    1138:	1f 92       	push	r1
+    113a:	0f 92       	push	r0
+    113c:	0f b6       	in	r0, 0x3f	; 63
+    113e:	0f 92       	push	r0
+    1140:	11 24       	eor	r1, r1
+    1142:	8f 93       	push	r24
+    1144:	85 e0       	ldi	r24, 0x05	; 5
+    1146:	86 bb       	out	0x16, r24	; 22
+    1148:	8f 91       	pop	r24
+    114a:	0f 90       	pop	r0
+    114c:	0f be       	out	0x3f, r0	; 63
+    114e:	0f 90       	pop	r0
+    1150:	1f 90       	pop	r1
+    1152:	18 95       	reti
 
-00001142 <__vector_11>:
-    1142:	1f 92       	push	r1
-    1144:	0f 92       	push	r0
-    1146:	0f b6       	in	r0, 0x3f	; 63
-    1148:	0f 92       	push	r0
-    114a:	11 24       	eor	r1, r1
-    114c:	2f 93       	push	r18
-    114e:	3f 93       	push	r19
-    1150:	4f 93       	push	r20
-    1152:	5f 93       	push	r21
-    1154:	6f 93       	push	r22
-    1156:	7f 93       	push	r23
-    1158:	8f 93       	push	r24
-    115a:	9f 93       	push	r25
-    115c:	af 93       	push	r26
-    115e:	bf 93       	push	r27
-    1160:	ef 93       	push	r30
-    1162:	ff 93       	push	r31
-    1164:	81 e0       	ldi	r24, 0x01	; 1
-    1166:	86 bb       	out	0x16, r24	; 22
-    1168:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <TMR1Handler>
-    116c:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <TMR1Handler+0x1>
-    1170:	30 97       	sbiw	r30, 0x00	; 0
-    1172:	09 f0       	breq	.+2      	; 0x1176 <__vector_11+0x34>
-    1174:	09 95       	icall
-    1176:	ff 91       	pop	r31
-    1178:	ef 91       	pop	r30
-    117a:	bf 91       	pop	r27
-    117c:	af 91       	pop	r26
-    117e:	9f 91       	pop	r25
-    1180:	8f 91       	pop	r24
-    1182:	7f 91       	pop	r23
-    1184:	6f 91       	pop	r22
-    1186:	5f 91       	pop	r21
-    1188:	4f 91       	pop	r20
-    118a:	3f 91       	pop	r19
-    118c:	2f 91       	pop	r18
-    118e:	0f 90       	pop	r0
-    1190:	0f be       	out	0x3f, r0	; 63
-    1192:	0f 90       	pop	r0
-    1194:	1f 90       	pop	r1
-    1196:	18 95       	reti
+00001154 <TMR1_SetHandler>:
+    1154:	90 93 12 01 	sts	0x0112, r25	; 0x800112 <TMR1Handler+0x1>
+    1158:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <TMR1Handler>
+    115c:	08 95       	ret
 
-00001198 <USART0_IsTxReady>:
-    1198:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
-    119c:	85 fb       	bst	r24, 5
-    119e:	88 27       	eor	r24, r24
-    11a0:	80 f9       	bld	r24, 0
-    11a2:	08 95       	ret
+0000115e <__vector_11>:
+    115e:	1f 92       	push	r1
+    1160:	0f 92       	push	r0
+    1162:	0f b6       	in	r0, 0x3f	; 63
+    1164:	0f 92       	push	r0
+    1166:	11 24       	eor	r1, r1
+    1168:	2f 93       	push	r18
+    116a:	3f 93       	push	r19
+    116c:	4f 93       	push	r20
+    116e:	5f 93       	push	r21
+    1170:	6f 93       	push	r22
+    1172:	7f 93       	push	r23
+    1174:	8f 93       	push	r24
+    1176:	9f 93       	push	r25
+    1178:	af 93       	push	r26
+    117a:	bf 93       	push	r27
+    117c:	ef 93       	push	r30
+    117e:	ff 93       	push	r31
+    1180:	81 e0       	ldi	r24, 0x01	; 1
+    1182:	86 bb       	out	0x16, r24	; 22
+    1184:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <TMR1Handler>
+    1188:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <TMR1Handler+0x1>
+    118c:	30 97       	sbiw	r30, 0x00	; 0
+    118e:	09 f0       	breq	.+2      	; 0x1192 <__vector_11+0x34>
+    1190:	09 95       	icall
+    1192:	ff 91       	pop	r31
+    1194:	ef 91       	pop	r30
+    1196:	bf 91       	pop	r27
+    1198:	af 91       	pop	r26
+    119a:	9f 91       	pop	r25
+    119c:	8f 91       	pop	r24
+    119e:	7f 91       	pop	r23
+    11a0:	6f 91       	pop	r22
+    11a2:	5f 91       	pop	r21
+    11a4:	4f 91       	pop	r20
+    11a6:	3f 91       	pop	r19
+    11a8:	2f 91       	pop	r18
+    11aa:	0f 90       	pop	r0
+    11ac:	0f be       	out	0x3f, r0	; 63
+    11ae:	0f 90       	pop	r0
+    11b0:	1f 90       	pop	r1
+    11b2:	18 95       	reti
 
-000011a4 <USART0_IsTxDone>:
-    11a4:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
-    11a8:	86 fb       	bst	r24, 6
-    11aa:	88 27       	eor	r24, r24
-    11ac:	80 f9       	bld	r24, 0
-    11ae:	08 95       	ret
+000011b4 <USART0_Deinitialize>:
+}
 
-000011b0 <USART0_Write>:
-    11b0:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
-    11b4:	08 95       	ret
-
-000011b6 <USART0_DefaultFramingErrorCallback>:
-    11b6:	08 95       	ret
-
-000011b8 <USART0_DefaultOverrunErrorCallback>:
-    11b8:	08 95       	ret
-
-000011ba <USART0_DefaultParityErrorCallback>:
-    11ba:	08 95       	ret
-
-000011bc <USART0_FramingErrorCallbackRegister>:
-    11bc:	00 97       	sbiw	r24, 0x00	; 0
-    11be:	21 f0       	breq	.+8      	; 0x11c8 <USART0_FramingErrorCallbackRegister+0xc>
-    11c0:	90 93 18 01 	sts	0x0118, r25	; 0x800118 <USART0_FramingErrorHandler+0x1>
-    11c4:	80 93 17 01 	sts	0x0117, r24	; 0x800117 <USART0_FramingErrorHandler>
+uint8_t USART0_Read(void)
+{
+    return UDR0;
+}
+    11b4:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+    11b8:	10 92 c4 00 	sts	0x00C4, r1	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+    11bc:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+    11c0:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+    11c4:	10 92 c2 00 	sts	0x00C2, r1	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
     11c8:	08 95       	ret
 
-000011ca <USART0_OverrunErrorCallbackRegister>:
-    11ca:	00 97       	sbiw	r24, 0x00	; 0
-    11cc:	21 f0       	breq	.+8      	; 0x11d6 <USART0_OverrunErrorCallbackRegister+0xc>
-    11ce:	90 93 16 01 	sts	0x0116, r25	; 0x800116 <USART0_OverrunErrorHandler+0x1>
-    11d2:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <USART0_OverrunErrorHandler>
-    11d6:	08 95       	ret
+000011ca <USART0_IsTxReady>:
+    11ca:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+    11ce:	85 fb       	bst	r24, 5
+    11d0:	88 27       	eor	r24, r24
+    11d2:	80 f9       	bld	r24, 0
+    11d4:	08 95       	ret
 
-000011d8 <USART0_ParityErrorCallbackRegister>:
-    11d8:	00 97       	sbiw	r24, 0x00	; 0
-    11da:	21 f0       	breq	.+8      	; 0x11e4 <USART0_ParityErrorCallbackRegister+0xc>
-    11dc:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <USART0_ParityErrorHandler+0x1>
-    11e0:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <USART0_ParityErrorHandler>
-    11e4:	08 95       	ret
+000011d6 <USART0_IsTxDone>:
+    11d6:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+    11da:	86 fb       	bst	r24, 6
+    11dc:	88 27       	eor	r24, r24
+    11de:	80 f9       	bld	r24, 0
+    11e0:	08 95       	ret
 
-000011e6 <USART0_Initialize>:
-    11e6:	8f ec       	ldi	r24, 0xCF	; 207
-    11e8:	90 e0       	ldi	r25, 0x00	; 0
-    11ea:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
-    11ee:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
-    11f2:	82 e0       	ldi	r24, 0x02	; 2
-    11f4:	80 93 c0 00 	sts	0x00C0, r24	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
-    11f8:	88 e1       	ldi	r24, 0x18	; 24
-    11fa:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
-    11fe:	86 e0       	ldi	r24, 0x06	; 6
-    1200:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
-    1204:	8b ed       	ldi	r24, 0xDB	; 219
-    1206:	98 e0       	ldi	r25, 0x08	; 8
-    1208:	0e 94 de 08 	call	0x11bc	; 0x11bc <USART0_FramingErrorCallbackRegister>
-    120c:	8c ed       	ldi	r24, 0xDC	; 220
-    120e:	98 e0       	ldi	r25, 0x08	; 8
-    1210:	0e 94 e5 08 	call	0x11ca	; 0x11ca <USART0_OverrunErrorCallbackRegister>
-    1214:	8d ed       	ldi	r24, 0xDD	; 221
-    1216:	98 e0       	ldi	r25, 0x08	; 8
-    1218:	0e 94 ec 08 	call	0x11d8	; 0x11d8 <USART0_ParityErrorCallbackRegister>
-    121c:	10 92 1a 01 	sts	0x011A, r1	; 0x80011a <usart0RxLastError+0x1>
-    1220:	10 92 19 01 	sts	0x0119, r1	; 0x800119 <usart0RxLastError>
-    1224:	08 95       	ret
+000011e2 <USART0_Write>:
 
-00001226 <__tablejump2__>:
-    1226:	ee 0f       	add	r30, r30
-    1228:	ff 1f       	adc	r31, r31
-    122a:	05 90       	lpm	r0, Z+
-    122c:	f4 91       	lpm	r31, Z
-    122e:	e0 2d       	mov	r30, r0
-    1230:	09 94       	ijmp
 
-00001232 <_exit>:
-    1232:	f8 94       	cli
+void USART0_Write(uint8_t txData)
+{
+    UDR0 = txData;    // Write the data byte to the USART.
+    11e2:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+    11e6:	08 95       	ret
 
-00001234 <__stop_program>:
-    1234:	ff cf       	rjmp	.-2      	; 0x1234 <__stop_program>
+000011e8 <USART0_DefaultFramingErrorCallback>:
+}
+static void USART0_DefaultFramingErrorCallback(void)
+{
+    11e8:	08 95       	ret
+
+000011ea <USART0_DefaultOverrunErrorCallback>:
+    
+}
+
+static void USART0_DefaultOverrunErrorCallback(void)
+{
+    11ea:	08 95       	ret
+
+000011ec <USART0_DefaultParityErrorCallback>:
+    
+}
+
+static void USART0_DefaultParityErrorCallback(void)
+{
+    11ec:	08 95       	ret
+
+000011ee <USART0_FramingErrorCallbackRegister>:
+}
+
+/* cppcheck-suppress misra-c2012-8.7 */
+void USART0_FramingErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+    11ee:	00 97       	sbiw	r24, 0x00	; 0
+    11f0:	21 f0       	breq	.+8      	; 0x11fa <USART0_FramingErrorCallbackRegister+0xc>
+    {
+        USART0_FramingErrorHandler = callbackHandler;
+    11f2:	90 93 18 01 	sts	0x0118, r25	; 0x800118 <USART0_FramingErrorHandler+0x1>
+    11f6:	80 93 17 01 	sts	0x0117, r24	; 0x800117 <USART0_FramingErrorHandler>
+    11fa:	08 95       	ret
+
+000011fc <USART0_OverrunErrorCallbackRegister>:
+}
+
+/* cppcheck-suppress misra-c2012-8.7 */
+void USART0_OverrunErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+    11fc:	00 97       	sbiw	r24, 0x00	; 0
+    11fe:	21 f0       	breq	.+8      	; 0x1208 <USART0_OverrunErrorCallbackRegister+0xc>
+    {
+        USART0_OverrunErrorHandler = callbackHandler;
+    1200:	90 93 16 01 	sts	0x0116, r25	; 0x800116 <USART0_OverrunErrorHandler+0x1>
+    1204:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <USART0_OverrunErrorHandler>
+    1208:	08 95       	ret
+
+0000120a <USART0_ParityErrorCallbackRegister>:
+}
+
+/* cppcheck-suppress misra-c2012-8.7 */
+void USART0_ParityErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(NULL != callbackHandler)
+    120a:	00 97       	sbiw	r24, 0x00	; 0
+    120c:	21 f0       	breq	.+8      	; 0x1216 <USART0_ParityErrorCallbackRegister+0xc>
+    {
+        USART0_ParityErrorHandler = callbackHandler;
+    120e:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <USART0_ParityErrorHandler+0x1>
+    1212:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <USART0_ParityErrorHandler>
+    1216:	08 95       	ret
+
+00001218 <USART0_Initialize>:
+*/
+
+void USART0_Initialize(uint8_t baudRate, uint8_t parity)
+{
+    // Set the USART0 module to the options selected in the user interface.
+	if(baudRate == 1){ //19200bps
+    1218:	81 30       	cpi	r24, 0x01	; 1
+    121a:	39 f4       	brne	.+14     	; 0x122a <USART0_Initialize+0x12>
+		//UBRR0 103;
+		UBRR0 = 0x67;
+    121c:	87 e6       	ldi	r24, 0x67	; 103
+    121e:	90 e0       	ldi	r25, 0x00	; 0
+    1220:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+    1224:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+    1228:	06 c0       	rjmp	.+12     	; 0x1236 <USART0_Initialize+0x1e>
+	}else{ //9600bps
+		//UBRR0 207;
+		UBRR0 = 0xCF;
+    122a:	8f ec       	ldi	r24, 0xCF	; 207
+    122c:	90 e0       	ldi	r25, 0x00	; 0
+    122e:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+    1232:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+	}
+	
+    //MPCM0 disabled; TXC0 disabled; U2X0 enabled; 
+    UCSR0A = 0x2;
+    1236:	82 e0       	ldi	r24, 0x02	; 2
+    1238:	80 93 c0 00 	sts	0x00C0, r24	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+
+    //RXB80 disabled; RXCIE0 disabled; RXEN0 enabled; TXB80 disabled; TXCIE0 disabled; TXEN0 enabled; UCSZ02 disabled; UDRIE0 disabled; 
+    UCSR0B = 0x18;
+    123c:	88 e1       	ldi	r24, 0x18	; 24
+    123e:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+
+
+	if(parity == 1){ //Even
+    1242:	61 30       	cpi	r22, 0x01	; 1
+    1244:	21 f4       	brne	.+8      	; 0x124e <USART0_Initialize+0x36>
+		UCSR0C = 0x26;
+    1246:	86 e2       	ldi	r24, 0x26	; 38
+    1248:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+    124c:	03 c0       	rjmp	.+6      	; 0x1254 <USART0_Initialize+0x3c>
+	}else{ //No Parity
+		//UCPOL0 disabled; UCSZ0 3; UMSEL0 Asynchronous Mode; UPM0 Disabled; USBS0 1-bit;
+		UCSR0C = 0x6;		
+    124e:	86 e0       	ldi	r24, 0x06	; 6
+    1250:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+	}
+
+
+
+    /* cppcheck-suppress misra-c2012-8.7 */
+    USART0_FramingErrorCallbackRegister(USART0_DefaultFramingErrorCallback);
+    1254:	84 ef       	ldi	r24, 0xF4	; 244
+    1256:	98 e0       	ldi	r25, 0x08	; 8
+    1258:	0e 94 f7 08 	call	0x11ee	; 0x11ee <USART0_FramingErrorCallbackRegister>
+    /* cppcheck-suppress misra-c2012-8.7 */
+    USART0_OverrunErrorCallbackRegister(USART0_DefaultOverrunErrorCallback);
+    125c:	85 ef       	ldi	r24, 0xF5	; 245
+    125e:	98 e0       	ldi	r25, 0x08	; 8
+    1260:	0e 94 fe 08 	call	0x11fc	; 0x11fc <USART0_OverrunErrorCallbackRegister>
+    /* cppcheck-suppress misra-c2012-8.7 */
+    USART0_ParityErrorCallbackRegister(USART0_DefaultParityErrorCallback);
+    1264:	86 ef       	ldi	r24, 0xF6	; 246
+    1266:	98 e0       	ldi	r25, 0x08	; 8
+    1268:	0e 94 05 09 	call	0x120a	; 0x120a <USART0_ParityErrorCallbackRegister>
+    usart0RxLastError.status = 0;  
+    126c:	10 92 1a 01 	sts	0x011A, r1	; 0x80011a <usart0RxLastError+0x1>
+    1270:	10 92 19 01 	sts	0x0119, r1	; 0x800119 <usart0RxLastError>
+    1274:	08 95       	ret
+
+00001276 <__tablejump2__>:
+    1276:	ee 0f       	add	r30, r30
+    1278:	ff 1f       	adc	r31, r31
+    127a:	05 90       	lpm	r0, Z+
+    127c:	f4 91       	lpm	r31, Z
+    127e:	e0 2d       	mov	r30, r0
+    1280:	09 94       	ijmp
+
+00001282 <_exit>:
+    1282:	f8 94       	cli
+
+00001284 <__stop_program>:
+    1284:	ff cf       	rjmp	.-2      	; 0x1284 <__stop_program>

@@ -781,11 +781,23 @@ void MODBUS_SendExceptionCode(){
 */
 
 int main(void){
-	slaveAddress = 0x02;
+	
 	//slaveAddress = EEPROM_Read(0x01);
 	
+	//LEER DE EEPROM
+	slaveAddress = 0x02;
+	modbusRegister.brConfig				= 0x01;
+	modbusRegister.parity				= 0x01;
+	modbusRegister.unixTime				= 1770766800;
+	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
+	modbusRegister.newEventCounter		= 0x0000;
+	modbusRegister.timeBtw[0]			= 0x0;
+	modbusRegister.timeBtw[1]			= 0x0;
+	modbusRegister.timeBtw[2]			= 0x0;
+	modbusRegister.timeBtw[3]			= 0x0;
+	
     SYSTEM_Initialize();
-	USART0_Initialize();
+	USART0_Initialize(modbusRegister.brConfig, modbusRegister.parity);
 	TC0_Initialize();
 	TC1_Initialize();
 	InitializeEvents();
@@ -820,18 +832,7 @@ int main(void){
 	tikBetweenTime[1] = 0;
 	tikBetweenTime[2] = 0;
 	tikBetweenTime[3] = 0;
-
-	modbusRegister.unixTime				= 1770766800;
-	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
-	modbusRegister.newEventCounter		= 0x0000; 
-	modbusRegister.brConfig				= 0x00;
-	modbusRegister.parity				= 0x88;
-	modbusRegister.timeBtw[0]			= 0x0;
-	modbusRegister.timeBtw[1]			= 0x0;
-	modbusRegister.timeBtw[2]			= 0x0;
-	modbusRegister.timeBtw[3]			= 0x0;
-  
-  
+	  
 	while(1){
 		
 			if(!hbTime){ //Heartbeat
@@ -863,6 +864,11 @@ int main(void){
 			}
  
 			if(commFlags.iFlags.restartComms){ //resetear usart segun baudrate y paridad
+				//GUARDAR TODOS LOS REGISTROS EN EEPROM Y RESETEAR USART
+				modbusRegister.brConfig = 0x00;
+				modbusRegister.parity = 0x00;
+				USART0_Deinitialize();
+				USART0_Initialize(modbusRegister.brConfig,modbusRegister.parity);
 				commFlags.iFlags.restartComms = 0;
 			}
 			

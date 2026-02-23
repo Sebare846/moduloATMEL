@@ -58,7 +58,7 @@
 #define SLAVE_ADDRESS			0x3FF
 #define START_CONFIG_ADDRESS	0x400
 #define END_CONFIG_ADDRESS_R	0x411
-#define END_CONFIG_ADDRESS_W	0x40F
+#define END_CONFIG_ADDRESS_W	0x40D
 #define START_EVENT_ADDRESS		0x772
 #define END_EVENT_ADDRESS		0x89E
 //----------------------------------------- Tamanios ------------------------------------------
@@ -112,6 +112,7 @@ _eDecodeStates decodeState;
 _sModbusFrame myModbusFrame;
 _uCommFlags commFlags ; //banderas programa USART
 uint16_t  t15Tik=0, t35Tik=0;
+uint8_t auxbrConfig=0, auxParity=0;
 //---------------------------------- Variables Comunicacion -----------------------------------
 uart_drv_interface_t myUSARTHandler;
 volatile uint8_t bufferRx[BUFFER_LEN];
@@ -128,18 +129,34 @@ uint8_t oldValueA=0, newValueA=0, outValues=0, lecture=0;
 uint16_t EventIndexW=0,EventIndexR=0;
 uint8_t is500ms=0,isDecodeData=0; //banderas sacadas de input flags
 
-uint8_t slaveAddress __attribute__((section(".mySlaveAddress"))); //0x39C
+uint8_t slaveAddress __attribute__((section(".mySlaveAddress"))); //0x3FF
 typedef struct {
 	uint32_t unixTime; //400 401 402 403
-	uint16_t diagnosticsRegister; //404 405
-	uint8_t brConfig; //406
-	uint8_t parity; //407
-	uint16_t timeBtw[4];//tiempos configurables //408 409 40A 40B 40C 40D 40E 40F
+	uint8_t brConfig; //404
+	uint8_t parity; //405
+	uint16_t timeBtw[4];//tiempos configurables //406 407 408 409 40A 40B 40C 40D
+	uint16_t diagnosticsRegister; //40E 40F
 	uint16_t newEventCounter; //410 411
 } _sModbusReg;
 
 // Colocar en sección específica
 _sModbusReg modbusRegister __attribute__((section(".modbus_r"))); //a partir de 0x400 por los common
+
+typedef enum{
+	SLAVE_EEPROM_ADDRESS = 1,
+	BRCONFIG_EEPROM_ADDRESS,
+	PARITY_EEPROM_ADDRESS,
+	TIMEBTW0_LOW_EEPROM_ADDRESS,
+	TIMEBTW0_HIGH_EEPROM_ADDRESS,
+	TIMEBTW1_LOW_EEPROM_ADDRESS,
+	TIMEBTW1_HIGH_EEPROM_ADDRESS,
+	TIMEBTW2_LOW_EEPROM_ADDRESS,
+	TIMEBTW2_HIGH_EEPROM_ADDRESS,
+	TIMEBTW3_LOW_EEPROM_ADDRESS,
+	TIMEBTW3_HIGH_EEPROM_ADDRESS,
+	}_eEEPROM_Address;
+
+
 
 // ---------------------- Prototipos de Funciones ----------------------
 /*
@@ -274,13 +291,18 @@ int16_t EEPROM_Read(uint16_t address) {
 
 void RestartTikValues(){
 	
-	if(modbusRegister.brConfig){
-		t15Tik = T15_BR11;
-		t35Tik = T35_BR11;
-	}else{
-		if(modbusRegister.parity){
+	if(auxbrConfig){
+		if(auxParity){
+			t15Tik = T15_BR11;
+			t35Tik = T35_BR11;
+			}else{
 			t15Tik = T15_BR10;
 			t35Tik = T35_BR10;
+		}
+	}else{
+		if(auxParity){
+			t15Tik = T15_BR01;
+			t35Tik = T35_BR01;
 			}else{
 			t15Tik = T15_BR00;
 			t35Tik = T35_BR00;
@@ -782,33 +804,71 @@ void MODBUS_SendExceptionCode(){
 
 int main(void){
 	
-	//slaveAddress = EEPROM_Read(0x01);
+	SYSTEM_Initialize();
+	
+	uint8_t auxSlaveAddress, hbState = 0; 
+	uint16_t auxtimeBtw[4];
 	
 	//LEER DE EEPROM
-	slaveAddress = 0x02;
-	modbusRegister.brConfig				= 0x01;
-	modbusRegister.parity				= 0x01;
+	slaveAddress = EEPROM_Read(SLAVE_EEPROM_ADDRESS);
+	modbusRegister.brConfig = EEPROM_Read(BRCONFIG_EEPROM_ADDRESS);
+	modbusRegister.parity = EEPROM_Read(PARITY_EEPROM_ADDRESS);
+
+	myWord.ui8[0] = EEPROM_Read(TIMEBTW0_LOW_EEPROM_ADDRESS);
+	myWord.ui8[1] = EEPROM_Read(TIMEBTW0_HIGH_EEPROM_ADDRESS);
+	modbusRegister.timeBtw[0]= myWord.ui16[0];
+	myWord.ui8[1] = EEPROM_Read(TIMEBTW1_HIGH_EEPROM_ADDRESS);
+	myWord.ui8[0] = EEPROM_Read(TIMEBTW1_LOW_EEPROM_ADDRESS);
+	modbusRegister.timeBtw[1]= myWord.ui16[0];
+	myWord.ui8[1] = EEPROM_Read(TIMEBTW2_HIGH_EEPROM_ADDRESS);
+	myWord.ui8[0] = EEPROM_Read(TIMEBTW2_LOW_EEPROM_ADDRESS);
+	modbusRegister.timeBtw[2]= myWord.ui16[0];
+	myWord.ui8[1] = EEPROM_Read(TIMEBTW3_HIGH_EEPROM_ADDRESS);
+	myWord.ui8[0] = EEPROM_Read(TIMEBTW3_LOW_EEPROM_ADDRESS);
+	modbusRegister.timeBtw[3]= myWord.ui16[0];
+
+	auxSlaveAddress = slaveAddress;
+	auxbrConfig = modbusRegister.brConfig;
+	auxParity = modbusRegister.parity;
+	auxtimeBtw[0] = modbusRegister.timeBtw[0];	
+	auxtimeBtw[1] = modbusRegister.timeBtw[1];
+	auxtimeBtw[2] = modbusRegister.timeBtw[2];
+	auxtimeBtw[3] = modbusRegister.timeBtw[3];
+	
+	if(slaveAddress == 0xFF){
+		slaveAddress = 0x02;
+		auxSlaveAddress = slaveAddress;
+	}
+	if(modbusRegister.brConfig == 0xFF){
+		modbusRegister.brConfig = 0x00;
+		auxbrConfig = modbusRegister.brConfig;
+	}
+	if(modbusRegister.parity == 0xFF){
+		modbusRegister.parity = 0x01;
+		auxParity = modbusRegister.parity;
+	}
+	if(modbusRegister.timeBtw[0] == 0xFFFF){
+		modbusRegister.timeBtw[0] = 0x00;
+		auxtimeBtw[0] = modbusRegister.timeBtw[0];
+	}
+	if(modbusRegister.timeBtw[1] == 0xFFFF){
+		modbusRegister.timeBtw[1] = 0x00;
+		auxtimeBtw[1] = modbusRegister.timeBtw[1];
+	}
+	if(modbusRegister.timeBtw[2] == 0xFFFF){
+		modbusRegister.timeBtw[2] = 0x00;
+		auxtimeBtw[2] = modbusRegister.timeBtw[2];
+	}
+	if(modbusRegister.timeBtw[3] == 0xFFFF){
+		modbusRegister.timeBtw[3] = 0x00;
+		auxtimeBtw[3] = modbusRegister.timeBtw[3];
+	}
 	modbusRegister.unixTime				= 1770766800;
 	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
-	modbusRegister.timeBtw[0]			= 0x0;
-	modbusRegister.timeBtw[1]			= 0x0;
-	modbusRegister.timeBtw[2]			= 0x0;
-	modbusRegister.timeBtw[3]			= 0x0;
 	modbusRegister.newEventCounter		= 0x0000;
+
 	
-    SYSTEM_Initialize();
-	USART0_Initialize(modbusRegister.brConfig, modbusRegister.parity);
-	TC0_Initialize();
-	TC1_Initialize();
-	InitializeEvents();
 	
-	sei();
-	
-	TMR0_SetHandler(do10ms);
-	TMR1_SetHandler(do10us);
-	USART0_ReceiveInterruptEnable();
-	
-	uint8_t hbState = 0;
 	decodeState = IDLE;
 	hbTime = PERIOD250MS;
 	auxTik = 25000;
@@ -818,7 +878,7 @@ int main(void){
 	indexTxR = 0;
 	indexRxW = 0;
 	indexRxR = 0;
- 
+		
 	unixTik = PERIOD500MS;
 
 	/*-----LECTURA ENTRADAS-----------------------*/
@@ -832,7 +892,20 @@ int main(void){
 	tikBetweenTime[1] = 0;
 	tikBetweenTime[2] = 0;
 	tikBetweenTime[3] = 0;
-	  
+		
+
+	USART0_Initialize(modbusRegister.brConfig, modbusRegister.parity);
+	TC0_Initialize();
+	TC1_Initialize();
+	InitializeEvents();
+	
+	sei();
+	
+	TMR0_SetHandler(do10ms);
+	TMR1_SetHandler(do10us);
+	USART0_ReceiveInterruptEnable();
+
+	
 	while(1){
 		
 			if(!hbTime){ //Heartbeat
@@ -867,6 +940,51 @@ int main(void){
 				//GUARDAR TODOS LOS REGISTROS EN EEPROM Y RESETEAR USART
 				//modbusRegister.brConfig = 0x00;
 				//modbusRegister.parity = 0x00;
+						if(auxSlaveAddress != slaveAddress){
+							//cargar eeprom
+							EEPROM_Write(SLAVE_EEPROM_ADDRESS, slaveAddress);
+							auxSlaveAddress = slaveAddress;
+						}
+						
+						if(auxbrConfig != modbusRegister.brConfig){
+							//cargar eeprom
+							EEPROM_Write(BRCONFIG_EEPROM_ADDRESS,modbusRegister.brConfig);
+							auxbrConfig = modbusRegister.brConfig;
+						}
+						if(auxParity != modbusRegister.parity){
+							//cargar eeprom
+							EEPROM_Write(PARITY_EEPROM_ADDRESS,modbusRegister.parity);
+							auxParity = modbusRegister.parity;
+						}
+						if(auxtimeBtw[0] != modbusRegister.timeBtw[0]){
+							//cargar eeprom
+							myWord.ui16[0]=modbusRegister.timeBtw[0];
+							EEPROM_Write(TIMEBTW0_HIGH_EEPROM_ADDRESS,myWord.ui8[1]);
+							EEPROM_Write(TIMEBTW0_LOW_EEPROM_ADDRESS,myWord.ui8[0]);
+							auxtimeBtw[0] = modbusRegister.timeBtw[0];
+						}
+						
+						if(auxtimeBtw[1] != modbusRegister.timeBtw[1]){
+							//cargar eeprom
+							myWord.ui16[0]=modbusRegister.timeBtw[1];
+							EEPROM_Write(TIMEBTW1_HIGH_EEPROM_ADDRESS,myWord.ui8[1]);
+							EEPROM_Write(TIMEBTW1_LOW_EEPROM_ADDRESS,myWord.ui8[0]);
+							auxtimeBtw[1] = modbusRegister.timeBtw[1];
+						}
+						if(auxtimeBtw[2] != modbusRegister.timeBtw[2]){
+							//cargar eeprom
+							myWord.ui16[0]=modbusRegister.timeBtw[2];
+							EEPROM_Write(TIMEBTW2_HIGH_EEPROM_ADDRESS,myWord.ui8[1]);
+							EEPROM_Write(TIMEBTW2_LOW_EEPROM_ADDRESS,myWord.ui8[0]);
+							auxtimeBtw[2] = modbusRegister.timeBtw[2];
+						}
+						if(auxtimeBtw[3] != modbusRegister.timeBtw[3]){
+							//cargar eeprom
+							myWord.ui16[0]=modbusRegister.timeBtw[3];
+							EEPROM_Write(TIMEBTW3_HIGH_EEPROM_ADDRESS,myWord.ui8[1]);
+							EEPROM_Write(TIMEBTW3_LOW_EEPROM_ADDRESS,myWord.ui8[0]);
+							auxtimeBtw[3] = modbusRegister.timeBtw[3];
+						}
 				USART0_Deinitialize();
 				USART0_Initialize(modbusRegister.brConfig,modbusRegister.parity);
 				commFlags.iFlags.restartComms = 0;
@@ -880,7 +998,13 @@ int main(void){
 			RegInput();
 		}
 	
-		//PORTB = ((outValues << 1) & MASK_PORTB) | hbState ; 
+	//-----------------------DATOS EEPROM------------------------------------------------------------
+		//1ra vez leer variables de eprom y cargar modbus registers y aux value tmb
+		//Faltaria declarar las variables en la eeprom
+		
+
+		
+		PORTB = ((outValues << 1) & MASK_PORTB) | hbState ; 
 
 	}
 }

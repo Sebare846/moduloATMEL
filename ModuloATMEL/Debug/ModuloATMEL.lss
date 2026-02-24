@@ -3,39 +3,39 @@ ModuloATMEL.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  00001810  2**0
+  0 .data         00000000  00800100  00800100  00001818  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .mySlaveAddress 00000001  008003ff  008003ff  000016ce  2**0
+  1 .mySlaveAddress 00000001  008003ff  008003ff  000016d6  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .modbus_r     00000012  00800400  00800400  000016cf  2**0
+  2 .modbus_r     00000012  00800400  00800400  000016d7  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .fixed_events 0000012c  00800772  00800772  000016e1  2**0
+  3 .fixed_events 0000012c  00800772  00800772  000016e9  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .text         000015fa  00000000  00000000  000000d4  2**1
+  4 .text         00001602  00000000  00000000  000000d4  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  5 .bss          0000026d  00800100  00800100  000016ce  2**0
+  5 .bss          0000026d  00800100  00800100  000016d6  2**0
                   ALLOC
-  6 .fuse         00000003  00820000  00820000  0000180d  2**0
+  6 .fuse         00000003  00820000  00820000  00001815  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .comment      00000030  00000000  00000000  00001810  2**0
+  7 .comment      00000030  00000000  00000000  00001818  2**0
                   CONTENTS, READONLY
-  8 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001840  2**2
+  8 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001848  2**2
                   CONTENTS, READONLY
-  9 .debug_aranges 00000348  00000000  00000000  00001880  2**0
+  9 .debug_aranges 00000348  00000000  00000000  00001888  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_info   00002510  00000000  00000000  00001bc8  2**0
+ 10 .debug_info   00002510  00000000  00000000  00001bd0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_abbrev 00000dd0  00000000  00000000  000040d8  2**0
+ 11 .debug_abbrev 00000dd0  00000000  00000000  000040e0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   00001d62  00000000  00000000  00004ea8  2**0
+ 12 .debug_line   00001d6c  00000000  00000000  00004eb0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_frame  000006cc  00000000  00000000  00006c0c  2**2
+ 13 .debug_frame  000006cc  00000000  00000000  00006c1c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    0000120b  00000000  00000000  000072d8  2**0
+ 14 .debug_str    0000120b  00000000  00000000  000072e8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_loc    00000a34  00000000  00000000  000084e3  2**0
+ 15 .debug_loc    00000a34  00000000  00000000  000084f3  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_ranges 000002e0  00000000  00000000  00008f17  2**0
+ 16 .debug_ranges 000002e0  00000000  00000000  00008f27  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -51,11 +51,11 @@ Disassembly of section .text:
       1c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
       20:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
       24:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-      28:	0c 94 56 0a 	jmp	0x14ac	; 0x14ac <__vector_10>
-      2c:	0c 94 69 0a 	jmp	0x14d2	; 0x14d2 <__vector_11>
-      30:	0c 94 3d 0a 	jmp	0x147a	; 0x147a <__vector_12>
-      34:	0c 94 4b 0a 	jmp	0x1496	; 0x1496 <__vector_13>
-      38:	0c 94 f1 09 	jmp	0x13e2	; 0x13e2 <__vector_14>
+      28:	0c 94 5a 0a 	jmp	0x14b4	; 0x14b4 <__vector_10>
+      2c:	0c 94 6d 0a 	jmp	0x14da	; 0x14da <__vector_11>
+      30:	0c 94 41 0a 	jmp	0x1482	; 0x1482 <__vector_12>
+      34:	0c 94 4f 0a 	jmp	0x149e	; 0x149e <__vector_13>
+      38:	0c 94 f5 09 	jmp	0x13ea	; 0x13ea <__vector_14>
       3c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
       40:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
       44:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
@@ -87,8 +87,8 @@ Disassembly of section .text:
       82:	11 e0       	ldi	r17, 0x01	; 1
       84:	a0 e0       	ldi	r26, 0x00	; 0
       86:	b1 e0       	ldi	r27, 0x01	; 1
-      88:	ea ef       	ldi	r30, 0xFA	; 250
-      8a:	f5 e1       	ldi	r31, 0x15	; 21
+      88:	e2 e0       	ldi	r30, 0x02	; 2
+      8a:	f6 e1       	ldi	r31, 0x16	; 22
       8c:	02 c0       	rjmp	.+4      	; 0x92 <__do_copy_data+0x10>
       8e:	05 90       	lpm	r0, Z+
       90:	0d 92       	st	X+, r0
@@ -109,8 +109,8 @@ Disassembly of section .text:
       a2:	ad 36       	cpi	r26, 0x6D	; 109
       a4:	b2 07       	cpc	r27, r18
       a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
-      a8:	0e 94 7f 07 	call	0xefe	; 0xefe <main>
-      ac:	0c 94 fb 0a 	jmp	0x15f6	; 0x15f6 <_exit>
+      a8:	0e 94 83 07 	call	0xf06	; 0xf06 <main>
+      ac:	0c 94 ff 0a 	jmp	0x15fe	; 0x15fe <_exit>
 
 000000b0 <__bad_interrupt>:
       b0:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -188,7 +188,7 @@ Disassembly of section .text:
 
 0000015c <UARTsendByte>:
      15c:	10 c0       	rjmp	.+32     	; 0x17e <UARTsendByte+0x22>
-     15e:	0e 94 9f 0a 	call	0x153e	; 0x153e <USART0_IsTxReady>
+     15e:	0e 94 a3 0a 	call	0x1546	; 0x1546 <USART0_IsTxReady>
      162:	88 23       	and	r24, r24
      164:	61 f0       	breq	.+24     	; 0x17e <UARTsendByte+0x22>
      166:	e0 91 54 02 	lds	r30, 0x0254	; 0x800254 <indexTxR>
@@ -199,7 +199,7 @@ Disassembly of section .text:
      174:	eb 59       	subi	r30, 0x9B	; 155
      176:	fd 4f       	sbci	r31, 0xFD	; 253
      178:	80 81       	ld	r24, Z
-     17a:	0e 94 ab 0a 	call	0x1556	; 0x1556 <USART0_Write>
+     17a:	0e 94 af 0a 	call	0x155e	; 0x155e <USART0_Write>
      17e:	90 91 54 02 	lds	r25, 0x0254	; 0x800254 <indexTxR>
      182:	80 91 4d 01 	lds	r24, 0x014D	; 0x80014d <indexTxW>
      186:	98 13       	cpse	r25, r24
@@ -590,7 +590,7 @@ Disassembly of section .text:
      514:	0e 94 52 01 	call	0x2a4	; 0x2a4 <UpdateState>
      518:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <newValueA>
      51c:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <oldValueA>
-     520:	0e 94 e0 09 	call	0x13c0	; 0x13c0 <TC0_Enable_CompareA_Interrupt>
+     520:	0e 94 e4 09 	call	0x13c8	; 0x13c8 <TC0_Enable_CompareA_Interrupt>
      524:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
      528:	8e 7f       	andi	r24, 0xFE	; 254
      52a:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
@@ -669,7 +669,7 @@ void MODBUS_DecodeFrame(uint8_t data){
      592:	fa 01       	movw	r30, r20
      594:	ec 5c       	subi	r30, 0xCC	; 204
      596:	ff 4f       	sbci	r31, 0xFF	; 255
-     598:	0c 94 f5 0a 	jmp	0x15ea	; 0x15ea <__tablejump2__>
+     598:	0c 94 f9 0a 	jmp	0x15f2	; 0x15f2 <__tablejump2__>
 		case IDLE:
 			if(data == MODBUS_BROADCAST_ADDRESS || data == MODBUS_SLAVE_ADDRESS){
      59c:	88 23       	and	r24, r24
@@ -938,14 +938,14 @@ void MODBUS_ProcessFunction(){
      746:	18 f4       	brcc	.+6      	; 0x74e <MODBUS_ProcessFunction+0x20>
      748:	83 30       	cpi	r24, 0x03	; 3
      74a:	41 f0       	breq	.+16     	; 0x75c <MODBUS_ProcessFunction+0x2e>
-     74c:	75 c3       	rjmp	.+1770   	; 0xe38 <__stack+0x539>
+     74c:	79 c3       	rjmp	.+1778   	; 0xe40 <__stack+0x541>
      74e:	88 30       	cpi	r24, 0x08	; 8
      750:	09 f4       	brne	.+2      	; 0x754 <MODBUS_ProcessFunction+0x26>
-     752:	ab c1       	rjmp	.+854    	; 0xaaa <__stack+0x1ab>
+     752:	af c1       	rjmp	.+862    	; 0xab2 <__stack+0x1b3>
      754:	80 31       	cpi	r24, 0x10	; 16
      756:	09 f4       	brne	.+2      	; 0x75a <MODBUS_ProcessFunction+0x2c>
-     758:	7c c2       	rjmp	.+1272   	; 0xc52 <__stack+0x353>
-     75a:	6e c3       	rjmp	.+1756   	; 0xe38 <__stack+0x539>
+     758:	80 c2       	rjmp	.+1280   	; 0xc5a <__stack+0x35b>
+     75a:	72 c3       	rjmp	.+1764   	; 0xe40 <__stack+0x541>
 		case READ_HOLDING_REGISTERS: //Ver si conviene copiar valores en RAM o dejarlos solo en EEPROM
 			myModbusFrame.errorCode = 0x83;
      75c:	83 e8       	ldi	r24, 0x83	; 131
@@ -958,7 +958,7 @@ void MODBUS_ProcessFunction(){
      76a:	8f 7e       	andi	r24, 0xEF	; 239
      76c:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     770:	73 c3       	rjmp	.+1766   	; 0xe58 <__stack+0x559>
+     770:	77 c3       	rjmp	.+1774   	; 0xe60 <__stack+0x561>
 			}
 			//Direccion inicial
 			myWord.ui8[1] = bufferRx[indexRxR++];
@@ -1024,7 +1024,7 @@ void MODBUS_ProcessFunction(){
      7e0:	88 60       	ori	r24, 0x08	; 8
      7e2:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     7e6:	38 c3       	rjmp	.+1648   	; 0xe58 <__stack+0x559>
+     7e6:	3c c3       	rjmp	.+1656   	; 0xe60 <__stack+0x561>
 			}
 			//Controlar validez direcciones
 			if((regAddress < START_CONFIG_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_R && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
@@ -1050,7 +1050,7 @@ void MODBUS_ProcessFunction(){
      80e:	88 60       	ori	r24, 0x08	; 8
      810:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     814:	21 c3       	rjmp	.+1602   	; 0xe58 <__stack+0x559>
+     814:	25 c3       	rjmp	.+1610   	; 0xe60 <__stack+0x561>
 			}			
 			if(regAddress>=START_CONFIG_ADDRESS && regAddress <= END_CONFIG_ADDRESS_R){
      816:	9c 01       	movw	r18, r24
@@ -1078,7 +1078,7 @@ void MODBUS_ProcessFunction(){
      83e:	88 60       	ori	r24, 0x08	; 8
      840:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 					return;
-     844:	09 c3       	rjmp	.+1554   	; 0xe58 <__stack+0x559>
+     844:	0d c3       	rjmp	.+1562   	; 0xe60 <__stack+0x561>
 				}
 
 			}
@@ -1108,7 +1108,7 @@ void MODBUS_ProcessFunction(){
      870:	88 60       	ori	r24, 0x08	; 8
      872:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 					return;
-     876:	f0 c2       	rjmp	.+1504   	; 0xe58 <__stack+0x559>
+     876:	f4 c2       	rjmp	.+1512   	; 0xe60 <__stack+0x561>
 				}
 			}
 			
@@ -1246,7 +1246,7 @@ void MODBUS_ProcessFunction(){
      93c:	fd 4f       	sbci	r31, 0xFD	; 253
      93e:	90 83       	st	Z, r25
 		break;
-     940:	8b c2       	rjmp	.+1302   	; 0xe58 <__stack+0x559>
+     940:	8f c2       	rjmp	.+1310   	; 0xe60 <__stack+0x561>
 		case WRITE_SINGLE_REGISTER:
 			myModbusFrame.errorCode = 0x86;
      942:	86 e8       	ldi	r24, 0x86	; 134
@@ -1299,2031 +1299,2035 @@ void MODBUS_ProcessFunction(){
 			regValue = myWord.ui16[0];
 			
 			//controlar direccion
-			if((regAddress < SLAVE_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_W && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
-     99c:	8f 3f       	cpi	r24, 0xFF	; 255
+			if((regAddress < START_SLAVE_ADDRESS) || (regAddress == SLAVE_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_W && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
+     99c:	8e 3f       	cpi	r24, 0xFE	; 254
      99e:	e3 e0       	ldi	r30, 0x03	; 3
      9a0:	9e 07       	cpc	r25, r30
-     9a2:	50 f0       	brcs	.+20     	; 0x9b8 <__stack+0xb9>
-     9a4:	ac 01       	movw	r20, r24
-     9a6:	4e 50       	subi	r20, 0x0E	; 14
-     9a8:	54 40       	sbci	r21, 0x04	; 4
-     9aa:	44 36       	cpi	r20, 0x64	; 100
-     9ac:	53 40       	sbci	r21, 0x03	; 3
-     9ae:	20 f0       	brcs	.+8      	; 0x9b8 <__stack+0xb9>
-     9b0:	8f 39       	cpi	r24, 0x9F	; 159
-     9b2:	38 e0       	ldi	r19, 0x08	; 8
-     9b4:	93 07       	cpc	r25, r19
-     9b6:	48 f0       	brcs	.+18     	; 0x9ca <__stack+0xcb>
+     9a2:	70 f0       	brcs	.+28     	; 0x9c0 <__stack+0xc1>
+     9a4:	8f 3f       	cpi	r24, 0xFF	; 255
+     9a6:	f3 e0       	ldi	r31, 0x03	; 3
+     9a8:	9f 07       	cpc	r25, r31
+     9aa:	51 f0       	breq	.+20     	; 0x9c0 <__stack+0xc1>
+     9ac:	ac 01       	movw	r20, r24
+     9ae:	4e 50       	subi	r20, 0x0E	; 14
+     9b0:	54 40       	sbci	r21, 0x04	; 4
+     9b2:	44 36       	cpi	r20, 0x64	; 100
+     9b4:	53 40       	sbci	r21, 0x03	; 3
+     9b6:	20 f0       	brcs	.+8      	; 0x9c0 <__stack+0xc1>
+     9b8:	8f 39       	cpi	r24, 0x9F	; 159
+     9ba:	48 e0       	ldi	r20, 0x08	; 8
+     9bc:	94 07       	cpc	r25, r20
+     9be:	48 f0       	brcs	.+18     	; 0x9d2 <__stack+0xd3>
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
-     9b8:	82 e0       	ldi	r24, 0x02	; 2
-     9ba:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
+     9c0:	82 e0       	ldi	r24, 0x02	; 2
+     9c2:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
 				commFlags.iFlags.isExceptionCode = 1;
-     9be:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     9c2:	88 60       	ori	r24, 0x08	; 8
-     9c4:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     9c6:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     9ca:	88 60       	ori	r24, 0x08	; 8
+     9cc:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     9c8:	47 c2       	rjmp	.+1166   	; 0xe58 <__stack+0x559>
+     9d0:	47 c2       	rjmp	.+1166   	; 0xe60 <__stack+0x561>
 			}
 			
 			*((uint8_t *)(regAddress)) = myWord.ui8[1];
-     9ca:	dc 01       	movw	r26, r24
-     9cc:	2c 93       	st	X, r18
-			*((uint8_t *)(regAddress+1)) = myWord.ui8[0];
-     9ce:	20 91 56 02 	lds	r18, 0x0256	; 0x800256 <myWord>
-     9d2:	11 96       	adiw	r26, 0x01	; 1
+     9d2:	dc 01       	movw	r26, r24
      9d4:	2c 93       	st	X, r18
+			*((uint8_t *)(regAddress+1)) = myWord.ui8[0];
+     9d6:	20 91 56 02 	lds	r18, 0x0256	; 0x800256 <myWord>
+     9da:	11 96       	adiw	r26, 0x01	; 1
+     9dc:	2c 93       	st	X, r18
 		
 			if(commFlags.iFlags.isBroadcast){
-     9d6:	20 91 53 02 	lds	r18, 0x0253	; 0x800253 <commFlags>
-     9da:	24 ff       	sbrs	r18, 4
-     9dc:	05 c0       	rjmp	.+10     	; 0x9e8 <__stack+0xe9>
+     9de:	20 91 53 02 	lds	r18, 0x0253	; 0x800253 <commFlags>
+     9e2:	24 ff       	sbrs	r18, 4
+     9e4:	05 c0       	rjmp	.+10     	; 0x9f0 <__stack+0xf1>
 				commFlags.iFlags.isBroadcast = 0;
-     9de:	82 2f       	mov	r24, r18
-     9e0:	8f 7e       	andi	r24, 0xEF	; 239
-     9e2:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     9e6:	82 2f       	mov	r24, r18
+     9e8:	8f 7e       	andi	r24, 0xEF	; 239
+     9ea:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     9e6:	38 c2       	rjmp	.+1136   	; 0xe58 <__stack+0x559>
+     9ee:	38 c2       	rjmp	.+1136   	; 0xe60 <__stack+0x561>
 			}
 		
 			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
-     9e8:	a0 91 4d 01 	lds	r26, 0x014D	; 0x80014d <indexTxW>
-     9ec:	e1 e0       	ldi	r30, 0x01	; 1
-     9ee:	ea 0f       	add	r30, r26
-     9f0:	b0 e0       	ldi	r27, 0x00	; 0
-     9f2:	20 91 ff 03 	lds	r18, 0x03FF	; 0x8003ff <slaveAddress>
-     9f6:	ab 59       	subi	r26, 0x9B	; 155
-     9f8:	bd 4f       	sbci	r27, 0xFD	; 253
-     9fa:	2c 93       	st	X, r18
+     9f0:	a0 91 4d 01 	lds	r26, 0x014D	; 0x80014d <indexTxW>
+     9f4:	e1 e0       	ldi	r30, 0x01	; 1
+     9f6:	ea 0f       	add	r30, r26
+     9f8:	b0 e0       	ldi	r27, 0x00	; 0
+     9fa:	20 91 ff 03 	lds	r18, 0x03FF	; 0x8003ff <slaveAddress>
+     9fe:	ab 59       	subi	r26, 0x9B	; 155
+     a00:	bd 4f       	sbci	r27, 0xFD	; 253
+     a02:	2c 93       	st	X, r18
 			bufferTx[indexTxW++] = WRITE_SINGLE_REGISTER;
-     9fc:	a1 e0       	ldi	r26, 0x01	; 1
-     9fe:	ae 0f       	add	r26, r30
-     a00:	f0 e0       	ldi	r31, 0x00	; 0
-     a02:	eb 59       	subi	r30, 0x9B	; 155
-     a04:	fd 4f       	sbci	r31, 0xFD	; 253
-     a06:	26 e0       	ldi	r18, 0x06	; 6
-     a08:	20 83       	st	Z, r18
+     a04:	a1 e0       	ldi	r26, 0x01	; 1
+     a06:	ae 0f       	add	r26, r30
+     a08:	f0 e0       	ldi	r31, 0x00	; 0
+     a0a:	eb 59       	subi	r30, 0x9B	; 155
+     a0c:	fd 4f       	sbci	r31, 0xFD	; 253
+     a0e:	26 e0       	ldi	r18, 0x06	; 6
+     a10:	20 83       	st	Z, r18
 			myWord.ui16[0] = regAddress;
-     a0a:	c6 e5       	ldi	r28, 0x56	; 86
-     a0c:	d2 e0       	ldi	r29, 0x02	; 2
-     a0e:	99 83       	std	Y+1, r25	; 0x01
-     a10:	88 83       	st	Y, r24
+     a12:	c6 e5       	ldi	r28, 0x56	; 86
+     a14:	d2 e0       	ldi	r29, 0x02	; 2
+     a16:	99 83       	std	Y+1, r25	; 0x01
+     a18:	88 83       	st	Y, r24
 			bufferTx[indexTxW++] = myWord.ui8[1];
-     a12:	e1 e0       	ldi	r30, 0x01	; 1
-     a14:	ea 0f       	add	r30, r26
-     a16:	b0 e0       	ldi	r27, 0x00	; 0
-     a18:	29 81       	ldd	r18, Y+1	; 0x01
-     a1a:	ab 59       	subi	r26, 0x9B	; 155
-     a1c:	bd 4f       	sbci	r27, 0xFD	; 253
-     a1e:	2c 93       	st	X, r18
+     a1a:	e1 e0       	ldi	r30, 0x01	; 1
+     a1c:	ea 0f       	add	r30, r26
+     a1e:	b0 e0       	ldi	r27, 0x00	; 0
+     a20:	29 81       	ldd	r18, Y+1	; 0x01
+     a22:	ab 59       	subi	r26, 0x9B	; 155
+     a24:	bd 4f       	sbci	r27, 0xFD	; 253
+     a26:	2c 93       	st	X, r18
 			bufferTx[indexTxW++] = myWord.ui8[0];
-     a20:	a1 e0       	ldi	r26, 0x01	; 1
-     a22:	ae 0f       	add	r26, r30
-     a24:	f0 e0       	ldi	r31, 0x00	; 0
-     a26:	28 81       	ld	r18, Y
-     a28:	eb 59       	subi	r30, 0x9B	; 155
-     a2a:	fd 4f       	sbci	r31, 0xFD	; 253
-     a2c:	20 83       	st	Z, r18
+     a28:	a1 e0       	ldi	r26, 0x01	; 1
+     a2a:	ae 0f       	add	r26, r30
+     a2c:	f0 e0       	ldi	r31, 0x00	; 0
+     a2e:	28 81       	ld	r18, Y
+     a30:	eb 59       	subi	r30, 0x9B	; 155
+     a32:	fd 4f       	sbci	r31, 0xFD	; 253
+     a34:	20 83       	st	Z, r18
 			bufferTx[indexTxW++] = *((uint8_t *)(regAddress));
-     a2e:	e1 e0       	ldi	r30, 0x01	; 1
-     a30:	ea 0f       	add	r30, r26
-     a32:	e0 93 4d 01 	sts	0x014D, r30	; 0x80014d <indexTxW>
-     a36:	b0 e0       	ldi	r27, 0x00	; 0
-     a38:	ec 01       	movw	r28, r24
-     a3a:	28 81       	ld	r18, Y
-     a3c:	ab 59       	subi	r26, 0x9B	; 155
-     a3e:	bd 4f       	sbci	r27, 0xFD	; 253
-     a40:	2c 93       	st	X, r18
+     a36:	e1 e0       	ldi	r30, 0x01	; 1
+     a38:	ea 0f       	add	r30, r26
+     a3a:	e0 93 4d 01 	sts	0x014D, r30	; 0x80014d <indexTxW>
+     a3e:	b0 e0       	ldi	r27, 0x00	; 0
+     a40:	ec 01       	movw	r28, r24
+     a42:	28 81       	ld	r18, Y
+     a44:	ab 59       	subi	r26, 0x9B	; 155
+     a46:	bd 4f       	sbci	r27, 0xFD	; 253
+     a48:	2c 93       	st	X, r18
 			bufferTx[indexTxW++] = *((uint8_t *)(regAddress+1));
-     a42:	21 e0       	ldi	r18, 0x01	; 1
-     a44:	2e 0f       	add	r18, r30
-     a46:	20 93 4d 01 	sts	0x014D, r18	; 0x80014d <indexTxW>
-     a4a:	f0 e0       	ldi	r31, 0x00	; 0
-     a4c:	89 81       	ldd	r24, Y+1	; 0x01
-     a4e:	eb 59       	subi	r30, 0x9B	; 155
-     a50:	fd 4f       	sbci	r31, 0xFD	; 253
-     a52:	80 83       	st	Z, r24
+     a4a:	21 e0       	ldi	r18, 0x01	; 1
+     a4c:	2e 0f       	add	r18, r30
+     a4e:	20 93 4d 01 	sts	0x014D, r18	; 0x80014d <indexTxW>
+     a52:	f0 e0       	ldi	r31, 0x00	; 0
+     a54:	89 81       	ldd	r24, Y+1	; 0x01
+     a56:	eb 59       	subi	r30, 0x9B	; 155
+     a58:	fd 4f       	sbci	r31, 0xFD	; 253
+     a5a:	80 83       	st	Z, r24
 		
 			for(uint8_t i = indexTxR; i < indexTxW;i++){
-     a54:	c0 91 54 02 	lds	r28, 0x0254	; 0x800254 <indexTxR>
-     a58:	08 c0       	rjmp	.+16     	; 0xa6a <__stack+0x16b>
+     a5c:	c0 91 54 02 	lds	r28, 0x0254	; 0x800254 <indexTxR>
+     a60:	08 c0       	rjmp	.+16     	; 0xa72 <__stack+0x173>
 				MODBUS_CalculateCRC(bufferTx[i]);
-     a5a:	ec 2f       	mov	r30, r28
-     a5c:	f0 e0       	ldi	r31, 0x00	; 0
-     a5e:	eb 59       	subi	r30, 0x9B	; 155
-     a60:	fd 4f       	sbci	r31, 0xFD	; 253
-     a62:	80 81       	ld	r24, Z
-     a64:	0e 94 98 02 	call	0x530	; 0x530 <MODBUS_CalculateCRC>
+     a62:	ec 2f       	mov	r30, r28
+     a64:	f0 e0       	ldi	r31, 0x00	; 0
+     a66:	eb 59       	subi	r30, 0x9B	; 155
+     a68:	fd 4f       	sbci	r31, 0xFD	; 253
+     a6a:	80 81       	ld	r24, Z
+     a6c:	0e 94 98 02 	call	0x530	; 0x530 <MODBUS_CalculateCRC>
 			bufferTx[indexTxW++] = myWord.ui8[1];
 			bufferTx[indexTxW++] = myWord.ui8[0];
 			bufferTx[indexTxW++] = *((uint8_t *)(regAddress));
 			bufferTx[indexTxW++] = *((uint8_t *)(regAddress+1));
 		
 			for(uint8_t i = indexTxR; i < indexTxW;i++){
-     a68:	cf 5f       	subi	r28, 0xFF	; 255
-     a6a:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
-     a6e:	ce 17       	cp	r28, r30
-     a70:	a0 f3       	brcs	.-24     	; 0xa5a <__stack+0x15b>
+     a70:	cf 5f       	subi	r28, 0xFF	; 255
+     a72:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
+     a76:	ce 17       	cp	r28, r30
+     a78:	a0 f3       	brcs	.-24     	; 0xa62 <__stack+0x163>
 				MODBUS_CalculateCRC(bufferTx[i]);
 			}
 			myWord.ui16[0] = myModbusFrame.crcSlave;
-     a72:	90 91 61 02 	lds	r25, 0x0261	; 0x800261 <myModbusFrame+0x4>
-     a76:	80 91 62 02 	lds	r24, 0x0262	; 0x800262 <myModbusFrame+0x5>
-     a7a:	a6 e5       	ldi	r26, 0x56	; 86
-     a7c:	b2 e0       	ldi	r27, 0x02	; 2
-     a7e:	9c 93       	st	X, r25
-     a80:	11 96       	adiw	r26, 0x01	; 1
-     a82:	8c 93       	st	X, r24
-     a84:	11 97       	sbiw	r26, 0x01	; 1
+     a7a:	90 91 61 02 	lds	r25, 0x0261	; 0x800261 <myModbusFrame+0x4>
+     a7e:	80 91 62 02 	lds	r24, 0x0262	; 0x800262 <myModbusFrame+0x5>
+     a82:	a6 e5       	ldi	r26, 0x56	; 86
+     a84:	b2 e0       	ldi	r27, 0x02	; 2
+     a86:	9c 93       	st	X, r25
+     a88:	11 96       	adiw	r26, 0x01	; 1
+     a8a:	8c 93       	st	X, r24
+     a8c:	11 97       	sbiw	r26, 0x01	; 1
 			bufferTx[indexTxW++] = myWord.ui8[0];
-     a86:	81 e0       	ldi	r24, 0x01	; 1
-     a88:	8e 0f       	add	r24, r30
-     a8a:	f0 e0       	ldi	r31, 0x00	; 0
-     a8c:	eb 59       	subi	r30, 0x9B	; 155
-     a8e:	fd 4f       	sbci	r31, 0xFD	; 253
-     a90:	90 83       	st	Z, r25
+     a8e:	81 e0       	ldi	r24, 0x01	; 1
+     a90:	8e 0f       	add	r24, r30
+     a92:	f0 e0       	ldi	r31, 0x00	; 0
+     a94:	eb 59       	subi	r30, 0x9B	; 155
+     a96:	fd 4f       	sbci	r31, 0xFD	; 253
+     a98:	90 83       	st	Z, r25
 			bufferTx[indexTxW++] = myWord.ui8[1];
-     a92:	91 e0       	ldi	r25, 0x01	; 1
-     a94:	98 0f       	add	r25, r24
-     a96:	90 93 4d 01 	sts	0x014D, r25	; 0x80014d <indexTxW>
-     a9a:	e8 2f       	mov	r30, r24
-     a9c:	f0 e0       	ldi	r31, 0x00	; 0
-     a9e:	11 96       	adiw	r26, 0x01	; 1
-     aa0:	8c 91       	ld	r24, X
-     aa2:	eb 59       	subi	r30, 0x9B	; 155
-     aa4:	fd 4f       	sbci	r31, 0xFD	; 253
-     aa6:	80 83       	st	Z, r24
+     a9a:	91 e0       	ldi	r25, 0x01	; 1
+     a9c:	98 0f       	add	r25, r24
+     a9e:	90 93 4d 01 	sts	0x014D, r25	; 0x80014d <indexTxW>
+     aa2:	e8 2f       	mov	r30, r24
+     aa4:	f0 e0       	ldi	r31, 0x00	; 0
+     aa6:	11 96       	adiw	r26, 0x01	; 1
+     aa8:	8c 91       	ld	r24, X
+     aaa:	eb 59       	subi	r30, 0x9B	; 155
+     aac:	fd 4f       	sbci	r31, 0xFD	; 253
+     aae:	80 83       	st	Z, r24
 		break;
-     aa8:	d7 c1       	rjmp	.+942    	; 0xe58 <__stack+0x559>
+     ab0:	d7 c1       	rjmp	.+942    	; 0xe60 <__stack+0x561>
 		case DIAGNOSTICS:
 			myModbusFrame.errorCode = 0x88;
-     aaa:	88 e8       	ldi	r24, 0x88	; 136
-     aac:	80 93 5f 02 	sts	0x025F, r24	; 0x80025f <myModbusFrame+0x2>
+     ab2:	88 e8       	ldi	r24, 0x88	; 136
+     ab4:	80 93 5f 02 	sts	0x025F, r24	; 0x80025f <myModbusFrame+0x2>
 			if(commFlags.iFlags.isBroadcast){
-     ab0:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     ab4:	84 ff       	sbrs	r24, 4
-     ab6:	04 c0       	rjmp	.+8      	; 0xac0 <__stack+0x1c1>
+     ab8:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     abc:	84 ff       	sbrs	r24, 4
+     abe:	04 c0       	rjmp	.+8      	; 0xac8 <__stack+0x1c9>
 				commFlags.iFlags.isBroadcast = 0;
-     ab8:	8f 7e       	andi	r24, 0xEF	; 239
-     aba:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     ac0:	8f 7e       	andi	r24, 0xEF	; 239
+     ac2:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     abe:	cc c1       	rjmp	.+920    	; 0xe58 <__stack+0x559>
+     ac6:	cc c1       	rjmp	.+920    	; 0xe60 <__stack+0x561>
 			}
 			//Subfuncion
 			myWord.ui8[1] = bufferRx[indexRxR++];
-     ac0:	a0 91 5b 02 	lds	r26, 0x025B	; 0x80025b <indexRxR>
-     ac4:	e1 e0       	ldi	r30, 0x01	; 1
-     ac6:	ea 0f       	add	r30, r26
-     ac8:	e0 93 5b 02 	sts	0x025B, r30	; 0x80025b <indexRxR>
-     acc:	b0 e0       	ldi	r27, 0x00	; 0
-     ace:	ad 5a       	subi	r26, 0xAD	; 173
-     ad0:	be 4f       	sbci	r27, 0xFE	; 254
-     ad2:	8c 91       	ld	r24, X
-     ad4:	c6 e5       	ldi	r28, 0x56	; 86
-     ad6:	d2 e0       	ldi	r29, 0x02	; 2
-     ad8:	89 83       	std	Y+1, r24	; 0x01
+     ac8:	a0 91 5b 02 	lds	r26, 0x025B	; 0x80025b <indexRxR>
+     acc:	e1 e0       	ldi	r30, 0x01	; 1
+     ace:	ea 0f       	add	r30, r26
+     ad0:	e0 93 5b 02 	sts	0x025B, r30	; 0x80025b <indexRxR>
+     ad4:	b0 e0       	ldi	r27, 0x00	; 0
+     ad6:	ad 5a       	subi	r26, 0xAD	; 173
+     ad8:	be 4f       	sbci	r27, 0xFE	; 254
+     ada:	8c 91       	ld	r24, X
+     adc:	c6 e5       	ldi	r28, 0x56	; 86
+     ade:	d2 e0       	ldi	r29, 0x02	; 2
+     ae0:	89 83       	std	Y+1, r24	; 0x01
 			myWord.ui8[0] = bufferRx[indexRxR++];
-     ada:	a1 e0       	ldi	r26, 0x01	; 1
-     adc:	ae 0f       	add	r26, r30
-     ade:	a0 93 5b 02 	sts	0x025B, r26	; 0x80025b <indexRxR>
-     ae2:	f0 e0       	ldi	r31, 0x00	; 0
-     ae4:	ed 5a       	subi	r30, 0xAD	; 173
-     ae6:	fe 4f       	sbci	r31, 0xFE	; 254
-     ae8:	80 81       	ld	r24, Z
-     aea:	88 83       	st	Y, r24
+     ae2:	a1 e0       	ldi	r26, 0x01	; 1
+     ae4:	ae 0f       	add	r26, r30
+     ae6:	a0 93 5b 02 	sts	0x025B, r26	; 0x80025b <indexRxR>
+     aea:	f0 e0       	ldi	r31, 0x00	; 0
+     aec:	ed 5a       	subi	r30, 0xAD	; 173
+     aee:	fe 4f       	sbci	r31, 0xFE	; 254
+     af0:	80 81       	ld	r24, Z
+     af2:	88 83       	st	Y, r24
 			subfunction = myWord.ui16[0];
-     aec:	88 81       	ld	r24, Y
-     aee:	99 81       	ldd	r25, Y+1	; 0x01
+     af4:	88 81       	ld	r24, Y
+     af6:	99 81       	ldd	r25, Y+1	; 0x01
 			myWord.ui8[1] = bufferRx[indexRxR++];
-     af0:	e1 e0       	ldi	r30, 0x01	; 1
-     af2:	ea 0f       	add	r30, r26
-     af4:	e0 93 5b 02 	sts	0x025B, r30	; 0x80025b <indexRxR>
-     af8:	b0 e0       	ldi	r27, 0x00	; 0
-     afa:	ad 5a       	subi	r26, 0xAD	; 173
-     afc:	be 4f       	sbci	r27, 0xFE	; 254
-     afe:	2c 91       	ld	r18, X
-     b00:	29 83       	std	Y+1, r18	; 0x01
+     af8:	e1 e0       	ldi	r30, 0x01	; 1
+     afa:	ea 0f       	add	r30, r26
+     afc:	e0 93 5b 02 	sts	0x025B, r30	; 0x80025b <indexRxR>
+     b00:	b0 e0       	ldi	r27, 0x00	; 0
+     b02:	ad 5a       	subi	r26, 0xAD	; 173
+     b04:	be 4f       	sbci	r27, 0xFE	; 254
+     b06:	2c 91       	ld	r18, X
+     b08:	29 83       	std	Y+1, r18	; 0x01
 			myWord.ui8[0] = bufferRx[indexRxR++];
-     b02:	21 e0       	ldi	r18, 0x01	; 1
-     b04:	2e 0f       	add	r18, r30
-     b06:	20 93 5b 02 	sts	0x025B, r18	; 0x80025b <indexRxR>
-     b0a:	f0 e0       	ldi	r31, 0x00	; 0
-     b0c:	ed 5a       	subi	r30, 0xAD	; 173
-     b0e:	fe 4f       	sbci	r31, 0xFE	; 254
-     b10:	20 81       	ld	r18, Z
-     b12:	28 83       	st	Y, r18
+     b0a:	21 e0       	ldi	r18, 0x01	; 1
+     b0c:	2e 0f       	add	r18, r30
+     b0e:	20 93 5b 02 	sts	0x025B, r18	; 0x80025b <indexRxR>
+     b12:	f0 e0       	ldi	r31, 0x00	; 0
+     b14:	ed 5a       	subi	r30, 0xAD	; 173
+     b16:	fe 4f       	sbci	r31, 0xFE	; 254
+     b18:	20 81       	ld	r18, Z
+     b1a:	28 83       	st	Y, r18
 			regValue = myWord.ui16[0];
-     b14:	28 81       	ld	r18, Y
-     b16:	39 81       	ldd	r19, Y+1	; 0x01
+     b1c:	28 81       	ld	r18, Y
+     b1e:	39 81       	ldd	r19, Y+1	; 0x01
 			
 			switch(subfunction){
-     b18:	81 30       	cpi	r24, 0x01	; 1
-     b1a:	91 05       	cpc	r25, r1
-     b1c:	29 f0       	breq	.+10     	; 0xb28 <__stack+0x229>
-     b1e:	98 f1       	brcs	.+102    	; 0xb86 <__stack+0x287>
-     b20:	82 30       	cpi	r24, 0x02	; 2
+     b20:	81 30       	cpi	r24, 0x01	; 1
      b22:	91 05       	cpc	r25, r1
-     b24:	b9 f0       	breq	.+46     	; 0xb54 <__stack+0x255>
-     b26:	22 c0       	rjmp	.+68     	; 0xb6c <__stack+0x26d>
+     b24:	29 f0       	breq	.+10     	; 0xb30 <__stack+0x231>
+     b26:	98 f1       	brcs	.+102    	; 0xb8e <__stack+0x28f>
+     b28:	82 30       	cpi	r24, 0x02	; 2
+     b2a:	91 05       	cpc	r25, r1
+     b2c:	b9 f0       	breq	.+46     	; 0xb5c <__stack+0x25d>
+     b2e:	22 c0       	rjmp	.+68     	; 0xb74 <__stack+0x275>
 				case RETURN_QUERY_DATA:
 				//Eco
 				break;
 				case RESTART_COMMUNICATIONS:
 					if(regValue == 0x0000 || regValue == 0xFF00){
-     b28:	21 15       	cp	r18, r1
-     b2a:	31 05       	cpc	r19, r1
-     b2c:	21 f0       	breq	.+8      	; 0xb36 <__stack+0x237>
-     b2e:	21 15       	cp	r18, r1
-     b30:	df ef       	ldi	r29, 0xFF	; 255
-     b32:	3d 07       	cpc	r19, r29
-     b34:	31 f4       	brne	.+12     	; 0xb42 <__stack+0x243>
+     b30:	21 15       	cp	r18, r1
+     b32:	31 05       	cpc	r19, r1
+     b34:	21 f0       	breq	.+8      	; 0xb3e <__stack+0x23f>
+     b36:	21 15       	cp	r18, r1
+     b38:	df ef       	ldi	r29, 0xFF	; 255
+     b3a:	3d 07       	cpc	r19, r29
+     b3c:	31 f4       	brne	.+12     	; 0xb4a <__stack+0x24b>
 						//Eco
 						commFlags.iFlags.restartComms = 1; ////
-     b36:	40 91 53 02 	lds	r20, 0x0253	; 0x800253 <commFlags>
-     b3a:	40 64       	ori	r20, 0x40	; 64
-     b3c:	40 93 53 02 	sts	0x0253, r20	; 0x800253 <commFlags>
+     b3e:	40 91 53 02 	lds	r20, 0x0253	; 0x800253 <commFlags>
+     b42:	40 64       	ori	r20, 0x40	; 64
+     b44:	40 93 53 02 	sts	0x0253, r20	; 0x800253 <commFlags>
 						}else{
 						myModbusFrame.excepCode = INVALID_DATA_VALUE;
 						commFlags.iFlags.isExceptionCode = 1;
 						return;
 					}
 				break;
-     b40:	22 c0       	rjmp	.+68     	; 0xb86 <__stack+0x287>
+     b48:	22 c0       	rjmp	.+68     	; 0xb8e <__stack+0x28f>
 				case RESTART_COMMUNICATIONS:
 					if(regValue == 0x0000 || regValue == 0xFF00){
 						//Eco
 						commFlags.iFlags.restartComms = 1; ////
 						}else{
 						myModbusFrame.excepCode = INVALID_DATA_VALUE;
-     b42:	83 e0       	ldi	r24, 0x03	; 3
-     b44:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
+     b4a:	83 e0       	ldi	r24, 0x03	; 3
+     b4c:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
 						commFlags.iFlags.isExceptionCode = 1;
-     b48:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     b4c:	88 60       	ori	r24, 0x08	; 8
-     b4e:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     b50:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     b54:	88 60       	ori	r24, 0x08	; 8
+     b56:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 						return;
-     b52:	82 c1       	rjmp	.+772    	; 0xe58 <__stack+0x559>
+     b5a:	82 c1       	rjmp	.+772    	; 0xe60 <__stack+0x561>
 					}
 				break;
 				case RETURN_DIAGNOSTICS_REGISTER:
 					if(regValue == 0x0000){
-     b54:	21 15       	cp	r18, r1
-     b56:	31 05       	cpc	r19, r1
-     b58:	b1 f0       	breq	.+44     	; 0xb86 <__stack+0x287>
+     b5c:	21 15       	cp	r18, r1
+     b5e:	31 05       	cpc	r19, r1
+     b60:	b1 f0       	breq	.+44     	; 0xb8e <__stack+0x28f>
 						//Registro de diagnostico
 						//regValue  = diagnosticsRegister;
 						// regValue |= diagnosticsRegister;
 						}else{
 						myModbusFrame.excepCode = INVALID_DATA_VALUE;
-     b5a:	83 e0       	ldi	r24, 0x03	; 3
-     b5c:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
+     b62:	83 e0       	ldi	r24, 0x03	; 3
+     b64:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
 						commFlags.iFlags.isExceptionCode = 1;
-     b60:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     b64:	88 60       	ori	r24, 0x08	; 8
-     b66:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     b68:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     b6c:	88 60       	ori	r24, 0x08	; 8
+     b6e:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 						return;
-     b6a:	76 c1       	rjmp	.+748    	; 0xe58 <__stack+0x559>
+     b72:	76 c1       	rjmp	.+748    	; 0xe60 <__stack+0x561>
 					}
 				break;
 				default:
 					myModbusFrame.excepCode = INVALID_FUNCTION;
-     b6c:	81 e0       	ldi	r24, 0x01	; 1
-     b6e:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
+     b74:	81 e0       	ldi	r24, 0x01	; 1
+     b76:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
 					commFlags.iFlags.isExceptionCode = 1;
-     b72:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     b76:	88 60       	ori	r24, 0x08	; 8
-     b78:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     b7a:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     b7e:	88 60       	ori	r24, 0x08	; 8
+     b80:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 					indexRxR = indexRxW;
-     b7c:	80 91 5c 02 	lds	r24, 0x025C	; 0x80025c <indexRxW>
-     b80:	80 93 5b 02 	sts	0x025B, r24	; 0x80025b <indexRxR>
+     b84:	80 91 5c 02 	lds	r24, 0x025C	; 0x80025c <indexRxW>
+     b88:	80 93 5b 02 	sts	0x025B, r24	; 0x80025b <indexRxR>
 				return;
-     b84:	69 c1       	rjmp	.+722    	; 0xe58 <__stack+0x559>
+     b8c:	69 c1       	rjmp	.+722    	; 0xe60 <__stack+0x561>
 			}
 				bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
-     b86:	a0 91 4d 01 	lds	r26, 0x014D	; 0x80014d <indexTxW>
-     b8a:	e1 e0       	ldi	r30, 0x01	; 1
-     b8c:	ea 0f       	add	r30, r26
-     b8e:	b0 e0       	ldi	r27, 0x00	; 0
-     b90:	40 91 ff 03 	lds	r20, 0x03FF	; 0x8003ff <slaveAddress>
-     b94:	ab 59       	subi	r26, 0x9B	; 155
-     b96:	bd 4f       	sbci	r27, 0xFD	; 253
-     b98:	4c 93       	st	X, r20
+     b8e:	a0 91 4d 01 	lds	r26, 0x014D	; 0x80014d <indexTxW>
+     b92:	e1 e0       	ldi	r30, 0x01	; 1
+     b94:	ea 0f       	add	r30, r26
+     b96:	b0 e0       	ldi	r27, 0x00	; 0
+     b98:	40 91 ff 03 	lds	r20, 0x03FF	; 0x8003ff <slaveAddress>
+     b9c:	ab 59       	subi	r26, 0x9B	; 155
+     b9e:	bd 4f       	sbci	r27, 0xFD	; 253
+     ba0:	4c 93       	st	X, r20
 				bufferTx[indexTxW++] = DIAGNOSTICS;
-     b9a:	c1 e0       	ldi	r28, 0x01	; 1
-     b9c:	ce 0f       	add	r28, r30
-     b9e:	f0 e0       	ldi	r31, 0x00	; 0
-     ba0:	eb 59       	subi	r30, 0x9B	; 155
-     ba2:	fd 4f       	sbci	r31, 0xFD	; 253
-     ba4:	48 e0       	ldi	r20, 0x08	; 8
-     ba6:	40 83       	st	Z, r20
+     ba2:	c1 e0       	ldi	r28, 0x01	; 1
+     ba4:	ce 0f       	add	r28, r30
+     ba6:	f0 e0       	ldi	r31, 0x00	; 0
+     ba8:	eb 59       	subi	r30, 0x9B	; 155
+     baa:	fd 4f       	sbci	r31, 0xFD	; 253
+     bac:	48 e0       	ldi	r20, 0x08	; 8
+     bae:	40 83       	st	Z, r20
 				myWord.ui16[0] = subfunction;
-     ba8:	a6 e5       	ldi	r26, 0x56	; 86
-     baa:	b2 e0       	ldi	r27, 0x02	; 2
-     bac:	11 96       	adiw	r26, 0x01	; 1
-     bae:	9c 93       	st	X, r25
-     bb0:	8e 93       	st	-X, r24
+     bb0:	a6 e5       	ldi	r26, 0x56	; 86
+     bb2:	b2 e0       	ldi	r27, 0x02	; 2
+     bb4:	11 96       	adiw	r26, 0x01	; 1
+     bb6:	9c 93       	st	X, r25
+     bb8:	8e 93       	st	-X, r24
 				bufferTx[indexTxW++] = myWord.ui8[1];
-     bb2:	e1 e0       	ldi	r30, 0x01	; 1
-     bb4:	ec 0f       	add	r30, r28
-     bb6:	d0 e0       	ldi	r29, 0x00	; 0
-     bb8:	11 96       	adiw	r26, 0x01	; 1
-     bba:	8c 91       	ld	r24, X
-     bbc:	11 97       	sbiw	r26, 0x01	; 1
-     bbe:	cb 59       	subi	r28, 0x9B	; 155
-     bc0:	dd 4f       	sbci	r29, 0xFD	; 253
-     bc2:	88 83       	st	Y, r24
+     bba:	e1 e0       	ldi	r30, 0x01	; 1
+     bbc:	ec 0f       	add	r30, r28
+     bbe:	d0 e0       	ldi	r29, 0x00	; 0
+     bc0:	11 96       	adiw	r26, 0x01	; 1
+     bc2:	8c 91       	ld	r24, X
+     bc4:	11 97       	sbiw	r26, 0x01	; 1
+     bc6:	cb 59       	subi	r28, 0x9B	; 155
+     bc8:	dd 4f       	sbci	r29, 0xFD	; 253
+     bca:	88 83       	st	Y, r24
 				bufferTx[indexTxW++] = myWord.ui8[0];
-     bc4:	c1 e0       	ldi	r28, 0x01	; 1
-     bc6:	ce 0f       	add	r28, r30
-     bc8:	f0 e0       	ldi	r31, 0x00	; 0
-     bca:	8c 91       	ld	r24, X
-     bcc:	eb 59       	subi	r30, 0x9B	; 155
-     bce:	fd 4f       	sbci	r31, 0xFD	; 253
-     bd0:	80 83       	st	Z, r24
+     bcc:	c1 e0       	ldi	r28, 0x01	; 1
+     bce:	ce 0f       	add	r28, r30
+     bd0:	f0 e0       	ldi	r31, 0x00	; 0
+     bd2:	8c 91       	ld	r24, X
+     bd4:	eb 59       	subi	r30, 0x9B	; 155
+     bd6:	fd 4f       	sbci	r31, 0xFD	; 253
+     bd8:	80 83       	st	Z, r24
 				myWord.ui16[0] = regValue;
-     bd2:	11 96       	adiw	r26, 0x01	; 1
-     bd4:	3c 93       	st	X, r19
-     bd6:	2e 93       	st	-X, r18
+     bda:	11 96       	adiw	r26, 0x01	; 1
+     bdc:	3c 93       	st	X, r19
+     bde:	2e 93       	st	-X, r18
 				bufferTx[indexTxW++] = myWord.ui8[1];
-     bd8:	e1 e0       	ldi	r30, 0x01	; 1
-     bda:	ec 0f       	add	r30, r28
-     bdc:	d0 e0       	ldi	r29, 0x00	; 0
-     bde:	11 96       	adiw	r26, 0x01	; 1
-     be0:	8c 91       	ld	r24, X
-     be2:	11 97       	sbiw	r26, 0x01	; 1
-     be4:	cb 59       	subi	r28, 0x9B	; 155
-     be6:	dd 4f       	sbci	r29, 0xFD	; 253
-     be8:	88 83       	st	Y, r24
+     be0:	e1 e0       	ldi	r30, 0x01	; 1
+     be2:	ec 0f       	add	r30, r28
+     be4:	d0 e0       	ldi	r29, 0x00	; 0
+     be6:	11 96       	adiw	r26, 0x01	; 1
+     be8:	8c 91       	ld	r24, X
+     bea:	11 97       	sbiw	r26, 0x01	; 1
+     bec:	cb 59       	subi	r28, 0x9B	; 155
+     bee:	dd 4f       	sbci	r29, 0xFD	; 253
+     bf0:	88 83       	st	Y, r24
 				bufferTx[indexTxW++] = myWord.ui8[0];
-     bea:	81 e0       	ldi	r24, 0x01	; 1
-     bec:	8e 0f       	add	r24, r30
-     bee:	80 93 4d 01 	sts	0x014D, r24	; 0x80014d <indexTxW>
-     bf2:	f0 e0       	ldi	r31, 0x00	; 0
-     bf4:	8c 91       	ld	r24, X
-     bf6:	eb 59       	subi	r30, 0x9B	; 155
-     bf8:	fd 4f       	sbci	r31, 0xFD	; 253
-     bfa:	80 83       	st	Z, r24
+     bf2:	81 e0       	ldi	r24, 0x01	; 1
+     bf4:	8e 0f       	add	r24, r30
+     bf6:	80 93 4d 01 	sts	0x014D, r24	; 0x80014d <indexTxW>
+     bfa:	f0 e0       	ldi	r31, 0x00	; 0
+     bfc:	8c 91       	ld	r24, X
+     bfe:	eb 59       	subi	r30, 0x9B	; 155
+     c00:	fd 4f       	sbci	r31, 0xFD	; 253
+     c02:	80 83       	st	Z, r24
 				for(uint8_t i=indexTxR; i < indexTxW; i++){
-     bfc:	c0 91 54 02 	lds	r28, 0x0254	; 0x800254 <indexTxR>
-     c00:	08 c0       	rjmp	.+16     	; 0xc12 <__stack+0x313>
+     c04:	c0 91 54 02 	lds	r28, 0x0254	; 0x800254 <indexTxR>
+     c08:	08 c0       	rjmp	.+16     	; 0xc1a <__stack+0x31b>
 					MODBUS_CalculateCRC(bufferTx[i]);
-     c02:	ec 2f       	mov	r30, r28
-     c04:	f0 e0       	ldi	r31, 0x00	; 0
-     c06:	eb 59       	subi	r30, 0x9B	; 155
-     c08:	fd 4f       	sbci	r31, 0xFD	; 253
-     c0a:	80 81       	ld	r24, Z
-     c0c:	0e 94 98 02 	call	0x530	; 0x530 <MODBUS_CalculateCRC>
+     c0a:	ec 2f       	mov	r30, r28
+     c0c:	f0 e0       	ldi	r31, 0x00	; 0
+     c0e:	eb 59       	subi	r30, 0x9B	; 155
+     c10:	fd 4f       	sbci	r31, 0xFD	; 253
+     c12:	80 81       	ld	r24, Z
+     c14:	0e 94 98 02 	call	0x530	; 0x530 <MODBUS_CalculateCRC>
 				bufferTx[indexTxW++] = myWord.ui8[1];
 				bufferTx[indexTxW++] = myWord.ui8[0];
 				myWord.ui16[0] = regValue;
 				bufferTx[indexTxW++] = myWord.ui8[1];
 				bufferTx[indexTxW++] = myWord.ui8[0];
 				for(uint8_t i=indexTxR; i < indexTxW; i++){
-     c10:	cf 5f       	subi	r28, 0xFF	; 255
-     c12:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
-     c16:	ce 17       	cp	r28, r30
-     c18:	a0 f3       	brcs	.-24     	; 0xc02 <__stack+0x303>
+     c18:	cf 5f       	subi	r28, 0xFF	; 255
+     c1a:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
+     c1e:	ce 17       	cp	r28, r30
+     c20:	a0 f3       	brcs	.-24     	; 0xc0a <__stack+0x30b>
 					MODBUS_CalculateCRC(bufferTx[i]);
 				}
 				myWord.ui16[0] = myModbusFrame.crcSlave;
-     c1a:	90 91 61 02 	lds	r25, 0x0261	; 0x800261 <myModbusFrame+0x4>
-     c1e:	80 91 62 02 	lds	r24, 0x0262	; 0x800262 <myModbusFrame+0x5>
-     c22:	a6 e5       	ldi	r26, 0x56	; 86
-     c24:	b2 e0       	ldi	r27, 0x02	; 2
-     c26:	9c 93       	st	X, r25
-     c28:	11 96       	adiw	r26, 0x01	; 1
-     c2a:	8c 93       	st	X, r24
-     c2c:	11 97       	sbiw	r26, 0x01	; 1
+     c22:	90 91 61 02 	lds	r25, 0x0261	; 0x800261 <myModbusFrame+0x4>
+     c26:	80 91 62 02 	lds	r24, 0x0262	; 0x800262 <myModbusFrame+0x5>
+     c2a:	a6 e5       	ldi	r26, 0x56	; 86
+     c2c:	b2 e0       	ldi	r27, 0x02	; 2
+     c2e:	9c 93       	st	X, r25
+     c30:	11 96       	adiw	r26, 0x01	; 1
+     c32:	8c 93       	st	X, r24
+     c34:	11 97       	sbiw	r26, 0x01	; 1
 				bufferTx[indexTxW++] = myWord.ui8[0];
-     c2e:	81 e0       	ldi	r24, 0x01	; 1
-     c30:	8e 0f       	add	r24, r30
-     c32:	f0 e0       	ldi	r31, 0x00	; 0
-     c34:	eb 59       	subi	r30, 0x9B	; 155
-     c36:	fd 4f       	sbci	r31, 0xFD	; 253
-     c38:	90 83       	st	Z, r25
+     c36:	81 e0       	ldi	r24, 0x01	; 1
+     c38:	8e 0f       	add	r24, r30
+     c3a:	f0 e0       	ldi	r31, 0x00	; 0
+     c3c:	eb 59       	subi	r30, 0x9B	; 155
+     c3e:	fd 4f       	sbci	r31, 0xFD	; 253
+     c40:	90 83       	st	Z, r25
 				bufferTx[indexTxW++] = myWord.ui8[1];
-     c3a:	91 e0       	ldi	r25, 0x01	; 1
-     c3c:	98 0f       	add	r25, r24
-     c3e:	90 93 4d 01 	sts	0x014D, r25	; 0x80014d <indexTxW>
-     c42:	e8 2f       	mov	r30, r24
-     c44:	f0 e0       	ldi	r31, 0x00	; 0
-     c46:	11 96       	adiw	r26, 0x01	; 1
-     c48:	8c 91       	ld	r24, X
-     c4a:	eb 59       	subi	r30, 0x9B	; 155
-     c4c:	fd 4f       	sbci	r31, 0xFD	; 253
-     c4e:	80 83       	st	Z, r24
+     c42:	91 e0       	ldi	r25, 0x01	; 1
+     c44:	98 0f       	add	r25, r24
+     c46:	90 93 4d 01 	sts	0x014D, r25	; 0x80014d <indexTxW>
+     c4a:	e8 2f       	mov	r30, r24
+     c4c:	f0 e0       	ldi	r31, 0x00	; 0
+     c4e:	11 96       	adiw	r26, 0x01	; 1
+     c50:	8c 91       	ld	r24, X
+     c52:	eb 59       	subi	r30, 0x9B	; 155
+     c54:	fd 4f       	sbci	r31, 0xFD	; 253
+     c56:	80 83       	st	Z, r24
 				break;
-     c50:	03 c1       	rjmp	.+518    	; 0xe58 <__stack+0x559>
+     c58:	03 c1       	rjmp	.+518    	; 0xe60 <__stack+0x561>
 		case WRITE_MULTIPLE_REGISTERS: //Incompleto
 			myModbusFrame.errorCode = 0x90;
-     c52:	80 e9       	ldi	r24, 0x90	; 144
-     c54:	80 93 5f 02 	sts	0x025F, r24	; 0x80025f <myModbusFrame+0x2>
+     c5a:	80 e9       	ldi	r24, 0x90	; 144
+     c5c:	80 93 5f 02 	sts	0x025F, r24	; 0x80025f <myModbusFrame+0x2>
 			//Direccion inicial
 			myWord.ui8[1] = bufferRx[indexRxR++];
-     c58:	e0 91 5b 02 	lds	r30, 0x025B	; 0x80025b <indexRxR>
-     c5c:	a1 e0       	ldi	r26, 0x01	; 1
-     c5e:	ae 0f       	add	r26, r30
-     c60:	a0 93 5b 02 	sts	0x025B, r26	; 0x80025b <indexRxR>
-     c64:	f0 e0       	ldi	r31, 0x00	; 0
-     c66:	ed 5a       	subi	r30, 0xAD	; 173
-     c68:	fe 4f       	sbci	r31, 0xFE	; 254
-     c6a:	80 81       	ld	r24, Z
-     c6c:	c6 e5       	ldi	r28, 0x56	; 86
-     c6e:	d2 e0       	ldi	r29, 0x02	; 2
-     c70:	89 83       	std	Y+1, r24	; 0x01
+     c60:	e0 91 5b 02 	lds	r30, 0x025B	; 0x80025b <indexRxR>
+     c64:	a1 e0       	ldi	r26, 0x01	; 1
+     c66:	ae 0f       	add	r26, r30
+     c68:	a0 93 5b 02 	sts	0x025B, r26	; 0x80025b <indexRxR>
+     c6c:	f0 e0       	ldi	r31, 0x00	; 0
+     c6e:	ed 5a       	subi	r30, 0xAD	; 173
+     c70:	fe 4f       	sbci	r31, 0xFE	; 254
+     c72:	80 81       	ld	r24, Z
+     c74:	c6 e5       	ldi	r28, 0x56	; 86
+     c76:	d2 e0       	ldi	r29, 0x02	; 2
+     c78:	89 83       	std	Y+1, r24	; 0x01
 			myWord.ui8[0] = bufferRx[indexRxR++];
-     c72:	e1 e0       	ldi	r30, 0x01	; 1
-     c74:	ea 0f       	add	r30, r26
-     c76:	e0 93 5b 02 	sts	0x025B, r30	; 0x80025b <indexRxR>
-     c7a:	b0 e0       	ldi	r27, 0x00	; 0
-     c7c:	ad 5a       	subi	r26, 0xAD	; 173
-     c7e:	be 4f       	sbci	r27, 0xFE	; 254
-     c80:	8c 91       	ld	r24, X
-     c82:	88 83       	st	Y, r24
+     c7a:	e1 e0       	ldi	r30, 0x01	; 1
+     c7c:	ea 0f       	add	r30, r26
+     c7e:	e0 93 5b 02 	sts	0x025B, r30	; 0x80025b <indexRxR>
+     c82:	b0 e0       	ldi	r27, 0x00	; 0
+     c84:	ad 5a       	subi	r26, 0xAD	; 173
+     c86:	be 4f       	sbci	r27, 0xFE	; 254
+     c88:	8c 91       	ld	r24, X
+     c8a:	88 83       	st	Y, r24
 			regAddress = myWord.ui16[0];
-     c84:	88 81       	ld	r24, Y
-     c86:	99 81       	ldd	r25, Y+1	; 0x01
+     c8c:	88 81       	ld	r24, Y
+     c8e:	99 81       	ldd	r25, Y+1	; 0x01
 			//Cantidad de registros
 			myWord.ui8[1] = bufferRx[indexRxR++];
-     c88:	a1 e0       	ldi	r26, 0x01	; 1
-     c8a:	ae 0f       	add	r26, r30
-     c8c:	a0 93 5b 02 	sts	0x025B, r26	; 0x80025b <indexRxR>
-     c90:	f0 e0       	ldi	r31, 0x00	; 0
-     c92:	ed 5a       	subi	r30, 0xAD	; 173
-     c94:	fe 4f       	sbci	r31, 0xFE	; 254
-     c96:	20 81       	ld	r18, Z
-     c98:	29 83       	std	Y+1, r18	; 0x01
+     c90:	a1 e0       	ldi	r26, 0x01	; 1
+     c92:	ae 0f       	add	r26, r30
+     c94:	a0 93 5b 02 	sts	0x025B, r26	; 0x80025b <indexRxR>
+     c98:	f0 e0       	ldi	r31, 0x00	; 0
+     c9a:	ed 5a       	subi	r30, 0xAD	; 173
+     c9c:	fe 4f       	sbci	r31, 0xFE	; 254
+     c9e:	20 81       	ld	r18, Z
+     ca0:	29 83       	std	Y+1, r18	; 0x01
 			myWord.ui8[0] = bufferRx[indexRxR++];
-     c9a:	e1 e0       	ldi	r30, 0x01	; 1
-     c9c:	ea 0f       	add	r30, r26
-     c9e:	e0 93 5b 02 	sts	0x025B, r30	; 0x80025b <indexRxR>
-     ca2:	b0 e0       	ldi	r27, 0x00	; 0
-     ca4:	ad 5a       	subi	r26, 0xAD	; 173
-     ca6:	be 4f       	sbci	r27, 0xFE	; 254
-     ca8:	2c 91       	ld	r18, X
-     caa:	28 83       	st	Y, r18
+     ca2:	e1 e0       	ldi	r30, 0x01	; 1
+     ca4:	ea 0f       	add	r30, r26
+     ca6:	e0 93 5b 02 	sts	0x025B, r30	; 0x80025b <indexRxR>
+     caa:	b0 e0       	ldi	r27, 0x00	; 0
+     cac:	ad 5a       	subi	r26, 0xAD	; 173
+     cae:	be 4f       	sbci	r27, 0xFE	; 254
+     cb0:	2c 91       	ld	r18, X
+     cb2:	28 83       	st	Y, r18
 			regCant = myWord.ui16[0];
-     cac:	48 81       	ld	r20, Y
-     cae:	59 81       	ldd	r21, Y+1	; 0x01
+     cb4:	48 81       	ld	r20, Y
+     cb6:	59 81       	ldd	r21, Y+1	; 0x01
 			//Cantidad de bytes
 			byteCount = bufferRx[indexRxR++];
-     cb0:	21 e0       	ldi	r18, 0x01	; 1
-     cb2:	2e 0f       	add	r18, r30
-     cb4:	20 93 5b 02 	sts	0x025B, r18	; 0x80025b <indexRxR>
-     cb8:	f0 e0       	ldi	r31, 0x00	; 0
-     cba:	ed 5a       	subi	r30, 0xAD	; 173
-     cbc:	fe 4f       	sbci	r31, 0xFE	; 254
-     cbe:	20 81       	ld	r18, Z
+     cb8:	21 e0       	ldi	r18, 0x01	; 1
+     cba:	2e 0f       	add	r18, r30
+     cbc:	20 93 5b 02 	sts	0x025B, r18	; 0x80025b <indexRxR>
+     cc0:	f0 e0       	ldi	r31, 0x00	; 0
+     cc2:	ed 5a       	subi	r30, 0xAD	; 173
+     cc4:	fe 4f       	sbci	r31, 0xFE	; 254
+     cc6:	20 81       	ld	r18, Z
 		
 			//Controlar cantidad de registros
 			if((regCant < 1 || regCant > 0x007B) || (byteCount != (regCant*2))){
-     cc0:	ba 01       	movw	r22, r20
-     cc2:	61 50       	subi	r22, 0x01	; 1
-     cc4:	71 09       	sbc	r23, r1
-     cc6:	6b 37       	cpi	r22, 0x7B	; 123
-     cc8:	71 05       	cpc	r23, r1
-     cca:	38 f4       	brcc	.+14     	; 0xcda <__stack+0x3db>
-     ccc:	30 e0       	ldi	r19, 0x00	; 0
-     cce:	da 01       	movw	r26, r20
-     cd0:	aa 0f       	add	r26, r26
-     cd2:	bb 1f       	adc	r27, r27
-     cd4:	2a 17       	cp	r18, r26
-     cd6:	3b 07       	cpc	r19, r27
-     cd8:	49 f0       	breq	.+18     	; 0xcec <__stack+0x3ed>
+     cc8:	ba 01       	movw	r22, r20
+     cca:	61 50       	subi	r22, 0x01	; 1
+     ccc:	71 09       	sbc	r23, r1
+     cce:	6b 37       	cpi	r22, 0x7B	; 123
+     cd0:	71 05       	cpc	r23, r1
+     cd2:	38 f4       	brcc	.+14     	; 0xce2 <__stack+0x3e3>
+     cd4:	30 e0       	ldi	r19, 0x00	; 0
+     cd6:	da 01       	movw	r26, r20
+     cd8:	aa 0f       	add	r26, r26
+     cda:	bb 1f       	adc	r27, r27
+     cdc:	2a 17       	cp	r18, r26
+     cde:	3b 07       	cpc	r19, r27
+     ce0:	49 f0       	breq	.+18     	; 0xcf4 <__stack+0x3f5>
 				myModbusFrame.excepCode = INVALID_DATA_VALUE;
-     cda:	83 e0       	ldi	r24, 0x03	; 3
-     cdc:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
+     ce2:	83 e0       	ldi	r24, 0x03	; 3
+     ce4:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
 				commFlags.iFlags.isExceptionCode = 1;
-     ce0:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     ce4:	88 60       	ori	r24, 0x08	; 8
-     ce6:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     ce8:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     cec:	88 60       	ori	r24, 0x08	; 8
+     cee:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     cea:	b6 c0       	rjmp	.+364    	; 0xe58 <__stack+0x559>
+     cf2:	b6 c0       	rjmp	.+364    	; 0xe60 <__stack+0x561>
 			}
 
 			//Controlar validez direcciones
 			if((regAddress < START_CONFIG_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_W)){
-     cec:	9c 01       	movw	r18, r24
-     cee:	34 50       	subi	r19, 0x04	; 4
-     cf0:	2e 30       	cpi	r18, 0x0E	; 14
-     cf2:	31 05       	cpc	r19, r1
-     cf4:	48 f0       	brcs	.+18     	; 0xd08 <__stack+0x409>
+     cf4:	9c 01       	movw	r18, r24
+     cf6:	34 50       	subi	r19, 0x04	; 4
+     cf8:	2e 30       	cpi	r18, 0x0E	; 14
+     cfa:	31 05       	cpc	r19, r1
+     cfc:	48 f0       	brcs	.+18     	; 0xd10 <__stack+0x411>
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
-     cf6:	82 e0       	ldi	r24, 0x02	; 2
-     cf8:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
+     cfe:	82 e0       	ldi	r24, 0x02	; 2
+     d00:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
 				commFlags.iFlags.isExceptionCode = 1;
-     cfc:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     d00:	88 60       	ori	r24, 0x08	; 8
-     d02:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     d04:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     d08:	88 60       	ori	r24, 0x08	; 8
+     d0a:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     d06:	a8 c0       	rjmp	.+336    	; 0xe58 <__stack+0x559>
+     d0e:	a8 c0       	rjmp	.+336    	; 0xe60 <__stack+0x561>
 			}else{
 				if(regAddress+((regCant -1)*2) >=END_CONFIG_ADDRESS_W){
-     d08:	9a 01       	movw	r18, r20
-     d0a:	21 50       	subi	r18, 0x01	; 1
-     d0c:	30 48       	sbci	r19, 0x80	; 128
-     d0e:	22 0f       	add	r18, r18
-     d10:	33 1f       	adc	r19, r19
-     d12:	28 0f       	add	r18, r24
-     d14:	39 1f       	adc	r19, r25
-     d16:	2d 30       	cpi	r18, 0x0D	; 13
-     d18:	34 40       	sbci	r19, 0x04	; 4
-     d1a:	c8 f0       	brcs	.+50     	; 0xd4e <__stack+0x44f>
+     d10:	9a 01       	movw	r18, r20
+     d12:	21 50       	subi	r18, 0x01	; 1
+     d14:	30 48       	sbci	r19, 0x80	; 128
+     d16:	22 0f       	add	r18, r18
+     d18:	33 1f       	adc	r19, r19
+     d1a:	28 0f       	add	r18, r24
+     d1c:	39 1f       	adc	r19, r25
+     d1e:	2d 30       	cpi	r18, 0x0D	; 13
+     d20:	34 40       	sbci	r19, 0x04	; 4
+     d22:	c8 f0       	brcs	.+50     	; 0xd56 <__stack+0x457>
 					//error address
 					myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
-     d1c:	82 e0       	ldi	r24, 0x02	; 2
-     d1e:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
+     d24:	82 e0       	ldi	r24, 0x02	; 2
+     d26:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
 					commFlags.iFlags.isExceptionCode = 1;
-     d22:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     d26:	88 60       	ori	r24, 0x08	; 8
-     d28:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     d2a:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     d2e:	88 60       	ori	r24, 0x08	; 8
+     d30:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 					return;
-     d2c:	95 c0       	rjmp	.+298    	; 0xe58 <__stack+0x559>
+     d34:	95 c0       	rjmp	.+298    	; 0xe60 <__stack+0x561>
 				}
 			}
 
 			for(uint8_t i=0; i<(regCant*2);i++){
 				*((uint8_t *)(regAddress+i)) = bufferRx[indexRxR++];
-     d2e:	ec 01       	movw	r28, r24
-     d30:	c2 0f       	add	r28, r18
-     d32:	d3 1f       	adc	r29, r19
-     d34:	e0 91 5b 02 	lds	r30, 0x025B	; 0x80025b <indexRxR>
-     d38:	71 e0       	ldi	r23, 0x01	; 1
-     d3a:	7e 0f       	add	r23, r30
-     d3c:	70 93 5b 02 	sts	0x025B, r23	; 0x80025b <indexRxR>
-     d40:	f0 e0       	ldi	r31, 0x00	; 0
-     d42:	ed 5a       	subi	r30, 0xAD	; 173
-     d44:	fe 4f       	sbci	r31, 0xFE	; 254
-     d46:	70 81       	ld	r23, Z
-     d48:	78 83       	st	Y, r23
+     d36:	ec 01       	movw	r28, r24
+     d38:	c2 0f       	add	r28, r18
+     d3a:	d3 1f       	adc	r29, r19
+     d3c:	e0 91 5b 02 	lds	r30, 0x025B	; 0x80025b <indexRxR>
+     d40:	71 e0       	ldi	r23, 0x01	; 1
+     d42:	7e 0f       	add	r23, r30
+     d44:	70 93 5b 02 	sts	0x025B, r23	; 0x80025b <indexRxR>
+     d48:	f0 e0       	ldi	r31, 0x00	; 0
+     d4a:	ed 5a       	subi	r30, 0xAD	; 173
+     d4c:	fe 4f       	sbci	r31, 0xFE	; 254
+     d4e:	70 81       	ld	r23, Z
+     d50:	78 83       	st	Y, r23
 					commFlags.iFlags.isExceptionCode = 1;
 					return;
 				}
 			}
 
 			for(uint8_t i=0; i<(regCant*2);i++){
-     d4a:	6f 5f       	subi	r22, 0xFF	; 255
-     d4c:	01 c0       	rjmp	.+2      	; 0xd50 <__stack+0x451>
-     d4e:	60 e0       	ldi	r22, 0x00	; 0
-     d50:	26 2f       	mov	r18, r22
-     d52:	30 e0       	ldi	r19, 0x00	; 0
-     d54:	2a 17       	cp	r18, r26
-     d56:	3b 07       	cpc	r19, r27
-     d58:	50 f3       	brcs	.-44     	; 0xd2e <__stack+0x42f>
+     d52:	6f 5f       	subi	r22, 0xFF	; 255
+     d54:	01 c0       	rjmp	.+2      	; 0xd58 <__stack+0x459>
+     d56:	60 e0       	ldi	r22, 0x00	; 0
+     d58:	26 2f       	mov	r18, r22
+     d5a:	30 e0       	ldi	r19, 0x00	; 0
+     d5c:	2a 17       	cp	r18, r26
+     d5e:	3b 07       	cpc	r19, r27
+     d60:	50 f3       	brcs	.-44     	; 0xd36 <__stack+0x437>
 				*((uint8_t *)(regAddress+i)) = bufferRx[indexRxR++];
 			}
 		
 			if(commFlags.iFlags.isBroadcast){
-     d5a:	20 91 53 02 	lds	r18, 0x0253	; 0x800253 <commFlags>
-     d5e:	24 ff       	sbrs	r18, 4
-     d60:	05 c0       	rjmp	.+10     	; 0xd6c <__stack+0x46d>
+     d62:	20 91 53 02 	lds	r18, 0x0253	; 0x800253 <commFlags>
+     d66:	24 ff       	sbrs	r18, 4
+     d68:	05 c0       	rjmp	.+10     	; 0xd74 <__stack+0x475>
 				commFlags.iFlags.isBroadcast = 0;
-     d62:	82 2f       	mov	r24, r18
-     d64:	8f 7e       	andi	r24, 0xEF	; 239
-     d66:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     d6a:	82 2f       	mov	r24, r18
+     d6c:	8f 7e       	andi	r24, 0xEF	; 239
+     d6e:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				return;
-     d6a:	76 c0       	rjmp	.+236    	; 0xe58 <__stack+0x559>
+     d72:	76 c0       	rjmp	.+236    	; 0xe60 <__stack+0x561>
 			}
 			bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
-     d6c:	a0 91 4d 01 	lds	r26, 0x014D	; 0x80014d <indexTxW>
-     d70:	e1 e0       	ldi	r30, 0x01	; 1
-     d72:	ea 0f       	add	r30, r26
-     d74:	b0 e0       	ldi	r27, 0x00	; 0
-     d76:	20 91 ff 03 	lds	r18, 0x03FF	; 0x8003ff <slaveAddress>
-     d7a:	ab 59       	subi	r26, 0x9B	; 155
-     d7c:	bd 4f       	sbci	r27, 0xFD	; 253
-     d7e:	2c 93       	st	X, r18
+     d74:	a0 91 4d 01 	lds	r26, 0x014D	; 0x80014d <indexTxW>
+     d78:	e1 e0       	ldi	r30, 0x01	; 1
+     d7a:	ea 0f       	add	r30, r26
+     d7c:	b0 e0       	ldi	r27, 0x00	; 0
+     d7e:	20 91 ff 03 	lds	r18, 0x03FF	; 0x8003ff <slaveAddress>
+     d82:	ab 59       	subi	r26, 0x9B	; 155
+     d84:	bd 4f       	sbci	r27, 0xFD	; 253
+     d86:	2c 93       	st	X, r18
 			bufferTx[indexTxW++] = WRITE_MULTIPLE_REGISTERS;
-     d80:	c1 e0       	ldi	r28, 0x01	; 1
-     d82:	ce 0f       	add	r28, r30
-     d84:	f0 e0       	ldi	r31, 0x00	; 0
-     d86:	eb 59       	subi	r30, 0x9B	; 155
-     d88:	fd 4f       	sbci	r31, 0xFD	; 253
-     d8a:	20 e1       	ldi	r18, 0x10	; 16
-     d8c:	20 83       	st	Z, r18
+     d88:	c1 e0       	ldi	r28, 0x01	; 1
+     d8a:	ce 0f       	add	r28, r30
+     d8c:	f0 e0       	ldi	r31, 0x00	; 0
+     d8e:	eb 59       	subi	r30, 0x9B	; 155
+     d90:	fd 4f       	sbci	r31, 0xFD	; 253
+     d92:	20 e1       	ldi	r18, 0x10	; 16
+     d94:	20 83       	st	Z, r18
 			myWord.ui16[0] = regAddress;
-     d8e:	a6 e5       	ldi	r26, 0x56	; 86
-     d90:	b2 e0       	ldi	r27, 0x02	; 2
-     d92:	11 96       	adiw	r26, 0x01	; 1
-     d94:	9c 93       	st	X, r25
-     d96:	8e 93       	st	-X, r24
+     d96:	a6 e5       	ldi	r26, 0x56	; 86
+     d98:	b2 e0       	ldi	r27, 0x02	; 2
+     d9a:	11 96       	adiw	r26, 0x01	; 1
+     d9c:	9c 93       	st	X, r25
+     d9e:	8e 93       	st	-X, r24
 			bufferTx[indexTxW++] = myWord.ui8[1];
-     d98:	e1 e0       	ldi	r30, 0x01	; 1
-     d9a:	ec 0f       	add	r30, r28
-     d9c:	d0 e0       	ldi	r29, 0x00	; 0
-     d9e:	11 96       	adiw	r26, 0x01	; 1
-     da0:	8c 91       	ld	r24, X
-     da2:	11 97       	sbiw	r26, 0x01	; 1
-     da4:	cb 59       	subi	r28, 0x9B	; 155
-     da6:	dd 4f       	sbci	r29, 0xFD	; 253
-     da8:	88 83       	st	Y, r24
+     da0:	e1 e0       	ldi	r30, 0x01	; 1
+     da2:	ec 0f       	add	r30, r28
+     da4:	d0 e0       	ldi	r29, 0x00	; 0
+     da6:	11 96       	adiw	r26, 0x01	; 1
+     da8:	8c 91       	ld	r24, X
+     daa:	11 97       	sbiw	r26, 0x01	; 1
+     dac:	cb 59       	subi	r28, 0x9B	; 155
+     dae:	dd 4f       	sbci	r29, 0xFD	; 253
+     db0:	88 83       	st	Y, r24
 			bufferTx[indexTxW++] = myWord.ui8[0];
-     daa:	c1 e0       	ldi	r28, 0x01	; 1
-     dac:	ce 0f       	add	r28, r30
-     dae:	f0 e0       	ldi	r31, 0x00	; 0
-     db0:	8c 91       	ld	r24, X
-     db2:	eb 59       	subi	r30, 0x9B	; 155
-     db4:	fd 4f       	sbci	r31, 0xFD	; 253
-     db6:	80 83       	st	Z, r24
+     db2:	c1 e0       	ldi	r28, 0x01	; 1
+     db4:	ce 0f       	add	r28, r30
+     db6:	f0 e0       	ldi	r31, 0x00	; 0
+     db8:	8c 91       	ld	r24, X
+     dba:	eb 59       	subi	r30, 0x9B	; 155
+     dbc:	fd 4f       	sbci	r31, 0xFD	; 253
+     dbe:	80 83       	st	Z, r24
 			myWord.ui16[0] = regCant;
-     db8:	11 96       	adiw	r26, 0x01	; 1
-     dba:	5c 93       	st	X, r21
-     dbc:	4e 93       	st	-X, r20
+     dc0:	11 96       	adiw	r26, 0x01	; 1
+     dc2:	5c 93       	st	X, r21
+     dc4:	4e 93       	st	-X, r20
 			bufferTx[indexTxW++] = myWord.ui8[1];
-     dbe:	e1 e0       	ldi	r30, 0x01	; 1
-     dc0:	ec 0f       	add	r30, r28
-     dc2:	d0 e0       	ldi	r29, 0x00	; 0
-     dc4:	11 96       	adiw	r26, 0x01	; 1
-     dc6:	8c 91       	ld	r24, X
-     dc8:	11 97       	sbiw	r26, 0x01	; 1
-     dca:	cb 59       	subi	r28, 0x9B	; 155
-     dcc:	dd 4f       	sbci	r29, 0xFD	; 253
-     dce:	88 83       	st	Y, r24
+     dc6:	e1 e0       	ldi	r30, 0x01	; 1
+     dc8:	ec 0f       	add	r30, r28
+     dca:	d0 e0       	ldi	r29, 0x00	; 0
+     dcc:	11 96       	adiw	r26, 0x01	; 1
+     dce:	8c 91       	ld	r24, X
+     dd0:	11 97       	sbiw	r26, 0x01	; 1
+     dd2:	cb 59       	subi	r28, 0x9B	; 155
+     dd4:	dd 4f       	sbci	r29, 0xFD	; 253
+     dd6:	88 83       	st	Y, r24
 			bufferTx[indexTxW++] = myWord.ui8[0];
-     dd0:	81 e0       	ldi	r24, 0x01	; 1
-     dd2:	8e 0f       	add	r24, r30
-     dd4:	80 93 4d 01 	sts	0x014D, r24	; 0x80014d <indexTxW>
-     dd8:	f0 e0       	ldi	r31, 0x00	; 0
-     dda:	8c 91       	ld	r24, X
-     ddc:	eb 59       	subi	r30, 0x9B	; 155
-     dde:	fd 4f       	sbci	r31, 0xFD	; 253
-     de0:	80 83       	st	Z, r24
+     dd8:	81 e0       	ldi	r24, 0x01	; 1
+     dda:	8e 0f       	add	r24, r30
+     ddc:	80 93 4d 01 	sts	0x014D, r24	; 0x80014d <indexTxW>
+     de0:	f0 e0       	ldi	r31, 0x00	; 0
+     de2:	8c 91       	ld	r24, X
+     de4:	eb 59       	subi	r30, 0x9B	; 155
+     de6:	fd 4f       	sbci	r31, 0xFD	; 253
+     de8:	80 83       	st	Z, r24
 			for(uint8_t i = indexTxR; i < indexTxW;i++){
-     de2:	c0 91 54 02 	lds	r28, 0x0254	; 0x800254 <indexTxR>
-     de6:	08 c0       	rjmp	.+16     	; 0xdf8 <__stack+0x4f9>
+     dea:	c0 91 54 02 	lds	r28, 0x0254	; 0x800254 <indexTxR>
+     dee:	08 c0       	rjmp	.+16     	; 0xe00 <__stack+0x501>
 				MODBUS_CalculateCRC(bufferTx[i]);
-     de8:	ec 2f       	mov	r30, r28
-     dea:	f0 e0       	ldi	r31, 0x00	; 0
-     dec:	eb 59       	subi	r30, 0x9B	; 155
-     dee:	fd 4f       	sbci	r31, 0xFD	; 253
-     df0:	80 81       	ld	r24, Z
-     df2:	0e 94 98 02 	call	0x530	; 0x530 <MODBUS_CalculateCRC>
+     df0:	ec 2f       	mov	r30, r28
+     df2:	f0 e0       	ldi	r31, 0x00	; 0
+     df4:	eb 59       	subi	r30, 0x9B	; 155
+     df6:	fd 4f       	sbci	r31, 0xFD	; 253
+     df8:	80 81       	ld	r24, Z
+     dfa:	0e 94 98 02 	call	0x530	; 0x530 <MODBUS_CalculateCRC>
 			bufferTx[indexTxW++] = myWord.ui8[1];
 			bufferTx[indexTxW++] = myWord.ui8[0];
 			myWord.ui16[0] = regCant;
 			bufferTx[indexTxW++] = myWord.ui8[1];
 			bufferTx[indexTxW++] = myWord.ui8[0];
 			for(uint8_t i = indexTxR; i < indexTxW;i++){
-     df6:	cf 5f       	subi	r28, 0xFF	; 255
-     df8:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
-     dfc:	ce 17       	cp	r28, r30
-     dfe:	a0 f3       	brcs	.-24     	; 0xde8 <__stack+0x4e9>
+     dfe:	cf 5f       	subi	r28, 0xFF	; 255
+     e00:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
+     e04:	ce 17       	cp	r28, r30
+     e06:	a0 f3       	brcs	.-24     	; 0xdf0 <__stack+0x4f1>
 				MODBUS_CalculateCRC(bufferTx[i]);
 			}
 			myWord.ui16[0] = myModbusFrame.crcSlave;
-     e00:	90 91 61 02 	lds	r25, 0x0261	; 0x800261 <myModbusFrame+0x4>
-     e04:	80 91 62 02 	lds	r24, 0x0262	; 0x800262 <myModbusFrame+0x5>
-     e08:	a6 e5       	ldi	r26, 0x56	; 86
-     e0a:	b2 e0       	ldi	r27, 0x02	; 2
-     e0c:	9c 93       	st	X, r25
-     e0e:	11 96       	adiw	r26, 0x01	; 1
-     e10:	8c 93       	st	X, r24
-     e12:	11 97       	sbiw	r26, 0x01	; 1
+     e08:	90 91 61 02 	lds	r25, 0x0261	; 0x800261 <myModbusFrame+0x4>
+     e0c:	80 91 62 02 	lds	r24, 0x0262	; 0x800262 <myModbusFrame+0x5>
+     e10:	a6 e5       	ldi	r26, 0x56	; 86
+     e12:	b2 e0       	ldi	r27, 0x02	; 2
+     e14:	9c 93       	st	X, r25
+     e16:	11 96       	adiw	r26, 0x01	; 1
+     e18:	8c 93       	st	X, r24
+     e1a:	11 97       	sbiw	r26, 0x01	; 1
 			bufferTx[indexTxW++] = myWord.ui8[0];
-     e14:	81 e0       	ldi	r24, 0x01	; 1
-     e16:	8e 0f       	add	r24, r30
-     e18:	f0 e0       	ldi	r31, 0x00	; 0
-     e1a:	eb 59       	subi	r30, 0x9B	; 155
-     e1c:	fd 4f       	sbci	r31, 0xFD	; 253
-     e1e:	90 83       	st	Z, r25
+     e1c:	81 e0       	ldi	r24, 0x01	; 1
+     e1e:	8e 0f       	add	r24, r30
+     e20:	f0 e0       	ldi	r31, 0x00	; 0
+     e22:	eb 59       	subi	r30, 0x9B	; 155
+     e24:	fd 4f       	sbci	r31, 0xFD	; 253
+     e26:	90 83       	st	Z, r25
 			bufferTx[indexTxW++] = myWord.ui8[1];
-     e20:	91 e0       	ldi	r25, 0x01	; 1
-     e22:	98 0f       	add	r25, r24
-     e24:	90 93 4d 01 	sts	0x014D, r25	; 0x80014d <indexTxW>
-     e28:	e8 2f       	mov	r30, r24
-     e2a:	f0 e0       	ldi	r31, 0x00	; 0
-     e2c:	11 96       	adiw	r26, 0x01	; 1
-     e2e:	8c 91       	ld	r24, X
-     e30:	eb 59       	subi	r30, 0x9B	; 155
-     e32:	fd 4f       	sbci	r31, 0xFD	; 253
-     e34:	80 83       	st	Z, r24
+     e28:	91 e0       	ldi	r25, 0x01	; 1
+     e2a:	98 0f       	add	r25, r24
+     e2c:	90 93 4d 01 	sts	0x014D, r25	; 0x80014d <indexTxW>
+     e30:	e8 2f       	mov	r30, r24
+     e32:	f0 e0       	ldi	r31, 0x00	; 0
+     e34:	11 96       	adiw	r26, 0x01	; 1
+     e36:	8c 91       	ld	r24, X
+     e38:	eb 59       	subi	r30, 0x9B	; 155
+     e3a:	fd 4f       	sbci	r31, 0xFD	; 253
+     e3c:	80 83       	st	Z, r24
 		break;
-     e36:	10 c0       	rjmp	.+32     	; 0xe58 <__stack+0x559>
+     e3e:	10 c0       	rjmp	.+32     	; 0xe60 <__stack+0x561>
 		default:
 			if(commFlags.iFlags.isBroadcast){
-     e38:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     e3c:	84 fd       	sbrc	r24, 4
-     e3e:	0c c0       	rjmp	.+24     	; 0xe58 <__stack+0x559>
+     e40:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     e44:	84 fd       	sbrc	r24, 4
+     e46:	0c c0       	rjmp	.+24     	; 0xe60 <__stack+0x561>
 				return;
 			}
 		myModbusFrame.excepCode = INVALID_FUNCTION;
-     e40:	81 e0       	ldi	r24, 0x01	; 1
-     e42:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
+     e48:	81 e0       	ldi	r24, 0x01	; 1
+     e4a:	80 93 60 02 	sts	0x0260, r24	; 0x800260 <myModbusFrame+0x3>
 		commFlags.iFlags.isExceptionCode = 1;
-     e46:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     e4a:	88 60       	ori	r24, 0x08	; 8
-     e4c:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     e4e:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     e52:	88 60       	ori	r24, 0x08	; 8
+     e54:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 		indexRxR = indexRxW;
-     e50:	80 91 5c 02 	lds	r24, 0x025C	; 0x80025c <indexRxW>
-     e54:	80 93 5b 02 	sts	0x025B, r24	; 0x80025b <indexRxR>
+     e58:	80 91 5c 02 	lds	r24, 0x025C	; 0x80025c <indexRxW>
+     e5c:	80 93 5b 02 	sts	0x025B, r24	; 0x80025b <indexRxR>
 		break;
 	}
 	 
 }
-     e58:	df 91       	pop	r29
-     e5a:	cf 91       	pop	r28
-     e5c:	08 95       	ret
+     e60:	df 91       	pop	r29
+     e62:	cf 91       	pop	r28
+     e64:	08 95       	ret
 
-00000e5e <MODBUS_SendExceptionCode>:
+00000e66 <MODBUS_SendExceptionCode>:
 
 void MODBUS_SendExceptionCode(){
-     e5e:	cf 93       	push	r28
-     e60:	df 93       	push	r29
+     e66:	cf 93       	push	r28
+     e68:	df 93       	push	r29
 	commFlags.iFlags.isExceptionCode = 0;
-     e62:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-     e66:	87 7f       	andi	r24, 0xF7	; 247
-     e68:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+     e6a:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+     e6e:	87 7f       	andi	r24, 0xF7	; 247
+     e70:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 	bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
-     e6c:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
-     e70:	a1 e0       	ldi	r26, 0x01	; 1
-     e72:	ae 0f       	add	r26, r30
-     e74:	f0 e0       	ldi	r31, 0x00	; 0
-     e76:	80 91 ff 03 	lds	r24, 0x03FF	; 0x8003ff <slaveAddress>
-     e7a:	eb 59       	subi	r30, 0x9B	; 155
-     e7c:	fd 4f       	sbci	r31, 0xFD	; 253
-     e7e:	80 83       	st	Z, r24
+     e74:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
+     e78:	a1 e0       	ldi	r26, 0x01	; 1
+     e7a:	ae 0f       	add	r26, r30
+     e7c:	f0 e0       	ldi	r31, 0x00	; 0
+     e7e:	80 91 ff 03 	lds	r24, 0x03FF	; 0x8003ff <slaveAddress>
+     e82:	eb 59       	subi	r30, 0x9B	; 155
+     e84:	fd 4f       	sbci	r31, 0xFD	; 253
+     e86:	80 83       	st	Z, r24
 	bufferTx[indexTxW++] = myModbusFrame.errorCode;
-     e80:	e1 e0       	ldi	r30, 0x01	; 1
-     e82:	ea 0f       	add	r30, r26
-     e84:	b0 e0       	ldi	r27, 0x00	; 0
-     e86:	cd e5       	ldi	r28, 0x5D	; 93
-     e88:	d2 e0       	ldi	r29, 0x02	; 2
-     e8a:	8a 81       	ldd	r24, Y+2	; 0x02
-     e8c:	ab 59       	subi	r26, 0x9B	; 155
-     e8e:	bd 4f       	sbci	r27, 0xFD	; 253
-     e90:	8c 93       	st	X, r24
+     e88:	e1 e0       	ldi	r30, 0x01	; 1
+     e8a:	ea 0f       	add	r30, r26
+     e8c:	b0 e0       	ldi	r27, 0x00	; 0
+     e8e:	cd e5       	ldi	r28, 0x5D	; 93
+     e90:	d2 e0       	ldi	r29, 0x02	; 2
+     e92:	8a 81       	ldd	r24, Y+2	; 0x02
+     e94:	ab 59       	subi	r26, 0x9B	; 155
+     e96:	bd 4f       	sbci	r27, 0xFD	; 253
+     e98:	8c 93       	st	X, r24
 	bufferTx[indexTxW++] = myModbusFrame.excepCode;
-     e92:	81 e0       	ldi	r24, 0x01	; 1
-     e94:	8e 0f       	add	r24, r30
-     e96:	80 93 4d 01 	sts	0x014D, r24	; 0x80014d <indexTxW>
-     e9a:	f0 e0       	ldi	r31, 0x00	; 0
-     e9c:	8b 81       	ldd	r24, Y+3	; 0x03
-     e9e:	eb 59       	subi	r30, 0x9B	; 155
-     ea0:	fd 4f       	sbci	r31, 0xFD	; 253
-     ea2:	80 83       	st	Z, r24
+     e9a:	81 e0       	ldi	r24, 0x01	; 1
+     e9c:	8e 0f       	add	r24, r30
+     e9e:	80 93 4d 01 	sts	0x014D, r24	; 0x80014d <indexTxW>
+     ea2:	f0 e0       	ldi	r31, 0x00	; 0
+     ea4:	8b 81       	ldd	r24, Y+3	; 0x03
+     ea6:	eb 59       	subi	r30, 0x9B	; 155
+     ea8:	fd 4f       	sbci	r31, 0xFD	; 253
+     eaa:	80 83       	st	Z, r24
 	for(uint8_t i = indexTxR; i < indexTxW;i++){
-     ea4:	c0 91 54 02 	lds	r28, 0x0254	; 0x800254 <indexTxR>
-     ea8:	08 c0       	rjmp	.+16     	; 0xeba <MODBUS_SendExceptionCode+0x5c>
+     eac:	c0 91 54 02 	lds	r28, 0x0254	; 0x800254 <indexTxR>
+     eb0:	08 c0       	rjmp	.+16     	; 0xec2 <MODBUS_SendExceptionCode+0x5c>
 		MODBUS_CalculateCRC(bufferTx[i]);
-     eaa:	ec 2f       	mov	r30, r28
-     eac:	f0 e0       	ldi	r31, 0x00	; 0
-     eae:	eb 59       	subi	r30, 0x9B	; 155
-     eb0:	fd 4f       	sbci	r31, 0xFD	; 253
-     eb2:	80 81       	ld	r24, Z
-     eb4:	0e 94 98 02 	call	0x530	; 0x530 <MODBUS_CalculateCRC>
+     eb2:	ec 2f       	mov	r30, r28
+     eb4:	f0 e0       	ldi	r31, 0x00	; 0
+     eb6:	eb 59       	subi	r30, 0x9B	; 155
+     eb8:	fd 4f       	sbci	r31, 0xFD	; 253
+     eba:	80 81       	ld	r24, Z
+     ebc:	0e 94 98 02 	call	0x530	; 0x530 <MODBUS_CalculateCRC>
 void MODBUS_SendExceptionCode(){
 	commFlags.iFlags.isExceptionCode = 0;
 	bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
 	bufferTx[indexTxW++] = myModbusFrame.errorCode;
 	bufferTx[indexTxW++] = myModbusFrame.excepCode;
 	for(uint8_t i = indexTxR; i < indexTxW;i++){
-     eb8:	cf 5f       	subi	r28, 0xFF	; 255
-     eba:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
-     ebe:	ce 17       	cp	r28, r30
-     ec0:	a0 f3       	brcs	.-24     	; 0xeaa <MODBUS_SendExceptionCode+0x4c>
+     ec0:	cf 5f       	subi	r28, 0xFF	; 255
+     ec2:	e0 91 4d 01 	lds	r30, 0x014D	; 0x80014d <indexTxW>
+     ec6:	ce 17       	cp	r28, r30
+     ec8:	a0 f3       	brcs	.-24     	; 0xeb2 <MODBUS_SendExceptionCode+0x4c>
 		MODBUS_CalculateCRC(bufferTx[i]);
 	}
 	myWord.ui16[0] = myModbusFrame.crcSlave;
-     ec2:	90 91 61 02 	lds	r25, 0x0261	; 0x800261 <myModbusFrame+0x4>
-     ec6:	80 91 62 02 	lds	r24, 0x0262	; 0x800262 <myModbusFrame+0x5>
-     eca:	a6 e5       	ldi	r26, 0x56	; 86
-     ecc:	b2 e0       	ldi	r27, 0x02	; 2
-     ece:	9c 93       	st	X, r25
-     ed0:	11 96       	adiw	r26, 0x01	; 1
-     ed2:	8c 93       	st	X, r24
-     ed4:	11 97       	sbiw	r26, 0x01	; 1
+     eca:	90 91 61 02 	lds	r25, 0x0261	; 0x800261 <myModbusFrame+0x4>
+     ece:	80 91 62 02 	lds	r24, 0x0262	; 0x800262 <myModbusFrame+0x5>
+     ed2:	a6 e5       	ldi	r26, 0x56	; 86
+     ed4:	b2 e0       	ldi	r27, 0x02	; 2
+     ed6:	9c 93       	st	X, r25
+     ed8:	11 96       	adiw	r26, 0x01	; 1
+     eda:	8c 93       	st	X, r24
+     edc:	11 97       	sbiw	r26, 0x01	; 1
 	bufferTx[indexTxW++] = myWord.ui8[0];
-     ed6:	81 e0       	ldi	r24, 0x01	; 1
-     ed8:	8e 0f       	add	r24, r30
-     eda:	f0 e0       	ldi	r31, 0x00	; 0
-     edc:	eb 59       	subi	r30, 0x9B	; 155
-     ede:	fd 4f       	sbci	r31, 0xFD	; 253
-     ee0:	90 83       	st	Z, r25
+     ede:	81 e0       	ldi	r24, 0x01	; 1
+     ee0:	8e 0f       	add	r24, r30
+     ee2:	f0 e0       	ldi	r31, 0x00	; 0
+     ee4:	eb 59       	subi	r30, 0x9B	; 155
+     ee6:	fd 4f       	sbci	r31, 0xFD	; 253
+     ee8:	90 83       	st	Z, r25
 	bufferTx[indexTxW++] = myWord.ui8[1];
-     ee2:	91 e0       	ldi	r25, 0x01	; 1
-     ee4:	98 0f       	add	r25, r24
-     ee6:	90 93 4d 01 	sts	0x014D, r25	; 0x80014d <indexTxW>
-     eea:	e8 2f       	mov	r30, r24
-     eec:	f0 e0       	ldi	r31, 0x00	; 0
-     eee:	11 96       	adiw	r26, 0x01	; 1
-     ef0:	8c 91       	ld	r24, X
-     ef2:	eb 59       	subi	r30, 0x9B	; 155
-     ef4:	fd 4f       	sbci	r31, 0xFD	; 253
-     ef6:	80 83       	st	Z, r24
+     eea:	91 e0       	ldi	r25, 0x01	; 1
+     eec:	98 0f       	add	r25, r24
+     eee:	90 93 4d 01 	sts	0x014D, r25	; 0x80014d <indexTxW>
+     ef2:	e8 2f       	mov	r30, r24
+     ef4:	f0 e0       	ldi	r31, 0x00	; 0
+     ef6:	11 96       	adiw	r26, 0x01	; 1
+     ef8:	8c 91       	ld	r24, X
+     efa:	eb 59       	subi	r30, 0x9B	; 155
+     efc:	fd 4f       	sbci	r31, 0xFD	; 253
+     efe:	80 83       	st	Z, r24
 }
-     ef8:	df 91       	pop	r29
-     efa:	cf 91       	pop	r28
-     efc:	08 95       	ret
+     f00:	df 91       	pop	r29
+     f02:	cf 91       	pop	r28
+     f04:	08 95       	ret
 
-00000efe <main>:
+00000f06 <main>:
 
 /*
     Main application
 */
 
 int main(void){
-     efe:	cf 93       	push	r28
-     f00:	df 93       	push	r29
-     f02:	cd b7       	in	r28, 0x3d	; 61
-     f04:	de b7       	in	r29, 0x3e	; 62
-     f06:	28 97       	sbiw	r28, 0x08	; 8
-     f08:	0f b6       	in	r0, 0x3f	; 63
-     f0a:	f8 94       	cli
-     f0c:	de bf       	out	0x3e, r29	; 62
-     f0e:	0f be       	out	0x3f, r0	; 63
-     f10:	cd bf       	out	0x3d, r28	; 61
+     f06:	cf 93       	push	r28
+     f08:	df 93       	push	r29
+     f0a:	cd b7       	in	r28, 0x3d	; 61
+     f0c:	de b7       	in	r29, 0x3e	; 62
+     f0e:	28 97       	sbiw	r28, 0x08	; 8
+     f10:	0f b6       	in	r0, 0x3f	; 63
+     f12:	f8 94       	cli
+     f14:	de bf       	out	0x3e, r29	; 62
+     f16:	0f be       	out	0x3f, r0	; 63
+     f18:	cd bf       	out	0x3d, r28	; 61
 	
 	SYSTEM_Initialize();
-     f12:	0e 94 cc 09 	call	0x1398	; 0x1398 <SYSTEM_Initialize>
+     f1a:	0e 94 d0 09 	call	0x13a0	; 0x13a0 <SYSTEM_Initialize>
 	
 	uint8_t auxSlaveAddress, hbState = 0; 
 	uint16_t auxtimeBtw[4];
 	
 	//LEER DE EEPROM
 	slaveAddress = EEPROM_Read(SLAVE_EEPROM_ADDRESS);
-     f16:	81 e0       	ldi	r24, 0x01	; 1
-     f18:	90 e0       	ldi	r25, 0x00	; 0
-     f1a:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     f1e:	80 93 ff 03 	sts	0x03FF, r24	; 0x8003ff <slaveAddress>
+     f1e:	81 e0       	ldi	r24, 0x01	; 1
+     f20:	90 e0       	ldi	r25, 0x00	; 0
+     f22:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     f26:	80 93 ff 03 	sts	0x03FF, r24	; 0x8003ff <slaveAddress>
 	modbusRegister.brConfig = EEPROM_Read(BRCONFIG_EEPROM_ADDRESS);
-     f22:	82 e0       	ldi	r24, 0x02	; 2
-     f24:	90 e0       	ldi	r25, 0x00	; 0
-     f26:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     f2a:	0f 2e       	mov	r0, r31
-     f2c:	f0 e0       	ldi	r31, 0x00	; 0
-     f2e:	ef 2e       	mov	r14, r31
-     f30:	f4 e0       	ldi	r31, 0x04	; 4
-     f32:	ff 2e       	mov	r15, r31
-     f34:	f0 2d       	mov	r31, r0
-     f36:	d7 01       	movw	r26, r14
-     f38:	14 96       	adiw	r26, 0x04	; 4
-     f3a:	8c 93       	st	X, r24
+     f2a:	82 e0       	ldi	r24, 0x02	; 2
+     f2c:	90 e0       	ldi	r25, 0x00	; 0
+     f2e:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     f32:	0f 2e       	mov	r0, r31
+     f34:	f0 e0       	ldi	r31, 0x00	; 0
+     f36:	ef 2e       	mov	r14, r31
+     f38:	f4 e0       	ldi	r31, 0x04	; 4
+     f3a:	ff 2e       	mov	r15, r31
+     f3c:	f0 2d       	mov	r31, r0
+     f3e:	d7 01       	movw	r26, r14
+     f40:	14 96       	adiw	r26, 0x04	; 4
+     f42:	8c 93       	st	X, r24
 	modbusRegister.parity = EEPROM_Read(PARITY_EEPROM_ADDRESS);
-     f3c:	83 e0       	ldi	r24, 0x03	; 3
-     f3e:	90 e0       	ldi	r25, 0x00	; 0
-     f40:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     f44:	f7 01       	movw	r30, r14
-     f46:	85 83       	std	Z+5, r24	; 0x05
+     f44:	83 e0       	ldi	r24, 0x03	; 3
+     f46:	90 e0       	ldi	r25, 0x00	; 0
+     f48:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     f4c:	f7 01       	movw	r30, r14
+     f4e:	85 83       	std	Z+5, r24	; 0x05
 
 	myWord.ui8[0] = EEPROM_Read(TIMEBTW0_LOW_EEPROM_ADDRESS);
-     f48:	84 e0       	ldi	r24, 0x04	; 4
-     f4a:	90 e0       	ldi	r25, 0x00	; 0
-     f4c:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     f50:	06 e5       	ldi	r16, 0x56	; 86
-     f52:	12 e0       	ldi	r17, 0x02	; 2
-     f54:	d8 01       	movw	r26, r16
-     f56:	8c 93       	st	X, r24
+     f50:	84 e0       	ldi	r24, 0x04	; 4
+     f52:	90 e0       	ldi	r25, 0x00	; 0
+     f54:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     f58:	06 e5       	ldi	r16, 0x56	; 86
+     f5a:	12 e0       	ldi	r17, 0x02	; 2
+     f5c:	d8 01       	movw	r26, r16
+     f5e:	8c 93       	st	X, r24
 	myWord.ui8[1] = EEPROM_Read(TIMEBTW0_HIGH_EEPROM_ADDRESS);
-     f58:	85 e0       	ldi	r24, 0x05	; 5
-     f5a:	90 e0       	ldi	r25, 0x00	; 0
-     f5c:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     f60:	f8 01       	movw	r30, r16
-     f62:	81 83       	std	Z+1, r24	; 0x01
+     f60:	85 e0       	ldi	r24, 0x05	; 5
+     f62:	90 e0       	ldi	r25, 0x00	; 0
+     f64:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     f68:	f8 01       	movw	r30, r16
+     f6a:	81 83       	std	Z+1, r24	; 0x01
 	modbusRegister.timeBtw[0]= myWord.ui16[0];
-     f64:	80 81       	ld	r24, Z
-     f66:	91 81       	ldd	r25, Z+1	; 0x01
-     f68:	d7 01       	movw	r26, r14
-     f6a:	17 96       	adiw	r26, 0x07	; 7
-     f6c:	9c 93       	st	X, r25
-     f6e:	8e 93       	st	-X, r24
-     f70:	16 97       	sbiw	r26, 0x06	; 6
+     f6c:	80 81       	ld	r24, Z
+     f6e:	91 81       	ldd	r25, Z+1	; 0x01
+     f70:	d7 01       	movw	r26, r14
+     f72:	17 96       	adiw	r26, 0x07	; 7
+     f74:	9c 93       	st	X, r25
+     f76:	8e 93       	st	-X, r24
+     f78:	16 97       	sbiw	r26, 0x06	; 6
 	myWord.ui8[1] = EEPROM_Read(TIMEBTW1_HIGH_EEPROM_ADDRESS);
-     f72:	87 e0       	ldi	r24, 0x07	; 7
-     f74:	90 e0       	ldi	r25, 0x00	; 0
-     f76:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     f7a:	f8 01       	movw	r30, r16
-     f7c:	81 83       	std	Z+1, r24	; 0x01
+     f7a:	87 e0       	ldi	r24, 0x07	; 7
+     f7c:	90 e0       	ldi	r25, 0x00	; 0
+     f7e:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     f82:	f8 01       	movw	r30, r16
+     f84:	81 83       	std	Z+1, r24	; 0x01
 	myWord.ui8[0] = EEPROM_Read(TIMEBTW1_LOW_EEPROM_ADDRESS);
-     f7e:	86 e0       	ldi	r24, 0x06	; 6
-     f80:	90 e0       	ldi	r25, 0x00	; 0
-     f82:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     f86:	d8 01       	movw	r26, r16
-     f88:	8c 93       	st	X, r24
+     f86:	86 e0       	ldi	r24, 0x06	; 6
+     f88:	90 e0       	ldi	r25, 0x00	; 0
+     f8a:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     f8e:	d8 01       	movw	r26, r16
+     f90:	8c 93       	st	X, r24
 	modbusRegister.timeBtw[1]= myWord.ui16[0];
-     f8a:	8d 91       	ld	r24, X+
-     f8c:	9c 91       	ld	r25, X
-     f8e:	f7 01       	movw	r30, r14
-     f90:	91 87       	std	Z+9, r25	; 0x09
-     f92:	80 87       	std	Z+8, r24	; 0x08
+     f92:	8d 91       	ld	r24, X+
+     f94:	9c 91       	ld	r25, X
+     f96:	f7 01       	movw	r30, r14
+     f98:	91 87       	std	Z+9, r25	; 0x09
+     f9a:	80 87       	std	Z+8, r24	; 0x08
 	myWord.ui8[1] = EEPROM_Read(TIMEBTW2_HIGH_EEPROM_ADDRESS);
-     f94:	89 e0       	ldi	r24, 0x09	; 9
-     f96:	90 e0       	ldi	r25, 0x00	; 0
-     f98:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     f9c:	d8 01       	movw	r26, r16
-     f9e:	11 96       	adiw	r26, 0x01	; 1
-     fa0:	8c 93       	st	X, r24
+     f9c:	89 e0       	ldi	r24, 0x09	; 9
+     f9e:	90 e0       	ldi	r25, 0x00	; 0
+     fa0:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     fa4:	d8 01       	movw	r26, r16
+     fa6:	11 96       	adiw	r26, 0x01	; 1
+     fa8:	8c 93       	st	X, r24
 	myWord.ui8[0] = EEPROM_Read(TIMEBTW2_LOW_EEPROM_ADDRESS);
-     fa2:	88 e0       	ldi	r24, 0x08	; 8
-     fa4:	90 e0       	ldi	r25, 0x00	; 0
-     fa6:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     faa:	f8 01       	movw	r30, r16
-     fac:	80 83       	st	Z, r24
+     faa:	88 e0       	ldi	r24, 0x08	; 8
+     fac:	90 e0       	ldi	r25, 0x00	; 0
+     fae:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     fb2:	f8 01       	movw	r30, r16
+     fb4:	80 83       	st	Z, r24
 	modbusRegister.timeBtw[2]= myWord.ui16[0];
-     fae:	80 81       	ld	r24, Z
-     fb0:	91 81       	ldd	r25, Z+1	; 0x01
-     fb2:	d7 01       	movw	r26, r14
-     fb4:	1b 96       	adiw	r26, 0x0b	; 11
-     fb6:	9c 93       	st	X, r25
-     fb8:	8e 93       	st	-X, r24
-     fba:	1a 97       	sbiw	r26, 0x0a	; 10
+     fb6:	80 81       	ld	r24, Z
+     fb8:	91 81       	ldd	r25, Z+1	; 0x01
+     fba:	d7 01       	movw	r26, r14
+     fbc:	1b 96       	adiw	r26, 0x0b	; 11
+     fbe:	9c 93       	st	X, r25
+     fc0:	8e 93       	st	-X, r24
+     fc2:	1a 97       	sbiw	r26, 0x0a	; 10
 	myWord.ui8[1] = EEPROM_Read(TIMEBTW3_HIGH_EEPROM_ADDRESS);
-     fbc:	8b e0       	ldi	r24, 0x0B	; 11
-     fbe:	90 e0       	ldi	r25, 0x00	; 0
-     fc0:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     fc4:	f8 01       	movw	r30, r16
-     fc6:	81 83       	std	Z+1, r24	; 0x01
+     fc4:	8b e0       	ldi	r24, 0x0B	; 11
+     fc6:	90 e0       	ldi	r25, 0x00	; 0
+     fc8:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     fcc:	f8 01       	movw	r30, r16
+     fce:	81 83       	std	Z+1, r24	; 0x01
 	myWord.ui8[0] = EEPROM_Read(TIMEBTW3_LOW_EEPROM_ADDRESS);
-     fc8:	8a e0       	ldi	r24, 0x0A	; 10
-     fca:	90 e0       	ldi	r25, 0x00	; 0
-     fcc:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
-     fd0:	d8 01       	movw	r26, r16
-     fd2:	8c 93       	st	X, r24
+     fd0:	8a e0       	ldi	r24, 0x0A	; 10
+     fd2:	90 e0       	ldi	r25, 0x00	; 0
+     fd4:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <EEPROM_Read>
+     fd8:	d8 01       	movw	r26, r16
+     fda:	8c 93       	st	X, r24
 	modbusRegister.timeBtw[3]= myWord.ui16[0];
-     fd4:	8d 91       	ld	r24, X+
-     fd6:	9c 91       	ld	r25, X
-     fd8:	f7 01       	movw	r30, r14
-     fda:	95 87       	std	Z+13, r25	; 0x0d
-     fdc:	84 87       	std	Z+12, r24	; 0x0c
+     fdc:	8d 91       	ld	r24, X+
+     fde:	9c 91       	ld	r25, X
+     fe0:	f7 01       	movw	r30, r14
+     fe2:	95 87       	std	Z+13, r25	; 0x0d
+     fe4:	84 87       	std	Z+12, r24	; 0x0c
 
 	auxSlaveAddress = slaveAddress;
-     fde:	00 91 ff 03 	lds	r16, 0x03FF	; 0x8003ff <slaveAddress>
+     fe6:	00 91 ff 03 	lds	r16, 0x03FF	; 0x8003ff <slaveAddress>
 	auxbrConfig = modbusRegister.brConfig;
-     fe2:	f4 81       	ldd	r31, Z+4	; 0x04
-     fe4:	f0 93 0c 01 	sts	0x010C, r31	; 0x80010c <auxbrConfig>
+     fea:	f4 81       	ldd	r31, Z+4	; 0x04
+     fec:	f0 93 0c 01 	sts	0x010C, r31	; 0x80010c <auxbrConfig>
 	auxParity = modbusRegister.parity;
-     fe8:	d7 01       	movw	r26, r14
-     fea:	15 96       	adiw	r26, 0x05	; 5
-     fec:	ec 91       	ld	r30, X
-     fee:	15 97       	sbiw	r26, 0x05	; 5
-     ff0:	e0 93 0b 01 	sts	0x010B, r30	; 0x80010b <auxParity>
+     ff0:	d7 01       	movw	r26, r14
+     ff2:	15 96       	adiw	r26, 0x05	; 5
+     ff4:	ec 91       	ld	r30, X
+     ff6:	15 97       	sbiw	r26, 0x05	; 5
+     ff8:	e0 93 0b 01 	sts	0x010B, r30	; 0x80010b <auxParity>
 	auxtimeBtw[0] = modbusRegister.timeBtw[0];	
-     ff4:	16 96       	adiw	r26, 0x06	; 6
-     ff6:	6d 91       	ld	r22, X+
-     ff8:	7c 91       	ld	r23, X
-     ffa:	17 97       	sbiw	r26, 0x07	; 7
-     ffc:	7a 83       	std	Y+2, r23	; 0x02
-     ffe:	69 83       	std	Y+1, r22	; 0x01
+     ffc:	16 96       	adiw	r26, 0x06	; 6
+     ffe:	6d 91       	ld	r22, X+
+    1000:	7c 91       	ld	r23, X
+    1002:	17 97       	sbiw	r26, 0x07	; 7
+    1004:	7a 83       	std	Y+2, r23	; 0x02
+    1006:	69 83       	std	Y+1, r22	; 0x01
 	auxtimeBtw[1] = modbusRegister.timeBtw[1];
-    1000:	18 96       	adiw	r26, 0x08	; 8
-    1002:	4d 91       	ld	r20, X+
-    1004:	5c 91       	ld	r21, X
-    1006:	19 97       	sbiw	r26, 0x09	; 9
-    1008:	5c 83       	std	Y+4, r21	; 0x04
-    100a:	4b 83       	std	Y+3, r20	; 0x03
+    1008:	18 96       	adiw	r26, 0x08	; 8
+    100a:	4d 91       	ld	r20, X+
+    100c:	5c 91       	ld	r21, X
+    100e:	19 97       	sbiw	r26, 0x09	; 9
+    1010:	5c 83       	std	Y+4, r21	; 0x04
+    1012:	4b 83       	std	Y+3, r20	; 0x03
 	auxtimeBtw[2] = modbusRegister.timeBtw[2];
-    100c:	1a 96       	adiw	r26, 0x0a	; 10
-    100e:	2d 91       	ld	r18, X+
-    1010:	3c 91       	ld	r19, X
-    1012:	1b 97       	sbiw	r26, 0x0b	; 11
-    1014:	3e 83       	std	Y+6, r19	; 0x06
-    1016:	2d 83       	std	Y+5, r18	; 0x05
+    1014:	1a 96       	adiw	r26, 0x0a	; 10
+    1016:	2d 91       	ld	r18, X+
+    1018:	3c 91       	ld	r19, X
+    101a:	1b 97       	sbiw	r26, 0x0b	; 11
+    101c:	3e 83       	std	Y+6, r19	; 0x06
+    101e:	2d 83       	std	Y+5, r18	; 0x05
 	auxtimeBtw[3] = modbusRegister.timeBtw[3];
-    1018:	98 87       	std	Y+8, r25	; 0x08
-    101a:	8f 83       	std	Y+7, r24	; 0x07
+    1020:	98 87       	std	Y+8, r25	; 0x08
+    1022:	8f 83       	std	Y+7, r24	; 0x07
 	
 	if(slaveAddress == 0xFF){
-    101c:	0f 3f       	cpi	r16, 0xFF	; 255
-    101e:	21 f4       	brne	.+8      	; 0x1028 <main+0x12a>
+    1024:	0f 3f       	cpi	r16, 0xFF	; 255
+    1026:	21 f4       	brne	.+8      	; 0x1030 <main+0x12a>
 		slaveAddress = 0x02;
-    1020:	a2 e0       	ldi	r26, 0x02	; 2
-    1022:	a0 93 ff 03 	sts	0x03FF, r26	; 0x8003ff <slaveAddress>
+    1028:	a2 e0       	ldi	r26, 0x02	; 2
+    102a:	a0 93 ff 03 	sts	0x03FF, r26	; 0x8003ff <slaveAddress>
 		auxSlaveAddress = slaveAddress;
-    1026:	02 e0       	ldi	r16, 0x02	; 2
+    102e:	02 e0       	ldi	r16, 0x02	; 2
 	}
 	if(modbusRegister.brConfig == 0xFF){
-    1028:	ff 3f       	cpi	r31, 0xFF	; 255
-    102a:	21 f4       	brne	.+8      	; 0x1034 <main+0x136>
+    1030:	ff 3f       	cpi	r31, 0xFF	; 255
+    1032:	21 f4       	brne	.+8      	; 0x103c <main+0x136>
 		modbusRegister.brConfig = 0x00;
-    102c:	10 92 04 04 	sts	0x0404, r1	; 0x800404 <modbusRegister+0x4>
+    1034:	10 92 04 04 	sts	0x0404, r1	; 0x800404 <modbusRegister+0x4>
 		auxbrConfig = modbusRegister.brConfig;
-    1030:	10 92 0c 01 	sts	0x010C, r1	; 0x80010c <auxbrConfig>
+    1038:	10 92 0c 01 	sts	0x010C, r1	; 0x80010c <auxbrConfig>
 	}
 	if(modbusRegister.parity == 0xFF){
-    1034:	ef 3f       	cpi	r30, 0xFF	; 255
-    1036:	29 f4       	brne	.+10     	; 0x1042 <main+0x144>
+    103c:	ef 3f       	cpi	r30, 0xFF	; 255
+    103e:	29 f4       	brne	.+10     	; 0x104a <main+0x144>
 		modbusRegister.parity = 0x01;
-    1038:	e1 e0       	ldi	r30, 0x01	; 1
-    103a:	e0 93 05 04 	sts	0x0405, r30	; 0x800405 <modbusRegister+0x5>
+    1040:	e1 e0       	ldi	r30, 0x01	; 1
+    1042:	e0 93 05 04 	sts	0x0405, r30	; 0x800405 <modbusRegister+0x5>
 		auxParity = modbusRegister.parity;
-    103e:	e0 93 0b 01 	sts	0x010B, r30	; 0x80010b <auxParity>
+    1046:	e0 93 0b 01 	sts	0x010B, r30	; 0x80010b <auxParity>
 	}
 	if(modbusRegister.timeBtw[0] == 0xFFFF){
-    1042:	6f 3f       	cpi	r22, 0xFF	; 255
-    1044:	7f 4f       	sbci	r23, 0xFF	; 255
-    1046:	31 f4       	brne	.+12     	; 0x1054 <main+0x156>
+    104a:	6f 3f       	cpi	r22, 0xFF	; 255
+    104c:	7f 4f       	sbci	r23, 0xFF	; 255
+    104e:	31 f4       	brne	.+12     	; 0x105c <main+0x156>
 		modbusRegister.timeBtw[0] = 0x00;
-    1048:	10 92 07 04 	sts	0x0407, r1	; 0x800407 <modbusRegister+0x7>
-    104c:	10 92 06 04 	sts	0x0406, r1	; 0x800406 <modbusRegister+0x6>
+    1050:	10 92 07 04 	sts	0x0407, r1	; 0x800407 <modbusRegister+0x7>
+    1054:	10 92 06 04 	sts	0x0406, r1	; 0x800406 <modbusRegister+0x6>
 		auxtimeBtw[0] = modbusRegister.timeBtw[0];
-    1050:	1a 82       	std	Y+2, r1	; 0x02
-    1052:	19 82       	std	Y+1, r1	; 0x01
+    1058:	1a 82       	std	Y+2, r1	; 0x02
+    105a:	19 82       	std	Y+1, r1	; 0x01
 	}
 	if(modbusRegister.timeBtw[1] == 0xFFFF){
-    1054:	4f 3f       	cpi	r20, 0xFF	; 255
-    1056:	5f 4f       	sbci	r21, 0xFF	; 255
-    1058:	31 f4       	brne	.+12     	; 0x1066 <main+0x168>
+    105c:	4f 3f       	cpi	r20, 0xFF	; 255
+    105e:	5f 4f       	sbci	r21, 0xFF	; 255
+    1060:	31 f4       	brne	.+12     	; 0x106e <main+0x168>
 		modbusRegister.timeBtw[1] = 0x00;
-    105a:	10 92 09 04 	sts	0x0409, r1	; 0x800409 <modbusRegister+0x9>
-    105e:	10 92 08 04 	sts	0x0408, r1	; 0x800408 <modbusRegister+0x8>
+    1062:	10 92 09 04 	sts	0x0409, r1	; 0x800409 <modbusRegister+0x9>
+    1066:	10 92 08 04 	sts	0x0408, r1	; 0x800408 <modbusRegister+0x8>
 		auxtimeBtw[1] = modbusRegister.timeBtw[1];
-    1062:	1c 82       	std	Y+4, r1	; 0x04
-    1064:	1b 82       	std	Y+3, r1	; 0x03
+    106a:	1c 82       	std	Y+4, r1	; 0x04
+    106c:	1b 82       	std	Y+3, r1	; 0x03
 	}
 	if(modbusRegister.timeBtw[2] == 0xFFFF){
-    1066:	2f 3f       	cpi	r18, 0xFF	; 255
-    1068:	3f 4f       	sbci	r19, 0xFF	; 255
-    106a:	31 f4       	brne	.+12     	; 0x1078 <main+0x17a>
+    106e:	2f 3f       	cpi	r18, 0xFF	; 255
+    1070:	3f 4f       	sbci	r19, 0xFF	; 255
+    1072:	31 f4       	brne	.+12     	; 0x1080 <main+0x17a>
 		modbusRegister.timeBtw[2] = 0x00;
-    106c:	10 92 0b 04 	sts	0x040B, r1	; 0x80040b <modbusRegister+0xb>
-    1070:	10 92 0a 04 	sts	0x040A, r1	; 0x80040a <modbusRegister+0xa>
+    1074:	10 92 0b 04 	sts	0x040B, r1	; 0x80040b <modbusRegister+0xb>
+    1078:	10 92 0a 04 	sts	0x040A, r1	; 0x80040a <modbusRegister+0xa>
 		auxtimeBtw[2] = modbusRegister.timeBtw[2];
-    1074:	1e 82       	std	Y+6, r1	; 0x06
-    1076:	1d 82       	std	Y+5, r1	; 0x05
+    107c:	1e 82       	std	Y+6, r1	; 0x06
+    107e:	1d 82       	std	Y+5, r1	; 0x05
 	}
 	if(modbusRegister.timeBtw[3] == 0xFFFF){
-    1078:	01 96       	adiw	r24, 0x01	; 1
-    107a:	31 f4       	brne	.+12     	; 0x1088 <main+0x18a>
+    1080:	01 96       	adiw	r24, 0x01	; 1
+    1082:	31 f4       	brne	.+12     	; 0x1090 <main+0x18a>
 		modbusRegister.timeBtw[3] = 0x00;
-    107c:	10 92 0d 04 	sts	0x040D, r1	; 0x80040d <modbusRegister+0xd>
-    1080:	10 92 0c 04 	sts	0x040C, r1	; 0x80040c <modbusRegister+0xc>
+    1084:	10 92 0d 04 	sts	0x040D, r1	; 0x80040d <modbusRegister+0xd>
+    1088:	10 92 0c 04 	sts	0x040C, r1	; 0x80040c <modbusRegister+0xc>
 		auxtimeBtw[3] = modbusRegister.timeBtw[3];
-    1084:	18 86       	std	Y+8, r1	; 0x08
-    1086:	1f 82       	std	Y+7, r1	; 0x07
+    108c:	18 86       	std	Y+8, r1	; 0x08
+    108e:	1f 82       	std	Y+7, r1	; 0x07
 	}
 	modbusRegister.unixTime				= 1770766800;
-    1088:	e0 e0       	ldi	r30, 0x00	; 0
-    108a:	f4 e0       	ldi	r31, 0x04	; 4
-    108c:	80 ed       	ldi	r24, 0xD0	; 208
-    108e:	91 ec       	ldi	r25, 0xC1	; 193
-    1090:	ab e8       	ldi	r26, 0x8B	; 139
-    1092:	b9 e6       	ldi	r27, 0x69	; 105
-    1094:	80 83       	st	Z, r24
-    1096:	91 83       	std	Z+1, r25	; 0x01
-    1098:	a2 83       	std	Z+2, r26	; 0x02
-    109a:	b3 83       	std	Z+3, r27	; 0x03
+    1090:	e0 e0       	ldi	r30, 0x00	; 0
+    1092:	f4 e0       	ldi	r31, 0x04	; 4
+    1094:	80 ed       	ldi	r24, 0xD0	; 208
+    1096:	91 ec       	ldi	r25, 0xC1	; 193
+    1098:	ab e8       	ldi	r26, 0x8B	; 139
+    109a:	b9 e6       	ldi	r27, 0x69	; 105
+    109c:	80 83       	st	Z, r24
+    109e:	91 83       	std	Z+1, r25	; 0x01
+    10a0:	a2 83       	std	Z+2, r26	; 0x02
+    10a2:	b3 83       	std	Z+3, r27	; 0x03
 	modbusRegister.diagnosticsRegister	= 0x3333; //Ver que valor darle que nos sirva
-    109c:	83 e3       	ldi	r24, 0x33	; 51
-    109e:	93 e3       	ldi	r25, 0x33	; 51
-    10a0:	97 87       	std	Z+15, r25	; 0x0f
-    10a2:	86 87       	std	Z+14, r24	; 0x0e
+    10a4:	83 e3       	ldi	r24, 0x33	; 51
+    10a6:	93 e3       	ldi	r25, 0x33	; 51
+    10a8:	97 87       	std	Z+15, r25	; 0x0f
+    10aa:	86 87       	std	Z+14, r24	; 0x0e
 	modbusRegister.newEventCounter		= 0x0000;
-    10a4:	11 8a       	std	Z+17, r1	; 0x11
-    10a6:	10 8a       	std	Z+16, r1	; 0x10
+    10ac:	11 8a       	std	Z+17, r1	; 0x11
+    10ae:	10 8a       	std	Z+16, r1	; 0x10
 
 	
 	
 	decodeState = IDLE;
-    10a8:	10 92 52 01 	sts	0x0152, r1	; 0x800152 <decodeState>
+    10b0:	10 92 52 01 	sts	0x0152, r1	; 0x800152 <decodeState>
 	hbTime = PERIOD250MS;
-    10ac:	89 e1       	ldi	r24, 0x19	; 25
-    10ae:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <hbTime>
+    10b4:	89 e1       	ldi	r24, 0x19	; 25
+    10b6:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <hbTime>
 	auxTik = 25000;
-    10b2:	88 ea       	ldi	r24, 0xA8	; 168
-    10b4:	91 e6       	ldi	r25, 0x61	; 97
-    10b6:	90 93 08 01 	sts	0x0108, r25	; 0x800108 <auxTik+0x1>
-    10ba:	80 93 07 01 	sts	0x0107, r24	; 0x800107 <auxTik>
+    10ba:	88 ea       	ldi	r24, 0xA8	; 168
+    10bc:	91 e6       	ldi	r25, 0x61	; 97
+    10be:	90 93 08 01 	sts	0x0108, r25	; 0x800108 <auxTik+0x1>
+    10c2:	80 93 07 01 	sts	0x0107, r24	; 0x800107 <auxTik>
 	commFlags.aFlags = 0;
 	commFlags.iFlags.silenceTime = 1;
-    10be:	84 e0       	ldi	r24, 0x04	; 4
-    10c0:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+    10c6:	84 e0       	ldi	r24, 0x04	; 4
+    10c8:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 	indexTxW = 0;
-    10c4:	10 92 4d 01 	sts	0x014D, r1	; 0x80014d <indexTxW>
+    10cc:	10 92 4d 01 	sts	0x014D, r1	; 0x80014d <indexTxW>
 	indexTxR = 0;
-    10c8:	10 92 54 02 	sts	0x0254, r1	; 0x800254 <indexTxR>
+    10d0:	10 92 54 02 	sts	0x0254, r1	; 0x800254 <indexTxR>
 	indexRxW = 0;
-    10cc:	10 92 5c 02 	sts	0x025C, r1	; 0x80025c <indexRxW>
+    10d4:	10 92 5c 02 	sts	0x025C, r1	; 0x80025c <indexRxW>
 	indexRxR = 0;
-    10d0:	10 92 5b 02 	sts	0x025B, r1	; 0x80025b <indexRxR>
+    10d8:	10 92 5b 02 	sts	0x025B, r1	; 0x80025b <indexRxR>
 		
 	unixTik = PERIOD500MS;
-    10d4:	82 e3       	ldi	r24, 0x32	; 50
-    10d6:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <unixTik>
+    10dc:	82 e3       	ldi	r24, 0x32	; 50
+    10de:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <unixTik>
 
 	/*-----LECTURA ENTRADAS-----------------------*/
 	newValueA = ~(PORTC & MASK_PORTC);
-    10da:	88 b1       	in	r24, 0x08	; 8
-    10dc:	8f 70       	andi	r24, 0x0F	; 15
-    10de:	80 95       	com	r24
-    10e0:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <newValueA>
+    10e2:	88 b1       	in	r24, 0x08	; 8
+    10e4:	8f 70       	andi	r24, 0x0F	; 15
+    10e6:	80 95       	com	r24
+    10e8:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <newValueA>
 	outValues = newValueA;
-    10e4:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <outValues>
+    10ec:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <outValues>
 	inputFlags.aFlags_input = 0;
-    10e8:	10 92 5a 02 	sts	0x025A, r1	; 0x80025a <inputFlags>
+    10f0:	10 92 5a 02 	sts	0x025A, r1	; 0x80025a <inputFlags>
 	commFlags.aFlags = 0;
-    10ec:	10 92 53 02 	sts	0x0253, r1	; 0x800253 <commFlags>
+    10f4:	10 92 53 02 	sts	0x0253, r1	; 0x800253 <commFlags>
 	is500ms=0;
-    10f0:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+    10f8:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
 
 	tikBetweenTime[0] = 0;
-    10f4:	a5 e6       	ldi	r26, 0x65	; 101
-    10f6:	b3 e0       	ldi	r27, 0x03	; 3
-    10f8:	11 96       	adiw	r26, 0x01	; 1
-    10fa:	1c 92       	st	X, r1
-    10fc:	1e 92       	st	-X, r1
+    10fc:	a5 e6       	ldi	r26, 0x65	; 101
+    10fe:	b3 e0       	ldi	r27, 0x03	; 3
+    1100:	11 96       	adiw	r26, 0x01	; 1
+    1102:	1c 92       	st	X, r1
+    1104:	1e 92       	st	-X, r1
 	tikBetweenTime[1] = 0;
-    10fe:	13 96       	adiw	r26, 0x03	; 3
-    1100:	1c 92       	st	X, r1
-    1102:	1e 92       	st	-X, r1
-    1104:	12 97       	sbiw	r26, 0x02	; 2
-	tikBetweenTime[2] = 0;
-    1106:	15 96       	adiw	r26, 0x05	; 5
+    1106:	13 96       	adiw	r26, 0x03	; 3
     1108:	1c 92       	st	X, r1
     110a:	1e 92       	st	-X, r1
-    110c:	14 97       	sbiw	r26, 0x04	; 4
-	tikBetweenTime[3] = 0;
-    110e:	17 96       	adiw	r26, 0x07	; 7
+    110c:	12 97       	sbiw	r26, 0x02	; 2
+	tikBetweenTime[2] = 0;
+    110e:	15 96       	adiw	r26, 0x05	; 5
     1110:	1c 92       	st	X, r1
     1112:	1e 92       	st	-X, r1
-    1114:	16 97       	sbiw	r26, 0x06	; 6
+    1114:	14 97       	sbiw	r26, 0x04	; 4
+	tikBetweenTime[3] = 0;
+    1116:	17 96       	adiw	r26, 0x07	; 7
+    1118:	1c 92       	st	X, r1
+    111a:	1e 92       	st	-X, r1
+    111c:	16 97       	sbiw	r26, 0x06	; 6
 		
 
 	USART0_Initialize(modbusRegister.brConfig, modbusRegister.parity);
-    1116:	65 81       	ldd	r22, Z+5	; 0x05
-    1118:	84 81       	ldd	r24, Z+4	; 0x04
-    111a:	0e 94 c6 0a 	call	0x158c	; 0x158c <USART0_Initialize>
+    111e:	65 81       	ldd	r22, Z+5	; 0x05
+    1120:	84 81       	ldd	r24, Z+4	; 0x04
+    1122:	0e 94 ca 0a 	call	0x1594	; 0x1594 <USART0_Initialize>
 	TC0_Initialize();
-    111e:	0e 94 d3 09 	call	0x13a6	; 0x13a6 <TC0_Initialize>
+    1126:	0e 94 d7 09 	call	0x13ae	; 0x13ae <TC0_Initialize>
 	TC1_Initialize();
-    1122:	0e 94 1c 0a 	call	0x1438	; 0x1438 <TC1_Initialize>
+    112a:	0e 94 20 0a 	call	0x1440	; 0x1440 <TC1_Initialize>
 	InitializeEvents();
-    1126:	0e 94 3b 01 	call	0x276	; 0x276 <InitializeEvents>
+    112e:	0e 94 3b 01 	call	0x276	; 0x276 <InitializeEvents>
 	
 	sei();
-    112a:	78 94       	sei
+    1132:	78 94       	sei
 	
 	TMR0_SetHandler(do10ms);
-    112c:	82 e8       	ldi	r24, 0x82	; 130
-    112e:	90 e0       	ldi	r25, 0x00	; 0
-    1130:	0e 94 ec 09 	call	0x13d8	; 0x13d8 <TMR0_SetHandler>
-	TMR1_SetHandler(do10us);
-    1134:	8a e5       	ldi	r24, 0x5A	; 90
+    1134:	82 e8       	ldi	r24, 0x82	; 130
     1136:	90 e0       	ldi	r25, 0x00	; 0
-    1138:	0e 94 64 0a 	call	0x14c8	; 0x14c8 <TMR1_SetHandler>
+    1138:	0e 94 f0 09 	call	0x13e0	; 0x13e0 <TMR0_SetHandler>
+	TMR1_SetHandler(do10us);
+    113c:	8a e5       	ldi	r24, 0x5A	; 90
+    113e:	90 e0       	ldi	r25, 0x00	; 0
+    1140:	0e 94 68 0a 	call	0x14d0	; 0x14d0 <TMR1_SetHandler>
 	USART0_ReceiveInterruptEnable();
-    113c:	0e 94 c6 00 	call	0x18c	; 0x18c <USART0_ReceiveInterruptEnable>
+    1144:	0e 94 c6 00 	call	0x18c	; 0x18c <USART0_ReceiveInterruptEnable>
 
 int main(void){
 	
 	SYSTEM_Initialize();
 	
 	uint8_t auxSlaveAddress, hbState = 0; 
-    1140:	10 e0       	ldi	r17, 0x00	; 0
+    1148:	10 e0       	ldi	r17, 0x00	; 0
 	USART0_ReceiveInterruptEnable();
 
 	
 	while(1){
 		
 			if(!hbTime){ //Heartbeat
-    1142:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <hbTime>
-    1146:	81 11       	cpse	r24, r1
-    1148:	05 c0       	rjmp	.+10     	; 0x1154 <main+0x256>
+    114a:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <hbTime>
+    114e:	81 11       	cpse	r24, r1
+    1150:	05 c0       	rjmp	.+10     	; 0x115c <main+0x256>
 			//	PORTB ^= (1<<5);
 				hbState ^= (1<<5);
-    114a:	80 e2       	ldi	r24, 0x20	; 32
-    114c:	18 27       	eor	r17, r24
+    1152:	80 e2       	ldi	r24, 0x20	; 32
+    1154:	18 27       	eor	r17, r24
 				hbTime = PERIOD250MS;
-    114e:	89 e1       	ldi	r24, 0x19	; 25
-    1150:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <hbTime>
+    1156:	89 e1       	ldi	r24, 0x19	; 25
+    1158:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <hbTime>
 			}
 					 
 			if(commFlags.iFlags.dataReady){ //DECODIFICA SI EL FRAME SE RECIBIO CORRECTAMENTE
-    1154:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-    1158:	81 ff       	sbrs	r24, 1
-    115a:	05 c0       	rjmp	.+10     	; 0x1166 <main+0x268>
+    115c:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+    1160:	81 ff       	sbrs	r24, 1
+    1162:	05 c0       	rjmp	.+10     	; 0x116e <main+0x268>
 				commFlags.iFlags.dataReady = 0;
-    115c:	8d 7f       	andi	r24, 0xFD	; 253
-    115e:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+    1164:	8d 7f       	andi	r24, 0xFD	; 253
+    1166:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 				MODBUS_ProcessFunction();
-    1162:	0e 94 97 03 	call	0x72e	; 0x72e <MODBUS_ProcessFunction>
+    116a:	0e 94 97 03 	call	0x72e	; 0x72e <MODBUS_ProcessFunction>
 			}
 
 			if(indexTxR != indexTxW){ //Si hay datos para transmitir, transmite todo lo que tiene
-    1166:	90 91 54 02 	lds	r25, 0x0254	; 0x800254 <indexTxR>
-    116a:	80 91 4d 01 	lds	r24, 0x014D	; 0x80014d <indexTxW>
-    116e:	98 17       	cp	r25, r24
-    1170:	39 f0       	breq	.+14     	; 0x1180 <main+0x282>
+    116e:	90 91 54 02 	lds	r25, 0x0254	; 0x800254 <indexTxR>
+    1172:	80 91 4d 01 	lds	r24, 0x014D	; 0x80014d <indexTxW>
+    1176:	98 17       	cp	r25, r24
+    1178:	39 f0       	breq	.+14     	; 0x1188 <main+0x282>
 				USART0_ReceiveInterruptDisable();
-    1172:	0e 94 cc 00 	call	0x198	; 0x198 <USART0_ReceiveInterruptDisable>
+    117a:	0e 94 cc 00 	call	0x198	; 0x198 <USART0_ReceiveInterruptDisable>
 				PORTD |= 0x4; //MAX HIGH
-    1176:	8b b1       	in	r24, 0x0b	; 11
-    1178:	84 60       	ori	r24, 0x04	; 4
-    117a:	8b b9       	out	0x0b, r24	; 11
+    117e:	8b b1       	in	r24, 0x0b	; 11
+    1180:	84 60       	ori	r24, 0x04	; 4
+    1182:	8b b9       	out	0x0b, r24	; 11
 				UARTsendByte();
-    117c:	0e 94 ae 00 	call	0x15c	; 0x15c <UARTsendByte>
+    1184:	0e 94 ae 00 	call	0x15c	; 0x15c <UARTsendByte>
 			}
 			if(indexTxR == indexTxW){ //Si no hay datos para transmitir vuelve a la interrupcion
-    1180:	90 91 54 02 	lds	r25, 0x0254	; 0x800254 <indexTxR>
-    1184:	80 91 4d 01 	lds	r24, 0x014D	; 0x80014d <indexTxW>
-    1188:	98 13       	cpse	r25, r24
-    118a:	0e c0       	rjmp	.+28     	; 0x11a8 <main+0x2aa>
+    1188:	90 91 54 02 	lds	r25, 0x0254	; 0x800254 <indexTxR>
+    118c:	80 91 4d 01 	lds	r24, 0x014D	; 0x80014d <indexTxW>
+    1190:	98 13       	cpse	r25, r24
+    1192:	0e c0       	rjmp	.+28     	; 0x11b0 <main+0x2aa>
 				if(USART0_IsTxDone()){ //IS TRANSMIT COMPLETE
-    118c:	0e 94 a5 0a 	call	0x154a	; 0x154a <USART0_IsTxDone>
-    1190:	88 23       	and	r24, r24
-    1192:	51 f0       	breq	.+20     	; 0x11a8 <main+0x2aa>
+    1194:	0e 94 a9 0a 	call	0x1552	; 0x1552 <USART0_IsTxDone>
+    1198:	88 23       	and	r24, r24
+    119a:	51 f0       	breq	.+20     	; 0x11b0 <main+0x2aa>
 					UCSR0A |= (1<<TXC0);           // limpiar TXC0
-    1194:	e0 ec       	ldi	r30, 0xC0	; 192
-    1196:	f0 e0       	ldi	r31, 0x00	; 0
-    1198:	80 81       	ld	r24, Z
-    119a:	80 64       	ori	r24, 0x40	; 64
-    119c:	80 83       	st	Z, r24
+    119c:	e0 ec       	ldi	r30, 0xC0	; 192
+    119e:	f0 e0       	ldi	r31, 0x00	; 0
+    11a0:	80 81       	ld	r24, Z
+    11a2:	80 64       	ori	r24, 0x40	; 64
+    11a4:	80 83       	st	Z, r24
 					USART0_ReceiveInterruptEnable();
-    119e:	0e 94 c6 00 	call	0x18c	; 0x18c <USART0_ReceiveInterruptEnable>
+    11a6:	0e 94 c6 00 	call	0x18c	; 0x18c <USART0_ReceiveInterruptEnable>
 					PORTD &= ~ 0x4; //MAX_SetLow();
-    11a2:	8b b1       	in	r24, 0x0b	; 11
-    11a4:	8b 7f       	andi	r24, 0xFB	; 251
-    11a6:	8b b9       	out	0x0b, r24	; 11
+    11aa:	8b b1       	in	r24, 0x0b	; 11
+    11ac:	8b 7f       	andi	r24, 0xFB	; 251
+    11ae:	8b b9       	out	0x0b, r24	; 11
 				}
 			}
 
 			if(commFlags.iFlags.isExceptionCode){ 
-    11a8:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-    11ac:	83 fd       	sbrc	r24, 3
+    11b0:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+    11b4:	83 fd       	sbrc	r24, 3
 				MODBUS_SendExceptionCode();
-    11ae:	0e 94 2f 07 	call	0xe5e	; 0xe5e <MODBUS_SendExceptionCode>
+    11b6:	0e 94 33 07 	call	0xe66	; 0xe66 <MODBUS_SendExceptionCode>
 			}
  
 			if(commFlags.iFlags.restartComms){ //resetear usart segun baudrate y paridad
-    11b2:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-    11b6:	86 ff       	sbrs	r24, 6
-    11b8:	c7 c0       	rjmp	.+398    	; 0x1348 <main+0x44a>
+    11ba:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+    11be:	86 ff       	sbrs	r24, 6
+    11c0:	c7 c0       	rjmp	.+398    	; 0x1350 <main+0x44a>
 				//GUARDAR TODOS LOS REGISTROS EN EEPROM Y RESETEAR USART
 				//modbusRegister.brConfig = 0x00;
 				//modbusRegister.parity = 0x00;
 						if(auxSlaveAddress != slaveAddress){
-    11ba:	60 91 ff 03 	lds	r22, 0x03FF	; 0x8003ff <slaveAddress>
-    11be:	06 17       	cp	r16, r22
-    11c0:	31 f0       	breq	.+12     	; 0x11ce <main+0x2d0>
+    11c2:	60 91 ff 03 	lds	r22, 0x03FF	; 0x8003ff <slaveAddress>
+    11c6:	06 17       	cp	r16, r22
+    11c8:	31 f0       	breq	.+12     	; 0x11d6 <main+0x2d0>
 							//cargar eeprom
 							EEPROM_Write(SLAVE_EEPROM_ADDRESS, slaveAddress);
-    11c2:	81 e0       	ldi	r24, 0x01	; 1
-    11c4:	90 e0       	ldi	r25, 0x00	; 0
-    11c6:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    11ca:	81 e0       	ldi	r24, 0x01	; 1
+    11cc:	90 e0       	ldi	r25, 0x00	; 0
+    11ce:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							auxSlaveAddress = slaveAddress;
-    11ca:	00 91 ff 03 	lds	r16, 0x03FF	; 0x8003ff <slaveAddress>
+    11d2:	00 91 ff 03 	lds	r16, 0x03FF	; 0x8003ff <slaveAddress>
 						}
 						
 						if(auxbrConfig != modbusRegister.brConfig){
-    11ce:	60 91 04 04 	lds	r22, 0x0404	; 0x800404 <modbusRegister+0x4>
-    11d2:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <auxbrConfig>
-    11d6:	68 17       	cp	r22, r24
-    11d8:	41 f0       	breq	.+16     	; 0x11ea <main+0x2ec>
+    11d6:	60 91 04 04 	lds	r22, 0x0404	; 0x800404 <modbusRegister+0x4>
+    11da:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <auxbrConfig>
+    11de:	68 17       	cp	r22, r24
+    11e0:	41 f0       	breq	.+16     	; 0x11f2 <main+0x2ec>
 							//cargar eeprom
 							EEPROM_Write(BRCONFIG_EEPROM_ADDRESS,modbusRegister.brConfig);
-    11da:	82 e0       	ldi	r24, 0x02	; 2
-    11dc:	90 e0       	ldi	r25, 0x00	; 0
-    11de:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    11e2:	82 e0       	ldi	r24, 0x02	; 2
+    11e4:	90 e0       	ldi	r25, 0x00	; 0
+    11e6:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							auxbrConfig = modbusRegister.brConfig;
-    11e2:	80 91 04 04 	lds	r24, 0x0404	; 0x800404 <modbusRegister+0x4>
-    11e6:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <auxbrConfig>
+    11ea:	80 91 04 04 	lds	r24, 0x0404	; 0x800404 <modbusRegister+0x4>
+    11ee:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <auxbrConfig>
 						}
 						if(auxParity != modbusRegister.parity){
-    11ea:	60 91 05 04 	lds	r22, 0x0405	; 0x800405 <modbusRegister+0x5>
-    11ee:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <auxParity>
-    11f2:	68 17       	cp	r22, r24
-    11f4:	41 f0       	breq	.+16     	; 0x1206 <main+0x308>
+    11f2:	60 91 05 04 	lds	r22, 0x0405	; 0x800405 <modbusRegister+0x5>
+    11f6:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <auxParity>
+    11fa:	68 17       	cp	r22, r24
+    11fc:	41 f0       	breq	.+16     	; 0x120e <main+0x308>
 							//cargar eeprom
 							EEPROM_Write(PARITY_EEPROM_ADDRESS,modbusRegister.parity);
-    11f6:	83 e0       	ldi	r24, 0x03	; 3
-    11f8:	90 e0       	ldi	r25, 0x00	; 0
-    11fa:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    11fe:	83 e0       	ldi	r24, 0x03	; 3
+    1200:	90 e0       	ldi	r25, 0x00	; 0
+    1202:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							auxParity = modbusRegister.parity;
-    11fe:	80 91 05 04 	lds	r24, 0x0405	; 0x800405 <modbusRegister+0x5>
-    1202:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <auxParity>
+    1206:	80 91 05 04 	lds	r24, 0x0405	; 0x800405 <modbusRegister+0x5>
+    120a:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <auxParity>
 						}
 						if(auxtimeBtw[0] != modbusRegister.timeBtw[0]){
-    1206:	29 81       	ldd	r18, Y+1	; 0x01
-    1208:	3a 81       	ldd	r19, Y+2	; 0x02
-    120a:	80 91 06 04 	lds	r24, 0x0406	; 0x800406 <modbusRegister+0x6>
-    120e:	90 91 07 04 	lds	r25, 0x0407	; 0x800407 <modbusRegister+0x7>
-    1212:	28 17       	cp	r18, r24
-    1214:	39 07       	cpc	r19, r25
-    1216:	e1 f0       	breq	.+56     	; 0x1250 <main+0x352>
+    120e:	29 81       	ldd	r18, Y+1	; 0x01
+    1210:	3a 81       	ldd	r19, Y+2	; 0x02
+    1212:	80 91 06 04 	lds	r24, 0x0406	; 0x800406 <modbusRegister+0x6>
+    1216:	90 91 07 04 	lds	r25, 0x0407	; 0x800407 <modbusRegister+0x7>
+    121a:	28 17       	cp	r18, r24
+    121c:	39 07       	cpc	r19, r25
+    121e:	e1 f0       	breq	.+56     	; 0x1258 <main+0x352>
 							//cargar eeprom
 							myWord.ui16[0]=modbusRegister.timeBtw[0];
-    1218:	0f 2e       	mov	r0, r31
-    121a:	f6 e5       	ldi	r31, 0x56	; 86
-    121c:	ef 2e       	mov	r14, r31
-    121e:	f2 e0       	ldi	r31, 0x02	; 2
-    1220:	ff 2e       	mov	r15, r31
-    1222:	f0 2d       	mov	r31, r0
-    1224:	d7 01       	movw	r26, r14
-    1226:	11 96       	adiw	r26, 0x01	; 1
-    1228:	9c 93       	st	X, r25
-    122a:	8e 93       	st	-X, r24
+    1220:	0f 2e       	mov	r0, r31
+    1222:	f6 e5       	ldi	r31, 0x56	; 86
+    1224:	ef 2e       	mov	r14, r31
+    1226:	f2 e0       	ldi	r31, 0x02	; 2
+    1228:	ff 2e       	mov	r15, r31
+    122a:	f0 2d       	mov	r31, r0
+    122c:	d7 01       	movw	r26, r14
+    122e:	11 96       	adiw	r26, 0x01	; 1
+    1230:	9c 93       	st	X, r25
+    1232:	8e 93       	st	-X, r24
 							EEPROM_Write(TIMEBTW0_HIGH_EEPROM_ADDRESS,myWord.ui8[1]);
-    122c:	11 96       	adiw	r26, 0x01	; 1
-    122e:	6c 91       	ld	r22, X
-    1230:	85 e0       	ldi	r24, 0x05	; 5
-    1232:	90 e0       	ldi	r25, 0x00	; 0
-    1234:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    1234:	11 96       	adiw	r26, 0x01	; 1
+    1236:	6c 91       	ld	r22, X
+    1238:	85 e0       	ldi	r24, 0x05	; 5
+    123a:	90 e0       	ldi	r25, 0x00	; 0
+    123c:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							EEPROM_Write(TIMEBTW0_LOW_EEPROM_ADDRESS,myWord.ui8[0]);
-    1238:	f7 01       	movw	r30, r14
-    123a:	60 81       	ld	r22, Z
-    123c:	84 e0       	ldi	r24, 0x04	; 4
-    123e:	90 e0       	ldi	r25, 0x00	; 0
-    1240:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    1240:	f7 01       	movw	r30, r14
+    1242:	60 81       	ld	r22, Z
+    1244:	84 e0       	ldi	r24, 0x04	; 4
+    1246:	90 e0       	ldi	r25, 0x00	; 0
+    1248:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							auxtimeBtw[0] = modbusRegister.timeBtw[0];
-    1244:	80 91 06 04 	lds	r24, 0x0406	; 0x800406 <modbusRegister+0x6>
-    1248:	90 91 07 04 	lds	r25, 0x0407	; 0x800407 <modbusRegister+0x7>
-    124c:	9a 83       	std	Y+2, r25	; 0x02
-    124e:	89 83       	std	Y+1, r24	; 0x01
+    124c:	80 91 06 04 	lds	r24, 0x0406	; 0x800406 <modbusRegister+0x6>
+    1250:	90 91 07 04 	lds	r25, 0x0407	; 0x800407 <modbusRegister+0x7>
+    1254:	9a 83       	std	Y+2, r25	; 0x02
+    1256:	89 83       	std	Y+1, r24	; 0x01
 						}
 						
 						if(auxtimeBtw[1] != modbusRegister.timeBtw[1]){
-    1250:	2b 81       	ldd	r18, Y+3	; 0x03
-    1252:	3c 81       	ldd	r19, Y+4	; 0x04
-    1254:	80 91 08 04 	lds	r24, 0x0408	; 0x800408 <modbusRegister+0x8>
-    1258:	90 91 09 04 	lds	r25, 0x0409	; 0x800409 <modbusRegister+0x9>
-    125c:	28 17       	cp	r18, r24
-    125e:	39 07       	cpc	r19, r25
-    1260:	e1 f0       	breq	.+56     	; 0x129a <main+0x39c>
+    1258:	2b 81       	ldd	r18, Y+3	; 0x03
+    125a:	3c 81       	ldd	r19, Y+4	; 0x04
+    125c:	80 91 08 04 	lds	r24, 0x0408	; 0x800408 <modbusRegister+0x8>
+    1260:	90 91 09 04 	lds	r25, 0x0409	; 0x800409 <modbusRegister+0x9>
+    1264:	28 17       	cp	r18, r24
+    1266:	39 07       	cpc	r19, r25
+    1268:	e1 f0       	breq	.+56     	; 0x12a2 <main+0x39c>
 							//cargar eeprom
 							myWord.ui16[0]=modbusRegister.timeBtw[1];
-    1262:	0f 2e       	mov	r0, r31
-    1264:	f6 e5       	ldi	r31, 0x56	; 86
-    1266:	ef 2e       	mov	r14, r31
-    1268:	f2 e0       	ldi	r31, 0x02	; 2
-    126a:	ff 2e       	mov	r15, r31
-    126c:	f0 2d       	mov	r31, r0
-    126e:	d7 01       	movw	r26, r14
-    1270:	11 96       	adiw	r26, 0x01	; 1
-    1272:	9c 93       	st	X, r25
-    1274:	8e 93       	st	-X, r24
+    126a:	0f 2e       	mov	r0, r31
+    126c:	f6 e5       	ldi	r31, 0x56	; 86
+    126e:	ef 2e       	mov	r14, r31
+    1270:	f2 e0       	ldi	r31, 0x02	; 2
+    1272:	ff 2e       	mov	r15, r31
+    1274:	f0 2d       	mov	r31, r0
+    1276:	d7 01       	movw	r26, r14
+    1278:	11 96       	adiw	r26, 0x01	; 1
+    127a:	9c 93       	st	X, r25
+    127c:	8e 93       	st	-X, r24
 							EEPROM_Write(TIMEBTW1_HIGH_EEPROM_ADDRESS,myWord.ui8[1]);
-    1276:	11 96       	adiw	r26, 0x01	; 1
-    1278:	6c 91       	ld	r22, X
-    127a:	87 e0       	ldi	r24, 0x07	; 7
-    127c:	90 e0       	ldi	r25, 0x00	; 0
-    127e:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    127e:	11 96       	adiw	r26, 0x01	; 1
+    1280:	6c 91       	ld	r22, X
+    1282:	87 e0       	ldi	r24, 0x07	; 7
+    1284:	90 e0       	ldi	r25, 0x00	; 0
+    1286:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							EEPROM_Write(TIMEBTW1_LOW_EEPROM_ADDRESS,myWord.ui8[0]);
-    1282:	f7 01       	movw	r30, r14
-    1284:	60 81       	ld	r22, Z
-    1286:	86 e0       	ldi	r24, 0x06	; 6
-    1288:	90 e0       	ldi	r25, 0x00	; 0
-    128a:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    128a:	f7 01       	movw	r30, r14
+    128c:	60 81       	ld	r22, Z
+    128e:	86 e0       	ldi	r24, 0x06	; 6
+    1290:	90 e0       	ldi	r25, 0x00	; 0
+    1292:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							auxtimeBtw[1] = modbusRegister.timeBtw[1];
-    128e:	80 91 08 04 	lds	r24, 0x0408	; 0x800408 <modbusRegister+0x8>
-    1292:	90 91 09 04 	lds	r25, 0x0409	; 0x800409 <modbusRegister+0x9>
-    1296:	9c 83       	std	Y+4, r25	; 0x04
-    1298:	8b 83       	std	Y+3, r24	; 0x03
+    1296:	80 91 08 04 	lds	r24, 0x0408	; 0x800408 <modbusRegister+0x8>
+    129a:	90 91 09 04 	lds	r25, 0x0409	; 0x800409 <modbusRegister+0x9>
+    129e:	9c 83       	std	Y+4, r25	; 0x04
+    12a0:	8b 83       	std	Y+3, r24	; 0x03
 						}
 						if(auxtimeBtw[2] != modbusRegister.timeBtw[2]){
-    129a:	2d 81       	ldd	r18, Y+5	; 0x05
-    129c:	3e 81       	ldd	r19, Y+6	; 0x06
-    129e:	80 91 0a 04 	lds	r24, 0x040A	; 0x80040a <modbusRegister+0xa>
-    12a2:	90 91 0b 04 	lds	r25, 0x040B	; 0x80040b <modbusRegister+0xb>
-    12a6:	28 17       	cp	r18, r24
-    12a8:	39 07       	cpc	r19, r25
-    12aa:	e1 f0       	breq	.+56     	; 0x12e4 <main+0x3e6>
+    12a2:	2d 81       	ldd	r18, Y+5	; 0x05
+    12a4:	3e 81       	ldd	r19, Y+6	; 0x06
+    12a6:	80 91 0a 04 	lds	r24, 0x040A	; 0x80040a <modbusRegister+0xa>
+    12aa:	90 91 0b 04 	lds	r25, 0x040B	; 0x80040b <modbusRegister+0xb>
+    12ae:	28 17       	cp	r18, r24
+    12b0:	39 07       	cpc	r19, r25
+    12b2:	e1 f0       	breq	.+56     	; 0x12ec <main+0x3e6>
 							//cargar eeprom
 							myWord.ui16[0]=modbusRegister.timeBtw[2];
-    12ac:	0f 2e       	mov	r0, r31
-    12ae:	f6 e5       	ldi	r31, 0x56	; 86
-    12b0:	ef 2e       	mov	r14, r31
-    12b2:	f2 e0       	ldi	r31, 0x02	; 2
-    12b4:	ff 2e       	mov	r15, r31
-    12b6:	f0 2d       	mov	r31, r0
-    12b8:	d7 01       	movw	r26, r14
-    12ba:	11 96       	adiw	r26, 0x01	; 1
-    12bc:	9c 93       	st	X, r25
-    12be:	8e 93       	st	-X, r24
+    12b4:	0f 2e       	mov	r0, r31
+    12b6:	f6 e5       	ldi	r31, 0x56	; 86
+    12b8:	ef 2e       	mov	r14, r31
+    12ba:	f2 e0       	ldi	r31, 0x02	; 2
+    12bc:	ff 2e       	mov	r15, r31
+    12be:	f0 2d       	mov	r31, r0
+    12c0:	d7 01       	movw	r26, r14
+    12c2:	11 96       	adiw	r26, 0x01	; 1
+    12c4:	9c 93       	st	X, r25
+    12c6:	8e 93       	st	-X, r24
 							EEPROM_Write(TIMEBTW2_HIGH_EEPROM_ADDRESS,myWord.ui8[1]);
-    12c0:	11 96       	adiw	r26, 0x01	; 1
-    12c2:	6c 91       	ld	r22, X
-    12c4:	89 e0       	ldi	r24, 0x09	; 9
-    12c6:	90 e0       	ldi	r25, 0x00	; 0
-    12c8:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    12c8:	11 96       	adiw	r26, 0x01	; 1
+    12ca:	6c 91       	ld	r22, X
+    12cc:	89 e0       	ldi	r24, 0x09	; 9
+    12ce:	90 e0       	ldi	r25, 0x00	; 0
+    12d0:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							EEPROM_Write(TIMEBTW2_LOW_EEPROM_ADDRESS,myWord.ui8[0]);
-    12cc:	f7 01       	movw	r30, r14
-    12ce:	60 81       	ld	r22, Z
-    12d0:	88 e0       	ldi	r24, 0x08	; 8
-    12d2:	90 e0       	ldi	r25, 0x00	; 0
-    12d4:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    12d4:	f7 01       	movw	r30, r14
+    12d6:	60 81       	ld	r22, Z
+    12d8:	88 e0       	ldi	r24, 0x08	; 8
+    12da:	90 e0       	ldi	r25, 0x00	; 0
+    12dc:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							auxtimeBtw[2] = modbusRegister.timeBtw[2];
-    12d8:	80 91 0a 04 	lds	r24, 0x040A	; 0x80040a <modbusRegister+0xa>
-    12dc:	90 91 0b 04 	lds	r25, 0x040B	; 0x80040b <modbusRegister+0xb>
-    12e0:	9e 83       	std	Y+6, r25	; 0x06
-    12e2:	8d 83       	std	Y+5, r24	; 0x05
+    12e0:	80 91 0a 04 	lds	r24, 0x040A	; 0x80040a <modbusRegister+0xa>
+    12e4:	90 91 0b 04 	lds	r25, 0x040B	; 0x80040b <modbusRegister+0xb>
+    12e8:	9e 83       	std	Y+6, r25	; 0x06
+    12ea:	8d 83       	std	Y+5, r24	; 0x05
 						}
 						if(auxtimeBtw[3] != modbusRegister.timeBtw[3]){
-    12e4:	2f 81       	ldd	r18, Y+7	; 0x07
-    12e6:	38 85       	ldd	r19, Y+8	; 0x08
-    12e8:	80 91 0c 04 	lds	r24, 0x040C	; 0x80040c <modbusRegister+0xc>
-    12ec:	90 91 0d 04 	lds	r25, 0x040D	; 0x80040d <modbusRegister+0xd>
-    12f0:	28 17       	cp	r18, r24
-    12f2:	39 07       	cpc	r19, r25
-    12f4:	e1 f0       	breq	.+56     	; 0x132e <main+0x430>
+    12ec:	2f 81       	ldd	r18, Y+7	; 0x07
+    12ee:	38 85       	ldd	r19, Y+8	; 0x08
+    12f0:	80 91 0c 04 	lds	r24, 0x040C	; 0x80040c <modbusRegister+0xc>
+    12f4:	90 91 0d 04 	lds	r25, 0x040D	; 0x80040d <modbusRegister+0xd>
+    12f8:	28 17       	cp	r18, r24
+    12fa:	39 07       	cpc	r19, r25
+    12fc:	e1 f0       	breq	.+56     	; 0x1336 <main+0x430>
 							//cargar eeprom
 							myWord.ui16[0]=modbusRegister.timeBtw[3];
-    12f6:	0f 2e       	mov	r0, r31
-    12f8:	f6 e5       	ldi	r31, 0x56	; 86
-    12fa:	ef 2e       	mov	r14, r31
-    12fc:	f2 e0       	ldi	r31, 0x02	; 2
-    12fe:	ff 2e       	mov	r15, r31
-    1300:	f0 2d       	mov	r31, r0
-    1302:	d7 01       	movw	r26, r14
-    1304:	11 96       	adiw	r26, 0x01	; 1
-    1306:	9c 93       	st	X, r25
-    1308:	8e 93       	st	-X, r24
+    12fe:	0f 2e       	mov	r0, r31
+    1300:	f6 e5       	ldi	r31, 0x56	; 86
+    1302:	ef 2e       	mov	r14, r31
+    1304:	f2 e0       	ldi	r31, 0x02	; 2
+    1306:	ff 2e       	mov	r15, r31
+    1308:	f0 2d       	mov	r31, r0
+    130a:	d7 01       	movw	r26, r14
+    130c:	11 96       	adiw	r26, 0x01	; 1
+    130e:	9c 93       	st	X, r25
+    1310:	8e 93       	st	-X, r24
 							EEPROM_Write(TIMEBTW3_HIGH_EEPROM_ADDRESS,myWord.ui8[1]);
-    130a:	11 96       	adiw	r26, 0x01	; 1
-    130c:	6c 91       	ld	r22, X
-    130e:	8b e0       	ldi	r24, 0x0B	; 11
-    1310:	90 e0       	ldi	r25, 0x00	; 0
-    1312:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    1312:	11 96       	adiw	r26, 0x01	; 1
+    1314:	6c 91       	ld	r22, X
+    1316:	8b e0       	ldi	r24, 0x0B	; 11
+    1318:	90 e0       	ldi	r25, 0x00	; 0
+    131a:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							EEPROM_Write(TIMEBTW3_LOW_EEPROM_ADDRESS,myWord.ui8[0]);
-    1316:	f7 01       	movw	r30, r14
-    1318:	60 81       	ld	r22, Z
-    131a:	8a e0       	ldi	r24, 0x0A	; 10
-    131c:	90 e0       	ldi	r25, 0x00	; 0
-    131e:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
+    131e:	f7 01       	movw	r30, r14
+    1320:	60 81       	ld	r22, Z
+    1322:	8a e0       	ldi	r24, 0x0A	; 10
+    1324:	90 e0       	ldi	r25, 0x00	; 0
+    1326:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <EEPROM_Write>
 							auxtimeBtw[3] = modbusRegister.timeBtw[3];
-    1322:	80 91 0c 04 	lds	r24, 0x040C	; 0x80040c <modbusRegister+0xc>
-    1326:	90 91 0d 04 	lds	r25, 0x040D	; 0x80040d <modbusRegister+0xd>
-    132a:	98 87       	std	Y+8, r25	; 0x08
-    132c:	8f 83       	std	Y+7, r24	; 0x07
+    132a:	80 91 0c 04 	lds	r24, 0x040C	; 0x80040c <modbusRegister+0xc>
+    132e:	90 91 0d 04 	lds	r25, 0x040D	; 0x80040d <modbusRegister+0xd>
+    1332:	98 87       	std	Y+8, r25	; 0x08
+    1334:	8f 83       	std	Y+7, r24	; 0x07
 						}
 				USART0_Deinitialize();
-    132e:	0e 94 94 0a 	call	0x1528	; 0x1528 <USART0_Deinitialize>
+    1336:	0e 94 98 0a 	call	0x1530	; 0x1530 <USART0_Deinitialize>
 				USART0_Initialize(modbusRegister.brConfig,modbusRegister.parity);
-    1332:	e0 e0       	ldi	r30, 0x00	; 0
-    1334:	f4 e0       	ldi	r31, 0x04	; 4
-    1336:	65 81       	ldd	r22, Z+5	; 0x05
-    1338:	84 81       	ldd	r24, Z+4	; 0x04
-    133a:	0e 94 c6 0a 	call	0x158c	; 0x158c <USART0_Initialize>
+    133a:	e0 e0       	ldi	r30, 0x00	; 0
+    133c:	f4 e0       	ldi	r31, 0x04	; 4
+    133e:	65 81       	ldd	r22, Z+5	; 0x05
+    1340:	84 81       	ldd	r24, Z+4	; 0x04
+    1342:	0e 94 ca 0a 	call	0x1594	; 0x1594 <USART0_Initialize>
 				commFlags.iFlags.restartComms = 0;
-    133e:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-    1342:	8f 7b       	andi	r24, 0xBF	; 191
-    1344:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
+    1346:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+    134a:	8f 7b       	andi	r24, 0xBF	; 191
+    134c:	80 93 53 02 	sts	0x0253, r24	; 0x800253 <commFlags>
 			}
 			
 	//---------------------------- PROGRAMA LEDS---------------------------------------------
 		
 		if(commFlags.iFlags.isEvent1){
-    1348:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
-    134c:	80 ff       	sbrs	r24, 0
-    134e:	04 c0       	rjmp	.+8      	; 0x1358 <main+0x45a>
+    1350:	80 91 53 02 	lds	r24, 0x0253	; 0x800253 <commFlags>
+    1354:	80 ff       	sbrs	r24, 0
+    1356:	04 c0       	rjmp	.+8      	; 0x1360 <main+0x45a>
 			//deshabilitar interrupcion
 			TC0_Disable_CompareA_Interrupt();
-    1350:	0e 94 e6 09 	call	0x13cc	; 0x13cc <TC0_Disable_CompareA_Interrupt>
+    1358:	0e 94 ea 09 	call	0x13d4	; 0x13d4 <TC0_Disable_CompareA_Interrupt>
 			RegInput();
-    1354:	0e 94 cf 01 	call	0x39e	; 0x39e <RegInput>
+    135c:	0e 94 cf 01 	call	0x39e	; 0x39e <RegInput>
 		//1ra vez leer variables de eprom y cargar modbus registers y aux value tmb
 		//Faltaria declarar las variables en la eeprom
 		
 
 		
 		PORTB = ((outValues << 1) & MASK_PORTB) | hbState ; 
-    1358:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <outValues>
-    135c:	90 e0       	ldi	r25, 0x00	; 0
-    135e:	88 0f       	add	r24, r24
-    1360:	99 1f       	adc	r25, r25
-    1362:	8e 71       	andi	r24, 0x1E	; 30
-    1364:	81 2b       	or	r24, r17
-    1366:	85 b9       	out	0x05, r24	; 5
+    1360:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <outValues>
+    1364:	90 e0       	ldi	r25, 0x00	; 0
+    1366:	88 0f       	add	r24, r24
+    1368:	99 1f       	adc	r25, r25
+    136a:	8e 71       	andi	r24, 0x1E	; 30
+    136c:	81 2b       	or	r24, r17
+    136e:	85 b9       	out	0x05, r24	; 5
 
 	}
-    1368:	ec ce       	rjmp	.-552    	; 0x1142 <main+0x244>
+    1370:	ec ce       	rjmp	.-552    	; 0x114a <main+0x244>
 
-0000136a <CPU_Initialize>:
+00001372 <CPU_Initialize>:
 #include <avr/io.h>
 #include "../cpu.h"
 
 void CPU_Initialize (void)
 {
     PRR = (0 << PRADC)   // PRADC disabled
-    136a:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <__TEXT_REGION_LENGTH__+0x7f8064>
+    1372:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <__TEXT_REGION_LENGTH__+0x7f8064>
             | (0 << PRTIM0)   // PRTIM0 disabled
             | (0 << PRTIM1)   // PRTIM1 disabled
             | (0 << PRTIM2)   // PRTIM2 disabled
             | (0 << PRTWI)   // PRTWI disabled
             | (0 << PRUSART0);   // PRUSART0 disabled
     CLKPR = (0 << CLKPCE)   // CLKPCE disabled
-    136e:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__TEXT_REGION_LENGTH__+0x7f8061>
+    1376:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__TEXT_REGION_LENGTH__+0x7f8061>
             | (0 << CLKPS0);   // CLKPS 1
     SMCR = (0 << SE)   // SE disabled
-    1372:	13 be       	out	0x33, r1	; 51
+    137a:	13 be       	out	0x33, r1	; 51
             | (0 << SM0);   // SM IDLE
     MCUCR = (0 << BODS)   // BODS disabled
-    1374:	15 be       	out	0x35, r1	; 53
-    1376:	08 95       	ret
+    137c:	15 be       	out	0x35, r1	; 53
+    137e:	08 95       	ret
 
-00001378 <CPUINT_Initialize>:
+00001380 <CPUINT_Initialize>:
 #include "../cpuint.h"
 
 int8_t CPUINT_Initialize(void) 
 {
     //IVCE disabled; IVSEL disabled; 
     MCUCR = 0x0;
-    1378:	15 be       	out	0x35, r1	; 53
+    1380:	15 be       	out	0x35, r1	; 53
     
     //I disabled; 
     SREG = 0x0;
-    137a:	1f be       	out	0x3f, r1	; 63
+    1382:	1f be       	out	0x3f, r1	; 63
 
     return 0;
-    137c:	80 e0       	ldi	r24, 0x00	; 0
-    137e:	08 95       	ret
+    1384:	80 e0       	ldi	r24, 0x00	; 0
+    1386:	08 95       	ret
 
-00001380 <PIN_MANAGER_Initialize>:
+00001388 <PIN_MANAGER_Initialize>:
 #include "../pins.h"
 
 void PIN_MANAGER_Initialize()
 {
   /* DIR Registers Initialization */
     DDRB = 0x3F;
-    1380:	8f e3       	ldi	r24, 0x3F	; 63
-    1382:	84 b9       	out	0x04, r24	; 4
+    1388:	8f e3       	ldi	r24, 0x3F	; 63
+    138a:	84 b9       	out	0x04, r24	; 4
     DDRC = 0x0;
-    1384:	17 b8       	out	0x07, r1	; 7
+    138c:	17 b8       	out	0x07, r1	; 7
     DDRD = 0x16;
-    1386:	86 e1       	ldi	r24, 0x16	; 22
-    1388:	8a b9       	out	0x0a, r24	; 10
+    138e:	86 e1       	ldi	r24, 0x16	; 22
+    1390:	8a b9       	out	0x0a, r24	; 10
 
   /* PORTx Registers Initialization */
     PORTB = 0x0;
-    138a:	15 b8       	out	0x05, r1	; 5
+    1392:	15 b8       	out	0x05, r1	; 5
     PORTC = 0x0;
-    138c:	18 b8       	out	0x08, r1	; 8
+    1394:	18 b8       	out	0x08, r1	; 8
     PORTD = 0x0;
-    138e:	1b b8       	out	0x0b, r1	; 11
+    1396:	1b b8       	out	0x0b, r1	; 11
 
   /* PINx registers Initialization */
     PINB = 0x0;
-    1390:	13 b8       	out	0x03, r1	; 3
+    1398:	13 b8       	out	0x03, r1	; 3
     PINC = 0x0;
-    1392:	16 b8       	out	0x06, r1	; 6
+    139a:	16 b8       	out	0x06, r1	; 6
     PIND = 0x0;
-    1394:	19 b8       	out	0x09, r1	; 9
-    1396:	08 95       	ret
+    139c:	19 b8       	out	0x09, r1	; 9
+    139e:	08 95       	ret
 
-00001398 <SYSTEM_Initialize>:
+000013a0 <SYSTEM_Initialize>:
 
 
 
 void SYSTEM_Initialize(void)
 {
     CPU_Initialize();
-    1398:	0e 94 b5 09 	call	0x136a	; 0x136a <CPU_Initialize>
+    13a0:	0e 94 b9 09 	call	0x1372	; 0x1372 <CPU_Initialize>
     PIN_MANAGER_Initialize();
-    139c:	0e 94 c0 09 	call	0x1380	; 0x1380 <PIN_MANAGER_Initialize>
+    13a4:	0e 94 c4 09 	call	0x1388	; 0x1388 <PIN_MANAGER_Initialize>
     CPUINT_Initialize();
-    13a0:	0e 94 bc 09 	call	0x1378	; 0x1378 <CPUINT_Initialize>
-    13a4:	08 95       	ret
+    13a8:	0e 94 c0 09 	call	0x1380	; 0x1380 <CPUINT_Initialize>
+    13ac:	08 95       	ret
 
-000013a6 <TC0_Initialize>:
+000013ae <TC0_Initialize>:
 }
 
 uint8_t TC0_ReadTimer(void)
 {
     return TCNT0;
 }
-    13a6:	8b e9       	ldi	r24, 0x9B	; 155
-    13a8:	87 bd       	out	0x27, r24	; 39
-    13aa:	18 bc       	out	0x28, r1	; 40
-    13ac:	16 bc       	out	0x26, r1	; 38
-    13ae:	13 bc       	out	0x23, r1	; 35
-    13b0:	82 e0       	ldi	r24, 0x02	; 2
-    13b2:	84 bd       	out	0x24, r24	; 36
-    13b4:	95 e0       	ldi	r25, 0x05	; 5
-    13b6:	95 bd       	out	0x25, r25	; 37
-    13b8:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
-    13bc:	80 e0       	ldi	r24, 0x00	; 0
-    13be:	08 95       	ret
+    13ae:	8b e9       	ldi	r24, 0x9B	; 155
+    13b0:	87 bd       	out	0x27, r24	; 39
+    13b2:	18 bc       	out	0x28, r1	; 40
+    13b4:	16 bc       	out	0x26, r1	; 38
+    13b6:	13 bc       	out	0x23, r1	; 35
+    13b8:	82 e0       	ldi	r24, 0x02	; 2
+    13ba:	84 bd       	out	0x24, r24	; 36
+    13bc:	95 e0       	ldi	r25, 0x05	; 5
+    13be:	95 bd       	out	0x25, r25	; 37
+    13c0:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
+    13c4:	80 e0       	ldi	r24, 0x00	; 0
+    13c6:	08 95       	ret
 
-000013c0 <TC0_Enable_CompareA_Interrupt>:
-    13c0:	ee e6       	ldi	r30, 0x6E	; 110
-    13c2:	f0 e0       	ldi	r31, 0x00	; 0
-    13c4:	80 81       	ld	r24, Z
-    13c6:	82 60       	ori	r24, 0x02	; 2
-    13c8:	80 83       	st	Z, r24
-    13ca:	08 95       	ret
+000013c8 <TC0_Enable_CompareA_Interrupt>:
+    13c8:	ee e6       	ldi	r30, 0x6E	; 110
+    13ca:	f0 e0       	ldi	r31, 0x00	; 0
+    13cc:	80 81       	ld	r24, Z
+    13ce:	82 60       	ori	r24, 0x02	; 2
+    13d0:	80 83       	st	Z, r24
+    13d2:	08 95       	ret
 
-000013cc <TC0_Disable_CompareA_Interrupt>:
-    13cc:	ee e6       	ldi	r30, 0x6E	; 110
-    13ce:	f0 e0       	ldi	r31, 0x00	; 0
-    13d0:	80 81       	ld	r24, Z
-    13d2:	82 70       	andi	r24, 0x02	; 2
-    13d4:	80 83       	st	Z, r24
-    13d6:	08 95       	ret
+000013d4 <TC0_Disable_CompareA_Interrupt>:
+    13d4:	ee e6       	ldi	r30, 0x6E	; 110
+    13d6:	f0 e0       	ldi	r31, 0x00	; 0
+    13d8:	80 81       	ld	r24, Z
+    13da:	82 70       	andi	r24, 0x02	; 2
+    13dc:	80 83       	st	Z, r24
+    13de:	08 95       	ret
 
-000013d8 <TMR0_SetHandler>:
+000013e0 <TMR0_SetHandler>:
 
 void TMR0_SetHandler(void (*interruptHandler)(void)){
 	TMR0Handler = interruptHandler;
-    13d8:	90 93 12 01 	sts	0x0112, r25	; 0x800112 <TMR0Handler+0x1>
-    13dc:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <TMR0Handler>
-    13e0:	08 95       	ret
+    13e0:	90 93 12 01 	sts	0x0112, r25	; 0x800112 <TMR0Handler+0x1>
+    13e4:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <TMR0Handler>
+    13e8:	08 95       	ret
 
-000013e2 <__vector_14>:
+000013ea <__vector_14>:
 }
 
 ISR(TIMER0_COMPA_vect)
 {
-    13e2:	1f 92       	push	r1
-    13e4:	0f 92       	push	r0
-    13e6:	0f b6       	in	r0, 0x3f	; 63
-    13e8:	0f 92       	push	r0
-    13ea:	11 24       	eor	r1, r1
-    13ec:	2f 93       	push	r18
-    13ee:	3f 93       	push	r19
-    13f0:	4f 93       	push	r20
-    13f2:	5f 93       	push	r21
-    13f4:	6f 93       	push	r22
-    13f6:	7f 93       	push	r23
-    13f8:	8f 93       	push	r24
-    13fa:	9f 93       	push	r25
-    13fc:	af 93       	push	r26
-    13fe:	bf 93       	push	r27
-    1400:	ef 93       	push	r30
-    1402:	ff 93       	push	r31
+    13ea:	1f 92       	push	r1
+    13ec:	0f 92       	push	r0
+    13ee:	0f b6       	in	r0, 0x3f	; 63
+    13f0:	0f 92       	push	r0
+    13f2:	11 24       	eor	r1, r1
+    13f4:	2f 93       	push	r18
+    13f6:	3f 93       	push	r19
+    13f8:	4f 93       	push	r20
+    13fa:	5f 93       	push	r21
+    13fc:	6f 93       	push	r22
+    13fe:	7f 93       	push	r23
+    1400:	8f 93       	push	r24
+    1402:	9f 93       	push	r25
+    1404:	af 93       	push	r26
+    1406:	bf 93       	push	r27
+    1408:	ef 93       	push	r30
+    140a:	ff 93       	push	r31
     //clears the Compare A interrupt flag
     TIFR0 = OCF0A;
-    1404:	81 e0       	ldi	r24, 0x01	; 1
-    1406:	85 bb       	out	0x15, r24	; 21
+    140c:	81 e0       	ldi	r24, 0x01	; 1
+    140e:	85 bb       	out	0x15, r24	; 21
 	
 	// Si el puntero no es nulo, ejecuta la función asignada
 	if(TMR0Handler != NULL){
-    1408:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <TMR0Handler>
-    140c:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <TMR0Handler+0x1>
-    1410:	30 97       	sbiw	r30, 0x00	; 0
-    1412:	09 f0       	breq	.+2      	; 0x1416 <__vector_14+0x34>
+    1410:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <TMR0Handler>
+    1414:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <TMR0Handler+0x1>
+    1418:	30 97       	sbiw	r30, 0x00	; 0
+    141a:	09 f0       	breq	.+2      	; 0x141e <__vector_14+0x34>
 		TMR0Handler();
-    1414:	09 95       	icall
+    141c:	09 95       	icall
 	}
     /* Insert your Compare A interrupt handling code here */
     
 }
-    1416:	ff 91       	pop	r31
-    1418:	ef 91       	pop	r30
-    141a:	bf 91       	pop	r27
-    141c:	af 91       	pop	r26
-    141e:	9f 91       	pop	r25
-    1420:	8f 91       	pop	r24
-    1422:	7f 91       	pop	r23
-    1424:	6f 91       	pop	r22
-    1426:	5f 91       	pop	r21
-    1428:	4f 91       	pop	r20
-    142a:	3f 91       	pop	r19
-    142c:	2f 91       	pop	r18
-    142e:	0f 90       	pop	r0
-    1430:	0f be       	out	0x3f, r0	; 63
-    1432:	0f 90       	pop	r0
-    1434:	1f 90       	pop	r1
-    1436:	18 95       	reti
+    141e:	ff 91       	pop	r31
+    1420:	ef 91       	pop	r30
+    1422:	bf 91       	pop	r27
+    1424:	af 91       	pop	r26
+    1426:	9f 91       	pop	r25
+    1428:	8f 91       	pop	r24
+    142a:	7f 91       	pop	r23
+    142c:	6f 91       	pop	r22
+    142e:	5f 91       	pop	r21
+    1430:	4f 91       	pop	r20
+    1432:	3f 91       	pop	r19
+    1434:	2f 91       	pop	r18
+    1436:	0f 90       	pop	r0
+    1438:	0f be       	out	0x3f, r0	; 63
+    143a:	0f 90       	pop	r0
+    143c:	1f 90       	pop	r1
+    143e:	18 95       	reti
 
-00001438 <TC1_Initialize>:
+00001440 <TC1_Initialize>:
 }
 
 uint16_t TC1_ReadTimer(void)
 {
     return TCNT1;
 }
-    1438:	8f e9       	ldi	r24, 0x9F	; 159
-    143a:	90 e0       	ldi	r25, 0x00	; 0
-    143c:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
-    1440:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
-    1444:	81 e0       	ldi	r24, 0x01	; 1
-    1446:	90 e0       	ldi	r25, 0x00	; 0
-    1448:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
-    144c:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
-    1450:	10 92 87 00 	sts	0x0087, r1	; 0x800087 <__TEXT_REGION_LENGTH__+0x7f8087>
-    1454:	10 92 86 00 	sts	0x0086, r1	; 0x800086 <__TEXT_REGION_LENGTH__+0x7f8086>
-    1458:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
-    145c:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
-    1460:	13 bc       	out	0x23, r1	; 35
-    1462:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
-    1466:	89 e0       	ldi	r24, 0x09	; 9
-    1468:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
-    146c:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__TEXT_REGION_LENGTH__+0x7f8082>
-    1470:	82 e0       	ldi	r24, 0x02	; 2
-    1472:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7f806f>
-    1476:	80 e0       	ldi	r24, 0x00	; 0
-    1478:	08 95       	ret
+    1440:	8f e9       	ldi	r24, 0x9F	; 159
+    1442:	90 e0       	ldi	r25, 0x00	; 0
+    1444:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+    1448:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+    144c:	81 e0       	ldi	r24, 0x01	; 1
+    144e:	90 e0       	ldi	r25, 0x00	; 0
+    1450:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+    1454:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+    1458:	10 92 87 00 	sts	0x0087, r1	; 0x800087 <__TEXT_REGION_LENGTH__+0x7f8087>
+    145c:	10 92 86 00 	sts	0x0086, r1	; 0x800086 <__TEXT_REGION_LENGTH__+0x7f8086>
+    1460:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
+    1464:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
+    1468:	13 bc       	out	0x23, r1	; 35
+    146a:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+    146e:	89 e0       	ldi	r24, 0x09	; 9
+    1470:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
+    1474:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__TEXT_REGION_LENGTH__+0x7f8082>
+    1478:	82 e0       	ldi	r24, 0x02	; 2
+    147a:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7f806f>
+    147e:	80 e0       	ldi	r24, 0x00	; 0
+    1480:	08 95       	ret
 
-0000147a <__vector_12>:
+00001482 <__vector_12>:
 
 
 ISR(TIMER1_COMPB_vect)
 {
-    147a:	1f 92       	push	r1
-    147c:	0f 92       	push	r0
-    147e:	0f b6       	in	r0, 0x3f	; 63
-    1480:	0f 92       	push	r0
-    1482:	11 24       	eor	r1, r1
-    1484:	8f 93       	push	r24
+    1482:	1f 92       	push	r1
+    1484:	0f 92       	push	r0
+    1486:	0f b6       	in	r0, 0x3f	; 63
+    1488:	0f 92       	push	r0
+    148a:	11 24       	eor	r1, r1
+    148c:	8f 93       	push	r24
     //clears the Compare B interrupt flag
     TIFR1 = OCF1B;
-    1486:	82 e0       	ldi	r24, 0x02	; 2
-    1488:	86 bb       	out	0x16, r24	; 22
+    148e:	82 e0       	ldi	r24, 0x02	; 2
+    1490:	86 bb       	out	0x16, r24	; 22
 
     /* Insert your Compare B interrupt handling code here */
     
 }
-    148a:	8f 91       	pop	r24
-    148c:	0f 90       	pop	r0
-    148e:	0f be       	out	0x3f, r0	; 63
-    1490:	0f 90       	pop	r0
-    1492:	1f 90       	pop	r1
-    1494:	18 95       	reti
+    1492:	8f 91       	pop	r24
+    1494:	0f 90       	pop	r0
+    1496:	0f be       	out	0x3f, r0	; 63
+    1498:	0f 90       	pop	r0
+    149a:	1f 90       	pop	r1
+    149c:	18 95       	reti
 
-00001496 <__vector_13>:
+0000149e <__vector_13>:
 
 ISR(TIMER1_OVF_vect)
 {
-    1496:	1f 92       	push	r1
-    1498:	0f 92       	push	r0
-    149a:	0f b6       	in	r0, 0x3f	; 63
-    149c:	0f 92       	push	r0
-    149e:	11 24       	eor	r1, r1
+    149e:	1f 92       	push	r1
+    14a0:	0f 92       	push	r0
+    14a2:	0f b6       	in	r0, 0x3f	; 63
+    14a4:	0f 92       	push	r0
+    14a6:	11 24       	eor	r1, r1
     //clears the Overflow interrupt flag
     TIFR1 = TOV1;
-    14a0:	16 ba       	out	0x16, r1	; 22
+    14a8:	16 ba       	out	0x16, r1	; 22
 
     /* Insert your Overflow interrupt handling code here */
     
 }
-    14a2:	0f 90       	pop	r0
-    14a4:	0f be       	out	0x3f, r0	; 63
-    14a6:	0f 90       	pop	r0
-    14a8:	1f 90       	pop	r1
-    14aa:	18 95       	reti
+    14aa:	0f 90       	pop	r0
+    14ac:	0f be       	out	0x3f, r0	; 63
+    14ae:	0f 90       	pop	r0
+    14b0:	1f 90       	pop	r1
+    14b2:	18 95       	reti
 
-000014ac <__vector_10>:
+000014b4 <__vector_10>:
 
 ISR(TIMER1_CAPT_vect)
 {
-    14ac:	1f 92       	push	r1
-    14ae:	0f 92       	push	r0
-    14b0:	0f b6       	in	r0, 0x3f	; 63
-    14b2:	0f 92       	push	r0
-    14b4:	11 24       	eor	r1, r1
-    14b6:	8f 93       	push	r24
+    14b4:	1f 92       	push	r1
+    14b6:	0f 92       	push	r0
+    14b8:	0f b6       	in	r0, 0x3f	; 63
+    14ba:	0f 92       	push	r0
+    14bc:	11 24       	eor	r1, r1
+    14be:	8f 93       	push	r24
     //clears the Overflow interrupt flag
     TIFR1 = ICF1;
-    14b8:	85 e0       	ldi	r24, 0x05	; 5
-    14ba:	86 bb       	out	0x16, r24	; 22
+    14c0:	85 e0       	ldi	r24, 0x05	; 5
+    14c2:	86 bb       	out	0x16, r24	; 22
 
     /* Insert your Overflow interrupt handling code here */
     
 }
-    14bc:	8f 91       	pop	r24
-    14be:	0f 90       	pop	r0
-    14c0:	0f be       	out	0x3f, r0	; 63
-    14c2:	0f 90       	pop	r0
-    14c4:	1f 90       	pop	r1
-    14c6:	18 95       	reti
+    14c4:	8f 91       	pop	r24
+    14c6:	0f 90       	pop	r0
+    14c8:	0f be       	out	0x3f, r0	; 63
+    14ca:	0f 90       	pop	r0
+    14cc:	1f 90       	pop	r1
+    14ce:	18 95       	reti
 
-000014c8 <TMR1_SetHandler>:
+000014d0 <TMR1_SetHandler>:
 
 
 void TMR1_SetHandler(void (*interruptHandler)(void)){
 	TMR1Handler = interruptHandler;
-    14c8:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <TMR1Handler+0x1>
-    14cc:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <TMR1Handler>
-    14d0:	08 95       	ret
+    14d0:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <TMR1Handler+0x1>
+    14d4:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <TMR1Handler>
+    14d8:	08 95       	ret
 
-000014d2 <__vector_11>:
+000014da <__vector_11>:
 }
 
 ISR(TIMER1_COMPA_vect)
 {
-    14d2:	1f 92       	push	r1
-    14d4:	0f 92       	push	r0
-    14d6:	0f b6       	in	r0, 0x3f	; 63
-    14d8:	0f 92       	push	r0
-    14da:	11 24       	eor	r1, r1
-    14dc:	2f 93       	push	r18
-    14de:	3f 93       	push	r19
-    14e0:	4f 93       	push	r20
-    14e2:	5f 93       	push	r21
-    14e4:	6f 93       	push	r22
-    14e6:	7f 93       	push	r23
-    14e8:	8f 93       	push	r24
-    14ea:	9f 93       	push	r25
-    14ec:	af 93       	push	r26
-    14ee:	bf 93       	push	r27
-    14f0:	ef 93       	push	r30
-    14f2:	ff 93       	push	r31
+    14da:	1f 92       	push	r1
+    14dc:	0f 92       	push	r0
+    14de:	0f b6       	in	r0, 0x3f	; 63
+    14e0:	0f 92       	push	r0
+    14e2:	11 24       	eor	r1, r1
+    14e4:	2f 93       	push	r18
+    14e6:	3f 93       	push	r19
+    14e8:	4f 93       	push	r20
+    14ea:	5f 93       	push	r21
+    14ec:	6f 93       	push	r22
+    14ee:	7f 93       	push	r23
+    14f0:	8f 93       	push	r24
+    14f2:	9f 93       	push	r25
+    14f4:	af 93       	push	r26
+    14f6:	bf 93       	push	r27
+    14f8:	ef 93       	push	r30
+    14fa:	ff 93       	push	r31
 	//clears the Compare A interrupt flag
 	TIFR1 = OCF1A;
-    14f4:	81 e0       	ldi	r24, 0x01	; 1
-    14f6:	86 bb       	out	0x16, r24	; 22
+    14fc:	81 e0       	ldi	r24, 0x01	; 1
+    14fe:	86 bb       	out	0x16, r24	; 22
 	
 	// Si el puntero no es nulo, ejecuta la función asignada
 	if(TMR1Handler != NULL){
-    14f8:	e0 91 13 01 	lds	r30, 0x0113	; 0x800113 <TMR1Handler>
-    14fc:	f0 91 14 01 	lds	r31, 0x0114	; 0x800114 <TMR1Handler+0x1>
-    1500:	30 97       	sbiw	r30, 0x00	; 0
-    1502:	09 f0       	breq	.+2      	; 0x1506 <__vector_11+0x34>
+    1500:	e0 91 13 01 	lds	r30, 0x0113	; 0x800113 <TMR1Handler>
+    1504:	f0 91 14 01 	lds	r31, 0x0114	; 0x800114 <TMR1Handler+0x1>
+    1508:	30 97       	sbiw	r30, 0x00	; 0
+    150a:	09 f0       	breq	.+2      	; 0x150e <__vector_11+0x34>
 		TMR1Handler();
-    1504:	09 95       	icall
+    150c:	09 95       	icall
 	}
 	/* Insert your Compare A interrupt handling code here */
 	
-    1506:	ff 91       	pop	r31
-    1508:	ef 91       	pop	r30
-    150a:	bf 91       	pop	r27
-    150c:	af 91       	pop	r26
-    150e:	9f 91       	pop	r25
-    1510:	8f 91       	pop	r24
-    1512:	7f 91       	pop	r23
-    1514:	6f 91       	pop	r22
-    1516:	5f 91       	pop	r21
-    1518:	4f 91       	pop	r20
-    151a:	3f 91       	pop	r19
-    151c:	2f 91       	pop	r18
-    151e:	0f 90       	pop	r0
-    1520:	0f be       	out	0x3f, r0	; 63
-    1522:	0f 90       	pop	r0
-    1524:	1f 90       	pop	r1
-    1526:	18 95       	reti
+    150e:	ff 91       	pop	r31
+    1510:	ef 91       	pop	r30
+    1512:	bf 91       	pop	r27
+    1514:	af 91       	pop	r26
+    1516:	9f 91       	pop	r25
+    1518:	8f 91       	pop	r24
+    151a:	7f 91       	pop	r23
+    151c:	6f 91       	pop	r22
+    151e:	5f 91       	pop	r21
+    1520:	4f 91       	pop	r20
+    1522:	3f 91       	pop	r19
+    1524:	2f 91       	pop	r18
+    1526:	0f 90       	pop	r0
+    1528:	0f be       	out	0x3f, r0	; 63
+    152a:	0f 90       	pop	r0
+    152c:	1f 90       	pop	r1
+    152e:	18 95       	reti
 
-00001528 <USART0_Deinitialize>:
+00001530 <USART0_Deinitialize>:
 }
 
 uint8_t USART0_Read(void)
 {
     return UDR0;
 }
-    1528:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
-    152c:	10 92 c4 00 	sts	0x00C4, r1	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
-    1530:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
-    1534:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
-    1538:	10 92 c2 00 	sts	0x00C2, r1	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
-    153c:	08 95       	ret
+    1530:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+    1534:	10 92 c4 00 	sts	0x00C4, r1	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+    1538:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+    153c:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+    1540:	10 92 c2 00 	sts	0x00C2, r1	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+    1544:	08 95       	ret
 
-0000153e <USART0_IsTxReady>:
-    153e:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
-    1542:	85 fb       	bst	r24, 5
-    1544:	88 27       	eor	r24, r24
-    1546:	80 f9       	bld	r24, 0
-    1548:	08 95       	ret
+00001546 <USART0_IsTxReady>:
+    1546:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+    154a:	85 fb       	bst	r24, 5
+    154c:	88 27       	eor	r24, r24
+    154e:	80 f9       	bld	r24, 0
+    1550:	08 95       	ret
 
-0000154a <USART0_IsTxDone>:
-    154a:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
-    154e:	86 fb       	bst	r24, 6
-    1550:	88 27       	eor	r24, r24
-    1552:	80 f9       	bld	r24, 0
-    1554:	08 95       	ret
+00001552 <USART0_IsTxDone>:
+    1552:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+    1556:	86 fb       	bst	r24, 6
+    1558:	88 27       	eor	r24, r24
+    155a:	80 f9       	bld	r24, 0
+    155c:	08 95       	ret
 
-00001556 <USART0_Write>:
+0000155e <USART0_Write>:
 
 
 void USART0_Write(uint8_t txData)
 {
     UDR0 = txData;    // Write the data byte to the USART.
-    1556:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
-    155a:	08 95       	ret
+    155e:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+    1562:	08 95       	ret
 
-0000155c <USART0_DefaultFramingErrorCallback>:
+00001564 <USART0_DefaultFramingErrorCallback>:
 }
 static void USART0_DefaultFramingErrorCallback(void)
 {
-    155c:	08 95       	ret
+    1564:	08 95       	ret
 
-0000155e <USART0_DefaultOverrunErrorCallback>:
+00001566 <USART0_DefaultOverrunErrorCallback>:
     
 }
 
 static void USART0_DefaultOverrunErrorCallback(void)
 {
-    155e:	08 95       	ret
+    1566:	08 95       	ret
 
-00001560 <USART0_DefaultParityErrorCallback>:
+00001568 <USART0_DefaultParityErrorCallback>:
     
 }
 
 static void USART0_DefaultParityErrorCallback(void)
 {
-    1560:	08 95       	ret
+    1568:	08 95       	ret
 
-00001562 <USART0_FramingErrorCallbackRegister>:
+0000156a <USART0_FramingErrorCallbackRegister>:
 }
 
 /* cppcheck-suppress misra-c2012-8.7 */
 void USART0_FramingErrorCallbackRegister(void (* callbackHandler)(void))
 {
     if(NULL != callbackHandler)
-    1562:	00 97       	sbiw	r24, 0x00	; 0
-    1564:	21 f0       	breq	.+8      	; 0x156e <USART0_FramingErrorCallbackRegister+0xc>
+    156a:	00 97       	sbiw	r24, 0x00	; 0
+    156c:	21 f0       	breq	.+8      	; 0x1576 <USART0_FramingErrorCallbackRegister+0xc>
     {
         USART0_FramingErrorHandler = callbackHandler;
-    1566:	90 93 1a 01 	sts	0x011A, r25	; 0x80011a <USART0_FramingErrorHandler+0x1>
-    156a:	80 93 19 01 	sts	0x0119, r24	; 0x800119 <USART0_FramingErrorHandler>
-    156e:	08 95       	ret
+    156e:	90 93 1a 01 	sts	0x011A, r25	; 0x80011a <USART0_FramingErrorHandler+0x1>
+    1572:	80 93 19 01 	sts	0x0119, r24	; 0x800119 <USART0_FramingErrorHandler>
+    1576:	08 95       	ret
 
-00001570 <USART0_OverrunErrorCallbackRegister>:
+00001578 <USART0_OverrunErrorCallbackRegister>:
 }
 
 /* cppcheck-suppress misra-c2012-8.7 */
 void USART0_OverrunErrorCallbackRegister(void (* callbackHandler)(void))
 {
     if(NULL != callbackHandler)
-    1570:	00 97       	sbiw	r24, 0x00	; 0
-    1572:	21 f0       	breq	.+8      	; 0x157c <USART0_OverrunErrorCallbackRegister+0xc>
+    1578:	00 97       	sbiw	r24, 0x00	; 0
+    157a:	21 f0       	breq	.+8      	; 0x1584 <USART0_OverrunErrorCallbackRegister+0xc>
     {
         USART0_OverrunErrorHandler = callbackHandler;
-    1574:	90 93 18 01 	sts	0x0118, r25	; 0x800118 <USART0_OverrunErrorHandler+0x1>
-    1578:	80 93 17 01 	sts	0x0117, r24	; 0x800117 <USART0_OverrunErrorHandler>
-    157c:	08 95       	ret
+    157c:	90 93 18 01 	sts	0x0118, r25	; 0x800118 <USART0_OverrunErrorHandler+0x1>
+    1580:	80 93 17 01 	sts	0x0117, r24	; 0x800117 <USART0_OverrunErrorHandler>
+    1584:	08 95       	ret
 
-0000157e <USART0_ParityErrorCallbackRegister>:
+00001586 <USART0_ParityErrorCallbackRegister>:
 }
 
 /* cppcheck-suppress misra-c2012-8.7 */
 void USART0_ParityErrorCallbackRegister(void (* callbackHandler)(void))
 {
     if(NULL != callbackHandler)
-    157e:	00 97       	sbiw	r24, 0x00	; 0
-    1580:	21 f0       	breq	.+8      	; 0x158a <USART0_ParityErrorCallbackRegister+0xc>
+    1586:	00 97       	sbiw	r24, 0x00	; 0
+    1588:	21 f0       	breq	.+8      	; 0x1592 <USART0_ParityErrorCallbackRegister+0xc>
     {
         USART0_ParityErrorHandler = callbackHandler;
-    1582:	90 93 16 01 	sts	0x0116, r25	; 0x800116 <USART0_ParityErrorHandler+0x1>
-    1586:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <USART0_ParityErrorHandler>
-    158a:	08 95       	ret
+    158a:	90 93 16 01 	sts	0x0116, r25	; 0x800116 <USART0_ParityErrorHandler+0x1>
+    158e:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <USART0_ParityErrorHandler>
+    1592:	08 95       	ret
 
-0000158c <USART0_Initialize>:
+00001594 <USART0_Initialize>:
 */
 
 void USART0_Initialize(uint8_t baudRate, uint8_t parity)
 {
     // Set the USART0 module to the options selected in the user interface.
 	if(baudRate == 1){ //19200bps
-    158c:	81 30       	cpi	r24, 0x01	; 1
-    158e:	39 f4       	brne	.+14     	; 0x159e <USART0_Initialize+0x12>
+    1594:	81 30       	cpi	r24, 0x01	; 1
+    1596:	39 f4       	brne	.+14     	; 0x15a6 <USART0_Initialize+0x12>
 		//UBRR0 103;
 		UBRR0 = 0x67;
-    1590:	87 e6       	ldi	r24, 0x67	; 103
-    1592:	90 e0       	ldi	r25, 0x00	; 0
-    1594:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
-    1598:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
-    159c:	06 c0       	rjmp	.+12     	; 0x15aa <USART0_Initialize+0x1e>
+    1598:	87 e6       	ldi	r24, 0x67	; 103
+    159a:	90 e0       	ldi	r25, 0x00	; 0
+    159c:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+    15a0:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+    15a4:	06 c0       	rjmp	.+12     	; 0x15b2 <USART0_Initialize+0x1e>
 	}else{ //9600bps
 		//UBRR0 207;
 		UBRR0 = 0xCF;
-    159e:	8f ec       	ldi	r24, 0xCF	; 207
-    15a0:	90 e0       	ldi	r25, 0x00	; 0
-    15a2:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
-    15a6:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+    15a6:	8f ec       	ldi	r24, 0xCF	; 207
+    15a8:	90 e0       	ldi	r25, 0x00	; 0
+    15aa:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+    15ae:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
 	}
 	
     //MPCM0 disabled; TXC0 disabled; U2X0 enabled; 
     UCSR0A = 0x2;
-    15aa:	82 e0       	ldi	r24, 0x02	; 2
-    15ac:	80 93 c0 00 	sts	0x00C0, r24	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+    15b2:	82 e0       	ldi	r24, 0x02	; 2
+    15b4:	80 93 c0 00 	sts	0x00C0, r24	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
 
     //RXB80 disabled; RXCIE0 disabled; RXEN0 enabled; TXB80 disabled; TXCIE0 disabled; TXEN0 enabled; UCSZ02 disabled; UDRIE0 disabled; 
     UCSR0B = 0x18;
-    15b0:	88 e1       	ldi	r24, 0x18	; 24
-    15b2:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+    15b8:	88 e1       	ldi	r24, 0x18	; 24
+    15ba:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
 
 
 	if(parity == 1){ //Even
-    15b6:	61 30       	cpi	r22, 0x01	; 1
-    15b8:	21 f4       	brne	.+8      	; 0x15c2 <USART0_Initialize+0x36>
+    15be:	61 30       	cpi	r22, 0x01	; 1
+    15c0:	21 f4       	brne	.+8      	; 0x15ca <USART0_Initialize+0x36>
 		UCSR0C = 0x26;
-    15ba:	86 e2       	ldi	r24, 0x26	; 38
-    15bc:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
-    15c0:	03 c0       	rjmp	.+6      	; 0x15c8 <USART0_Initialize+0x3c>
+    15c2:	86 e2       	ldi	r24, 0x26	; 38
+    15c4:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+    15c8:	03 c0       	rjmp	.+6      	; 0x15d0 <USART0_Initialize+0x3c>
 	}else{ //No Parity
 		//UCPOL0 disabled; UCSZ0 3; UMSEL0 Asynchronous Mode; UPM0 Disabled; USBS0 1-bit;
 		UCSR0C = 0x6;		
-    15c2:	86 e0       	ldi	r24, 0x06	; 6
-    15c4:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+    15ca:	86 e0       	ldi	r24, 0x06	; 6
+    15cc:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
 	}
 
 
 
     /* cppcheck-suppress misra-c2012-8.7 */
     USART0_FramingErrorCallbackRegister(USART0_DefaultFramingErrorCallback);
-    15c8:	8e ea       	ldi	r24, 0xAE	; 174
-    15ca:	9a e0       	ldi	r25, 0x0A	; 10
-    15cc:	0e 94 b1 0a 	call	0x1562	; 0x1562 <USART0_FramingErrorCallbackRegister>
+    15d0:	82 eb       	ldi	r24, 0xB2	; 178
+    15d2:	9a e0       	ldi	r25, 0x0A	; 10
+    15d4:	0e 94 b5 0a 	call	0x156a	; 0x156a <USART0_FramingErrorCallbackRegister>
     /* cppcheck-suppress misra-c2012-8.7 */
     USART0_OverrunErrorCallbackRegister(USART0_DefaultOverrunErrorCallback);
-    15d0:	8f ea       	ldi	r24, 0xAF	; 175
-    15d2:	9a e0       	ldi	r25, 0x0A	; 10
-    15d4:	0e 94 b8 0a 	call	0x1570	; 0x1570 <USART0_OverrunErrorCallbackRegister>
+    15d8:	83 eb       	ldi	r24, 0xB3	; 179
+    15da:	9a e0       	ldi	r25, 0x0A	; 10
+    15dc:	0e 94 bc 0a 	call	0x1578	; 0x1578 <USART0_OverrunErrorCallbackRegister>
     /* cppcheck-suppress misra-c2012-8.7 */
     USART0_ParityErrorCallbackRegister(USART0_DefaultParityErrorCallback);
-    15d8:	80 eb       	ldi	r24, 0xB0	; 176
-    15da:	9a e0       	ldi	r25, 0x0A	; 10
-    15dc:	0e 94 bf 0a 	call	0x157e	; 0x157e <USART0_ParityErrorCallbackRegister>
+    15e0:	84 eb       	ldi	r24, 0xB4	; 180
+    15e2:	9a e0       	ldi	r25, 0x0A	; 10
+    15e4:	0e 94 c3 0a 	call	0x1586	; 0x1586 <USART0_ParityErrorCallbackRegister>
     usart0RxLastError.status = 0;  
-    15e0:	10 92 1c 01 	sts	0x011C, r1	; 0x80011c <usart0RxLastError+0x1>
-    15e4:	10 92 1b 01 	sts	0x011B, r1	; 0x80011b <usart0RxLastError>
-    15e8:	08 95       	ret
+    15e8:	10 92 1c 01 	sts	0x011C, r1	; 0x80011c <usart0RxLastError+0x1>
+    15ec:	10 92 1b 01 	sts	0x011B, r1	; 0x80011b <usart0RxLastError>
+    15f0:	08 95       	ret
 
-000015ea <__tablejump2__>:
-    15ea:	ee 0f       	add	r30, r30
-    15ec:	ff 1f       	adc	r31, r31
-    15ee:	05 90       	lpm	r0, Z+
-    15f0:	f4 91       	lpm	r31, Z
-    15f2:	e0 2d       	mov	r30, r0
-    15f4:	09 94       	ijmp
+000015f2 <__tablejump2__>:
+    15f2:	ee 0f       	add	r30, r30
+    15f4:	ff 1f       	adc	r31, r31
+    15f6:	05 90       	lpm	r0, Z+
+    15f8:	f4 91       	lpm	r31, Z
+    15fa:	e0 2d       	mov	r30, r0
+    15fc:	09 94       	ijmp
 
-000015f6 <_exit>:
-    15f6:	f8 94       	cli
+000015fe <_exit>:
+    15fe:	f8 94       	cli
 
-000015f8 <__stop_program>:
-    15f8:	ff cf       	rjmp	.-2      	; 0x15f8 <__stop_program>
+00001600 <__stop_program>:
+    1600:	ff cf       	rjmp	.-2      	; 0x1600 <__stop_program>

@@ -55,6 +55,7 @@
 #define MASK_IN3	0x04
 #define MASK_IN4	0x08
 //---------------------------------------- Direcciones ----------------------------------------
+#define START_SLAVE_ADDRESS		0x3FE
 #define SLAVE_ADDRESS			0x3FF
 #define START_CONFIG_ADDRESS	0x400
 #define END_CONFIG_ADDRESS_R	0x411
@@ -627,7 +628,7 @@ void MODBUS_ProcessFunction(){
 			regValue = myWord.ui16[0];
 			
 			//controlar direccion
-			if((regAddress < SLAVE_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_W && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
+			if((regAddress < START_SLAVE_ADDRESS) || (regAddress == SLAVE_ADDRESS) || (regAddress>END_CONFIG_ADDRESS_W && regAddress <START_EVENT_ADDRESS) || regAddress > END_EVENT_ADDRESS){
 				myModbusFrame.excepCode = INVALID_DATA_ADDRESS;
 				commFlags.iFlags.isExceptionCode = 1;
 				return;

@@ -20,5 +20,9 @@ source\timer0.c
 
 source\timer1.c
 
+source\timer2.c
+
 source\usart.c
+
+source\usart1.c
 

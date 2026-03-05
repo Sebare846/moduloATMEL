@@ -42,6 +42,9 @@
 #include <stdint.h>
 #include <util/delay.h>
 
+//#include <avr/boot.h>
+//#include <avr/common.h>
+
 //----------------------------- Definiciones tiempos - base 10ms -----------------------------
 #define PERIOD100MS		10  
 #define PERIOD250MS		25

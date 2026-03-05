@@ -39,7 +39,7 @@ void (*TMR2Handler)(void) = NULL;
 int8_t TC2_Initialize(void) 
 {
     //Compare A
-  //  OCR2A = 0xCF; //9615 BR
+  //  OCR2A = 0xCF; //9615 BR otro prescaler
 	OCR2A = 0x67;
 
     //Compare B

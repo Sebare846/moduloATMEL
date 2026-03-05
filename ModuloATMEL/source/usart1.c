@@ -72,8 +72,8 @@ void USART1_Start_bit_detect_ISR(){
 //copiar funcion de arriba 
 void USART1_Start_bit_detect(){
 	if(USART1.iFlags.RXdone){
-	//	if(PCIFR  &  (1 << PCIF2)){
-		//	CLEAR_RXPIN_F();
+		if(!(PCIFR  &  (1 << PCIF2))){
+			CLEAR_RXPIN_F();
 			if(!(PIND & (1<<VRX))){
 				if(!USART1.iFlags.RXcomplete){ //no hay nada para leer
 					UsartRXstates = START;
@@ -81,7 +81,7 @@ void USART1_Start_bit_detect(){
 					USART1.iFlags.RXdone=0; //BUSY
 					}
 				}
-			//}
+			}
 		}
 }
 

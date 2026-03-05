@@ -288,6 +288,7 @@ LOAD source/usart1.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
 END GROUP
+Address of section .booloader set to 0x7800
 Address of section .mySlaveAddress set to 0x8003ff
 Address of section .modbus_r set to 0x800400
 Address of section .fixed_events set to 0x800772
@@ -397,7 +398,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1a96
+.text           0x00000000     0x1aa4
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -621,36 +622,36 @@ END GROUP
                 0x0000184e       0x32 source/usart1.o
                 0x0000184e                USART1_Initialize
  .text.USART1_Start_bit_detect
-                0x00001880       0x26 source/usart1.o
+                0x00001880       0x34 source/usart1.o
                 0x00001880                USART1_Start_bit_detect
  .text.USART1_TRANSMIT
-                0x000018a6       0x82 source/usart1.o
-                0x000018a6                USART1_TRANSMIT
+                0x000018b4       0x82 source/usart1.o
+                0x000018b4                USART1_TRANSMIT
  .text.USART1_RECEIVE
-                0x00001928       0xe2 source/usart1.o
-                0x00001928                USART1_RECEIVE
+                0x00001936       0xe2 source/usart1.o
+                0x00001936                USART1_RECEIVE
  .text.USART1_SendByte
-                0x00001a0a       0x24 source/usart1.o
-                0x00001a0a                USART1_SendByte
+                0x00001a18       0x24 source/usart1.o
+                0x00001a18                USART1_SendByte
  .text.USART1_receiveByte
-                0x00001a2e       0x1a source/usart1.o
-                0x00001a2e                USART1_receiveByte
+                0x00001a3c       0x1a source/usart1.o
+                0x00001a3c                USART1_receiveByte
  .text.USART1_Write
-                0x00001a48       0x10 source/usart1.o
-                0x00001a48                USART1_Write
+                0x00001a56       0x10 source/usart1.o
+                0x00001a56                USART1_Write
  .text.USART1_Read
-                0x00001a58       0x10 source/usart1.o
-                0x00001a58                USART1_Read
- .text.libgcc   0x00001a68        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x00001a68                __tablejump2__
+                0x00001a66       0x10 source/usart1.o
+                0x00001a66                USART1_Read
+ .text.libgcc   0x00001a76        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x00001a76                __tablejump2__
  .text.libgcc.mul
-                0x00001a74       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x00001a74                __umulhisi3
-                0x00001a92                . = ALIGN (0x2)
+                0x00001a82       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x00001a82                __umulhisi3
+                0x00001aa0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001a92        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00001a92                _exit
-                0x00001a92                exit
+ .fini9         0x00001aa0        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001aa0                _exit
+                0x00001aa0                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -669,11 +670,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001a92        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001aa0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001a96                _etext = .
+                0x00001aa4                _etext = .
 
-.data           0x00800100        0x0 load address 0x00001a96
+.data           0x00800100        0x0 load address 0x00001aa4
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -776,8 +777,8 @@ END GROUP
                 0x0080037a                USART1
                 0x0080037b                UsartTXstates
                 0x0080037c                PROVIDE (__bss_end, .)
-                0x00001a96                __data_load_start = LOADADDR (.data)
-                0x00001a96                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001aa4                __data_load_start = LOADADDR (.data)
+                0x00001aa4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080037c        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -918,7 +919,7 @@ END GROUP
  .debug_abbrev  0x00000cb3      0x1c9 source/usart.o
  .debug_abbrev  0x00000e7c       0xf5 source/usart1.o
 
-.debug_line     0x00000000     0x2391
+.debug_line     0x00000000     0x239d
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000134     0x1011 main.o
@@ -931,7 +932,7 @@ END GROUP
  .debug_line    0x000017d0      0x2a2 source/timer1.o
  .debug_line    0x00001a72      0x245 source/timer2.o
  .debug_line    0x00001cb7      0x3c9 source/usart.o
- .debug_line    0x00002080      0x311 source/usart1.o
+ .debug_line    0x00002080      0x31d source/usart1.o
 
 .debug_frame    0x00000000      0x8d8
  *(.debug_frame)
@@ -1017,6 +1018,8 @@ END GROUP
  *(.debug_macro)
 OUTPUT(ModuloATMEL.elf elf32-avr)
 LOAD linker stubs
+
+.booloader      0x00007800        0x0
 
 .mySlaveAddress
                 0x008003ff        0x1

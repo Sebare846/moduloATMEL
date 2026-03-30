@@ -3,6 +3,7 @@ ModuloATMEL.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
+<<<<<<< HEAD
   0 .data         00000000  00800100  00800100  00001cb8  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   1 .mySlaveAddress 00000001  008003ff  008003ff  00001b74  2**0
@@ -36,6 +37,41 @@ Idx Name          Size      VMA       LMA       File off  Algn
  15 .debug_loc    00000bde  00000000  00000000  00009f91  2**0
                   CONTENTS, READONLY, DEBUGGING
  16 .debug_ranges 000003b0  00000000  00000000  0000ab6f  2**0
+=======
+  0 .data         00000000  00800100  00800100  00001cbc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .mySlaveAddress 00000001  008003ff  008003ff  00001b78  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .modbus_r     00000014  00800400  00800400  00001b79  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .fixed_events 0000012c  00800772  00800772  00001b8d  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .text         00001aa4  00000000  00000000  000000d4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  5 .bss          0000027c  00800100  00800100  00001b78  2**0
+                  ALLOC
+  6 .fuse         00000003  00820000  00820000  00001cb9  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  7 .comment      00000030  00000000  00000000  00001cbc  2**0
+                  CONTENTS, READONLY
+  8 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001cec  2**2
+                  CONTENTS, READONLY
+  9 .debug_aranges 00000438  00000000  00000000  00001d2c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_info   00002c9f  00000000  00000000  00002164  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_abbrev 00000f71  00000000  00000000  00004e03  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_line   0000239d  00000000  00000000  00005d74  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_frame  000008d8  00000000  00000000  00008114  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_str    00001560  00000000  00000000  000089ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 15 .debug_loc    00000bc3  00000000  00000000  00009f4c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 16 .debug_ranges 000003b0  00000000  00000000  0000ab0f  2**0
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -87,7 +123,11 @@ Disassembly of section .text:
       82:	11 e0       	ldi	r17, 0x01	; 1
       84:	a0 e0       	ldi	r26, 0x00	; 0
       86:	b1 e0       	ldi	r27, 0x01	; 1
+<<<<<<< HEAD
       88:	e0 ea       	ldi	r30, 0xA0	; 160
+=======
+      88:	e4 ea       	ldi	r30, 0xA4	; 164
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9
       8a:	fa e1       	ldi	r31, 0x1A	; 26
       8c:	02 c0       	rjmp	.+4      	; 0x92 <__do_copy_data+0x10>
       8e:	05 90       	lpm	r0, Z+
@@ -109,8 +149,13 @@ Disassembly of section .text:
       a2:	ae 37       	cpi	r26, 0x7E	; 126
       a4:	b2 07       	cpc	r27, r18
       a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
+<<<<<<< HEAD
       a8:	0e 94 53 08 	call	0x10a6	; 0x10a6 <main>
       ac:	0c 94 4e 0d 	jmp	0x1a9c	; 0x1a9c <_exit>
+=======
+      a8:	0e 94 58 08 	call	0x10b0	; 0x10b0 <main>
+      ac:	0c 94 50 0d 	jmp	0x1aa0	; 0x1aa0 <_exit>
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9
 
 000000b0 <__bad_interrupt>:
       b0:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -201,6 +246,7 @@ void USART0_ReceiveInterruptDisable(void){
      17e:	80 93 7b 03 	sts	0x037B, r24	; 0x80037b <tikRX>
      182:	80 91 7c 03 	lds	r24, 0x037C	; 0x80037c <USART1>
      186:	81 fd       	sbrc	r24, 1
+<<<<<<< HEAD
      188:	0e 94 99 0c 	call	0x1932	; 0x1932 <USART1_RECEIVE>
      18c:	80 91 7c 03 	lds	r24, 0x037C	; 0x80037c <USART1>
      190:	84 78       	andi	r24, 0x84	; 132
@@ -208,6 +254,24 @@ void USART0_ReceiveInterruptDisable(void){
      194:	11 f4       	brne	.+4      	; 0x19a <ISRVirtualUsart+0x3e>
      196:	0e 94 1c 0d 	call	0x1a38	; 0x1a38 <USART1_receiveByte>
      19a:	80 91 71 03 	lds	r24, 0x0371	; 0x800371 <TIM2_BR>
+=======
+			USART1_RECEIVE();
+     188:	0e 94 9b 0c 	call	0x1936	; 0x1936 <USART1_RECEIVE>
+		}//else inicializar variables
+	}
+	
+	if(USART1_RX_COMPLETE == 1 && USART1_RX_READY == 0){
+     18c:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+     190:	84 78       	andi	r24, 0x84	; 132
+     192:	80 38       	cpi	r24, 0x80	; 128
+     194:	11 f4       	brne	.+4      	; 0x19a <ISRVirtualUsart+0x3e>
+		USART1_receiveByte();
+     196:	0e 94 1e 0d 	call	0x1a3c	; 0x1a3c <USART1_receiveByte>
+	}
+	
+	if(TIM2_BR.iFlags.BR9600){
+     19a:	80 91 6f 03 	lds	r24, 0x036F	; 0x80036f <TIM2_BR>
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9
      19e:	80 ff       	sbrs	r24, 0
      1a0:	11 c0       	rjmp	.+34     	; 0x1c4 <ISRVirtualUsart+0x68>
      1a2:	8e 7f       	andi	r24, 0xFE	; 254
@@ -216,11 +280,24 @@ void USART0_ReceiveInterruptDisable(void){
      1ac:	88 71       	andi	r24, 0x18	; 24
      1ae:	80 31       	cpi	r24, 0x10	; 16
      1b0:	11 f4       	brne	.+4      	; 0x1b6 <ISRVirtualUsart+0x5a>
+<<<<<<< HEAD
      1b2:	0e 94 0a 0d 	call	0x1a14	; 0x1a14 <USART1_SendByte>
      1b6:	80 91 7c 03 	lds	r24, 0x037C	; 0x80037c <USART1>
      1ba:	80 ff       	sbrs	r24, 0
      1bc:	08 c0       	rjmp	.+16     	; 0x1ce <ISRVirtualUsart+0x72>
      1be:	0e 94 58 0c 	call	0x18b0	; 0x18b0 <USART1_TRANSMIT>
+=======
+			USART1_SendByte();
+     1b2:	0e 94 0c 0d 	call	0x1a18	; 0x1a18 <USART1_SendByte>
+		}
+		
+		if(USART1_TXENABLE)//else inicializar variables
+     1b6:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+     1ba:	80 ff       	sbrs	r24, 0
+     1bc:	08 c0       	rjmp	.+16     	; 0x1ce <ISRVirtualUsart+0x72>
+			USART1_TRANSMIT();
+     1be:	0e 94 5a 0c 	call	0x18b4	; 0x18b4 <USART1_TRANSMIT>
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9
      1c2:	08 95       	ret
      1c4:	80 91 71 03 	lds	r24, 0x0371	; 0x800371 <TIM2_BR>
      1c8:	81 60       	ori	r24, 0x01	; 1
@@ -1022,6 +1099,7 @@ void MODBUS_DecodeFrame(uint8_t data){
      6ba:	cf 93       	push	r28
      6bc:	df 93       	push	r29
 	switch(decodeState){
+<<<<<<< HEAD
      6be:	e0 91 5e 01 	lds	r30, 0x015E	; 0x80015e <decodeState>
      6c2:	4e 2f       	mov	r20, r30
      6c4:	50 e0       	ldi	r21, 0x00	; 0
@@ -1034,6 +1112,20 @@ void MODBUS_DecodeFrame(uint8_t data){
      6d2:	ec 5c       	subi	r30, 0xCC	; 204
      6d4:	ff 4f       	sbci	r31, 0xFF	; 255
      6d6:	0c 94 39 0d 	jmp	0x1a72	; 0x1a72 <__tablejump2__>
+=======
+     6d8:	e0 91 5c 01 	lds	r30, 0x015C	; 0x80015c <decodeState>
+     6dc:	4e 2f       	mov	r20, r30
+     6de:	50 e0       	ldi	r21, 0x00	; 0
+     6e0:	47 30       	cpi	r20, 0x07	; 7
+     6e2:	51 05       	cpc	r21, r1
+     6e4:	08 f0       	brcs	.+2      	; 0x6e8 <MODBUS_DecodeFrame+0x18>
+     6e6:	9c c0       	rjmp	.+312    	; 0x820 <__DATA_REGION_LENGTH__+0x20>
+     6e8:	c8 2f       	mov	r28, r24
+     6ea:	fa 01       	movw	r30, r20
+     6ec:	ec 5c       	subi	r30, 0xCC	; 204
+     6ee:	ff 4f       	sbci	r31, 0xFF	; 255
+     6f0:	0c 94 3b 0d 	jmp	0x1a76	; 0x1a76 <__tablejump2__>
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9
 		case IDLE:
 			if(data == MODBUS_BROADCAST_ADDRESS || data == MODBUS_SLAVE_ADDRESS){
      6da:	88 23       	and	r24, r24
@@ -1521,6 +1613,7 @@ void MODBUS_ProcessFunction(){
      a04:	31 05       	cpc	r19, r1
      a06:	38 f5       	brcc	.+78     	; 0xa56 <__stack+0x157>
 				SentEvents((regCant/3));
+<<<<<<< HEAD
      a08:	9e 01       	movw	r18, r28
      a0a:	ab ea       	ldi	r26, 0xAB	; 171
      a0c:	ba ea       	ldi	r27, 0xAA	; 170
@@ -1530,6 +1623,17 @@ void MODBUS_ProcessFunction(){
      a16:	e7 94       	ror	r14
      a18:	c7 01       	movw	r24, r14
      a1a:	0e 94 c5 02 	call	0x58a	; 0x58a <SentEvents>
+=======
+     a22:	9e 01       	movw	r18, r28
+     a24:	ab ea       	ldi	r26, 0xAB	; 171
+     a26:	ba ea       	ldi	r27, 0xAA	; 170
+     a28:	0e 94 41 0d 	call	0x1a82	; 0x1a82 <__umulhisi3>
+     a2c:	7c 01       	movw	r14, r24
+     a2e:	f6 94       	lsr	r15
+     a30:	e7 94       	ror	r14
+     a32:	c7 01       	movw	r24, r14
+     a34:	0e 94 d2 02 	call	0x5a4	; 0x5a4 <SentEvents>
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9
 				modbusRegister.newEventCounter -= (regCant/3); 				
      a1e:	e0 e0       	ldi	r30, 0x00	; 0
      a20:	f4 e0       	ldi	r31, 0x04	; 4
@@ -2944,10 +3048,17 @@ int main(void){
     1326:	82 ff       	sbrs	r24, 2
     1328:	04 c0       	rjmp	.+8      	; 0x1332 <main+0x28c>
 				byte = USART1_Read();
+<<<<<<< HEAD
     132a:	0e 94 31 0d 	call	0x1a62	; 0x1a62 <USART1_Read>
 				USART1_Write(byte);
     132e:	0e 94 29 0d 	call	0x1a52	; 0x1a52 <USART1_Write>
 			}		
+=======
+    132a:	0e 94 33 0d 	call	0x1a66	; 0x1a66 <USART1_Read>
+				USART1_Write(byte);
+    132e:	0e 94 2b 0d 	call	0x1a56	; 0x1a56 <USART1_Write>
+			}			
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9
 			//------		 
 			if(commFlags.iFlags.dataReady){ //DECODIFICA SI EL FRAME SE RECIBIO CORRECTAMENTE
     1332:	80 91 5f 02 	lds	r24, 0x025F	; 0x80025f <commFlags>
@@ -3780,6 +3891,7 @@ void USART0_Initialize(uint8_t baudRate, uint8_t parity)
     18aa:	80 93 7c 03 	sts	0x037C, r24	; 0x80037c <USART1>
     18ae:	08 95       	ret
 
+<<<<<<< HEAD
 000018b0 <USART1_TRANSMIT>:
     18b0:	80 91 7d 03 	lds	r24, 0x037D	; 0x80037d <UsartTXstates>
     18b4:	81 30       	cpi	r24, 0x01	; 1
@@ -3988,3 +4100,351 @@ void USART0_Initialize(uint8_t baudRate, uint8_t parity)
 
 00001a9e <__stop_program>:
     1a9e:	ff cf       	rjmp	.-2      	; 0x1a9e <__stop_program>
+=======
+//copiar funcion de arriba 
+void USART1_Start_bit_detect(){
+	if(USART1.iFlags.RXdone){
+    1880:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    1884:	85 ff       	sbrs	r24, 5
+    1886:	15 c0       	rjmp	.+42     	; 0x18b2 <USART1_Start_bit_detect+0x32>
+		if(!(PCIFR  &  (1 << PCIF2))){
+    1888:	da 99       	sbic	0x1b, 2	; 27
+    188a:	13 c0       	rjmp	.+38     	; 0x18b2 <USART1_Start_bit_detect+0x32>
+			CLEAR_RXPIN_F();
+    188c:	8b b3       	in	r24, 0x1b	; 27
+    188e:	84 60       	ori	r24, 0x04	; 4
+    1890:	8b bb       	out	0x1b, r24	; 27
+			if(!(PIND & (1<<VRX))){
+    1892:	4e 99       	sbic	0x09, 6	; 9
+    1894:	0e c0       	rjmp	.+28     	; 0x18b2 <USART1_Start_bit_detect+0x32>
+				if(!USART1.iFlags.RXcomplete){ //no hay nada para leer
+    1896:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    189a:	88 23       	and	r24, r24
+    189c:	54 f0       	brlt	.+20     	; 0x18b2 <USART1_Start_bit_detect+0x32>
+					UsartRXstates = START;
+    189e:	81 e0       	ldi	r24, 0x01	; 1
+    18a0:	80 93 78 03 	sts	0x0378, r24	; 0x800378 <UsartRXstates>
+					tikRX = PERIOD05BR;
+    18a4:	80 93 79 03 	sts	0x0379, r24	; 0x800379 <tikRX>
+					USART1.iFlags.RXdone=0; //BUSY
+    18a8:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    18ac:	8f 7d       	andi	r24, 0xDF	; 223
+    18ae:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+    18b2:	08 95       	ret
+
+000018b4 <USART1_TRANSMIT>:
+			}
+		}
+}
+
+void USART1_TRANSMIT(){
+	switch(UsartTXstates){
+    18b4:	80 91 7b 03 	lds	r24, 0x037B	; 0x80037b <UsartTXstates>
+    18b8:	81 30       	cpi	r24, 0x01	; 1
+    18ba:	79 f0       	breq	.+30     	; 0x18da <USART1_TRANSMIT+0x26>
+    18bc:	28 f0       	brcs	.+10     	; 0x18c8 <USART1_TRANSMIT+0x14>
+    18be:	82 30       	cpi	r24, 0x02	; 2
+    18c0:	99 f0       	breq	.+38     	; 0x18e8 <USART1_TRANSMIT+0x34>
+    18c2:	83 30       	cpi	r24, 0x03	; 3
+    18c4:	79 f1       	breq	.+94     	; 0x1924 <USART1_TRANSMIT+0x70>
+    18c6:	34 c0       	rjmp	.+104    	; 0x1930 <USART1_TRANSMIT+0x7c>
+		case USARTIDLE:
+			USART1.iFlags.TXdone = 1;
+    18c8:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    18cc:	80 61       	ori	r24, 0x10	; 16
+    18ce:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+			TX_HIGH();
+    18d2:	8b b1       	in	r24, 0x0b	; 11
+    18d4:	80 68       	ori	r24, 0x80	; 128
+    18d6:	8b b9       	out	0x0b, r24	; 11
+		break;
+    18d8:	08 95       	ret
+		case START:
+			TX_LOW();
+    18da:	8b b1       	in	r24, 0x0b	; 11
+    18dc:	8f 77       	andi	r24, 0x7F	; 127
+    18de:	8b b9       	out	0x0b, r24	; 11
+			UsartTXstates = USARTDATA;
+    18e0:	82 e0       	ldi	r24, 0x02	; 2
+    18e2:	80 93 7b 03 	sts	0x037B, r24	; 0x80037b <UsartTXstates>
+		break;
+    18e6:	08 95       	ret
+		case USARTDATA:
+			if(TXreg & (1<<tx_idx)){
+    18e8:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <TXreg>
+    18ec:	90 e0       	ldi	r25, 0x00	; 0
+    18ee:	00 90 26 01 	lds	r0, 0x0126	; 0x800126 <tx_idx>
+    18f2:	02 c0       	rjmp	.+4      	; 0x18f8 <USART1_TRANSMIT+0x44>
+    18f4:	95 95       	asr	r25
+    18f6:	87 95       	ror	r24
+    18f8:	0a 94       	dec	r0
+    18fa:	e2 f7       	brpl	.-8      	; 0x18f4 <USART1_TRANSMIT+0x40>
+    18fc:	80 ff       	sbrs	r24, 0
+    18fe:	04 c0       	rjmp	.+8      	; 0x1908 <USART1_TRANSMIT+0x54>
+				TX_HIGH();
+    1900:	8b b1       	in	r24, 0x0b	; 11
+    1902:	80 68       	ori	r24, 0x80	; 128
+    1904:	8b b9       	out	0x0b, r24	; 11
+    1906:	03 c0       	rjmp	.+6      	; 0x190e <USART1_TRANSMIT+0x5a>
+				}else{
+				TX_LOW();
+    1908:	8b b1       	in	r24, 0x0b	; 11
+    190a:	8f 77       	andi	r24, 0x7F	; 127
+    190c:	8b b9       	out	0x0b, r24	; 11
+			}
+			tx_idx++;
+    190e:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <tx_idx>
+    1912:	8f 5f       	subi	r24, 0xFF	; 255
+    1914:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <tx_idx>
+			if(tx_idx>7){
+    1918:	88 30       	cpi	r24, 0x08	; 8
+    191a:	60 f0       	brcs	.+24     	; 0x1934 <USART1_TRANSMIT+0x80>
+				UsartTXstates = STOP;
+    191c:	83 e0       	ldi	r24, 0x03	; 3
+    191e:	80 93 7b 03 	sts	0x037B, r24	; 0x80037b <UsartTXstates>
+    1922:	08 95       	ret
+			}
+		break;
+		case STOP:
+			TX_HIGH();
+    1924:	8b b1       	in	r24, 0x0b	; 11
+    1926:	80 68       	ori	r24, 0x80	; 128
+    1928:	8b b9       	out	0x0b, r24	; 11
+			UsartTXstates = USARTIDLE;
+    192a:	10 92 7b 03 	sts	0x037B, r1	; 0x80037b <UsartTXstates>
+		break;
+    192e:	08 95       	ret
+		default:
+			UsartTXstates = USARTIDLE;
+    1930:	10 92 7b 03 	sts	0x037B, r1	; 0x80037b <UsartTXstates>
+    1934:	08 95       	ret
+
+00001936 <USART1_RECEIVE>:
+		break;
+	}
+}
+
+void USART1_RECEIVE(){
+		switch(UsartRXstates){
+    1936:	80 91 78 03 	lds	r24, 0x0378	; 0x800378 <UsartRXstates>
+    193a:	81 30       	cpi	r24, 0x01	; 1
+    193c:	69 f0       	breq	.+26     	; 0x1958 <USART1_RECEIVE+0x22>
+    193e:	30 f0       	brcs	.+12     	; 0x194c <USART1_RECEIVE+0x16>
+    1940:	82 30       	cpi	r24, 0x02	; 2
+    1942:	d1 f0       	breq	.+52     	; 0x1978 <USART1_RECEIVE+0x42>
+    1944:	83 30       	cpi	r24, 0x03	; 3
+    1946:	09 f4       	brne	.+2      	; 0x194a <USART1_RECEIVE+0x14>
+    1948:	42 c0       	rjmp	.+132    	; 0x19ce <USART1_RECEIVE+0x98>
+    194a:	08 95       	ret
+			case USARTIDLE:
+				USART1.iFlags.RXdone = 1;
+    194c:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    1950:	80 62       	ori	r24, 0x20	; 32
+    1952:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+			
+			break;
+    1956:	08 95       	ret
+			case START:
+				if(!(PIND & (1<<VRX))){ //si es 0 es bit start
+    1958:	4e 99       	sbic	0x09, 6	; 9
+    195a:	06 c0       	rjmp	.+12     	; 0x1968 <USART1_RECEIVE+0x32>
+					UsartRXstates = USARTDATA;
+    195c:	82 e0       	ldi	r24, 0x02	; 2
+    195e:	80 93 78 03 	sts	0x0378, r24	; 0x800378 <UsartRXstates>
+					rx_idx  = 0;
+    1962:	10 92 25 01 	sts	0x0125, r1	; 0x800125 <rx_idx>
+    1966:	08 95       	ret
+					}else{
+					UsartRXstates = USARTIDLE; //falso bit start
+    1968:	10 92 78 03 	sts	0x0378, r1	; 0x800378 <UsartRXstates>
+					USART1.iFlags.RXdone = 1;
+    196c:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    1970:	80 62       	ori	r24, 0x20	; 32
+    1972:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+    1976:	08 95       	ret
+					#endif
+				}
+
+			break;
+			case USARTDATA:
+				if(PIND & (1<<VRX)){  //HIGH
+    1978:	4e 9b       	sbis	0x09, 6	; 9
+    197a:	0f c0       	rjmp	.+30     	; 0x199a <USART1_RECEIVE+0x64>
+					RXreg |= (1 << rx_idx);
+    197c:	81 e0       	ldi	r24, 0x01	; 1
+    197e:	90 e0       	ldi	r25, 0x00	; 0
+    1980:	00 90 25 01 	lds	r0, 0x0125	; 0x800125 <rx_idx>
+    1984:	02 c0       	rjmp	.+4      	; 0x198a <USART1_RECEIVE+0x54>
+    1986:	88 0f       	add	r24, r24
+    1988:	99 1f       	adc	r25, r25
+    198a:	0a 94       	dec	r0
+    198c:	e2 f7       	brpl	.-8      	; 0x1986 <USART1_RECEIVE+0x50>
+    198e:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <RXreg>
+    1992:	89 2b       	or	r24, r25
+    1994:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <RXreg>
+    1998:	0f c0       	rjmp	.+30     	; 0x19b8 <USART1_RECEIVE+0x82>
+					}else{				//LOW
+					RXreg &= ~(1 << rx_idx);;
+    199a:	81 e0       	ldi	r24, 0x01	; 1
+    199c:	90 e0       	ldi	r25, 0x00	; 0
+    199e:	00 90 25 01 	lds	r0, 0x0125	; 0x800125 <rx_idx>
+    19a2:	02 c0       	rjmp	.+4      	; 0x19a8 <USART1_RECEIVE+0x72>
+    19a4:	88 0f       	add	r24, r24
+    19a6:	99 1f       	adc	r25, r25
+    19a8:	0a 94       	dec	r0
+    19aa:	e2 f7       	brpl	.-8      	; 0x19a4 <USART1_RECEIVE+0x6e>
+    19ac:	80 95       	com	r24
+    19ae:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <RXreg>
+    19b2:	89 23       	and	r24, r25
+    19b4:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <RXreg>
+				}
+				rx_idx++;
+    19b8:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <rx_idx>
+    19bc:	8f 5f       	subi	r24, 0xFF	; 255
+    19be:	80 93 25 01 	sts	0x0125, r24	; 0x800125 <rx_idx>
+				if(rx_idx>7){
+    19c2:	88 30       	cpi	r24, 0x08	; 8
+    19c4:	40 f1       	brcs	.+80     	; 0x1a16 <USART1_RECEIVE+0xe0>
+					UsartRXstates = STOP;
+    19c6:	83 e0       	ldi	r24, 0x03	; 3
+    19c8:	80 93 78 03 	sts	0x0378, r24	; 0x800378 <UsartRXstates>
+    19cc:	08 95       	ret
+				}
+			break;
+			case STOP:
+				if(PIND & (1<<VRX)){ //stop
+    19ce:	4e 9b       	sbis	0x09, 6	; 9
+    19d0:	14 c0       	rjmp	.+40     	; 0x19fa <USART1_RECEIVE+0xc4>
+					USART1.iFlags.RXcomplete = 1;
+    19d2:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    19d6:	80 68       	ori	r24, 0x80	; 128
+    19d8:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+					if(!USART1.iFlags.TXready){
+    19dc:	83 fd       	sbrc	r24, 3
+    19de:	14 c0       	rjmp	.+40     	; 0x1a08 <USART1_RECEIVE+0xd2>
+						RXdata  = RXreg;
+    19e0:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <RXreg>
+    19e4:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <RXdata>
+						RXreg = 0;
+    19e8:	10 92 22 01 	sts	0x0122, r1	; 0x800122 <RXreg>
+						USART1.iFlags.RXready = 1;
+    19ec:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+						USART1.iFlags.RXcomplete = 0;
+    19f0:	84 60       	ori	r24, 0x04	; 4
+    19f2:	8f 77       	andi	r24, 0x7F	; 127
+    19f4:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+    19f8:	07 c0       	rjmp	.+14     	; 0x1a08 <USART1_RECEIVE+0xd2>
+					}
+				}else{
+					//no se recibio nada descarto dato
+					USART1.iFlags.RXcomplete = 0;
+    19fa:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    19fe:	8f 77       	andi	r24, 0x7F	; 127
+    1a00:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+					RXreg = 0;
+    1a04:	10 92 22 01 	sts	0x0122, r1	; 0x800122 <RXreg>
+				}
+				USART1.iFlags.RXdone=1;
+    1a08:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    1a0c:	80 62       	ori	r24, 0x20	; 32
+    1a0e:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+				UsartRXstates = USARTIDLE;
+    1a12:	10 92 78 03 	sts	0x0378, r1	; 0x800378 <UsartRXstates>
+    1a16:	08 95       	ret
+
+00001a18 <USART1_SendByte>:
+			break;
+		}
+}
+
+void USART1_SendByte(){
+	TXreg  = TXdata;
+    1a18:	80 91 24 01 	lds	r24, 0x0124	; 0x800124 <TXdata>
+    1a1c:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <TXreg>
+	TXdata = 0;
+    1a20:	10 92 24 01 	sts	0x0124, r1	; 0x800124 <TXdata>
+	tx_idx  = 0;
+    1a24:	10 92 26 01 	sts	0x0126, r1	; 0x800126 <tx_idx>
+	USART1.iFlags.TXready = 1;
+    1a28:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+	USART1.iFlags.TXdone = 0;
+    1a2c:	88 60       	ori	r24, 0x08	; 8
+    1a2e:	8f 7e       	andi	r24, 0xEF	; 239
+    1a30:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+	UsartTXstates = START;
+    1a34:	81 e0       	ldi	r24, 0x01	; 1
+    1a36:	80 93 7b 03 	sts	0x037B, r24	; 0x80037b <UsartTXstates>
+    1a3a:	08 95       	ret
+
+00001a3c <USART1_receiveByte>:
+}
+
+void USART1_receiveByte(){
+	RXdata  = RXreg;
+    1a3c:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <RXreg>
+    1a40:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <RXdata>
+	RXreg = 0;
+    1a44:	10 92 22 01 	sts	0x0122, r1	; 0x800122 <RXreg>
+	USART1.iFlags.RXready = 1;
+    1a48:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+	USART1.iFlags.RXcomplete = 0;
+    1a4c:	84 60       	ori	r24, 0x04	; 4
+    1a4e:	8f 77       	andi	r24, 0x7F	; 127
+    1a50:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+    1a54:	08 95       	ret
+
+00001a56 <USART1_Write>:
+}
+
+void USART1_Write(uint8_t b){
+	TXdata = b;
+    1a56:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <TXdata>
+	USART1.iFlags.TXready=0;
+    1a5a:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    1a5e:	87 7f       	andi	r24, 0xF7	; 247
+    1a60:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+    1a64:	08 95       	ret
+
+00001a66 <USART1_Read>:
+}
+
+uint8_t USART1_Read(){
+	USART1.iFlags.RXready = 0;      // DATO LEIDO
+    1a66:	80 91 7a 03 	lds	r24, 0x037A	; 0x80037a <USART1>
+    1a6a:	8b 7f       	andi	r24, 0xFB	; 251
+    1a6c:	80 93 7a 03 	sts	0x037A, r24	; 0x80037a <USART1>
+	return RXdata;
+    1a70:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <RXdata>
+    1a74:	08 95       	ret
+
+00001a76 <__tablejump2__>:
+    1a76:	ee 0f       	add	r30, r30
+    1a78:	ff 1f       	adc	r31, r31
+    1a7a:	05 90       	lpm	r0, Z+
+    1a7c:	f4 91       	lpm	r31, Z
+    1a7e:	e0 2d       	mov	r30, r0
+    1a80:	09 94       	ijmp
+
+00001a82 <__umulhisi3>:
+    1a82:	a2 9f       	mul	r26, r18
+    1a84:	b0 01       	movw	r22, r0
+    1a86:	b3 9f       	mul	r27, r19
+    1a88:	c0 01       	movw	r24, r0
+    1a8a:	a3 9f       	mul	r26, r19
+    1a8c:	70 0d       	add	r23, r0
+    1a8e:	81 1d       	adc	r24, r1
+    1a90:	11 24       	eor	r1, r1
+    1a92:	91 1d       	adc	r25, r1
+    1a94:	b2 9f       	mul	r27, r18
+    1a96:	70 0d       	add	r23, r0
+    1a98:	81 1d       	adc	r24, r1
+    1a9a:	11 24       	eor	r1, r1
+    1a9c:	91 1d       	adc	r25, r1
+    1a9e:	08 95       	ret
+
+00001aa0 <_exit>:
+    1aa0:	f8 94       	cli
+
+00001aa2 <__stop_program>:
+    1aa2:	ff cf       	rjmp	.-2      	; 0x1aa2 <__stop_program>
+>>>>>>> 7e84a207f2a0f21db0ca97c80e5d90cdfc61d4d9

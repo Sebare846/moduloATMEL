@@ -176,6 +176,7 @@ void USART0_ReceiveDisable(void)
 
 uint8_t USART0_GetData(void)
 {
+	UCSR0A |= (1<<TXC0);
     return UDR0;
 }
 
@@ -238,6 +239,7 @@ uint8_t USART0_Read(void)
 
 void USART0_Write(uint8_t txData)
 {
+	UCSR0A |= (1<<TXC0);
     UDR0 = txData;    // Write the data byte to the USART.
 }
 static void USART0_DefaultFramingErrorCallback(void)

@@ -137,6 +137,7 @@ uart_drv_interface_t myUSARTHandler;
 volatile uint8_t bufferRx[BUFFER_LEN];
 uint8_t bufferTx[BUFFER_LEN];
 uint8_t indexRxR,indexRxW,indexTxR,indexTxW, trashByte;
+usart0_status_t usartFlag;
 //---------------------------------- Variables USART1 ---------------------------------------------
 uint8_t indexRx = 0, indexTx=0;
 //uint8_t bufferRx_U1[256], bufferTx_U1[256];
@@ -150,6 +151,7 @@ uint8_t oldValueA=0, newValueA=0, outValues=0, lecture=0;
 //------------------------ Banco de Registros (con direcciones fijas) -------------------------
 uint16_t eventIndexW=0;
 uint8_t is500ms=0,isDecodeData=0; //banderas sacadas de input flags
+uint8_t auxDebug=0;
 
 uint8_t slaveAddress __attribute__((section(".mySlaveAddress"))); //0x3FF
 typedef struct {
@@ -255,33 +257,22 @@ void RegInput();
 void UpdateState(uint8_t lecture, uint8_t mask, uint8_t indice);
 
 void SentEvents(uint16_t count);
+
 void InitializeEvents();
 
 
 // ---------------------- Implementacion de ISR ----------------------
-
-//---- ISR POR CAMBIO DE ESTADO RX --------------
-/*ISR(PCINT2_vect){
-	if (!(PIND & (1<<VRX))) { //FLANCO DESCENDENTE
-		//COMIENZA RX 
-		USART1_Start_bit_detect_ISR();
-		DISABLE_RXPIN_ISR();
-	}
-}*/
-
-
 ISR(USART_RX_vect){
-	
 	RestartTikValues(); 
 	MODBUS_DecodeFrame(UDR0);
 }
 
 void UARTsendByte(){
-	while(indexTxR != indexTxW){
-		if (USART0_IsTxReady()) {
+	//while(indexTxR != indexTxW){
+		if (UCSR0A & (1 << UDRE0)) {
 			USART0_Write(bufferTx[indexTxR++]);
 		}
-	}
+	//}
 }
 
 void USART0_ReceiveInterruptEnable(void){
@@ -327,8 +318,7 @@ int16_t EEPROM_Read(uint16_t address) {
 	return EEDR;
 }
 
-void RestartTikValues(){
-	
+void RestartTikValues(){	
 	if(auxbrConfig){
 		if(auxParity){
 			t15Tik = T15_BR11;
@@ -347,8 +337,6 @@ void RestartTikValues(){
 		}
 	}
 }
-
-
 
 void ISRVirtualUsart(){
 	tim2Tik--;
@@ -380,7 +368,6 @@ void ISRVirtualUsart(){
 }
 
 
-
 void do10us(){
 	if(t15Tik){
 		t15Tik--;
@@ -406,7 +393,7 @@ void do10ms(){
 		}else{
 			is500ms=1;
 		}
-		unixTik = PERIOD250MS;
+		unixTik = PERIOD500MS;
 	}
 }
 
@@ -619,7 +606,7 @@ void MODBUS_DecodeFrame(uint8_t data){
 }
 
 void MODBUS_ProcessFunction(){
-	uint8_t countIndex, byteCount = 0;
+	uint8_t auxIndex, countIndex, byteCount = 0;
 	uint16_t regAddress, regValue, regCant, subfunction;
 	myModbusFrame.crcSlave = 0xFFFF;
 	switch(myModbusFrame.function){
@@ -684,9 +671,16 @@ void MODBUS_ProcessFunction(){
 				}
 			}
 			bufferTx[countIndex] = byteCount;
-			for(uint8_t i = indexTxR; i < indexTxW + 3;i++){
-				MODBUS_CalculateCRC(bufferTx[i]);
+			
+			auxIndex = indexTxR;
+			while(auxIndex != indexTxW){
+				MODBUS_CalculateCRC(bufferTx[auxIndex++]);
 			}
+			
+			//for(uint8_t i = auxIndex; auxIndex != indexTxW;i++){
+			//	MODBUS_CalculateCRC(bufferTx[i]);
+			//}
+			
 			myWord.ui16[0] = myModbusFrame.crcSlave;
 			bufferTx[indexTxW++] = myWord.ui8[0];
 			bufferTx[indexTxW++] = myWord.ui8[1];
@@ -726,9 +720,15 @@ void MODBUS_ProcessFunction(){
 			bufferTx[indexTxW++] = *((uint8_t *)(regAddress));
 			bufferTx[indexTxW++] = *((uint8_t *)(regAddress+1));
 		
+			auxIndex = indexTxR;
+			while(auxIndex != indexTxW){
+				MODBUS_CalculateCRC(bufferTx[auxIndex++]);
+			}
+			/*
 			for(uint8_t i = indexTxR; i < indexTxW;i++){
 				MODBUS_CalculateCRC(bufferTx[i]);
 			}
+			*/
 			myWord.ui16[0] = myModbusFrame.crcSlave;
 			bufferTx[indexTxW++] = myWord.ui8[0];
 			bufferTx[indexTxW++] = myWord.ui8[1];
@@ -786,9 +786,16 @@ void MODBUS_ProcessFunction(){
 				myWord.ui16[0] = regValue;
 				bufferTx[indexTxW++] = myWord.ui8[1];
 				bufferTx[indexTxW++] = myWord.ui8[0];
+				
+				auxIndex = indexTxR;
+				while(auxIndex != indexTxW){
+					MODBUS_CalculateCRC(bufferTx[auxIndex++]);
+				}
+				/*
 				for(uint8_t i=indexTxR; i < indexTxW; i++){
 					MODBUS_CalculateCRC(bufferTx[i]);
 				}
+				*/
 				myWord.ui16[0] = myModbusFrame.crcSlave;
 				bufferTx[indexTxW++] = myWord.ui8[0];
 				bufferTx[indexTxW++] = myWord.ui8[1];
@@ -843,9 +850,16 @@ void MODBUS_ProcessFunction(){
 			myWord.ui16[0] = regCant;
 			bufferTx[indexTxW++] = myWord.ui8[1];
 			bufferTx[indexTxW++] = myWord.ui8[0];
+			
+			auxIndex = indexTxR;
+			while(auxIndex != indexTxW){
+				MODBUS_CalculateCRC(bufferTx[auxIndex++]);
+			}			
+			/*
 			for(uint8_t i = indexTxR; i < indexTxW;i++){
 				MODBUS_CalculateCRC(bufferTx[i]);
 			}
+			*/
 			myWord.ui16[0] = myModbusFrame.crcSlave;
 			bufferTx[indexTxW++] = myWord.ui8[0];
 			bufferTx[indexTxW++] = myWord.ui8[1];
@@ -863,13 +877,21 @@ void MODBUS_ProcessFunction(){
 }
 
 void MODBUS_SendExceptionCode(){
+	uint8_t auxIndex;
 	commFlags.iFlags.isExceptionCode = 0;
 	bufferTx[indexTxW++] = (uint8_t)MODBUS_SLAVE_ADDRESS;
 	bufferTx[indexTxW++] = myModbusFrame.errorCode;
 	bufferTx[indexTxW++] = myModbusFrame.excepCode;
+	
+	auxIndex = indexTxR;
+	while(auxIndex != indexTxW){
+		MODBUS_CalculateCRC(bufferTx[auxIndex++]);
+	}
+	/*
 	for(uint8_t i = indexTxR; i < indexTxW;i++){
 		MODBUS_CalculateCRC(bufferTx[i]);
 	}
+	*/
 	myWord.ui16[0] = myModbusFrame.crcSlave;
 	bufferTx[indexTxW++] = myWord.ui8[0];
 	bufferTx[indexTxW++] = myWord.ui8[1];
@@ -954,6 +976,7 @@ int main(void){
 	auxTik = 25000;
 	commFlags.aFlags = 0;
 	commFlags.iFlags.silenceTime = 1;
+	usartFlag.isTrasmitting = 0;
 	indexTxW = 0;
 	indexTxR = 0;
 	indexRxW = 0;
@@ -963,7 +986,7 @@ int main(void){
 	tikRX=PERIODBR;
 	tim2Tik = PERIOD1S_TIM2;
 	/*-----LECTURA ENTRADAS-----------------------*/
-	newValueA = ~(PORTC & MASK_PORTC);
+	newValueA = ~(PINC & MASK_PORTC);
 	outValues = newValueA;
 	inputFlags.aFlags_input = 0;
 	commFlags.aFlags = 0;
@@ -994,7 +1017,6 @@ int main(void){
 	while(1){
 		
 			if(!hbTime){ //Heartbeat
-			//	PORTB ^= (1<<5);
 				hbState ^= (1<<5);
 				hbTime = PERIOD250MS;
 			}
@@ -1003,23 +1025,28 @@ int main(void){
 			if(USART1_RX_READY){
 				byte = USART1_Read();
 				USART1_Write(byte);
-			}			
+			}		
 			//------		 
 			if(commFlags.iFlags.dataReady){ //DECODIFICA SI EL FRAME SE RECIBIO CORRECTAMENTE
 				commFlags.iFlags.dataReady = 0;
 				MODBUS_ProcessFunction();
 			}
 
-			if(indexTxR != indexTxW){ //Si hay datos para transmitir, transmite todo lo que tiene
-				USART0_ReceiveInterruptDisable();
-				PORTD |= 0x4; //MAX HIGH
-				UARTsendByte();
+			if(indexTxR != indexTxW){ //Si hay datos para transmitir, intenta transmitirlo
+				if(usartFlag.isTrasmitting){
+					UARTsendByte();	
+				}else{
+					//USART0_ReceiveInterruptDisable();
+					PORTD |= 0x04; //MAX HIGH
+					usartFlag.isTrasmitting = 1;	
+				}
 			}
-			if(indexTxR == indexTxW){ //Si no hay datos para transmitir vuelve a la interrupcion
-				if(USART0_IsTxDone()){ //IS TRANSMIT COMPLETE
-					UCSR0A |= (1<<TXC0);           // limpiar TXC0
-					USART0_ReceiveInterruptEnable();
-					PORTD &= ~ 0x4; //MAX_SetLow();
+			if(indexTxR==indexTxW && usartFlag.isTrasmitting){ //Si no hay datos para transmitir vuelve a la interrupcion
+				if(UCSR0A & (1<<TXC0)){ //IS TRANSMIT COMPLETE
+					//UCSR0A &= ~(1<<TXC0);           // limpiar TXC0
+					//USART0_ReceiveInterruptEnable();
+					PORTD &= ~(0x04); //MAX_SetLow();
+					usartFlag.isTrasmitting = 0;
 				}
 			}
 
@@ -1078,6 +1105,7 @@ int main(void){
 						}
 				USART0_Deinitialize();
 				USART0_Initialize(modbusRegister.brConfig,modbusRegister.parity);
+				USART0_ReceiveInterruptEnable();
 				commFlags.iFlags.restartComms = 0;
 			}
 			

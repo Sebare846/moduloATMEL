@@ -71,10 +71,11 @@
  /* cppcheck-suppress misra-c2012-19.2 */
 typedef union {
     struct {
-        uint8_t perr : 1;     /**<This is a bit field for Parity Error status*/
-        uint8_t ferr : 1;     /**<This is a bit field for Framing Error status*/
-        uint8_t oerr : 1;     /**<This is a bit field for Overfrun Error status*/
-        uint8_t reserved : 5; /**<Reserved*/
+        uint8_t perr			: 1;     /**<This is a bit field for Parity Error status*/
+        uint8_t ferr			: 1;     /**<This is a bit field for Framing Error status*/
+        uint8_t oerr			: 1;     /**<This is a bit field for Overfrun Error status*/
+		uint8_t isTrasmitting	: 1;
+        uint8_t reserved		: 4; /**<Reserved*/
     };
     size_t status;            /**<Group byte for status errors*/
 }usart0_status_t;

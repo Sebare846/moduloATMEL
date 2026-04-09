@@ -86,13 +86,14 @@ typedef union{
 _uFlags_input inputFlags;
 
 typedef struct {
-	uint32_t unixTime;				//0x400
+	uint32_t unixTime;				//0x400 0x401 0x402 0x403
 	uint8_t brConfig;				//0x404
 	uint8_t parity;					//0x405
-	uint16_t timeBtw[4];			//0x406
-	uint16_t diagnosticsRegister;	//0x40E
-	uint16_t newEventCounter;		//0x410
-	uint16_t eventIndexR;			//0x412
+	uint16_t timeBtw[4];			//0x406 0x407 x0408 0x409 0x40A x40B x40C x40D 
+	uint16_t idCounter[4];			//0x40E 0x41F x0410 0x411 0x412 x413 x414 x415 
+	uint16_t diagnosticsRegister;	//0x416 x417
+	uint16_t newEventCounter;		//0x418 x419
+	uint16_t eventIndexR;			//0x41A x41B
 } _sModbusReg;
 
 /*
@@ -151,13 +152,13 @@ typedef enum{
 #define START_SLAVE_ADDRESS		0x3FE
 #define SLAVE_ADDRESS			0x3FF
 #define START_CONFIG_ADDRESS	0x400
-#define END_CONFIG_ADDRESS_R	0x413
-#define END_CONFIG_ADDRESS_W	0x40D
+#define END_CONFIG_ADDRESS_R	0x41B
+#define END_CONFIG_ADDRESS_W	0x415
 #define START_EVENT_ADDRESS		0x772
 #define END_EVENT_ADDRESS		0x89E
 //----------------------------------------- Tamanios ------------------------------------------
 #define BUFFER_LEN  256
-#define REGISTERS   12
+#define REGISTERS   14
 #define MAXEVENTS	50
 /* END Define ----------------------------------------------------------------*/
 
@@ -278,7 +279,7 @@ uint8_t oldValueA, newValueA, outValues, lecture, is500ms;
 uint8_t slaveAddress __attribute__((section(".mySlaveAddress"))); //0x3FF
 /*
 * Start Address:	0x400
-* End Address:		0x40B
+* End Address:		0x41E
 * Total Bytes:		0x0C
 */
 _sModbusReg modbusRegister __attribute__((section(".modbus_r")));
@@ -503,6 +504,7 @@ void RegInput(){
 	  if(((~PINC) & mask) == (lect & mask)){
 		  if(lect & mask){
 			  outValues |= mask; 
+			  modbusRegister.idCounter[indice]++;
 			  myEvents[eventIndexW].stateLastEvent = 1;
 		   }else{
 			  if(outValues & mask){
@@ -542,6 +544,8 @@ void LoadEvents(uint16_t count){
 		bufferTx[indexTxW++] = myWord.ui8[2];
 		bufferTx[indexTxW++] = myWord.ui8[3];	
 		modbusRegister.eventIndexR++;
+		if(modbusRegister.newEventCounter)
+			modbusRegister.newEventCounter--;
 	}
 }
 
@@ -621,7 +625,7 @@ void MODBUS_DecodeFrame(uint8_t data){
 }
 
 void MODBUS_ProcessFunction(){
-	uint8_t auxIndex, countIndex, byteCount = 0;
+	uint8_t auxIndex, countIndex, byteCount = 0, auxLoadCant = 0;
 	uint16_t regAddress, regValue, regCant, subfunction;
 	myModbusFrame.crcSlave = 0xFFFF;
 	switch(myModbusFrame.function){
@@ -673,8 +677,10 @@ void MODBUS_ProcessFunction(){
 			countIndex = indexTxW;
 			bufferTx[indexTxW++] = 0x00; 
 			if(regAddress > 0 && regAddress < MAXEVENTS){
-				LoadEvents((regCant/3));
-				modbusRegister.newEventCounter -= (regCant/3); 				
+				auxLoadCant = (regCant/3);
+				if(auxLoadCant > modbusRegister.newEventCounter)
+					auxLoadCant = modbusRegister.newEventCounter;
+				LoadEvents(auxLoadCant);				
 				byteCount = regCant * 2;
 			}else{
 				for(uint8_t i=0 ; i<(regCant*2) ; i++){
@@ -982,6 +988,11 @@ int main(void){
 	tikBetweenTime[1] = 0;
 	tikBetweenTime[2] = 0;
 	tikBetweenTime[3] = 0;
+	
+	modbusRegister.idCounter[0] = 0;
+	modbusRegister.idCounter[1] = 0;
+	modbusRegister.idCounter[2] = 0;
+	modbusRegister.idCounter[3] = 0;
 		
 	USART0_Initialize(modbusRegister.brConfig, modbusRegister.parity);
 	TC0_Initialize();

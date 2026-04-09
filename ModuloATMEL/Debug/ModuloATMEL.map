@@ -412,7 +412,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1aec
+.text           0x00000000     0x1b26
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -514,140 +514,140 @@ END GROUP
                 0x0000025a       0x80 main.o
                 0x0000025a                RestartTikValues
  .text.UpdateState
-                0x000002da       0xfa main.o
+                0x000002da      0x112 main.o
                 0x000002da                UpdateState
  .text.RegInput
-                0x000003d4      0x198 main.o
-                0x000003d4                RegInput
+                0x000003ec      0x198 main.o
+                0x000003ec                RegInput
  .text.InitializeEvents
-                0x0000056c       0x36 main.o
-                0x0000056c                InitializeEvents
+                0x00000584       0x36 main.o
+                0x00000584                InitializeEvents
  .text.LoadEvents
-                0x000005a2       0xe4 main.o
-                0x000005a2                LoadEvents
+                0x000005ba       0xfa main.o
+                0x000005ba                LoadEvents
  .text.MODBUS_CalculateCRC
-                0x00000686       0x48 main.o
-                0x00000686                MODBUS_CalculateCRC
+                0x000006b4       0x48 main.o
+                0x000006b4                MODBUS_CalculateCRC
  .text.MODBUS_DecodeFrame
-                0x000006ce      0x170 main.o
-                0x000006ce                MODBUS_DecodeFrame
+                0x000006fc      0x170 main.o
+                0x000006fc                MODBUS_DecodeFrame
  .text.__vector_18
-                0x0000083e       0x50 main.o
-                0x0000083e                __vector_18
+                0x0000086c       0x50 main.o
+                0x0000086c                __vector_18
  .text.MODBUS_ProcessFunction
-                0x0000088e      0x7a2 main.o
-                0x0000088e                MODBUS_ProcessFunction
+                0x000008bc      0x79e main.o
+                0x000008bc                MODBUS_ProcessFunction
  .text.MODBUS_SendExceptionCode
-                0x00001030       0xa4 main.o
-                0x00001030                MODBUS_SendExceptionCode
- .text.main     0x000010d4      0x4e2 main.o
-                0x000010d4                main
+                0x0000105a       0xa4 main.o
+                0x0000105a                MODBUS_SendExceptionCode
+ .text.main     0x000010fe      0x4f2 main.o
+                0x000010fe                main
  .text.CPU_Initialize
-                0x000015b6        0xe mcc_generated_files/system/src/cpu.o
-                0x000015b6                CPU_Initialize
+                0x000015f0        0xe mcc_generated_files/system/src/cpu.o
+                0x000015f0                CPU_Initialize
  .text.CPUINT_Initialize
-                0x000015c4        0x8 mcc_generated_files/system/src/cpuint.o
-                0x000015c4                CPUINT_Initialize
+                0x000015fe        0x8 mcc_generated_files/system/src/cpuint.o
+                0x000015fe                CPUINT_Initialize
  .text.PIN_MANAGER_Initialize
-                0x000015cc       0x18 mcc_generated_files/system/src/pins.o
-                0x000015cc                PIN_MANAGER_Initialize
+                0x00001606       0x18 mcc_generated_files/system/src/pins.o
+                0x00001606                PIN_MANAGER_Initialize
  .text.SYSTEM_Initialize
-                0x000015e4        0xe mcc_generated_files/system/src/system.o
-                0x000015e4                SYSTEM_Initialize
+                0x0000161e        0xe mcc_generated_files/system/src/system.o
+                0x0000161e                SYSTEM_Initialize
  .text.TC0_Initialize
-                0x000015f2       0x1a source/timer0.o
-                0x000015f2                TC0_Initialize
+                0x0000162c       0x1a source/timer0.o
+                0x0000162c                TC0_Initialize
  .text.TMR0_SetHandler
-                0x0000160c        0xa source/timer0.o
-                0x0000160c                TMR0_SetHandler
+                0x00001646        0xa source/timer0.o
+                0x00001646                TMR0_SetHandler
  .text.__vector_14
-                0x00001616       0x56 source/timer0.o
-                0x00001616                __vector_14
+                0x00001650       0x56 source/timer0.o
+                0x00001650                __vector_14
  .text.TC1_Initialize
-                0x0000166c       0x42 source/timer1.o
-                0x0000166c                TC1_Initialize
+                0x000016a6       0x42 source/timer1.o
+                0x000016a6                TC1_Initialize
  .text.__vector_12
-                0x000016ae       0x1c source/timer1.o
-                0x000016ae                __vector_12
+                0x000016e8       0x1c source/timer1.o
+                0x000016e8                __vector_12
  .text.__vector_13
-                0x000016ca       0x16 source/timer1.o
-                0x000016ca                __vector_13
+                0x00001704       0x16 source/timer1.o
+                0x00001704                __vector_13
  .text.__vector_10
-                0x000016e0       0x1c source/timer1.o
-                0x000016e0                __vector_10
+                0x0000171a       0x1c source/timer1.o
+                0x0000171a                __vector_10
  .text.TMR1_SetHandler
-                0x000016fc        0xa source/timer1.o
-                0x000016fc                TMR1_SetHandler
+                0x00001736        0xa source/timer1.o
+                0x00001736                TMR1_SetHandler
  .text.__vector_11
-                0x00001706       0x56 source/timer1.o
-                0x00001706                __vector_11
+                0x00001740       0x56 source/timer1.o
+                0x00001740                __vector_11
  .text.TC2_Initialize
-                0x0000175c       0x26 source/timer2.o
-                0x0000175c                TC2_Initialize
+                0x00001796       0x26 source/timer2.o
+                0x00001796                TC2_Initialize
  .text.TMR2_SetHandler
-                0x00001782        0xa source/timer2.o
-                0x00001782                TMR2_SetHandler
+                0x000017bc        0xa source/timer2.o
+                0x000017bc                TMR2_SetHandler
  .text.__vector_7
-                0x0000178c       0x56 source/timer2.o
-                0x0000178c                __vector_7
+                0x000017c6       0x56 source/timer2.o
+                0x000017c6                __vector_7
  .text.USART0_Deinitialize
-                0x000017e2       0x16 source/usart.o
-                0x000017e2                USART0_Deinitialize
+                0x0000181c       0x16 source/usart.o
+                0x0000181c                USART0_Deinitialize
  .text.USART0_Write
-                0x000017f8       0x10 source/usart.o
-                0x000017f8                USART0_Write
+                0x00001832       0x10 source/usart.o
+                0x00001832                USART0_Write
  .text.USART0_DefaultFramingErrorCallback
-                0x00001808        0x2 source/usart.o
+                0x00001842        0x2 source/usart.o
  .text.USART0_DefaultOverrunErrorCallback
-                0x0000180a        0x2 source/usart.o
+                0x00001844        0x2 source/usart.o
  .text.USART0_DefaultParityErrorCallback
-                0x0000180c        0x2 source/usart.o
+                0x00001846        0x2 source/usart.o
  .text.USART0_FramingErrorCallbackRegister
-                0x0000180e        0xe source/usart.o
-                0x0000180e                USART0_FramingErrorCallbackRegister
+                0x00001848        0xe source/usart.o
+                0x00001848                USART0_FramingErrorCallbackRegister
  .text.USART0_OverrunErrorCallbackRegister
-                0x0000181c        0xe source/usart.o
-                0x0000181c                USART0_OverrunErrorCallbackRegister
+                0x00001856        0xe source/usart.o
+                0x00001856                USART0_OverrunErrorCallbackRegister
  .text.USART0_ParityErrorCallbackRegister
-                0x0000182a        0xe source/usart.o
-                0x0000182a                USART0_ParityErrorCallbackRegister
+                0x00001864        0xe source/usart.o
+                0x00001864                USART0_ParityErrorCallbackRegister
  .text.USART0_Initialize
-                0x00001838       0x5e source/usart.o
-                0x00001838                USART0_Initialize
+                0x00001872       0x5e source/usart.o
+                0x00001872                USART0_Initialize
  .text.USART1_Initialize
-                0x00001896       0x32 source/usart1.o
-                0x00001896                USART1_Initialize
+                0x000018d0       0x32 source/usart1.o
+                0x000018d0                USART1_Initialize
  .text.USART1_Start_bit_detect
-                0x000018c8       0x34 source/usart1.o
-                0x000018c8                USART1_Start_bit_detect
+                0x00001902       0x34 source/usart1.o
+                0x00001902                USART1_Start_bit_detect
  .text.USART1_TRANSMIT
-                0x000018fc       0x82 source/usart1.o
-                0x000018fc                USART1_TRANSMIT
+                0x00001936       0x82 source/usart1.o
+                0x00001936                USART1_TRANSMIT
  .text.USART1_RECEIVE
-                0x0000197e       0xe2 source/usart1.o
-                0x0000197e                USART1_RECEIVE
+                0x000019b8       0xe2 source/usart1.o
+                0x000019b8                USART1_RECEIVE
  .text.USART1_SendByte
-                0x00001a60       0x24 source/usart1.o
-                0x00001a60                USART1_SendByte
+                0x00001a9a       0x24 source/usart1.o
+                0x00001a9a                USART1_SendByte
  .text.USART1_receiveByte
-                0x00001a84       0x1a source/usart1.o
-                0x00001a84                USART1_receiveByte
+                0x00001abe       0x1a source/usart1.o
+                0x00001abe                USART1_receiveByte
  .text.USART1_Write
-                0x00001a9e       0x10 source/usart1.o
-                0x00001a9e                USART1_Write
+                0x00001ad8       0x10 source/usart1.o
+                0x00001ad8                USART1_Write
  .text.USART1_Read
-                0x00001aae       0x10 source/usart1.o
-                0x00001aae                USART1_Read
- .text.libgcc   0x00001abe        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x00001abe                __tablejump2__
+                0x00001ae8       0x10 source/usart1.o
+                0x00001ae8                USART1_Read
+ .text.libgcc   0x00001af8        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x00001af8                __tablejump2__
  .text.libgcc.mul
-                0x00001aca       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x00001aca                __umulhisi3
-                0x00001ae8                . = ALIGN (0x2)
+                0x00001b04       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x00001b04                __umulhisi3
+                0x00001b22                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001ae8        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00001ae8                _exit
-                0x00001ae8                exit
+ .fini9         0x00001b22        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001b22                _exit
+                0x00001b22                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -666,11 +666,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001ae8        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001b22        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001aec                _etext = .
+                0x00001b26                _etext = .
 
-.data           0x00800100        0x0 load address 0x00001aec
+.data           0x00800100        0x0 load address 0x00001b26
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -765,8 +765,8 @@ END GROUP
                 0x0080037e                USART1
                 0x0080037f                UsartTXstates
                 0x00800380                PROVIDE (__bss_end, .)
-                0x00001aec                __data_load_start = LOADADDR (.data)
-                0x00001aec                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001b26                __data_load_start = LOADADDR (.data)
+                0x00001b26                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800380        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -877,20 +877,20 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2c86
+.debug_info     0x00000000     0x2c94
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4     0x13b5 main.o
- .debug_info    0x000019a9       0xa6 mcc_generated_files/system/src/config_bits.o
- .debug_info    0x00001a4f       0xef mcc_generated_files/system/src/cpu.o
- .debug_info    0x00001b3e       0x92 mcc_generated_files/system/src/cpuint.o
- .debug_info    0x00001bd0       0x82 mcc_generated_files/system/src/pins.o
- .debug_info    0x00001c52       0xbf mcc_generated_files/system/src/system.o
- .debug_info    0x00001d11      0x20a source/timer0.o
- .debug_info    0x00001f1b      0x25c source/timer1.o
- .debug_info    0x00002177      0x20a source/timer2.o
- .debug_info    0x00002381      0x625 source/usart.o
- .debug_info    0x000029a6      0x2e0 source/usart1.o
+ .debug_info    0x000005f4     0x13c3 main.o
+ .debug_info    0x000019b7       0xa6 mcc_generated_files/system/src/config_bits.o
+ .debug_info    0x00001a5d       0xef mcc_generated_files/system/src/cpu.o
+ .debug_info    0x00001b4c       0x92 mcc_generated_files/system/src/cpuint.o
+ .debug_info    0x00001bde       0x82 mcc_generated_files/system/src/pins.o
+ .debug_info    0x00001c60       0xbf mcc_generated_files/system/src/system.o
+ .debug_info    0x00001d1f      0x20a source/timer0.o
+ .debug_info    0x00001f29      0x25c source/timer1.o
+ .debug_info    0x00002185      0x20a source/timer2.o
+ .debug_info    0x0000238f      0x625 source/usart.o
+ .debug_info    0x000029b4      0x2e0 source/usart1.o
 
 .debug_abbrev   0x00000000      0xf82
  *(.debug_abbrev)
@@ -907,69 +907,69 @@ END GROUP
  .debug_abbrev  0x00000cc4      0x1c9 source/usart.o
  .debug_abbrev  0x00000e8d       0xf5 source/usart1.o
 
-.debug_line     0x00000000     0x2368
+.debug_line     0x00000000     0x237e
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_line    0x00000134      0xfd0 main.o
- .debug_line    0x00001104       0xb1 mcc_generated_files/system/src/config_bits.o
- .debug_line    0x000011b5      0x12a mcc_generated_files/system/src/cpu.o
- .debug_line    0x000012df       0xcc mcc_generated_files/system/src/cpuint.o
- .debug_line    0x000013ab       0xee mcc_generated_files/system/src/pins.o
- .debug_line    0x00001499       0xb8 mcc_generated_files/system/src/system.o
- .debug_line    0x00001551      0x23e source/timer0.o
- .debug_line    0x0000178f      0x2a2 source/timer1.o
- .debug_line    0x00001a31      0x245 source/timer2.o
- .debug_line    0x00001c76      0x3d5 source/usart.o
- .debug_line    0x0000204b      0x31d source/usart1.o
+ .debug_line    0x00000134      0xfe6 main.o
+ .debug_line    0x0000111a       0xb1 mcc_generated_files/system/src/config_bits.o
+ .debug_line    0x000011cb      0x12a mcc_generated_files/system/src/cpu.o
+ .debug_line    0x000012f5       0xcc mcc_generated_files/system/src/cpuint.o
+ .debug_line    0x000013c1       0xee mcc_generated_files/system/src/pins.o
+ .debug_line    0x000014af       0xb8 mcc_generated_files/system/src/system.o
+ .debug_line    0x00001567      0x23e source/timer0.o
+ .debug_line    0x000017a5      0x2a2 source/timer1.o
+ .debug_line    0x00001a47      0x245 source/timer2.o
+ .debug_line    0x00001c8c      0x3d5 source/usart.o
+ .debug_line    0x00002061      0x31d source/usart1.o
 
-.debug_frame    0x00000000      0x8b8
+.debug_frame    0x00000000      0x8ac
  *(.debug_frame)
- .debug_frame   0x00000000      0x1d0 main.o
- .debug_frame   0x000001d0       0x64 mcc_generated_files/system/src/cpu.o
- .debug_frame   0x00000234       0x24 mcc_generated_files/system/src/cpuint.o
- .debug_frame   0x00000258       0x24 mcc_generated_files/system/src/pins.o
- .debug_frame   0x0000027c       0x24 mcc_generated_files/system/src/system.o
- .debug_frame   0x000002a0      0x13c source/timer0.o
- .debug_frame   0x000003dc      0x198 source/timer1.o
- .debug_frame   0x00000574      0x13c source/timer2.o
- .debug_frame   0x000006b0      0x164 source/usart.o
- .debug_frame   0x00000814       0xa4 source/usart1.o
+ .debug_frame   0x00000000      0x1c4 main.o
+ .debug_frame   0x000001c4       0x64 mcc_generated_files/system/src/cpu.o
+ .debug_frame   0x00000228       0x24 mcc_generated_files/system/src/cpuint.o
+ .debug_frame   0x0000024c       0x24 mcc_generated_files/system/src/pins.o
+ .debug_frame   0x00000270       0x24 mcc_generated_files/system/src/system.o
+ .debug_frame   0x00000294      0x13c source/timer0.o
+ .debug_frame   0x000003d0      0x198 source/timer1.o
+ .debug_frame   0x00000568      0x13c source/timer2.o
+ .debug_frame   0x000006a4      0x164 source/usart.o
+ .debug_frame   0x00000808       0xa4 source/usart1.o
 
-.debug_str      0x00000000     0x15a8
+.debug_str      0x00000000     0x15be
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0xa89 main.o
-                                0xbc3 (size before relaxing)
- .debug_str     0x00000c91       0x96 mcc_generated_files/system/src/config_bits.o
-                                0x1a8 (size before relaxing)
- .debug_str     0x00000d27       0x81 mcc_generated_files/system/src/cpu.o
+ .debug_str     0x00000208      0xa9f main.o
+                                0xbd9 (size before relaxing)
+ .debug_str     0x00000ca7       0x4e mcc_generated_files/system/src/config_bits.o
+                                0x1a7 (size before relaxing)
+ .debug_str     0x00000cf5       0xc9 mcc_generated_files/system/src/cpu.o
                                 0x1e3 (size before relaxing)
- .debug_str     0x00000da8       0x3d mcc_generated_files/system/src/cpuint.o
+ .debug_str     0x00000dbe       0x3d mcc_generated_files/system/src/cpuint.o
                                 0x1a6 (size before relaxing)
- .debug_str     0x00000de5       0x40 mcc_generated_files/system/src/pins.o
+ .debug_str     0x00000dfb       0x40 mcc_generated_files/system/src/pins.o
                                 0x1a1 (size before relaxing)
- .debug_str     0x00000e25       0x2b mcc_generated_files/system/src/system.o
+ .debug_str     0x00000e3b       0x2b mcc_generated_files/system/src/system.o
                                 0x1cf (size before relaxing)
- .debug_str     0x00000e50      0x18a source/timer0.o
+ .debug_str     0x00000e66      0x18a source/timer0.o
                                 0x318 (size before relaxing)
- .debug_str     0x00000fda      0x192 source/timer1.o
+ .debug_str     0x00000ff0      0x192 source/timer1.o
                                 0x345 (size before relaxing)
- .debug_str     0x0000116c      0x15b source/timer2.o
+ .debug_str     0x00001182      0x15b source/timer2.o
                                 0x304 (size before relaxing)
- .debug_str     0x000012c7      0x23f source/usart.o
+ .debug_str     0x000012dd      0x23f source/usart.o
                                 0x5d2 (size before relaxing)
- .debug_str     0x00001506       0xa2 source/usart1.o
+ .debug_str     0x0000151c       0xa2 source/usart1.o
                                 0x300 (size before relaxing)
 
-.debug_loc      0x00000000      0xbd9
+.debug_loc      0x00000000      0xc1d
  *(.debug_loc)
- .debug_loc     0x00000000      0x833 main.o
- .debug_loc     0x00000833       0x21 mcc_generated_files/system/src/cpu.o
- .debug_loc     0x00000854       0xcb source/timer0.o
- .debug_loc     0x0000091f      0x172 source/timer1.o
- .debug_loc     0x00000a91       0xcb source/timer2.o
- .debug_loc     0x00000b5c       0x5b source/usart.o
- .debug_loc     0x00000bb7       0x22 source/usart1.o
+ .debug_loc     0x00000000      0x877 main.o
+ .debug_loc     0x00000877       0x21 mcc_generated_files/system/src/cpu.o
+ .debug_loc     0x00000898       0xcb source/timer0.o
+ .debug_loc     0x00000963      0x172 source/timer1.o
+ .debug_loc     0x00000ad5       0xcb source/timer2.o
+ .debug_loc     0x00000ba0       0x5b source/usart.o
+ .debug_loc     0x00000bfb       0x22 source/usart1.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1015,8 +1015,8 @@ LOAD linker stubs
                 0x008003ff        0x1 main.o
                 0x008003ff                slaveAddress
 
-.modbus_r       0x00800400       0x14
- .modbus_r      0x00800400       0x14 main.o
+.modbus_r       0x00800400       0x1c
+ .modbus_r      0x00800400       0x1c main.o
                 0x00800400                modbusRegister
 
 .fixed_events   0x00800772      0x12c

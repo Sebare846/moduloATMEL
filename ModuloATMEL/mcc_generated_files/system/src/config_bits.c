@@ -43,11 +43,16 @@
 
 FUSES = 
 {
- .extended = 0x4, 
+ .extended = 0xfc, 
 
  
-.high = 0xd7 ,
+.high = 0xd8 ,
  
 
-.low = 0x97 
+.low = 0xdf 
 };
+
+//bootloader
+//low	0xDF
+//high  0xD8
+//ext	0xFC
